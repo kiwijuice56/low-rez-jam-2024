@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://l1nxgrfgq8nb"]
+
+[ext_resource type="TileSet" uid="uid://c1diaqt5v56hc" path="res://main/world/room/default_tileset.tres" id="1_s5xhh"]
+
+[node name="Room" type="Node2D"]
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"Music"
+
+[node name="DefaultTileMap" type="TileMap" parent="."]
+tile_set = ExtResource("1_s5xhh")
+rendering_quadrant_size = 9
+format = 2
+
+[node name="Anchors" type="Node2D" parent="."]
+
+[node name="Default" type="Marker2D" parent="Anchors"]
+
+[node name="Doors" type="Node2D" parent="."]
+
+[node name="Characters" type="Node2D" parent="."]
+
+[node name="Enemies" type="Node2D" parent="Characters"]
+
+[node name="Friends" type="Node2D" parent="Characters"]
+
+[node name="Items" type="Node2D" parent="."]
+
+[node name="Decoration" type="Node2D" parent="."]

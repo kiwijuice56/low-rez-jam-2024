@@ -1,6 +1,8 @@
 - [x] Audio system
 - [x] Save data system
-- [ ] Movement and interaction system
+- [x] Palette system
+- [x] Movement
+- [ ] Interaction system
 - [ ] Dialogue system
 - [ ] Overworld rooms
 - - [ ] Music

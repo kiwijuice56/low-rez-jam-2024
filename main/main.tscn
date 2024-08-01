@@ -1,10 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://dl3ps7eki0b7b"]
+[gd_scene load_steps=3 format=3 uid="uid://dl3ps7eki0b7b"]
 
 [ext_resource type="PackedScene" uid="uid://txvddbv8pfiv" path="res://main/world/character/player/player.tscn" id="1_84yfs"]
+[ext_resource type="PackedScene" uid="uid://wmlggwvrca1v" path="res://main/world/room/debug_room/debug_room.tscn" id="1_tyfg5"]
 
 [node name="Main" type="Node"]
 
 [node name="World" type="Node2D" parent="."]
 
+[node name="DebugRoom" parent="World" instance=ExtResource("1_tyfg5")]
+
 [node name="Player" parent="World" instance=ExtResource("1_84yfs")]
-position = Vector2(31, 33)
+position = Vector2(4.5, 4.5)
