@@ -1,0 +1,41 @@
+- [ ] Audio system
+- [ ] Save data system
+- [ ] Movement and interaction system
+- [ ] Dialogue system
+- [ ] Overworld rooms
+- - [ ] Music
+- - [ ] Loading/unloading
+- [ ] Inventory system + item pickups
+- [ ] Fighter system
+- [ ] Party member system + party member pickups
+- [ ] Overworld enemies
+- [ ] Overworld NPCs
+- [ ] Overworld UI
+- - [ ] Party
+- - - [ ] Status screens
+- - - [ ] Moving in and out of party
+- - [ ] Inventory
+- - [ ] Settings
+- [ ] Combat system
+- - [ ] Battle flow (starting, looping thru turns, ending)
+- - [ ] Damage labels
+- - [ ] Death, hit, strong hit, miss animations
+- - [ ] Attack animations
+- - [ ] Attack/heal actions and damage formulas
+- - [ ] Critical hits, misses, weakness hitting
+- - [ ] Revival actions
+- - [ ] Effects (code and animations) and effect actions
+- [ ] Combat UI
+- - [ ] Party member controls and their positioning
+- - [ ] Basic flow/animation and action selection
+- - [ ] Target selection
+- - [ ] Press turn icons
+- - [ ] Battle backgrounds
+- [ ] Progression system
+- - [ ] XP gain and leveling up after combat
+- - [ ] Stat growth distribution + formulas
+- - [ ] Skill unlocking
+- [ ] Progression UI
+- - [ ] Level up status pop-ups
+- - [ ] Skill unlock menu + animations
+- [ ] Title UI
