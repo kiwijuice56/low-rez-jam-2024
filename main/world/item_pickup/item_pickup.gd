@@ -23,7 +23,7 @@ func _ready() -> void:
 func _on_interacted(_interact_initiator: Character) -> void:
 	Ref.world.is_paused = true
 	Data.set_state(Ref.world.loaded_room_name + "/" + name, true)
-	Data.set_state(item, Data.get_state(item, 0) + amount)
+	Data.set_state("inventory/" + item, Data.get_state("inventory/" + item, 0) + amount)
 	await Ref.world_textbox.enter()
 	await Ref.world_textbox.display_conversation(conversation)
 	set_collected()

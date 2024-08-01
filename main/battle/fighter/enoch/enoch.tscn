@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwgqs6twouujh"]
+
+[ext_resource type="PackedScene" uid="uid://bnbb4opeecksl" path="res://main/battle/fighter/fighter.tscn" id="1_0srf7"]
+[ext_resource type="Script" path="res://main/battle/fighter/fighter_stats/fighter_stats.gd" id="2_3mnsv"]
+
+[sub_resource type="Resource" id="Resource_5x17d"]
+script = ExtResource("2_3mnsv")
+max_hp = 10
+max_tp = 10
+strength = 10
+magic = 10
+defence = 10
+luck = 10
+unlocked_skills = Array[int]([])
+
+[node name="Enoch" instance=ExtResource("1_0srf7")]
+stats = SubResource("Resource_5x17d")

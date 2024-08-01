@@ -1,0 +1,30 @@
+[gd_scene load_steps=7 format=3 uid="uid://dcrkublm74vlh"]
+
+[ext_resource type="PackedScene" uid="uid://df7dk7qqm8ylw" path="res://main/world/character/character.tscn" id="1_wt6fv"]
+[ext_resource type="Script" path="res://main/world/character/recruit/recruit.gd" id="2_0lwcm"]
+[ext_resource type="Texture2D" uid="uid://caho2lmh3wuc5" path="res://main/world/character/friend/glaggler/glaggler.png" id="2_dghb4"]
+[ext_resource type="Script" path="res://main/world/ui/text_box/dialogue/dialogue.gd" id="3_adc7c"]
+[ext_resource type="PackedScene" uid="uid://dqjhry378atdi" path="res://main/world/interactable/interactable.tscn" id="5_lmmne"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pcpoe"]
+size = Vector2(6, 6)
+
+[node name="Recruit" instance=ExtResource("1_wt6fv")]
+script = ExtResource("2_0lwcm")
+fighter_scene = null
+conversation = Array[ExtResource("3_adc7c")]([])
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_dghb4")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(5, 4)
+shape = SubResource("RectangleShape2D_pcpoe")
+
+[node name="Interactable" parent="." index="2" instance=ExtResource("5_lmmne")]
+unique_name_in_owner = true
+position = Vector2(5, 4)
+requires_facing = true
+
+[node name="CollisionRays" parent="." index="3"]
+position = Vector2(5, 4)

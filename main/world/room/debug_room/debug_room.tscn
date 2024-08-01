@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://wmlggwvrca1v"]
+[gd_scene load_steps=16 format=3 uid="uid://wmlggwvrca1v"]
 
 [ext_resource type="PackedScene" uid="uid://l1nxgrfgq8nb" path="res://main/world/room/room.tscn" id="1_lyot8"]
 [ext_resource type="PackedScene" uid="uid://dei0x5en37mu2" path="res://main/world/character/friend/friend.tscn" id="2_f2x4q"]
@@ -6,7 +6,22 @@
 [ext_resource type="Script" path="res://main/world/ui/text_box/dialogue/dialogue.gd" id="3_2d463"]
 [ext_resource type="PackedScene" uid="uid://dluf4cko6obhr" path="res://main/world/door/door.tscn" id="3_ilrgi"]
 [ext_resource type="Resource" uid="uid://chjfh685p4h6g" path="res://main/world/ui/text_box/speakers/default/default_speaker.tres" id="4_8hrq4"]
+[ext_resource type="PackedScene" uid="uid://dcrkublm74vlh" path="res://main/world/character/recruit/recruit.tscn" id="4_ok87l"]
+[ext_resource type="PackedScene" uid="uid://bwgqs6twouujh" path="res://main/battle/fighter/enoch/enoch.tscn" id="5_tyvh1"]
+[ext_resource type="Resource" uid="uid://be2fbcpo5gd7a" path="res://main/world/ui/text_box/speakers/system/system_speaker.tres" id="7_mrk23"]
 [ext_resource type="PackedScene" uid="uid://cmyfrh6j55ulb" path="res://main/world/item_pickup/item_pickup.tscn" id="7_q7lai"]
+
+[sub_resource type="Resource" id="Resource_nepoq"]
+script = ExtResource("3_2d463")
+speaker = ExtResource("4_8hrq4")
+text = "holy hell..."
+speed = "Normal"
+
+[sub_resource type="Resource" id="Resource_lvlo6"]
+script = ExtResource("3_2d463")
+speaker = ExtResource("7_mrk23")
+text = "enoch joined your party."
+speed = "Normal"
 
 [sub_resource type="Resource" id="Resource_v2bbq"]
 script = ExtResource("3_2d463")
@@ -40,6 +55,11 @@ position = Vector2(0, 0)
 [node name="Door" parent="Doors" index="0" instance=ExtResource("3_ilrgi")]
 position = Vector2(18, 0)
 target_room = "debug_room2"
+
+[node name="EnochRecruit" parent="Characters" index="0" instance=ExtResource("4_ok87l")]
+position = Vector2(54, 18)
+fighter_scene = ExtResource("5_tyvh1")
+conversation = Array[ExtResource("3_2d463")]([SubResource("Resource_nepoq"), SubResource("Resource_lvlo6")])
 
 [node name="Friend" parent="Characters/Friends" index="0" instance=ExtResource("2_f2x4q")]
 position = Vector2(36, 27)

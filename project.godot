@@ -17,8 +17,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Data="*res://main/data/data.gd"
 Ref="*res://main/ref.gd"
+Data="*res://main/data/data.gd"
 
 [debug]
 

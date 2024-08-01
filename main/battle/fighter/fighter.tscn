@@ -15,3 +15,5 @@ script = ExtResource("1_7gdsa")
 [node name="SpriteHolder" type="Node2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="SpriteHolder"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
