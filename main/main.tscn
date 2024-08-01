@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dl3ps7eki0b7b"]
+[gd_scene load_steps=12 format=3 uid="uid://dl3ps7eki0b7b"]
 
 [ext_resource type="PackedScene" uid="uid://txvddbv8pfiv" path="res://main/world/character/player/player.tscn" id="1_84yfs"]
 [ext_resource type="Script" path="res://main/main.gd" id="1_q20fr"]
@@ -6,9 +6,15 @@
 [ext_resource type="Script" path="res://main/world/world.gd" id="2_wo4dc"]
 [ext_resource type="PackedScene" uid="uid://dpdv3nq03k8nu" path="res://main/world/ui/text_box/text_box.tscn" id="3_541dq"]
 [ext_resource type="PackedScene" uid="uid://dpswo7nhpp30p" path="res://main/world/ui/pause_menu/pause_menu.tscn" id="5_5g66t"]
+[ext_resource type="Shader" path="res://main/transition/screen_blocky_fade.gdshader" id="5_4102r"]
 [ext_resource type="Script" path="res://main/battle/battle.gd" id="6_ccn40"]
 [ext_resource type="PackedScene" uid="uid://c4j2ik0u6mdlm" path="res://main/transition/transition.tscn" id="6_j5aj4"]
 [ext_resource type="Script" path="res://main/battle/player_party/player_party.gd" id="7_we58l"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gljt7"]
+shader = ExtResource("5_4102r")
+shader_parameter/fade = 0.09
+shader_parameter/tiling = 9.0
 
 [node name="Main" type="Node"]
 script = ExtResource("1_q20fr")
@@ -34,8 +40,17 @@ theme_override_constants/margin_bottom = 1
 [node name="TextBox" parent="World/UI/MarginContainer" instance=ExtResource("3_541dq")]
 layout_mode = 2
 
-[node name="PauseMenu" parent="World/UI/MarginContainer" instance=ExtResource("5_5g66t")]
-layout_mode = 2
+[node name="CanvasGroup" type="CanvasGroup" parent="World/UI/MarginContainer"]
+material = SubResource("ShaderMaterial_gljt7")
+
+[node name="PauseMenu" parent="World/UI/MarginContainer/CanvasGroup" instance=ExtResource("5_5g66t")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 63.0
+offset_bottom = 63.0
 
 [node name="Player" parent="World" instance=ExtResource("1_84yfs")]
 

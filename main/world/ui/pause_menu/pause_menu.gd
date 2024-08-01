@@ -1,5 +1,7 @@
 class_name PauseMenu extends Menu
 
+const TRANS_TIME: float = 0.1
+
 @export var party_member_panel_scene: PackedScene
 @export var default_color: Color
 @export var select_color: Color
@@ -7,7 +9,8 @@ class_name PauseMenu extends Menu
 var choice_idx: int = 0
 
 func _ready() -> void:
-	exit(false)
+	set_process_input(false)
+	visible = false
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("accept", false):
@@ -61,11 +64,26 @@ func enter() -> void:
 	choice_idx = 0
 	update_selection(old_idx)
 	
+	get_parent().material.set_shader_parameter("fade", 1.0)
+	visible = true
+	
+	var tween: Tween = get_tree().create_tween()
+	tween.tween_property(get_parent().material, "shader_parameter/fade", 0, TRANS_TIME)
+	await tween.finished
+	
 	set_process_input(true)
 	
-	super.enter()
+	entered.emit()
 
 func exit(full_exit: bool = false) -> void:
-	Ref.world.is_paused = false
 	set_process_input(false)
-	super.exit(full_exit)
+	
+	get_parent().material.set_shader_parameter("fade", 0.0)
+	visible = true
+	
+	var tween: Tween = get_tree().create_tween()
+	tween.tween_property(get_parent().material, "shader_parameter/fade", 1.0, TRANS_TIME)
+	await tween.finished
+	
+	Ref.world.is_paused = false
+	exited.emit(full_exit)

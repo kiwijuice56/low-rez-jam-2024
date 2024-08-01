@@ -15,7 +15,7 @@
 - - [ ] Party
 - - - [ ] Status screens
 - - - [ ] Moving in and out of party
-- - [ ] Inventory
+- - [x] Inventory
 - - [ ] Settings
 - [ ] Overworld enemies
 - [ ] Combat system
