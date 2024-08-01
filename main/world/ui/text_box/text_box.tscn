@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://main/world/ui/text_box/text_box.gd" id="1_cm34o"]
 [ext_resource type="Theme" uid="uid://evv5alve252b" path="res://main/theme/theme.tres" id="1_ohfux"]
 [ext_resource type="Script" path="res://main/world/ui/text_box/animated_text_label/animated_text_label.gd" id="2_611fg"]
-[ext_resource type="Texture2D" uid="uid://b6xyis5exwixo" path="res://main/world/ui/text_box/flicker.png" id="3_xr4j6"]
+[ext_resource type="PackedScene" uid="uid://bdir8ibmp15l2" path="res://main/world/ui/flicker/flicker.tscn" id="5_j34ag"]
 
 [node name="TextBox" type="MarginContainer"]
 anchors_preset = 15
@@ -44,14 +44,9 @@ fit_content = true
 visible_characters_behavior = 1
 script = ExtResource("2_611fg")
 
-[node name="Flicker" type="TextureRect" parent="TextBackground"]
-visible = false
-custom_minimum_size = Vector2(0, 4)
+[node name="Flicker" parent="TextBackground" instance=ExtResource("5_j34ag")]
+unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 8
-texture = ExtResource("3_xr4j6")
-stretch_mode = 2
 
 [node name="CharSoundPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
