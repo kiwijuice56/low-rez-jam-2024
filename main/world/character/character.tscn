@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://df7dk7qqm8ylw"]
+
+[ext_resource type="Script" path="res://main/world/character/character.gd" id="1_qahcl"]
+
+[node name="Character" type="Area2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_qahcl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="CollisionRays" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="LeftRay" type="RayCast2D" parent="CollisionRays"]
+unique_name_in_owner = true
+position = Vector2(0, -4)
+target_position = Vector2(9, 0)
+
+[node name="RightRay" type="RayCast2D" parent="CollisionRays"]
+unique_name_in_owner = true
+position = Vector2(0, 4)
+target_position = Vector2(9, 0)
