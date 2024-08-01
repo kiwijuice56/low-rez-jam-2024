@@ -35,9 +35,11 @@ window/stretch/mode="viewport"
 [file_customization]
 
 folder_colors={
-"res://main/world/music/": "green",
-"res://main/world/room/": "red",
-"res://main/world/ui/": "orange"
+"res://main/battle/": "yellow",
+"res://main/battle/ui/": "orange",
+"res://main/world/": "blue",
+"res://main/world/ui/": "orange",
+"res://music/": "green"
 }
 
 [input]

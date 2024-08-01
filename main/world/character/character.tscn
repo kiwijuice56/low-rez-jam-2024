@@ -8,6 +8,7 @@ collision_mask = 0
 script = ExtResource("1_qahcl")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
 centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

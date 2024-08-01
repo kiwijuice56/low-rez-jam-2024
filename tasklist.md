@@ -4,9 +4,9 @@
 - [x] Movement
 - [x] Interaction system
 - [x] Dialogue system
-- [ ] Overworld rooms
-- - [ ] Music
-- - [ ] Loading/unloading
+- [x] Overworld rooms
+- - [x] Music
+- - [x] Loading/unloading
 - [ ] Inventory system + item pickups
 - [ ] Fighter system
 - [ ] Party member system + party member pickups

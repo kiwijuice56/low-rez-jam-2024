@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://l1nxgrfgq8nb" path="res://main/world/room/room.tscn" id="1_lyot8"]
 [ext_resource type="PackedScene" uid="uid://dei0x5en37mu2" path="res://main/world/character/friend/friend.tscn" id="2_f2x4q"]
-[ext_resource type="AudioStream" uid="uid://d2fvo2xy55ul4" path="res://main/world/music/watermelon_factory.ogg" id="2_hyqft"]
+[ext_resource type="AudioStream" uid="uid://d2fvo2xy55ul4" path="res://music/watermelon_factory.ogg" id="2_hyqft"]
 [ext_resource type="Script" path="res://main/world/ui/text_box/dialogue/dialogue.gd" id="3_2d463"]
 [ext_resource type="PackedScene" uid="uid://dluf4cko6obhr" path="res://main/world/door/door.tscn" id="3_ilrgi"]
 [ext_resource type="Resource" uid="uid://chjfh685p4h6g" path="res://main/world/ui/text_box/speakers/default/default_speaker.tres" id="4_8hrq4"]

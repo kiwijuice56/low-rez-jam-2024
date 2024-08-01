@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://be018dta0m8ak"]
 
 [ext_resource type="PackedScene" uid="uid://l1nxgrfgq8nb" path="res://main/world/room/room.tscn" id="1_euael"]
-[ext_resource type="AudioStream" uid="uid://d2fvo2xy55ul4" path="res://main/world/music/watermelon_factory.ogg" id="2_vcimq"]
+[ext_resource type="AudioStream" uid="uid://d2fvo2xy55ul4" path="res://music/watermelon_factory.ogg" id="2_vcimq"]
 [ext_resource type="PackedScene" uid="uid://dluf4cko6obhr" path="res://main/world/door/door.tscn" id="3_uhne5"]
 [ext_resource type="PackedScene" uid="uid://dei0x5en37mu2" path="res://main/world/character/friend/friend.tscn" id="4_t77rg"]
 [ext_resource type="Script" path="res://main/world/ui/text_box/dialogue/dialogue.gd" id="5_jis0f"]

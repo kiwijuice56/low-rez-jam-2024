@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnbb4opeecksl"]
+
+[ext_resource type="Script" path="res://main/battle/fighter/fighter.gd" id="1_7gdsa"]
+[ext_resource type="PackedScene" uid="uid://cuko56w08yuso" path="res://main/battle/action/action.tscn" id="2_42vt3"]
+
+[node name="Fighter" type="Node2D"]
+script = ExtResource("1_7gdsa")
+
+[node name="Actions" type="Node2D" parent="."]
+
+[node name="Skills" type="Node2D" parent="Actions"]
+
+[node name="Action" parent="Actions" instance=ExtResource("2_42vt3")]
+
+[node name="SpriteHolder" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="SpriteHolder"]

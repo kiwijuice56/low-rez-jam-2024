@@ -31,6 +31,7 @@ theme_override_constants/margin_bottom = 1
 layout_mode = 2
 
 [node name="Player" parent="World" instance=ExtResource("1_84yfs")]
+movement_time = null
 
 [node name="Combat" type="Node2D" parent="."]
 

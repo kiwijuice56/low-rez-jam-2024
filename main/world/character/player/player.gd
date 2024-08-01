@@ -1,5 +1,6 @@
 class_name Player extends Character
 
+var latest_input: String 
 var queue: Array[String]
 
 func _physics_process(delta: float) -> void:
@@ -14,5 +15,13 @@ func _physics_process(delta: float) -> void:
 	
 	if len(queue) == 0:
 		return
-	var latest_input: String = queue[0]
+	latest_input = queue[0]
 	move(DIR_MAP[latest_input])
+
+func play_movement_animation() -> void:
+	%AnimationPlayer.stop()
+	%AnimationPlayer.play(latest_input)
+
+func play_look_animation() -> void:
+	%AnimationPlayer.stop()
+	%AnimationPlayer.play("look_" + latest_input)

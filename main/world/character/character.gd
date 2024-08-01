@@ -19,12 +19,21 @@ func move(dir: Vector2) -> void:
 	%LeftRay.force_raycast_update()
 	%RightRay.force_raycast_update()
 	if %LeftRay.is_colliding() or %RightRay.is_colliding():
+		play_look_animation()
 		return
 	
 	in_movement = true
 	
+	play_movement_animation()
 	var tween: Tween = get_tree().create_tween()
 	tween.tween_property(self, "position", position + dir * TILE_SIZE, movement_time)
 	await tween.finished
 	
+	
 	in_movement = false
+
+func play_movement_animation() -> void:
+	pass
+
+func play_look_animation() -> void:
+	pass
