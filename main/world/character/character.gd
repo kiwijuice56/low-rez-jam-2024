@@ -1,16 +1,20 @@
 class_name Character extends Area2D
 
 const TILE_SIZE: int = 9
+const DIR_MAP: Dictionary = {"up": Vector2.UP, "right": Vector2.RIGHT, "down": Vector2.DOWN, "left": Vector2.LEFT}
 
 @export var movement_time: float = TILE_SIZE / 60.0
 
-var dir_map: Dictionary = {"up": Vector2.UP, "right": Vector2.RIGHT, "down": Vector2.DOWN, "left": Vector2.LEFT}
+var targeted_interactable: Interactable
 var in_movement: bool = false
 var is_paused: bool = false
+var facing_dir: Vector2
 
 func move(dir: Vector2) -> void:
 	if in_movement or is_paused:
 		return
+	
+	facing_dir = dir
 	
 	%CollisionRays.rotation = Vector2(1, 0).angle_to(dir)
 	%LeftRay.force_raycast_update()

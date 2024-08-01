@@ -3,7 +3,7 @@ class_name Player extends Character
 var queue: Array[String]
 
 func _physics_process(delta: float) -> void:
-	for input in dir_map:
+	for input in DIR_MAP:
 		if Input.is_action_pressed(input):
 			if input in queue:
 				continue
@@ -15,4 +15,4 @@ func _physics_process(delta: float) -> void:
 	if len(queue) == 0:
 		return
 	var latest_input: String = queue[0]
-	move(dir_map[latest_input])
+	move(DIR_MAP[latest_input])

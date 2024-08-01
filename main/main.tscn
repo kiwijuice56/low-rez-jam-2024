@@ -10,4 +10,28 @@
 [node name="DebugRoom" parent="World" instance=ExtResource("1_tyfg5")]
 
 [node name="Player" parent="World" instance=ExtResource("1_84yfs")]
-position = Vector2(4.5, 4.5)
+position = Vector2(4, 4)
+
+[node name="Combat" type="Node2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Combat"]
+visible = false
+
+[node name="MarginContainer" type="MarginContainer" parent="Combat/CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopBackground" type="ColorRect" parent="Combat/CanvasLayer/MarginContainer"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+size_flags_vertical = 0
+color = Color(0, 0, 0, 1)
+
+[node name="BottomBackground" type="ColorRect" parent="Combat/CanvasLayer/MarginContainer"]
+custom_minimum_size = Vector2(0, 22)
+layout_mode = 2
+size_flags_vertical = 8
+color = Color(0, 0, 0, 1)
