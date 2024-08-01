@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dpswo7nhpp30p"]
+[gd_scene load_steps=11 format=3 uid="uid://dpswo7nhpp30p"]
 
 [ext_resource type="Theme" uid="uid://evv5alve252b" path="res://main/theme/theme.tres" id="1_rs2m4"]
 [ext_resource type="PackedScene" uid="uid://bdir8ibmp15l2" path="res://main/world/ui/flicker/flicker.tscn" id="2_3c070"]
@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://cb507pxkyk0xm" path="res://main/world/ui/pause_menu/party_member_panel/party_member_panel.tscn" id="3_iq85w"]
 [ext_resource type="PackedScene" uid="uid://ck1yu543qt4gw" path="res://main/world/ui/pause_menu/item_submenu/item_submenu.tscn" id="5_e5v21"]
 [ext_resource type="Shader" path="res://main/transition/screen_blocky_fade.gdshader" id="5_xg6n8"]
+[ext_resource type="AudioStream" uid="uid://b52h2qinfu6iw" path="res://main/theme/sound/cancel.tres" id="7_qkfc3"]
+[ext_resource type="AudioStream" uid="uid://c4md8ks1818q6" path="res://main/theme/sound/accept.tres" id="8_erf2o"]
+[ext_resource type="AudioStream" uid="uid://dv1ag3s4up115" path="res://main/theme/sound/select.tres" id="9_r58b2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jjrhp"]
 shader = ExtResource("5_xg6n8")
@@ -102,9 +105,25 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="CanvasGroup" type="CanvasGroup" parent="."]
+z_index = 1
 material = SubResource("ShaderMaterial_jjrhp")
 
 [node name="ItemSubmenu" parent="CanvasGroup" instance=ExtResource("5_e5v21")]
 unique_name_in_owner = true
 offset_right = 64.0
 offset_bottom = 64.0
+
+[node name="CancelPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("7_qkfc3")
+bus = &"UI Sound Effect"
+
+[node name="AcceptPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("8_erf2o")
+bus = &"UI Sound Effect"
+
+[node name="SelectPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("9_r58b2")
+bus = &"UI Sound Effect"

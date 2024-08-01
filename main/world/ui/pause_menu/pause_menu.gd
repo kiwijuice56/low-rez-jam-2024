@@ -16,11 +16,14 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("accept", false):
 		accept()
 	if event.is_action_pressed("cancel", false) or event.is_action_pressed("menu", false):
+		%CancelPlayer.play()
 		exit(false)
 	var old_idx: int = choice_idx
 	if event.is_action_pressed("up", false):
+		%SelectPlayer.play()
 		choice_idx -= 1
 	if event.is_action_pressed("down", false):
+		%SelectPlayer.play()
 		choice_idx += 1
 	choice_idx = (choice_idx + %ChoiceContainer.get_child_count()) % %ChoiceContainer.get_child_count()
 	if not old_idx == choice_idx:
@@ -33,6 +36,7 @@ func accept() -> void:
 		0: pass
 		1: pass
 		2: 
+			%AcceptPlayer.play()
 			%ItemSubmenu.enter()
 			var full_exit: bool = await %ItemSubmenu.exited
 			if full_exit:
@@ -57,6 +61,8 @@ func update_selection(old_idx: int) -> void:
 
 func enter() -> void:
 	Ref.world.is_paused = true
+	
+	%AcceptPlayer.play()
 	
 	initialize()
 	

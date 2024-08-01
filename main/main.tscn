@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dl3ps7eki0b7b"]
+[gd_scene load_steps=13 format=3 uid="uid://dl3ps7eki0b7b"]
 
 [ext_resource type="PackedScene" uid="uid://txvddbv8pfiv" path="res://main/world/character/player/player.tscn" id="1_84yfs"]
 [ext_resource type="Script" path="res://main/main.gd" id="1_q20fr"]
@@ -10,6 +10,11 @@
 [ext_resource type="Script" path="res://main/battle/battle.gd" id="6_ccn40"]
 [ext_resource type="PackedScene" uid="uid://c4j2ik0u6mdlm" path="res://main/transition/transition.tscn" id="6_j5aj4"]
 [ext_resource type="Script" path="res://main/battle/player_party/player_party.gd" id="7_we58l"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_on3yi"]
+shader = ExtResource("5_4102r")
+shader_parameter/fade = 0.09
+shader_parameter/tiling = 9.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gljt7"]
 shader = ExtResource("5_4102r")
@@ -37,13 +42,22 @@ theme_override_constants/margin_top = 1
 theme_override_constants/margin_right = 1
 theme_override_constants/margin_bottom = 1
 
-[node name="TextBox" parent="World/UI/MarginContainer" instance=ExtResource("3_541dq")]
-layout_mode = 2
+[node name="TextCanvasGroup" type="CanvasGroup" parent="World/UI/MarginContainer"]
+material = SubResource("ShaderMaterial_on3yi")
 
-[node name="CanvasGroup" type="CanvasGroup" parent="World/UI/MarginContainer"]
+[node name="TextBox" parent="World/UI/MarginContainer/TextCanvasGroup" instance=ExtResource("3_541dq")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 63.0
+offset_bottom = 63.0
+
+[node name="PauseMenuCanvasGroup" type="CanvasGroup" parent="World/UI/MarginContainer"]
 material = SubResource("ShaderMaterial_gljt7")
 
-[node name="PauseMenu" parent="World/UI/MarginContainer/CanvasGroup" instance=ExtResource("5_5g66t")]
+[node name="PauseMenu" parent="World/UI/MarginContainer/PauseMenuCanvasGroup" instance=ExtResource("5_5g66t")]
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
