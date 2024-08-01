@@ -71,7 +71,7 @@ root_node = NodePath("../BlockyFade")
 libraries = {
 "": SubResource("AnimationLibrary_blbdb")
 }
-speed_scale = 3.0
+speed_scale = 5.0
 
 [node name="BlockyFade" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_e2bu8")

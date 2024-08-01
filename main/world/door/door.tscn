@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dluf4cko6obhr"]
+[gd_scene load_steps=5 format=3 uid="uid://dluf4cko6obhr"]
 
 [ext_resource type="Script" path="res://main/world/door/door.gd" id="1_ai0jm"]
 [ext_resource type="PackedScene" uid="uid://dqjhry378atdi" path="res://main/world/interactable/interactable.tscn" id="2_rdanh"]
+[ext_resource type="Texture2D" uid="uid://cqfjwdyp6icsu" path="res://icon.svg" id="2_s5e2x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c73tt"]
 size = Vector2(9, 9)
@@ -9,10 +10,16 @@ size = Vector2(9, 9)
 [node name="Door" type="Area2D"]
 collision_mask = 0
 script = ExtResource("1_ai0jm")
-requires_intearct = null
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_s5e2x")
+centered = false
 
 [node name="Interactable" parent="." instance=ExtResource("2_rdanh")]
+unique_name_in_owner = true
+position = Vector2(4.5, 4.5)
 requires_facing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4.5, 4.5)
 shape = SubResource("RectangleShape2D_c73tt")

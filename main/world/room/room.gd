@@ -1,6 +1,6 @@
 class_name Room extends Node2D
 
-const MUSIC_TRANS: float = 0.5
+const MUSIC_TRANS: float = 0.2
 
 func load_in() -> void:
 	%MusicPlayer.volume_db = -60
