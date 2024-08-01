@@ -11,6 +11,7 @@
 script = ExtResource("1_q20fr")
 
 [node name="World" type="Node2D" parent="."]
+y_sort_enabled = true
 script = ExtResource("2_wo4dc")
 
 [node name="UI" type="CanvasLayer" parent="World"]
@@ -31,7 +32,6 @@ theme_override_constants/margin_bottom = 1
 layout_mode = 2
 
 [node name="Player" parent="World" instance=ExtResource("1_84yfs")]
-movement_time = 0.15
 
 [node name="Combat" type="Node2D" parent="."]
 

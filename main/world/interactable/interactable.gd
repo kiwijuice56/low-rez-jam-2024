@@ -4,6 +4,7 @@ signal interacted
 
 @export var requires_facing: bool = false
 var interact_initiator: Character
+var can_interact: bool = true
 
 func _ready() -> void:
 	area_entered.connect(_on_area_entered)
@@ -23,6 +24,9 @@ func _on_area_exited(area: Area2D) -> void:
 	interact_initiator = null
 
 func _input(event: InputEvent) -> void:
+	if not can_interact:
+		return
+	
 	if not is_instance_valid(interact_initiator):
 		return
 	if not interact_initiator.targeted_interactable == self:

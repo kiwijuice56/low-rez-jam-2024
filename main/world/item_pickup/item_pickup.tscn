@@ -1,14 +1,132 @@
-[gd_scene load_steps=3 format=3 uid="uid://cmyfrh6j55ulb"]
+[gd_scene load_steps=14 format=3 uid="uid://cmyfrh6j55ulb"]
 
 [ext_resource type="Script" path="res://main/world/item_pickup/item_pickup.gd" id="1_undrc"]
 [ext_resource type="PackedScene" uid="uid://dqjhry378atdi" path="res://main/world/interactable/interactable.tscn" id="2_ktln7"]
+[ext_resource type="Script" path="res://main/world/ui/text_box/dialogue/dialogue.gd" id="2_tsyg8"]
+[ext_resource type="Texture2D" uid="uid://cqm6ywf0ydxjp" path="res://main/world/item_pickup/pickup.png" id="2_vu784"]
+[ext_resource type="Resource" uid="uid://be2fbcpo5gd7a" path="res://main/world/ui/text_box/speakers/system/system_speaker.tres" id="3_b6756"]
+[ext_resource type="Texture2D" uid="uid://7ianniwhess3" path="res://main/world/item_pickup/circle.png" id="4_2bxgc"]
+
+[sub_resource type="Resource" id="Resource_l834l"]
+script = ExtResource("2_tsyg8")
+speaker = ExtResource("3_b6756")
+text = "the hologram vent spat out an item."
+speed = "Normal"
+
+[sub_resource type="Resource" id="Resource_1ymu2"]
+script = ExtResource("2_tsyg8")
+speaker = ExtResource("3_b6756")
+text = "..."
+speed = "Normal"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dygla"]
+size = Vector2(6, 6)
+
+[sub_resource type="Curve" id="Curve_c00m4"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.313167, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Animation" id="Animation_84tut"]
+resource_name = "bob"
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ItemSprite:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(3, -0.25, 0, 0.25, 0, -2, -0.25, 0, 0.25, 0, 3, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.466667, 1)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ItemSprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.533333, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.2, 0.2), Vector2(0.6, 0.6), Vector2(0.2, 0.2)]
+}
+
+[sub_resource type="Animation" id="Animation_584ri"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ItemSprite:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(3, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ItemSprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.3, 0.3)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i1h7j"]
+_data = {
+"RESET": SubResource("Animation_584ri"),
+"bob": SubResource("Animation_84tut")
+}
 
 [node name="ItemPickup" type="Area2D"]
 script = ExtResource("1_undrc")
+item = "bread"
+conversation = Array[ExtResource("2_tsyg8")]([SubResource("Resource_l834l"), SubResource("Resource_1ymu2")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_dygla")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_vu784")
+centered = false
 
 [node name="Interactable" parent="." instance=ExtResource("2_ktln7")]
+unique_name_in_owner = true
+position = Vector2(5, 4)
 requires_facing = true
+
+[node name="ItemSmoke" type="CPUParticles2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(5, 5)
+amount = 5
+lifetime = 0.5
+explosiveness = 0.28
+texture = ExtResource("4_2bxgc")
+emission_shape = 1
+emission_sphere_radius = 4.0
+gravity = Vector2(0, -200)
+scale_amount_min = 0.4
+scale_amount_max = 0.4
+scale_amount_curve = SubResource("Curve_c00m4")
+color = Color(0.588235, 0.588235, 0.588235, 1)
+
+[node name="ItemSprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(4.5, 3)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_2bxgc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_i1h7j")
+}
+autoplay = "bob"
+speed_scale = 0.5

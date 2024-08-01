@@ -15,6 +15,9 @@ func load_room(room_name: String, anchor: String = "Default") -> void:
 	if is_instance_valid(loaded_room):
 		await Ref.transition.trans_in()
 	
+	var old_name: String = loaded_room_name 
+	loaded_room_name = room_name # items need the loaded room name
+	
 	var path: String = ROOM_PATH + "%s/%s.tscn" % [room_name, room_name]
 	var new_room: Room = load(path).instantiate()
 	add_child(new_room)
@@ -22,7 +25,7 @@ func load_room(room_name: String, anchor: String = "Default") -> void:
 	
 	if not is_instance_valid(loaded_room):
 		await new_room.load_in()
-	elif is_instance_valid(loaded_room) and loaded_room_name == room_name:
+	elif is_instance_valid(loaded_room) and old_name == room_name:
 		pass
 	else:
 		await loaded_room.load_out()

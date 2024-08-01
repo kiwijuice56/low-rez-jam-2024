@@ -4,6 +4,7 @@
 [ext_resource type="TileSet" uid="uid://c1diaqt5v56hc" path="res://main/world/room/default_tileset.tres" id="1_s5xhh"]
 
 [node name="Room" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_r1nmq")
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
@@ -13,6 +14,7 @@ autoplay = true
 bus = &"Music"
 
 [node name="DefaultTileMap" type="TileMap" parent="."]
+z_index = -1
 tile_set = ExtResource("1_s5xhh")
 rendering_quadrant_size = 9
 format = 2
@@ -23,13 +25,19 @@ format = 2
 position = Vector2(4, 4)
 
 [node name="Doors" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="Characters" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="Enemies" type="Node2D" parent="Characters"]
+y_sort_enabled = true
 
 [node name="Friends" type="Node2D" parent="Characters"]
+y_sort_enabled = true
 
 [node name="Items" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="Decoration" type="Node2D" parent="."]
+y_sort_enabled = true

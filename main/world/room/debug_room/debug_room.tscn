@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://wmlggwvrca1v"]
+[gd_scene load_steps=11 format=3 uid="uid://wmlggwvrca1v"]
 
 [ext_resource type="PackedScene" uid="uid://l1nxgrfgq8nb" path="res://main/world/room/room.tscn" id="1_lyot8"]
 [ext_resource type="PackedScene" uid="uid://dei0x5en37mu2" path="res://main/world/character/friend/friend.tscn" id="2_f2x4q"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://main/world/ui/text_box/dialogue/dialogue.gd" id="3_2d463"]
 [ext_resource type="PackedScene" uid="uid://dluf4cko6obhr" path="res://main/world/door/door.tscn" id="3_ilrgi"]
 [ext_resource type="Resource" uid="uid://chjfh685p4h6g" path="res://main/world/ui/text_box/speakers/default/default_speaker.tres" id="4_8hrq4"]
+[ext_resource type="PackedScene" uid="uid://cmyfrh6j55ulb" path="res://main/world/item_pickup/item_pickup.tscn" id="7_q7lai"]
 
 [sub_resource type="Resource" id="Resource_v2bbq"]
 script = ExtResource("3_2d463")
@@ -43,3 +44,11 @@ target_room = "debug_room2"
 [node name="Friend" parent="Characters/Friends" index="0" instance=ExtResource("2_f2x4q")]
 position = Vector2(36, 27)
 conversation = Array[ExtResource("3_2d463")]([SubResource("Resource_v2bbq"), SubResource("Resource_3dvs7"), SubResource("Resource_lv57f")])
+
+[node name="ItemPickup" parent="Items" index="0" instance=ExtResource("7_q7lai")]
+position = Vector2(9, 18)
+
+[node name="ItemPickup2" parent="Items" index="1" instance=ExtResource("7_q7lai")]
+position = Vector2(-18, 9)
+item = "snack"
+amount = 2
