@@ -1,6 +1,6 @@
 class_name AnimatedTextLabel extends RichTextLabel
 
-const DEFAULT_CHARS_PER_SECOND: float = 48
+const DEFAULT_CHARS_PER_SECOND: int = 48
 const PAUSE_LENGTH: float = 16
 const SPEED_UP_MULT: float = 2.5
 

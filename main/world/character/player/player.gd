@@ -3,7 +3,7 @@ class_name Player extends Character
 var latest_input: String 
 var queue: Array[String]
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	for input in DIR_MAP:
 		if Input.is_action_pressed(input):
 			if input in queue:

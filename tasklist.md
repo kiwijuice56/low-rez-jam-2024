@@ -9,15 +9,15 @@
 - - [x] Loading/unloading
 - [x] Inventory system + item pickups
 - [x] Fighter system
-- [ ] Party member system + party member pickups
-- [ ] Overworld enemies
-- [ ] Overworld NPCs
+- [x] Party member system + party member pickups
+- [x] Overworld NPCs (friends)
 - [ ] Overworld UI
 - - [ ] Party
 - - - [ ] Status screens
 - - - [ ] Moving in and out of party
 - - [ ] Inventory
 - - [ ] Settings
+- [ ] Overworld enemies
 - [ ] Combat system
 - - [ ] Battle flow (starting, looping thru turns, ending)
 - - [ ] Damage labels

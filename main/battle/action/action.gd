@@ -17,7 +17,7 @@ func _ready() -> void:
 	owner_fighter = owner
 
 # action-specific stuff... ex: healing should not target fully healed fighters
-func can_target(target: Fighter) -> bool:
+func can_target(_target: Fighter) -> bool:
 	return true 
 
 func get_available_targets(own_party: Array[Fighter], other_party: Array[Fighter]) -> Array[Fighter]:
