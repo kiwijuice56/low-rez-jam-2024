@@ -1,5 +1,5 @@
-- [ ] Audio system
-- [ ] Save data system
+- [x] Audio system
+- [x] Save data system
 - [ ] Movement and interaction system
 - [ ] Dialogue system
 - [ ] Overworld rooms

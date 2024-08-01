@@ -14,6 +14,10 @@ config/name="low-rez-jam-2024"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Data="*res://main/data/data.gd"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
