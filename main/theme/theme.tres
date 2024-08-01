@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=4 format=3 uid="uid://evv5alve252b"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://evv5alve252b"]
 
 [ext_resource type="FontFile" uid="uid://cauc77kjpc67c" path="res://main/theme/mini_kiwi_font.ttf" id="1_x8i1s"]
 
@@ -19,6 +19,13 @@ corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 anti_aliasing = false
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qvikq"]
+bg_color = Color(0.588235, 0.588235, 0.588235, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e8dsk"]
+content_margin_left = 1.0
+bg_color = Color(0.180392, 0.192157, 0.203922, 1)
+
 [sub_resource type="FontVariation" id="FontVariation_1w3ye"]
 base_font = ExtResource("1_x8i1s")
 spacing_space = -3
@@ -27,3 +34,5 @@ spacing_top = -7
 [resource]
 default_font = SubResource("FontVariation_1w3ye")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_0nf2g")
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_qvikq")
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_e8dsk")

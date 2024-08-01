@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://cb507pxkyk0xm"]
+
+[ext_resource type="Script" path="res://main/world/ui/pause_menu/party_member_panel/party_member_panel.gd" id="1_m6byb"]
+[ext_resource type="Texture2D" uid="uid://c81ydnq2r2hdj" path="res://main/battle/fighter/enoch/enoch.png" id="1_t4i41"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r8sus"]
+content_margin_left = 2.0
+content_margin_top = 3.0
+content_margin_right = 2.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.180392, 0.192157, 0.203922, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+anti_aliasing = false
+
+[node name="PartyMemberPanel" type="MarginContainer"]
+theme_override_constants/margin_right = 1
+script = ExtResource("1_m6byb")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_r8sus")
+
+[node name="Icon" type="TextureRect" parent="PanelContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("1_t4i41")
