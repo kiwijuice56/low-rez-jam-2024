@@ -10,3 +10,27 @@ class_name Action extends Node2D
 @export_group("Status Effect")
 @export var status_chance: float = 1.0
 @export_flags("Poison", "Ablaze", "Bless", "Charm", "Broken", "Cool", "Aura", "Oily", "Wet", "Charged", "Stun") var status_effects: int
+
+var owner_fighter: Fighter
+
+func _ready() -> void:
+	owner_fighter = owner
+
+# action-specific stuff... ex: healing should not target fully healed fighters
+func can_target(target: Fighter) -> bool:
+	return true 
+
+func get_available_targets(own_party: Array[Fighter], other_party: Array[Fighter]) -> Array[Fighter]:
+	var targets: Array[Fighter] = []
+	var pool: Array[Fighter] = []
+	match target_group:
+		"All":
+			pool = own_party + other_party
+		"Own":
+			pool = own_party
+		"Other":
+			pool = other_party
+	for possible_target in pool:
+		if can_target(possible_target):
+			targets.append(possible_target)
+	return targets

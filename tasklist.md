@@ -8,8 +8,8 @@
 - - [x] Music
 - - [x] Loading/unloading
 - [ ] Step audio system (?)
-- [ ] Inventory system + item pickups
-- [ ] Fighter system
+- [x] Inventory system + item pickups
+- [x] Fighter system
 - [ ] Party member system + party member pickups
 - [ ] Overworld enemies
 - [ ] Overworld NPCs

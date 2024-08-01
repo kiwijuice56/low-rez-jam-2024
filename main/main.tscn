@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dl3ps7eki0b7b"]
+[gd_scene load_steps=8 format=3 uid="uid://dl3ps7eki0b7b"]
 
 [ext_resource type="PackedScene" uid="uid://txvddbv8pfiv" path="res://main/world/character/player/player.tscn" id="1_84yfs"]
 [ext_resource type="Script" path="res://main/main.gd" id="1_q20fr"]
 [ext_resource type="Theme" uid="uid://evv5alve252b" path="res://main/theme/theme.tres" id="1_vk4h2"]
 [ext_resource type="Script" path="res://main/world/world.gd" id="2_wo4dc"]
 [ext_resource type="PackedScene" uid="uid://dpdv3nq03k8nu" path="res://main/world/ui/text_box/text_box.tscn" id="3_541dq"]
+[ext_resource type="Script" path="res://main/battle/battle.gd" id="6_ccn40"]
 [ext_resource type="PackedScene" uid="uid://c4j2ik0u6mdlm" path="res://main/transition/transition.tscn" id="6_j5aj4"]
 
 [node name="Main" type="Node"]
@@ -33,28 +34,33 @@ layout_mode = 2
 
 [node name="Player" parent="World" instance=ExtResource("1_84yfs")]
 
-[node name="Combat" type="Node2D" parent="."]
+[node name="Battle" type="Node2D" parent="."]
+script = ExtResource("6_ccn40")
 
-[node name="UI" type="CanvasLayer" parent="Combat"]
+[node name="UI" type="CanvasLayer" parent="Battle"]
 visible = false
 
-[node name="MarginContainer" type="MarginContainer" parent="Combat/UI"]
+[node name="MarginContainer" type="MarginContainer" parent="Battle/UI"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TopBackground" type="ColorRect" parent="Combat/UI/MarginContainer"]
+[node name="TopBackground" type="ColorRect" parent="Battle/UI/MarginContainer"]
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 size_flags_vertical = 0
 color = Color(0, 0, 0, 1)
 
-[node name="BottomBackground" type="ColorRect" parent="Combat/UI/MarginContainer"]
+[node name="BottomBackground" type="ColorRect" parent="Battle/UI/MarginContainer"]
 custom_minimum_size = Vector2(0, 22)
 layout_mode = 2
 size_flags_vertical = 8
 color = Color(0, 0, 0, 1)
+
+[node name="PlayerParty" type="Node2D" parent="Battle"]
+
+[node name="EnemyParty" type="Node2D" parent="Battle"]
 
 [node name="Transition" parent="." instance=ExtResource("6_j5aj4")]
