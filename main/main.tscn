@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dl3ps7eki0b7b"]
+[gd_scene load_steps=10 format=3 uid="uid://dl3ps7eki0b7b"]
 
 [ext_resource type="PackedScene" uid="uid://txvddbv8pfiv" path="res://main/world/character/player/player.tscn" id="1_84yfs"]
 [ext_resource type="Script" path="res://main/main.gd" id="1_q20fr"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://dpswo7nhpp30p" path="res://main/world/ui/pause_menu/pause_menu.tscn" id="5_5g66t"]
 [ext_resource type="Script" path="res://main/battle/battle.gd" id="6_ccn40"]
 [ext_resource type="PackedScene" uid="uid://c4j2ik0u6mdlm" path="res://main/transition/transition.tscn" id="6_j5aj4"]
-[ext_resource type="PackedScene" uid="uid://cb507pxkyk0xm" path="res://main/world/ui/pause_menu/party_member_panel/party_member_panel.tscn" id="6_p7bdr"]
 [ext_resource type="Script" path="res://main/battle/player_party/player_party.gd" id="7_we58l"]
 
 [node name="Main" type="Node"]
@@ -37,7 +36,6 @@ layout_mode = 2
 
 [node name="PauseMenu" parent="World/UI/MarginContainer" instance=ExtResource("5_5g66t")]
 layout_mode = 2
-party_member_panel_scene = ExtResource("6_p7bdr")
 
 [node name="Player" parent="World" instance=ExtResource("1_84yfs")]
 

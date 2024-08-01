@@ -20,7 +20,7 @@ func _physics_process(_delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if not Ref.world.is_paused and not in_movement and event.is_action_pressed("menu", false):
-		Ref.pause_menu.open_menu()
+		Ref.pause_menu.enter()
 
 func play_movement_animation() -> void:
 	%AnimationPlayer.stop()

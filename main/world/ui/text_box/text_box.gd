@@ -9,7 +9,7 @@ var odd_character: bool = false
 
 func _ready() -> void:
 	%AnimatedTextLabel.char_advanced.connect(_on_char_advanced)
-	exit()
+	exit(false)
 
 func _on_char_advanced() -> void:
 	odd_character = not odd_character

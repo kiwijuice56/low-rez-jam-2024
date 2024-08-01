@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dpswo7nhpp30p"]
+[gd_scene load_steps=6 format=3 uid="uid://dpswo7nhpp30p"]
 
 [ext_resource type="Theme" uid="uid://evv5alve252b" path="res://main/theme/theme.tres" id="1_rs2m4"]
 [ext_resource type="PackedScene" uid="uid://bdir8ibmp15l2" path="res://main/world/ui/flicker/flicker.tscn" id="2_3c070"]
 [ext_resource type="Script" path="res://main/world/ui/pause_menu/pause_menu.gd" id="2_qvlpx"]
 [ext_resource type="PackedScene" uid="uid://cb507pxkyk0xm" path="res://main/world/ui/pause_menu/party_member_panel/party_member_panel.tscn" id="3_iq85w"]
+[ext_resource type="PackedScene" uid="uid://ck1yu543qt4gw" path="res://main/world/ui/pause_menu/item_submenu/item_submenu.tscn" id="5_e5v21"]
 
 [node name="PauseMenu" type="MarginContainer"]
 anchors_preset = 15
@@ -13,6 +14,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_rs2m4")
 script = ExtResource("2_qvlpx")
+party_member_panel_scene = ExtResource("3_iq85w")
+default_color = Color(0.588235, 0.588235, 0.588235, 1)
+select_color = Color(1, 1, 1, 1)
 
 [node name="MainPanel" type="PanelContainer" parent="."]
 layout_mode = 2
@@ -89,4 +93,8 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="PartyMemberPanel5" parent="ScrollContainer/PartyContainer" instance=ExtResource("3_iq85w")]
+layout_mode = 2
+
+[node name="ItemSubmenu" parent="." instance=ExtResource("5_e5v21")]
+unique_name_in_owner = true
 layout_mode = 2

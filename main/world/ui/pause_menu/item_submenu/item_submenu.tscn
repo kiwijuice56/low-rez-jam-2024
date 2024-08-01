@@ -1,0 +1,84 @@
+[gd_scene load_steps=4 format=3 uid="uid://ck1yu543qt4gw"]
+
+[ext_resource type="Theme" uid="uid://evv5alve252b" path="res://main/theme/theme.tres" id="1_22j58"]
+[ext_resource type="Script" path="res://main/world/ui/pause_menu/item_submenu/item_submenu.gd" id="2_v3xhj"]
+[ext_resource type="PackedScene" uid="uid://clf7r40qqylyo" path="res://main/world/ui/pause_menu/item_submenu/item_label.tscn" id="3_qyleg"]
+
+[node name="ItemSubmenu" type="MarginContainer"]
+theme = ExtResource("1_22j58")
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+script = ExtResource("2_v3xhj")
+item_label_scene = ExtResource("3_qyleg")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "my stuff"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ItemContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 1
+
+[node name="ItemLabel" parent="PanelContainer/VBoxContainer/HBoxContainer/ItemContainer" instance=ExtResource("3_qyleg")]
+layout_mode = 2
+
+[node name="Label6" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/ItemContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.588235, 0.588235, 0.588235, 1)
+text = "stir fry"
+
+[node name="Label4" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/ItemContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.588235, 0.588235, 0.588235, 1)
+text = "vitamin"
+
+[node name="Label5" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/ItemContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.588235, 0.588235, 0.588235, 1)
+text = "tnt"
+
+[node name="Label7" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/ItemContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.588235, 0.588235, 0.588235, 1)
+text = "key itm"
+
+[node name="Label8" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/ItemContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.588235, 0.588235, 0.588235, 1)
+text = "key itm"
+
+[node name="Label9" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/ItemContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.588235, 0.588235, 0.588235, 1)
+text = "key itm"
+
+[node name="AmountContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = 1
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/AmountContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.588235, 0.588235, 0.588235, 1)
+text = "x2"
+
+[node name="Label2" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/AmountContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.588235, 0.588235, 0.588235, 1)
+text = "x2"

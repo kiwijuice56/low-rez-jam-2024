@@ -1,15 +1,19 @@
 class_name PauseMenu extends Menu
 
 @export var party_member_panel_scene: PackedScene
+@export var default_color: Color
+@export var select_color: Color
 
 var choice_idx: int = 0
 
 func _ready() -> void:
-	exit()
+	exit(false)
 
 func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("accept", false):
+		accept()
 	if event.is_action_pressed("cancel", false) or event.is_action_pressed("menu", false):
-		close_menu()
+		exit(false)
 	var old_idx: int = choice_idx
 	if event.is_action_pressed("up", false):
 		choice_idx -= 1
@@ -18,6 +22,21 @@ func _input(event: InputEvent) -> void:
 	choice_idx = (choice_idx + %ChoiceContainer.get_child_count()) % %ChoiceContainer.get_child_count()
 	if not old_idx == choice_idx:
 		update_selection(old_idx)
+
+func accept() -> void:
+	set_process_input(false)
+	
+	match choice_idx:
+		0: pass
+		1: pass
+		2: 
+			%ItemSubmenu.enter()
+			var full_exit: bool = await %ItemSubmenu.exited
+			if full_exit:
+				exit(true)
+			else:
+				set_process_input(true)
+		3: pass
 
 func initialize() -> void:
 	for child in %PartyContainer.get_children():
@@ -28,25 +47,25 @@ func initialize() -> void:
 		new_panel.initialize(child)
 
 func update_selection(old_idx: int) -> void:
+	%ChoiceContainer.get_child(old_idx).add_theme_color_override("font_color", default_color)
+	%ChoiceContainer.get_child(choice_idx).add_theme_color_override("font_color", select_color)
 	%FlickerContainer.get_child(old_idx).stop()
 	%FlickerContainer.get_child(choice_idx).flicker()
 
-func open_menu() -> void:
+func enter() -> void:
+	Ref.world.is_paused = true
+	
+	initialize()
+	
 	var old_idx: int = choice_idx
 	choice_idx = 0
 	update_selection(old_idx)
-	Ref.world.is_paused = true
-	initialize()
-	enter()
-
-func close_menu() -> void:
-	exit()
-	Ref.world.is_paused = false
-
-func enter() -> void:
-	super.enter()
+	
 	set_process_input(true)
+	
+	super.enter()
 
-func exit() -> void:
-	super.exit()
+func exit(full_exit: bool = false) -> void:
+	Ref.world.is_paused = false
 	set_process_input(false)
+	super.exit(full_exit)
