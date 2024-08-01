@@ -25,3 +25,7 @@ func play_movement_animation() -> void:
 func play_look_animation() -> void:
 	%AnimationPlayer.stop()
 	%AnimationPlayer.play("look_" + latest_input)
+
+func step() -> void:
+	%StepPlayer.stop()
+	%StepPlayer.play()

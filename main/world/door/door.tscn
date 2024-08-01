@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://main/world/door/door.gd" id="1_ai0jm"]
 [ext_resource type="PackedScene" uid="uid://dqjhry378atdi" path="res://main/world/interactable/interactable.tscn" id="2_rdanh"]
-[ext_resource type="Texture2D" uid="uid://cqfjwdyp6icsu" path="res://icon.svg" id="2_s5e2x"]
+[ext_resource type="Texture2D" uid="uid://emchhlwgswks" path="res://main/square.png" id="2_t3gmw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c73tt"]
 size = Vector2(9, 9)
@@ -12,7 +12,7 @@ collision_mask = 0
 script = ExtResource("1_ai0jm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_s5e2x")
+texture = ExtResource("2_t3gmw")
 centered = false
 
 [node name="Interactable" parent="." instance=ExtResource("2_rdanh")]

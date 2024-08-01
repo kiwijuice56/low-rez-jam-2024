@@ -7,6 +7,7 @@
 - [x] Overworld rooms
 - - [x] Music
 - - [x] Loading/unloading
+- [ ] Step audio system (?)
 - [ ] Inventory system + item pickups
 - [ ] Fighter system
 - [ ] Party member system + party member pickups
