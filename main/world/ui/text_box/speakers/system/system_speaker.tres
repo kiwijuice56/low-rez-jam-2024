@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="Speaker" load_steps=2 format=3 uid="uid://be2fbcpo5gd7a"]
+
+[ext_resource type="Script" path="res://main/world/ui/text_box/speakers/speaker.gd" id="2_m33ci"]
+
+[resource]
+script = ExtResource("2_m33ci")
+chars_per_second = 64

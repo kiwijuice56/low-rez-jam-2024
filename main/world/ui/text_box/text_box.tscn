@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=3 uid="uid://dpdv3nq03k8nu"]
+
+[ext_resource type="Texture2D" uid="uid://bgsbq87nkcsv2" path="res://main/world/ui/text_box/speakers/default/default_portrait.png" id="1_5grlb"]
+[ext_resource type="Script" path="res://main/world/ui/text_box/text_box.gd" id="1_cm34o"]
+[ext_resource type="Theme" uid="uid://evv5alve252b" path="res://main/theme/theme.tres" id="1_ohfux"]
+[ext_resource type="Script" path="res://main/world/ui/text_box/animated_text_label/animated_text_label.gd" id="2_611fg"]
+[ext_resource type="Texture2D" uid="uid://b6xyis5exwixo" path="res://main/world/ui/text_box/flicker.png" id="3_xr4j6"]
+
+[node name="TextBox" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ohfux")
+script = ExtResource("1_cm34o")
+
+[node name="PortraitContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+
+[node name="SpeakerPortrait" type="TextureRect" parent="PortraitContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(20, 40)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+texture = ExtResource("1_5grlb")
+stretch_mode = 2
+
+[node name="TextBackground" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="AnimatedTextLabel" type="RichTextLabel" parent="TextBackground"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/default_color = Color(0.588235, 0.588235, 0.588235, 1)
+text = "hey you hungry home invader... stop raiding our frigerator!"
+fit_content = true
+visible_characters_behavior = 1
+script = ExtResource("2_611fg")
+
+[node name="Flicker" type="TextureRect" parent="TextBackground"]
+visible = false
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+texture = ExtResource("3_xr4j6")
+stretch_mode = 2
+
+[node name="CharSoundPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+volume_db = -12.0
+bus = &"Voice"

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Speaker" load_steps=5 format=3 uid="uid://chjfh685p4h6g"]
+
+[ext_resource type="Texture2D" uid="uid://bgsbq87nkcsv2" path="res://main/world/ui/text_box/speakers/default/default_portrait.png" id="1_35g1s"]
+[ext_resource type="Script" path="res://main/world/ui/text_box/speakers/speaker.gd" id="1_l7ucb"]
+[ext_resource type="AudioStream" uid="uid://daigg0kln3lvj" path="res://main/world/ui/text_box/speakers/default/default_voice.wav" id="3_ihq60"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_yyo3n"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("3_ihq60")
+
+[resource]
+script = ExtResource("1_l7ucb")
+portrait = ExtResource("1_35g1s")
+voice = SubResource("AudioStreamRandomizer_yyo3n")
+chars_per_second = 38

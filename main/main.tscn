@@ -1,13 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://dl3ps7eki0b7b"]
+[gd_scene load_steps=6 format=3 uid="uid://dl3ps7eki0b7b"]
 
 [ext_resource type="PackedScene" uid="uid://txvddbv8pfiv" path="res://main/world/character/player/player.tscn" id="1_84yfs"]
 [ext_resource type="Script" path="res://main/main.gd" id="1_q20fr"]
 [ext_resource type="PackedScene" uid="uid://wmlggwvrca1v" path="res://main/world/room/debug_room/debug_room.tscn" id="1_tyfg5"]
 [ext_resource type="Theme" uid="uid://evv5alve252b" path="res://main/theme/theme.tres" id="1_vk4h2"]
-[ext_resource type="Script" path="res://main/world/ui/text_box/animated_text_label.gd" id="2_bqw1g"]
-[ext_resource type="Texture2D" uid="uid://b6xyis5exwixo" path="res://main/world/ui/text_box/flicker.png" id="2_f024u"]
-[ext_resource type="Script" path="res://main/text_box.gd" id="2_frcgw"]
-[ext_resource type="Texture2D" uid="uid://bgsbq87nkcsv2" path="res://main/world/ui/text_box/speakers/default/default_portrait.png" id="3_dxbs5"]
+[ext_resource type="PackedScene" uid="uid://dpdv3nq03k8nu" path="res://main/world/ui/text_box/text_box.tscn" id="3_541dq"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_q20fr")
@@ -28,43 +25,8 @@ theme_override_constants/margin_top = 1
 theme_override_constants/margin_right = 1
 theme_override_constants/margin_bottom = 1
 
-[node name="PortraitContainer" type="MarginContainer" parent="World/UI/MarginContainer"]
+[node name="TextBox" parent="World/UI/MarginContainer" instance=ExtResource("3_541dq")]
 layout_mode = 2
-theme_override_constants/margin_left = 4
-
-[node name="SpeakerPortrait" type="TextureRect" parent="World/UI/MarginContainer/PortraitContainer"]
-custom_minimum_size = Vector2(20, 40)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
-texture = ExtResource("3_dxbs5")
-stretch_mode = 2
-
-[node name="TextBox" type="PanelContainer" parent="World/UI/MarginContainer"]
-custom_minimum_size = Vector2(0, 24)
-layout_mode = 2
-size_flags_vertical = 8
-script = ExtResource("2_frcgw")
-
-[node name="AnimatedTextLabel" type="RichTextLabel" parent="World/UI/MarginContainer/TextBox"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 20)
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_colors/default_color = Color(0.588235, 0.588235, 0.588235, 1)
-text = "hey you hungry home invader... stop raiding our frigerator!"
-fit_content = true
-visible_characters_behavior = 1
-script = ExtResource("2_bqw1g")
-
-[node name="Flicker" type="TextureRect" parent="World/UI/MarginContainer/TextBox"]
-visible = false
-custom_minimum_size = Vector2(0, 4)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 8
-texture = ExtResource("2_f024u")
-stretch_mode = 2
 
 [node name="DebugRoom" parent="World" instance=ExtResource("1_tyfg5")]
 

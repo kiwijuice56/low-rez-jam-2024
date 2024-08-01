@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://main/world/character/friend/friend.gd" id="2_2lpku"]
 [ext_resource type="PackedScene" uid="uid://dqjhry378atdi" path="res://main/world/interactable/interactable.tscn" id="2_ng02n"]
 [ext_resource type="Texture2D" uid="uid://deuidmn67hldg" path="res://main/world/character/player/player.png" id="3_be32w"]
-[ext_resource type="Script" path="res://main/world/ui/text_box/dialogue.gd" id="3_v7s5w"]
+[ext_resource type="Script" path="res://main/world/ui/text_box/dialogue/dialogue.gd" id="3_v7s5w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ck0l"]
 size = Vector2(5, 5)
