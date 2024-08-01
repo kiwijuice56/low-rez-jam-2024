@@ -1,0 +1,83 @@
+[gd_scene load_steps=8 format=3 uid="uid://c4j2ik0u6mdlm"]
+
+[ext_resource type="Script" path="res://main/transition/transition.gd" id="1_86wie"]
+[ext_resource type="Shader" path="res://main/transition/blocky_fade.gdshader" id="2_buqyi"]
+
+[sub_resource type="Animation" id="Animation_otkv7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/fade")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_bljdj"]
+resource_name = "trans_in"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/fade")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333334, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_456di"]
+resource_name = "trans_out"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/fade")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_blbdb"]
+_data = {
+"RESET": SubResource("Animation_otkv7"),
+"trans_in": SubResource("Animation_bljdj"),
+"trans_out": SubResource("Animation_456di")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e2bu8"]
+shader = ExtResource("2_buqyi")
+shader_parameter/fade = 0.0
+shader_parameter/tiling = 9.0
+
+[node name="Transition" type="CanvasLayer"]
+script = ExtResource("1_86wie")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+root_node = NodePath("../BlockyFade")
+libraries = {
+"": SubResource("AnimationLibrary_blbdb")
+}
+speed_scale = 3.0
+
+[node name="BlockyFade" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_e2bu8")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
