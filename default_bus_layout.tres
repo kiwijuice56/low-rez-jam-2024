@@ -23,5 +23,5 @@ bus/4/name = &"UI Sound Effect"
 bus/4/solo = false
 bus/4/mute = false
 bus/4/bypass_fx = false
-bus/4/volume_db = -1.98142
+bus/4/volume_db = -5.13696
 bus/4/send = &"Sound Effect"

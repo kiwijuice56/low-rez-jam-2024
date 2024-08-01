@@ -104,14 +104,18 @@ layout_mode = 2
 [node name="PartyMemberPanel5" parent="ScrollContainer/PartyContainer" instance=ExtResource("3_iq85w")]
 layout_mode = 2
 
-[node name="CanvasGroup" type="CanvasGroup" parent="."]
+[node name="ItemSubmenuCanvasGroup" type="CanvasGroup" parent="."]
 z_index = 1
 material = SubResource("ShaderMaterial_jjrhp")
 
-[node name="ItemSubmenu" parent="CanvasGroup" instance=ExtResource("5_e5v21")]
+[node name="ItemSubmenu" parent="ItemSubmenuCanvasGroup" instance=ExtResource("5_e5v21")]
 unique_name_in_owner = true
 offset_right = 64.0
 offset_bottom = 64.0
+
+[node name="StatusSubmenuCanvasGroup" type="CanvasGroup" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_jjrhp")
 
 [node name="CancelPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true

@@ -67,8 +67,9 @@ conversation = Array[ExtResource("3_2d463")]([SubResource("Resource_v2bbq"), Sub
 
 [node name="ItemPickup" parent="Items" index="0" instance=ExtResource("7_q7lai")]
 position = Vector2(9, 18)
+item = "tofu"
 
 [node name="ItemPickup2" parent="Items" index="1" instance=ExtResource("7_q7lai")]
 position = Vector2(-18, 9)
-item = "snack"
-amount = 2
+item = "tnt"
+amount = 4
