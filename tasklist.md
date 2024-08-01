@@ -2,7 +2,7 @@
 - [x] Save data system
 - [x] Palette system
 - [x] Movement
-- [ ] Interaction system
+- [x] Interaction system
 - [ ] Dialogue system
 - [ ] Overworld rooms
 - - [ ] Music

@@ -1,15 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://dei0x5en37mu2"]
+[gd_scene load_steps=7 format=3 uid="uid://dei0x5en37mu2"]
 
 [ext_resource type="PackedScene" uid="uid://df7dk7qqm8ylw" path="res://main/world/character/character.tscn" id="1_l3b6u"]
 [ext_resource type="Script" path="res://main/world/character/friend/friend.gd" id="2_2lpku"]
 [ext_resource type="PackedScene" uid="uid://dqjhry378atdi" path="res://main/world/interactable/interactable.tscn" id="2_ng02n"]
 [ext_resource type="Texture2D" uid="uid://deuidmn67hldg" path="res://main/world/character/player/player.png" id="3_be32w"]
+[ext_resource type="Script" path="res://main/world/ui/text_box/dialogue.gd" id="3_v7s5w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ck0l"]
 size = Vector2(5, 5)
 
 [node name="Friend" instance=ExtResource("1_l3b6u")]
 script = ExtResource("2_2lpku")
+conversation = Array[ExtResource("3_v7s5w")]([])
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("3_be32w")
