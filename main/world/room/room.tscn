@@ -1,10 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://l1nxgrfgq8nb"]
+[gd_scene load_steps=3 format=3 uid="uid://l1nxgrfgq8nb"]
 
+[ext_resource type="Script" path="res://main/world/room/room.gd" id="1_r1nmq"]
 [ext_resource type="TileSet" uid="uid://c1diaqt5v56hc" path="res://main/world/room/default_tileset.tres" id="1_s5xhh"]
 
 [node name="Room" type="Node2D"]
+script = ExtResource("1_r1nmq")
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+volume_db = -60.0
+autoplay = true
 bus = &"Music"
 
 [node name="DefaultTileMap" type="TileMap" parent="."]
@@ -15,6 +20,7 @@ format = 2
 [node name="Anchors" type="Node2D" parent="."]
 
 [node name="Default" type="Marker2D" parent="Anchors"]
+position = Vector2(4, 4)
 
 [node name="Doors" type="Node2D" parent="."]
 

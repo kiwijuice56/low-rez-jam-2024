@@ -7,11 +7,10 @@ const DIR_MAP: Dictionary = {"up": Vector2.UP, "right": Vector2.RIGHT, "down": V
 
 var targeted_interactable: Interactable
 var in_movement: bool = false
-var is_paused: bool = false
 var facing_dir: Vector2
 
 func move(dir: Vector2) -> void:
-	if in_movement or is_paused:
+	if in_movement or Ref.world.is_paused:
 		return
 	
 	facing_dir = dir

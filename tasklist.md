@@ -3,7 +3,7 @@
 - [x] Palette system
 - [x] Movement
 - [x] Interaction system
-- [ ] Dialogue system
+- [x] Dialogue system
 - [ ] Overworld rooms
 - - [ ] Music
 - - [ ] Loading/unloading

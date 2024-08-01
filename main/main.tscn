@@ -2,14 +2,15 @@
 
 [ext_resource type="PackedScene" uid="uid://txvddbv8pfiv" path="res://main/world/character/player/player.tscn" id="1_84yfs"]
 [ext_resource type="Script" path="res://main/main.gd" id="1_q20fr"]
-[ext_resource type="PackedScene" uid="uid://wmlggwvrca1v" path="res://main/world/room/debug_room/debug_room.tscn" id="1_tyfg5"]
 [ext_resource type="Theme" uid="uid://evv5alve252b" path="res://main/theme/theme.tres" id="1_vk4h2"]
+[ext_resource type="Script" path="res://main/world/world.gd" id="2_wo4dc"]
 [ext_resource type="PackedScene" uid="uid://dpdv3nq03k8nu" path="res://main/world/ui/text_box/text_box.tscn" id="3_541dq"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_q20fr")
 
 [node name="World" type="Node2D" parent="."]
+script = ExtResource("2_wo4dc")
 
 [node name="UI" type="CanvasLayer" parent="World"]
 
@@ -28,10 +29,8 @@ theme_override_constants/margin_bottom = 1
 [node name="TextBox" parent="World/UI/MarginContainer" instance=ExtResource("3_541dq")]
 layout_mode = 2
 
-[node name="DebugRoom" parent="World" instance=ExtResource("1_tyfg5")]
-
 [node name="Player" parent="World" instance=ExtResource("1_84yfs")]
-position = Vector2(4, 4)
+position = Vector2(1, 1)
 
 [node name="Combat" type="Node2D" parent="."]
 

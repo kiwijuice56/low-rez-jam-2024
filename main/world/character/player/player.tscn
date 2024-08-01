@@ -1,11 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://txvddbv8pfiv"]
+[gd_scene load_steps=6 format=3 uid="uid://txvddbv8pfiv"]
 
 [ext_resource type="PackedScene" uid="uid://df7dk7qqm8ylw" path="res://main/world/character/character.tscn" id="1_knbax"]
 [ext_resource type="Script" path="res://main/world/character/player/player.gd" id="2_yial6"]
 [ext_resource type="Texture2D" uid="uid://deuidmn67hldg" path="res://main/world/character/player/player.png" id="3_rme28"]
+[ext_resource type="Script" path="res://main/world/character/player/snap_camera.gd" id="4_vfnv3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xp0hr"]
-size = Vector2(5, 5)
+size = Vector2(6, 6)
 
 [node name="Player" instance=ExtResource("1_knbax")]
 collision_layer = 10
@@ -15,6 +16,12 @@ script = ExtResource("2_yial6")
 texture = ExtResource("3_rme28")
 
 [node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(5, 4)
 shape = SubResource("RectangleShape2D_xp0hr")
 
+[node name="CollisionRays" parent="." index="2"]
+position = Vector2(5, 4)
+
 [node name="Camera2D" type="Camera2D" parent="." index="3"]
+position = Vector2(5, 4)
+script = ExtResource("4_vfnv3")

@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 Data="*res://main/data/data.gd"
 Ref="*res://main/ref.gd"
 
+[debug]
+
+gdscript/warnings/redundant_await=0
+
 [display]
 
 window/size/viewport_width=64
@@ -31,6 +35,7 @@ window/stretch/mode="viewport"
 [file_customization]
 
 folder_colors={
+"res://main/world/music/": "green",
 "res://main/world/room/": "red",
 "res://main/world/ui/": "orange"
 }

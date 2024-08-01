@@ -27,9 +27,9 @@ func _input(event: InputEvent) -> void:
 		return
 	if not interact_initiator.targeted_interactable == self:
 		return
-	if interact_initiator.is_paused or interact_initiator.in_movement:
+	if Ref.world.is_paused or interact_initiator.in_movement:
 		return
-	var displacement: Vector2 = interact_initiator.global_position.direction_to(global_position).snapped(Vector2(1, 1))
+	var displacement: Vector2 = interact_initiator.global_position.direction_to(get_parent().global_position).snapped(Vector2(1, 1))
 	if requires_facing and not displacement.is_equal_approx(interact_initiator.facing_dir):
 		return 
 	if event.is_action_pressed("accept", false):

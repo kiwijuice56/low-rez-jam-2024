@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://main/world/ui/text_box/dialogue/dialogue.gd" id="3_v7s5w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ck0l"]
-size = Vector2(5, 5)
+size = Vector2(6, 6)
 
 [node name="Friend" instance=ExtResource("1_l3b6u")]
 script = ExtResource("2_2lpku")
@@ -17,10 +17,14 @@ conversation = Array[ExtResource("3_v7s5w")]([])
 texture = ExtResource("3_be32w")
 
 [node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(5, 4)
 shape = SubResource("RectangleShape2D_4ck0l")
+
+[node name="CollisionRays" parent="." index="2"]
+position = Vector2(5, 4)
 
 [node name="Interactable" parent="." index="3" instance=ExtResource("2_ng02n")]
 unique_name_in_owner = true
-position = Vector2(0.5, 0.5)
+position = Vector2(5, 4)
 collision_mask = 8
 requires_facing = true
