@@ -3,5 +3,6 @@
 [ext_resource type="AudioStream" uid="uid://0ua6bln3v7n5" path="res://main/theme/sound/ui_select.ogg" id="1_tle3l"]
 
 [resource]
+random_pitch = 1.02
 streams_count = 1
 stream_0/stream = ExtResource("1_tle3l")

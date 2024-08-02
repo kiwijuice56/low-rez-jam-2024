@@ -32,17 +32,30 @@ func update_selection(old_idx: int) -> void:
 	get_child(old_idx).unhover()
 	get_child(choice_idx).hover()
 
-func check_status() -> bool:
-	choice_idx = 0
-	get_child(0).hover()
+func check_status(initial_index: int = 0) -> bool:
+	choice_idx = initial_index
+	get_child(initial_index).hover()
 	 
+	%TipLabel.text = "check on who?"
+	
 	set_process_input(true)
 	var input: String = await advanced
 	if input == "accept":
-		pass
+		%TipContainer.hide_tip()
+		%AcceptPlayer.play()
+		set_process_input(false)
+		%StatusSubmenu.display_fighter_status(get_child(choice_idx).fighter)
+		await %StatusSubmenu.enter()
+		var full_exit: bool = await %StatusSubmenu.exited
+		if full_exit:
+			set_process_input(false)
+			get_child(choice_idx).unhover()
+			return true
+		%TipContainer.show_tip("check on who?")
+		return await check_status(choice_idx)
 	if input == "cancel" or input == "menu":
 		%CancelPlayer.play()
-		set_process_input(true)
+		set_process_input(false)
 		get_child(choice_idx).unhover()
 		return input == "menu"
 	return false

@@ -111,35 +111,36 @@ size_flags_horizontal = 8
 text = "99"
 horizontal_alignment = 2
 
-[node name="MaxStrValLabel" type="Label" parent="PanelContainer/VBoxContainer/StatPage/StatValueContainer"]
+[node name="StrValLabel" type="Label" parent="PanelContainer/VBoxContainer/StatPage/StatValueContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 text = "99"
 horizontal_alignment = 2
 
-[node name="MaxMagValLabel" type="Label" parent="PanelContainer/VBoxContainer/StatPage/StatValueContainer"]
+[node name="MagValLabel" type="Label" parent="PanelContainer/VBoxContainer/StatPage/StatValueContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 text = "99"
 horizontal_alignment = 2
 
-[node name="MaxDefValLabel" type="Label" parent="PanelContainer/VBoxContainer/StatPage/StatValueContainer"]
+[node name="DefValLabel" type="Label" parent="PanelContainer/VBoxContainer/StatPage/StatValueContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 text = "99"
 horizontal_alignment = 2
 
-[node name="MaxLucValLabel" type="Label" parent="PanelContainer/VBoxContainer/StatPage/StatValueContainer"]
+[node name="LucValLabel" type="Label" parent="PanelContainer/VBoxContainer/StatPage/StatValueContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 text = "99"
 horizontal_alignment = 2
 
-[node name="TextureRect" type="TextureRect" parent="PanelContainer"]
+[node name="FighterIcon" type="TextureRect" parent="PanelContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
@@ -149,3 +150,4 @@ stretch_mode = 2
 [node name="CancelPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("5_7wgnl")
+bus = &"UI Sound Effect"

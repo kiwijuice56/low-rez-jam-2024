@@ -12,8 +12,16 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("menu", false):
 		exit(true)
 
-func display_fighter(fighter: Fighter) -> void:
-	pass
+func display_fighter_status(fighter: Fighter) -> void:
+	%FighterNameLabel.text = fighter.name
+	%InfoLabel.text = "status"
+	%FighterIcon.texture = fighter.get_node("%Sprite2D").texture
+	%MaxHPValLabel.text = str(fighter.stats.max_hp)
+	%MaxTPValLabel.text = str(fighter.stats.max_tp)
+	%StrValLabel.text = str(fighter.stats.strength)
+	%MagValLabel.text = str(fighter.stats.magic)
+	%DefValLabel.text = str(fighter.stats.defence)
+	%LucValLabel.text = str(fighter.stats.luck)
 
 func enter() -> void:
 	get_parent().material.set_shader_parameter("fade", 1.0)

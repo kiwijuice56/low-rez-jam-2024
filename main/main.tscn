@@ -37,10 +37,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_vk4h2")
-theme_override_constants/margin_left = 1
-theme_override_constants/margin_top = 1
-theme_override_constants/margin_right = 1
-theme_override_constants/margin_bottom = 1
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
 
 [node name="TextCanvasGroup" type="CanvasGroup" parent="World/UI/MarginContainer"]
 material = SubResource("ShaderMaterial_on3yi")
@@ -61,10 +61,8 @@ material = SubResource("ShaderMaterial_gljt7")
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 63.0
-offset_bottom = 63.0
+offset_right = 64.0
+offset_bottom = 64.0
 
 [node name="Player" parent="World" instance=ExtResource("1_84yfs")]
 

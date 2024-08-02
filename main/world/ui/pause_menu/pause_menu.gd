@@ -43,6 +43,8 @@ func accept() -> void:
 				set_process_input(true)
 		1: pass
 		2: 
+			%TipContainer.hide_tip()
+			
 			%AcceptPlayer.play()
 			%ItemSubmenu.enter()
 			var full_exit: bool = await %ItemSubmenu.exited
@@ -50,9 +52,11 @@ func accept() -> void:
 				exit(true)
 			else:
 				set_process_input(true)
+				
+			%TipContainer.show_tip("see your items")
 		3: pass
 	
-	add_highlight()
+	update_selection(-1)
 
 func initialize() -> void:
 	for child in %PartyContainer.get_children():
@@ -63,10 +67,22 @@ func initialize() -> void:
 		new_panel.initialize(child)
 
 func update_selection(old_idx: int) -> void:
-	%ChoiceContainer.get_child(old_idx).add_theme_color_override("font_color", default_color)
+	if old_idx >= 0:
+		%ChoiceContainer.get_child(old_idx).add_theme_color_override("font_color", default_color)
 	%ChoiceContainer.get_child(choice_idx).add_theme_color_override("font_color", select_color)
-	%FlickerContainer.get_child(old_idx).stop()
+	if old_idx >= 0:
+		%FlickerContainer.get_child(old_idx).stop()
 	%FlickerContainer.get_child(choice_idx).flicker()
+	
+	match choice_idx:
+		0:
+			%TipLabel.text = "see party stats"
+		1:
+			%TipLabel.text = "swap your party"
+		2:
+			%TipLabel.text = "see your items"
+		3:
+			%TipLabel.text = "change settings"
 
 func revoke_highlight() -> void:
 	%ChoiceContainer.get_child(choice_idx).add_theme_color_override("font_color", default_color)
@@ -78,6 +94,7 @@ func enter() -> void:
 	Ref.world.is_paused = true
 	
 	%AcceptPlayer.play()
+	%TipContainer.show_tip("see party stats")
 	
 	initialize()
 	
@@ -101,6 +118,8 @@ func exit(full_exit: bool = false) -> void:
 	
 	get_parent().material.set_shader_parameter("fade", 0.0)
 	visible = true
+	
+	%TipContainer.hide_tip()
 	
 	var tween: Tween = get_tree().create_tween()
 	tween.tween_property(get_parent().material, "shader_parameter/fade", 1.0, TRANS_TIME)

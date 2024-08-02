@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dpswo7nhpp30p"]
+[gd_scene load_steps=17 format=3 uid="uid://dpswo7nhpp30p"]
 
 [ext_resource type="Theme" uid="uid://evv5alve252b" path="res://main/theme/theme.tres" id="1_rs2m4"]
 [ext_resource type="PackedScene" uid="uid://bdir8ibmp15l2" path="res://main/world/ui/flicker/flicker.tscn" id="2_3c070"]
@@ -11,6 +11,18 @@
 [ext_resource type="AudioStream" uid="uid://b52h2qinfu6iw" path="res://main/theme/sound/cancel.tres" id="7_qkfc3"]
 [ext_resource type="AudioStream" uid="uid://c4md8ks1818q6" path="res://main/theme/sound/accept.tres" id="8_erf2o"]
 [ext_resource type="AudioStream" uid="uid://dv1ag3s4up115" path="res://main/theme/sound/select.tres" id="9_r58b2"]
+[ext_resource type="Script" path="res://main/world/ui/pause_menu/tip_container.gd" id="12_7363m"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8vrae"]
+shader = ExtResource("5_xg6n8")
+shader_parameter/fade = 1.0
+shader_parameter/tiling = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lrp6r"]
+content_margin_left = 1.0
+content_margin_top = 1.0
+content_margin_right = 1.0
+bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jjrhp"]
 shader = ExtResource("5_xg6n8")
@@ -29,89 +41,121 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_rs2m4")
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
 script = ExtResource("2_qvlpx")
 party_member_panel_scene = ExtResource("3_iq85w")
 default_color = Color(0.588235, 0.588235, 0.588235, 1)
 select_color = Color(1, 1, 1, 1)
 
-[node name="MainPanel" type="PanelContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 1
+theme_override_constants/margin_bottom = 1
+
+[node name="MainPanel" type="PanelContainer" parent="MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MainPanel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MainPanel"]
 layout_mode = 2
 theme_override_constants/separation = 1
 
-[node name="FlickerContainer" type="VBoxContainer" parent="MainPanel/HBoxContainer"]
+[node name="FlickerContainer" type="VBoxContainer" parent="MarginContainer/MainPanel/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 2
 
-[node name="Flicker" parent="MainPanel/HBoxContainer/FlickerContainer" instance=ExtResource("2_3c070")]
+[node name="Flicker" parent="MarginContainer/MainPanel/HBoxContainer/FlickerContainer" instance=ExtResource("2_3c070")]
 layout_mode = 2
 
-[node name="Flicker2" parent="MainPanel/HBoxContainer/FlickerContainer" instance=ExtResource("2_3c070")]
+[node name="Flicker2" parent="MarginContainer/MainPanel/HBoxContainer/FlickerContainer" instance=ExtResource("2_3c070")]
 layout_mode = 2
 
-[node name="Flicker3" parent="MainPanel/HBoxContainer/FlickerContainer" instance=ExtResource("2_3c070")]
+[node name="Flicker3" parent="MarginContainer/MainPanel/HBoxContainer/FlickerContainer" instance=ExtResource("2_3c070")]
 layout_mode = 2
 
-[node name="Flicker4" parent="MainPanel/HBoxContainer/FlickerContainer" instance=ExtResource("2_3c070")]
+[node name="Flicker4" parent="MarginContainer/MainPanel/HBoxContainer/FlickerContainer" instance=ExtResource("2_3c070")]
 layout_mode = 2
 
-[node name="ChoiceContainer" type="VBoxContainer" parent="MainPanel/HBoxContainer"]
+[node name="ChoiceContainer" type="VBoxContainer" parent="MarginContainer/MainPanel/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 1
 
-[node name="Party" type="Label" parent="MainPanel/HBoxContainer/ChoiceContainer"]
+[node name="Party" type="Label" parent="MarginContainer/MainPanel/HBoxContainer/ChoiceContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.588235, 0.588235, 0.588235, 1)
 text = "status"
 
-[node name="Swap" type="Label" parent="MainPanel/HBoxContainer/ChoiceContainer"]
+[node name="Swap" type="Label" parent="MarginContainer/MainPanel/HBoxContainer/ChoiceContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.588235, 0.588235, 0.588235, 1)
 text = "swap"
 
-[node name="Stuff" type="Label" parent="MainPanel/HBoxContainer/ChoiceContainer"]
+[node name="Stuff" type="Label" parent="MarginContainer/MainPanel/HBoxContainer/ChoiceContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.588235, 0.588235, 0.588235, 1)
 text = "stuff"
 
-[node name="Config" type="Label" parent="MainPanel/HBoxContainer/ChoiceContainer"]
+[node name="Config" type="Label" parent="MarginContainer/MainPanel/HBoxContainer/ChoiceContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.588235, 0.588235, 0.588235, 1)
 text = "config"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 follow_focus = true
 horizontal_scroll_mode = 0
 
-[node name="PartyContainer" type="VBoxContainer" parent="ScrollContainer"]
+[node name="PartyContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_constants/separation = 1
 script = ExtResource("5_7c4nc")
 
-[node name="PartyMemberPanel" parent="ScrollContainer/PartyContainer" instance=ExtResource("3_iq85w")]
+[node name="PartyMemberPanel" parent="MarginContainer/ScrollContainer/PartyContainer" instance=ExtResource("3_iq85w")]
 layout_mode = 2
 
-[node name="PartyMemberPanel2" parent="ScrollContainer/PartyContainer" instance=ExtResource("3_iq85w")]
+[node name="PartyMemberPanel2" parent="MarginContainer/ScrollContainer/PartyContainer" instance=ExtResource("3_iq85w")]
 layout_mode = 2
 
-[node name="PartyMemberPanel3" parent="ScrollContainer/PartyContainer" instance=ExtResource("3_iq85w")]
+[node name="PartyMemberPanel3" parent="MarginContainer/ScrollContainer/PartyContainer" instance=ExtResource("3_iq85w")]
 layout_mode = 2
 
-[node name="PartyMemberPanel4" parent="ScrollContainer/PartyContainer" instance=ExtResource("3_iq85w")]
+[node name="PartyMemberPanel4" parent="MarginContainer/ScrollContainer/PartyContainer" instance=ExtResource("3_iq85w")]
 layout_mode = 2
 
-[node name="PartyMemberPanel5" parent="ScrollContainer/PartyContainer" instance=ExtResource("3_iq85w")]
+[node name="PartyMemberPanel5" parent="MarginContainer/ScrollContainer/PartyContainer" instance=ExtResource("3_iq85w")]
 layout_mode = 2
+
+[node name="TipContainerCanvasGroup" type="CanvasGroup" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_8vrae")
+
+[node name="TipContainer" type="PanelContainer" parent="TipContainerCanvasGroup"]
+unique_name_in_owner = true
+offset_top = 58.0
+offset_right = 64.0
+offset_bottom = 64.0
+size_flags_vertical = 8
+theme = ExtResource("1_rs2m4")
+theme_override_styles/panel = SubResource("StyleBoxFlat_lrp6r")
+script = ExtResource("12_7363m")
+
+[node name="TipLabel" type="Label" parent="TipContainerCanvasGroup/TipContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0.588235, 0.588235, 0.588235, 1)
+text = "aaaaa"
 
 [node name="ItemSubmenuCanvasGroup" type="CanvasGroup" parent="."]
 z_index = 1
@@ -128,7 +172,12 @@ z_index = 1
 material = SubResource("ShaderMaterial_ldfxd")
 
 [node name="StatusSubmenu" parent="StatusSubmenuCanvasGroup" instance=ExtResource("7_duba8")]
-visible = false
+unique_name_in_owner = true
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 64.0
+offset_bottom = 64.0
 
 [node name="CancelPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true

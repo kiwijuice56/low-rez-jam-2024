@@ -13,7 +13,7 @@
 - [x] Overworld NPCs (friends)
 - [ ] Overworld UI
 - - [ ] Party
-- - - [ ] Status screens
+- - - [x] Status screens (stats only)
 - - - [ ] Moving in and out of party
 - - [x] Inventory
 - - [ ] Settings
