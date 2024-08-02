@@ -1,36 +1,83 @@
-[gd_scene load_steps=4 format=3 uid="uid://cb507pxkyk0xm"]
+[gd_scene load_steps=9 format=3 uid="uid://cb507pxkyk0xm"]
 
 [ext_resource type="Script" path="res://main/world/ui/pause_menu/party_member_panel/party_member_panel.gd" id="1_m6byb"]
 [ext_resource type="Texture2D" uid="uid://c81ydnq2r2hdj" path="res://main/battle/fighter/enoch/enoch.png" id="1_t4i41"]
+[ext_resource type="StyleBox" uid="uid://d4fvumiyemhdj" path="res://main/world/ui/pause_menu/party_member_panel/hover_style.tres" id="2_egp1n"]
+[ext_resource type="StyleBox" uid="uid://dyjmycye34jp5" path="res://main/world/ui/pause_menu/party_member_panel/normal_style.tres" id="2_nk53t"]
+[ext_resource type="Texture2D" uid="uid://craul7beiia6g" path="res://main/world/ui/pause_menu/party_member_panel/highlight.png" id="4_h2uv1"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r8sus"]
-content_margin_left = 2.0
-content_margin_top = 3.0
-content_margin_right = 2.0
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.180392, 0.192157, 0.203922, 1)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
-anti_aliasing = false
+[sub_resource type="Animation" id="Animation_wpu5x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_8ykwr"]
+resource_name = "spin"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_njln2"]
+_data = {
+"RESET": SubResource("Animation_wpu5x"),
+"spin": SubResource("Animation_8ykwr")
+}
 
 [node name="PartyMemberPanel" type="MarginContainer"]
+custom_minimum_size = Vector2(14, 13)
+offset_right = 13.0
+offset_bottom = 13.0
+focus_mode = 2
 theme_override_constants/margin_right = 1
 script = ExtResource("1_m6byb")
+hover_style = ExtResource("2_egp1n")
+normal_style = ExtResource("2_nk53t")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="BackgroundPanel" type="PanelContainer" parent="."]
+unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 8
-theme_override_styles/panel = SubResource("StyleBoxFlat_r8sus")
+theme_override_styles/panel = ExtResource("2_nk53t")
 
-[node name="Icon" type="TextureRect" parent="PanelContainer"]
+[node name="Icon" type="TextureRect" parent="BackgroundPanel"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(8, 8)
 layout_mode = 2
 size_flags_horizontal = 0
+size_flags_vertical = 8
 texture = ExtResource("1_t4i41")
+stretch_mode = 2
+
+[node name="HighlightSprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+texture = ExtResource("4_h2uv1")
+centered = false
+hframes = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HighlightSprite"]
+libraries = {
+"": SubResource("AnimationLibrary_njln2")
+}
+autoplay = "spin"
+speed_scale = 0.4

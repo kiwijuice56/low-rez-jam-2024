@@ -1,18 +1,25 @@
-[gd_scene load_steps=11 format=3 uid="uid://dpswo7nhpp30p"]
+[gd_scene load_steps=14 format=3 uid="uid://dpswo7nhpp30p"]
 
 [ext_resource type="Theme" uid="uid://evv5alve252b" path="res://main/theme/theme.tres" id="1_rs2m4"]
 [ext_resource type="PackedScene" uid="uid://bdir8ibmp15l2" path="res://main/world/ui/flicker/flicker.tscn" id="2_3c070"]
 [ext_resource type="Script" path="res://main/world/ui/pause_menu/pause_menu.gd" id="2_qvlpx"]
 [ext_resource type="PackedScene" uid="uid://cb507pxkyk0xm" path="res://main/world/ui/pause_menu/party_member_panel/party_member_panel.tscn" id="3_iq85w"]
+[ext_resource type="Script" path="res://main/world/ui/pause_menu/party_container/party_container.gd" id="5_7c4nc"]
 [ext_resource type="PackedScene" uid="uid://ck1yu543qt4gw" path="res://main/world/ui/pause_menu/item_submenu/item_submenu.tscn" id="5_e5v21"]
 [ext_resource type="Shader" path="res://main/transition/screen_blocky_fade.gdshader" id="5_xg6n8"]
+[ext_resource type="PackedScene" uid="uid://c776xclvodes4" path="res://main/world/ui/pause_menu/status_submenu/status_submenu.tscn" id="7_duba8"]
 [ext_resource type="AudioStream" uid="uid://b52h2qinfu6iw" path="res://main/theme/sound/cancel.tres" id="7_qkfc3"]
 [ext_resource type="AudioStream" uid="uid://c4md8ks1818q6" path="res://main/theme/sound/accept.tres" id="8_erf2o"]
 [ext_resource type="AudioStream" uid="uid://dv1ag3s4up115" path="res://main/theme/sound/select.tres" id="9_r58b2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jjrhp"]
 shader = ExtResource("5_xg6n8")
-shader_parameter/fade = 0.39
+shader_parameter/fade = 0.3
+shader_parameter/tiling = 9.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ldfxd"]
+shader = ExtResource("5_xg6n8")
+shader_parameter/fade = 0.25
 shader_parameter/tiling = 9.0
 
 [node name="PauseMenu" type="MarginContainer"]
@@ -81,6 +88,7 @@ text = "config"
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 8
+follow_focus = true
 horizontal_scroll_mode = 0
 
 [node name="PartyContainer" type="VBoxContainer" parent="ScrollContainer"]
@@ -88,6 +96,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_constants/separation = 1
+script = ExtResource("5_7c4nc")
 
 [node name="PartyMemberPanel" parent="ScrollContainer/PartyContainer" instance=ExtResource("3_iq85w")]
 layout_mode = 2
@@ -110,12 +119,16 @@ material = SubResource("ShaderMaterial_jjrhp")
 
 [node name="ItemSubmenu" parent="ItemSubmenuCanvasGroup" instance=ExtResource("5_e5v21")]
 unique_name_in_owner = true
+visible = false
 offset_right = 64.0
 offset_bottom = 64.0
 
 [node name="StatusSubmenuCanvasGroup" type="CanvasGroup" parent="."]
 z_index = 1
-material = SubResource("ShaderMaterial_jjrhp")
+material = SubResource("ShaderMaterial_ldfxd")
+
+[node name="StatusSubmenu" parent="StatusSubmenuCanvasGroup" instance=ExtResource("7_duba8")]
+visible = false
 
 [node name="CancelPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true

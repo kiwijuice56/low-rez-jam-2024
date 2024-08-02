@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c776xclvodes4"]
+[gd_scene load_steps=6 format=3 uid="uid://c776xclvodes4"]
 
 [ext_resource type="Theme" uid="uid://evv5alve252b" path="res://main/theme/theme.tres" id="1_0n28a"]
 [ext_resource type="Script" path="res://main/world/ui/pause_menu/status_submenu/status_submenu.gd" id="1_cu4im"]
 [ext_resource type="Texture2D" uid="uid://1bbhd85mjdb6" path="res://main/battle/fighter/ella/ella.png" id="3_8ad6c"]
 [ext_resource type="PackedScene" uid="uid://bdir8ibmp15l2" path="res://main/world/ui/flicker/flicker.tscn" id="3_pohwk"]
+[ext_resource type="AudioStream" uid="uid://b52h2qinfu6iw" path="res://main/theme/sound/cancel.tres" id="5_7wgnl"]
 
 [node name="StatusSubmenu" type="MarginContainer"]
 anchors_preset = 15
@@ -144,3 +145,7 @@ size_flags_horizontal = 8
 size_flags_vertical = 0
 texture = ExtResource("3_8ad6c")
 stretch_mode = 2
+
+[node name="CancelPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("5_7wgnl")

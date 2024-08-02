@@ -31,9 +31,16 @@ func _input(event: InputEvent) -> void:
 
 func accept() -> void:
 	set_process_input(false)
+	revoke_highlight()
 	
 	match choice_idx:
-		0: pass
+		0: 
+			%AcceptPlayer.play()
+			var full_exit: bool = await %PartyContainer.check_status()
+			if full_exit:
+				exit(true)
+			else:
+				set_process_input(true)
 		1: pass
 		2: 
 			%AcceptPlayer.play()
@@ -44,6 +51,8 @@ func accept() -> void:
 			else:
 				set_process_input(true)
 		3: pass
+	
+	add_highlight()
 
 func initialize() -> void:
 	for child in %PartyContainer.get_children():
@@ -58,6 +67,12 @@ func update_selection(old_idx: int) -> void:
 	%ChoiceContainer.get_child(choice_idx).add_theme_color_override("font_color", select_color)
 	%FlickerContainer.get_child(old_idx).stop()
 	%FlickerContainer.get_child(choice_idx).flicker()
+
+func revoke_highlight() -> void:
+	%ChoiceContainer.get_child(choice_idx).add_theme_color_override("font_color", default_color)
+
+func add_highlight() -> void:
+	%ChoiceContainer.get_child(choice_idx).add_theme_color_override("font_color", select_color)
 
 func enter() -> void:
 	Ref.world.is_paused = true
