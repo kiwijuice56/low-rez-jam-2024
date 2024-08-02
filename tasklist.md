@@ -21,8 +21,8 @@
 - [x] Overworld enemies
 - [?] Combat system
 - - [?] Battle flow (starting, looping thru turns, ending)
-- - [?] Damage labels
-- - [ ] Death, hit, strong hit, miss animations
+- - [x] Damage labels
+- - [?] Death, hit, strong hit, miss animations
 - - [ ] Attack animations
 - - [ ] Attack/heal actions and damage formulas
 - - [ ] Critical hits, misses, weakness hitting

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bnbb4opeecksl"]
+[gd_scene load_steps=13 format=3 uid="uid://bnbb4opeecksl"]
 
 [ext_resource type="Script" path="res://main/battle/fighter/fighter.gd" id="1_7gdsa"]
 [ext_resource type="PackedScene" uid="uid://cuko56w08yuso" path="res://main/battle/action/action.tscn" id="2_42vt3"]
@@ -6,6 +6,97 @@
 [ext_resource type="PackedScene" uid="uid://bfugie8wrqt4l" path="res://main/battle/ui/damage_widget/critical_damage_widget/critical_damage_widget.tscn" id="3_8bwf5"]
 [ext_resource type="Texture2D" uid="uid://c81ydnq2r2hdj" path="res://main/battle/fighter/enoch/enoch.png" id="3_kdrmx"]
 [ext_resource type="PackedScene" uid="uid://deotpp6wnlyl8" path="res://main/battle/ui/damage_widget/miss_damage_widget/miss_damage_widget.tscn" id="4_anc4h"]
+[ext_resource type="Shader" path="res://main/battle/fighter/flash.gdshader" id="6_ipv7e"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u031k"]
+shader = ExtResource("6_ipv7e")
+shader_parameter/flash = null
+
+[sub_resource type="Animation" id="Animation_y8yea"]
+resource_name = "hurt"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteHolder:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.233333, 0.333333, 0.533333, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-3, -2), Vector2(3, 2), Vector2(2, -1), Vector2(-2, 2), Vector2(2, -1), Vector2(0, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpriteHolder/Sprite2D:material:shader_parameter/flash")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.166667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), null]
+}
+
+[sub_resource type="Animation" id="Animation_vw8o4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteHolder:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpriteHolder:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SpriteHolder/Sprite2D:material:shader_parameter/flash")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [null]
+}
+
+[sub_resource type="Animation" id="Animation_15xcu"]
+resource_name = "miss"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteHolder:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 8, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.333333, 1)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3d25s"]
+_data = {
+"RESET": SubResource("Animation_vw8o4"),
+"hurt": SubResource("Animation_y8yea"),
+"miss": SubResource("Animation_15xcu")
+}
 
 [node name="Fighter" type="Node2D"]
 script = ExtResource("1_7gdsa")
@@ -20,14 +111,20 @@ miss_damage_widget = ExtResource("4_anc4h")
 [node name="Action" parent="Actions" instance=ExtResource("2_42vt3")]
 
 [node name="SpriteHolder" type="Node2D" parent="."]
+unique_name_in_owner = true
 
 [node name="Sprite2D" type="Sprite2D" parent="SpriteHolder"]
 unique_name_in_owner = true
-position = Vector2(32, 36)
+material = SubResource("ShaderMaterial_u031k")
 texture = ExtResource("3_kdrmx")
 
 [node name="Center" type="Marker2D" parent="SpriteHolder"]
 unique_name_in_owner = true
-position = Vector2(32, 36)
+position = Vector2(0, -3)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_3d25s")
+}
+speed_scale = 2.5

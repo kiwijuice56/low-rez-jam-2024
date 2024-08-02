@@ -26,6 +26,7 @@ var added_elec_weakness: bool = false
 func _ready() -> void:
 	hp = stats.max_hp
 	tp = stats.max_tp
+	%Sprite2D.material = %Sprite2D.material.duplicate()
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("accept", false):
@@ -35,13 +36,20 @@ func hurt(damage: int, is_crit: bool, is_miss: bool, is_weak: bool) -> void:
 	var widget: DamageWidget
 	var text: String
 	
+	%AnimationPlayer.stop()
+	%SpriteHolder.position = Vector2()
+	%Sprite2D.material.set_shader_parameter("flash", Color.BLACK)
+	
 	if is_miss:
+		%AnimationPlayer.play("miss")
 		widget = miss_damage_widget.instantiate()
 		text = " miss"
 	elif is_crit or is_weak:
+		%AnimationPlayer.play("hurt")
 		widget = critical_damage_widget.instantiate()
 		text = " " + str(damage)
 	else:
+		%AnimationPlayer.play("hurt")
 		widget = normal_damage_widget.instantiate()
 		text = " " + str(damage)
 	
