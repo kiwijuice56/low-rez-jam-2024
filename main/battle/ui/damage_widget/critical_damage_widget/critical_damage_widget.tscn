@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://bfugie8wrqt4l"]
+
+[ext_resource type="PackedScene" uid="uid://lt8cgyjbyrmo" path="res://main/battle/ui/damage_widget/damage_widget.tscn" id="1_ljsbd"]
+[ext_resource type="Shader" path="res://main/battle/ui/damage_widget/critical_damage_widget/rainbow_text.gdshader" id="2_gljrs"]
+
+[sub_resource type="Gradient" id="Gradient_eq37e"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ttjym"]
+gradient = SubResource("Gradient_eq37e")
+width = 128
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o14c0"]
+shader = ExtResource("2_gljrs")
+shader_parameter/rect_global_position = Vector2(0, 0)
+shader_parameter/rect_size = Vector2(12, 12)
+shader_parameter/palette = SubResource("GradientTexture1D_ttjym")
+
+[node name="CriticalDamageWidget" instance=ExtResource("1_ljsbd")]
+
+[node name="DamageLabel" parent="." index="0"]
+material = SubResource("ShaderMaterial_o14c0")
+offset_right = 28.0
+text = "9912923"

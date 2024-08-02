@@ -11,6 +11,9 @@ func save_party_members() -> void:
 		ResourceSaver.save(child.stats, "user://%s.tres" % child.name.to_lower())
 
 func load_party_members() -> void:
+	for child in get_children():
+		remove_child(child)
+		child.queue_free()
 	for fighter_name in Data.get_state("party_order"):
 		var path: String = FIGHTER_PATH + "%s/%s.tscn" % [fighter_name, fighter_name]
 		var new_fighter: Fighter = load(path).instantiate()
