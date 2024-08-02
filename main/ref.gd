@@ -8,4 +8,4 @@ extends Node
 @onready var transition: Transition = main.get_node("Transition")
 
 @onready var battle: Battle = main.get_node("Battle")
-@onready var player_party: PlayerParty = battle.get_node("PlayerParty")
+@onready var player_party: PlayerParty = battle.get_node("FighterLayer/PlayerParty")

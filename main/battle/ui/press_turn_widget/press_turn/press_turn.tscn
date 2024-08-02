@@ -87,6 +87,7 @@ hframes = 4
 script = ExtResource("2_6drhh")
 
 [node name="Flash" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("2_ylfxn")
 centered = false
 hframes = 16

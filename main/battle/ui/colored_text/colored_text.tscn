@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=3 uid="uid://cvscxguxb7jke"]
+
+[ext_resource type="Shader" path="res://main/battle/ui/colored_text/colored_text.gdshader" id="1_2yldw"]
+[ext_resource type="Theme" uid="uid://evv5alve252b" path="res://main/theme/theme.tres" id="2_ymgv6"]
+[ext_resource type="FontFile" uid="uid://cauc77kjpc67c" path="res://main/theme/mini_kiwi_font.ttf" id="3_cha3k"]
+
+[sub_resource type="Gradient" id="Gradient_r6jpn"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.423077, 0.714286)
+colors = PackedColorArray(0.670588, 0.486275, 0.494118, 1, 0.564706, 0.407843, 0.486275, 1, 0.329412, 0.301961, 0.415686, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_p6p3o"]
+gradient = SubResource("Gradient_r6jpn")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aih4r"]
+shader = ExtResource("1_2yldw")
+shader_parameter/palette = SubResource("GradientTexture1D_p6p3o")
+
+[sub_resource type="FontVariation" id="FontVariation_0kjtv"]
+base_font = ExtResource("3_cha3k")
+spacing_space = -4
+spacing_top = -5
+
+[node name="ColoredText" type="CanvasGroup"]
+material = SubResource("ShaderMaterial_aih4r")
+position = Vector2(-1, -2)
+fit_margin = 0.0
+clear_margin = 0.0
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 10.0
+offset_bottom = 9.0
+theme = ExtResource("2_ymgv6")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = SubResource("FontVariation_0kjtv")
+text = " 99"
+horizontal_alignment = 2

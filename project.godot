@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="low-rez-jam-2024"
+config/name="fractiwi"
 run/main_scene="res://main/main.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"

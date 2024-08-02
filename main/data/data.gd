@@ -13,7 +13,7 @@ func _ready() -> void:
 
 func initialize() -> void:
 	set_state("lvl", 1)
-	set_state("xp", 0)
+	set_state("xp", 15)
 	set_state("xp_goal", 30)
 	set_state("party_order", ["ella"])
 	set_state("inventory/tofu", 0)

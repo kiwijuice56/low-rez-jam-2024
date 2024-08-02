@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://emchhlwgswks"
-path="res://.godot/imported/square.png-070be608f3d48fed092097659cf02b4c.ctex"
+path="res://.godot/imported/square.png-e8e0afb5381ab653722420f1a832cc5e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://main/square.png"
-dest_files=["res://.godot/imported/square.png-070be608f3d48fed092097659cf02b4c.ctex"]
+source_file="res://main/battle/ui/battle_background/textures/square.png"
+dest_files=["res://.godot/imported/square.png-e8e0afb5381ab653722420f1a832cc5e.ctex"]
 
 [params]
 
