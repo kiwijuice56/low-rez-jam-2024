@@ -28,7 +28,7 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("accept", false):
-		hurt(randi_range(1, 16), true, false, false)
+		hurt(randi_range(1, 16), randf() < 0.24, false, false)
 
 func hurt(damage: int, is_crit: bool, is_miss: bool, is_weak: bool) -> void:
 	if is_miss:

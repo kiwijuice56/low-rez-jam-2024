@@ -83,7 +83,6 @@ conversation = Array[ExtResource("3_2d463")]([SubResource("Resource_nepoq"), Sub
 [node name="Enemy" parent="Characters/Enemies" index="0" instance=ExtResource("9_t400i")]
 position = Vector2(54, 0)
 encounter = SubResource("Resource_duvqj")
-requires_interact = true
 conversation = Array[ExtResource("3_2d463")]([SubResource("Resource_ftoqs")])
 death_conversation = Array[ExtResource("3_2d463")]([SubResource("Resource_iltys")])
 

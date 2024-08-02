@@ -3,21 +3,23 @@
 [ext_resource type="PackedScene" uid="uid://lt8cgyjbyrmo" path="res://main/battle/ui/damage_widget/damage_widget.tscn" id="1_ljsbd"]
 [ext_resource type="Shader" path="res://main/battle/ui/damage_widget/critical_damage_widget/rainbow_text.gdshader" id="2_gljrs"]
 
-[sub_resource type="Gradient" id="Gradient_eq37e"]
+[sub_resource type="Gradient" id="Gradient_x8mlt"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.0874704, 0.212766, 0.359338, 0.491726, 0.631206, 0.747045, 0.869976, 0.957447)
+colors = PackedColorArray(0.984314, 0.835294, 0.654902, 1, 0.854902, 0.690196, 0.560784, 1, 0.670588, 0.486275, 0.494118, 1, 0.564706, 0.407843, 0.486275, 1, 0.329412, 0.301961, 0.415686, 1, 0.564706, 0.407843, 0.486275, 1, 0.670588, 0.486275, 0.494118, 1, 0.854902, 0.690196, 0.560784, 1, 0.984314, 0.835294, 0.654902, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_ttjym"]
-gradient = SubResource("Gradient_eq37e")
-width = 128
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_772v0"]
+gradient = SubResource("Gradient_x8mlt")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_o14c0"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jttre"]
 shader = ExtResource("2_gljrs")
-shader_parameter/rect_global_position = Vector2(0, 0)
-shader_parameter/rect_size = Vector2(12, 12)
-shader_parameter/palette = SubResource("GradientTexture1D_ttjym")
+shader_parameter/palette = SubResource("GradientTexture1D_772v0")
 
 [node name="CriticalDamageWidget" instance=ExtResource("1_ljsbd")]
 
-[node name="DamageLabel" parent="." index="0"]
-material = SubResource("ShaderMaterial_o14c0")
-offset_right = 28.0
-text = "9912923"
+[node name="CanvasGroup" parent="." index="0"]
+material = SubResource("ShaderMaterial_jttre")
+use_mipmaps = true
+
+[node name="DamageLabel" parent="CanvasGroup/MarginContainer" index="0"]
+text = " 9"

@@ -16,15 +16,17 @@ func _ready() -> void:
 		# just resuing nodes :/
 		%Interactable.area_entered.connect(_on_area_entered)
 
-func _on_area_entered(area: Area2D) -> void:
+func _on_area_entered(_area: Area2D) -> void:
 	start_battle()
 
 func _on_interacted(_interact_initiator: Character) -> void:
 	start_battle()
 
 func start_battle() -> void:
+	if Ref.world.is_paused:
+		return
 	Ref.world.is_paused = true
-	Ref.player.lock_area()
+	# Ref.player.lock_area()
 	await Ref.world_textbox.display_conversation(conversation)
 	
 	if await Ref.battle.battle(encounter):
@@ -35,6 +37,6 @@ func die() -> void:
 		await Ref.world_textbox.display_conversation(death_conversation)
 		await Ref.world_textbox.exit()
 	Data.set_state(Ref.world.loaded_room_name + "/" + name, true)
-	Ref.player.unlock_area()
+	# Ref.player.unlock_area()
 	Ref.world.set_deferred("is_paused", false)
 	queue_free()

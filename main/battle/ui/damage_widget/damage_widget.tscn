@@ -1,14 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://lt8cgyjbyrmo"]
+[gd_scene load_steps=8 format=3 uid="uid://lt8cgyjbyrmo"]
 
 [ext_resource type="Script" path="res://main/battle/ui/damage_widget/damage_widget.gd" id="1_77f1x"]
 [ext_resource type="Theme" uid="uid://evv5alve252b" path="res://main/theme/theme.tres" id="1_xcm4g"]
+[ext_resource type="FontFile" uid="uid://cauc77kjpc67c" path="res://main/theme/mini_kiwi_font.ttf" id="3_b3e4v"]
+
+[sub_resource type="FontVariation" id="FontVariation_78oy3"]
+base_font = ExtResource("3_b3e4v")
+spacing_space = -4
+spacing_top = -5
 
 [sub_resource type="Animation" id="Animation_q186b"]
 length = 0.001
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("DamageLabel:position:y")
+tracks/0/path = NodePath("CanvasGroup:position:y")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -23,7 +29,7 @@ length = 1.5
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("DamageLabel:position:y")
+tracks/0/path = NodePath("CanvasGroup/MarginContainer/DamageLabel:position:y")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -41,14 +47,24 @@ _data = {
 [node name="DamageWidget" type="Node2D"]
 script = ExtResource("1_77f1x")
 
-[node name="DamageLabel" type="Label" parent="."]
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+fit_margin = 0.0
+clear_margin = 0.0
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasGroup"]
+offset_right = 9.0
+offset_bottom = 7.0
+
+[node name="DamageLabel" type="Label" parent="CanvasGroup/MarginContainer"]
 unique_name_in_owner = true
-offset_right = 8.0
-offset_bottom = 5.0
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
 theme = ExtResource("1_xcm4g")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
-text = "99"
+theme_override_fonts/font = SubResource("FontVariation_78oy3")
+text = " 99"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
