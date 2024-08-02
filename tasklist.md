@@ -12,10 +12,11 @@
 - [x] Party member system + party member pickups
 - [x] Overworld NPCs (friends)
 - [ ] Overworld UI
-- - [ ] Party
+- - [x] Party
 - - - [x] Status screens (stats only)
-- - - [ ] Moving in and out of party
+- - - [x] Moving in and out of party
 - - [x] Inventory
+- - [ ] Level and XP
 - - [ ] Settings
 - [ ] Overworld enemies
 - [ ] Combat system

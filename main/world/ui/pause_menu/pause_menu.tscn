@@ -15,7 +15,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8vrae"]
 shader = ExtResource("5_xg6n8")
-shader_parameter/fade = 1.0
+shader_parameter/fade = 0.0
 shader_parameter/tiling = 5.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lrp6r"]
@@ -136,6 +136,9 @@ layout_mode = 2
 [node name="PartyMemberPanel5" parent="MarginContainer/ScrollContainer/PartyContainer" instance=ExtResource("3_iq85w")]
 layout_mode = 2
 
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+
 [node name="TipContainerCanvasGroup" type="CanvasGroup" parent="."]
 z_index = 1
 material = SubResource("ShaderMaterial_8vrae")
@@ -173,6 +176,7 @@ material = SubResource("ShaderMaterial_ldfxd")
 
 [node name="StatusSubmenu" parent="StatusSubmenuCanvasGroup" instance=ExtResource("7_duba8")]
 unique_name_in_owner = true
+visible = false
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0

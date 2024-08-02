@@ -64,7 +64,7 @@ func check_status(initial_index: int = 0) -> bool:
 
 func swap(initial_index: int = 0) -> bool:
 	choice_idx = initial_index
-	get_child(initial_index).hover()
+	get_child(initial_index).hover.call_deferred()
 	 
 	%TipLabel.text = "swap who?"
 	
@@ -75,7 +75,7 @@ func swap(initial_index: int = 0) -> bool:
 		selected_idx = choice_idx
 		get_child(selected_idx).select()
 		
-		var full_exit: bool = await swap_second()
+		var full_exit: bool = await swap_second(choice_idx)
 		set_process_input(false)
 		get_child(choice_idx).unhover()
 		return full_exit
@@ -86,9 +86,9 @@ func swap(initial_index: int = 0) -> bool:
 		return input == "menu"
 	return false
 
-func swap_second() -> bool:
+func swap_second(initial_index: int = 0) -> bool:
 	%TipLabel.text = "and who else?"
-	choice_idx = 0
+	choice_idx = initial_index
 	get_child(choice_idx).hover()
 	
 	set_process_input(true)
@@ -100,10 +100,13 @@ func swap_second() -> bool:
 		%CancelPlayer.play()
 		return true
 	if input == "cancel":
+		get_child(choice_idx).unhover()
 		%CancelPlayer.play()
 		return await swap(selected_idx)
 	if input == "accept":
-		# perform swap
+		if not choice_idx == selected_idx:
+			Ref.player_party.swap(choice_idx, selected_idx)
+			owner.initialize()
 		%AcceptPlayer.play()
 		return await swap(choice_idx)
 	

@@ -23,3 +23,15 @@ func get_party_order_names() -> Array[String]:
 	for child in get_children():
 		names.append(child.name.to_lower())
 	return names
+
+func swap(i1: int, i2: int) -> void:
+	var fighter1: Fighter = get_child(i1)
+	var fighter2: Fighter = get_child(i2)
+	remove_child(fighter1)
+	remove_child(fighter2)
+	if i1 < i2:
+		add_child(fighter2, i1)
+		add_child(fighter1, i2)
+	else:
+		add_child(fighter1, i2)
+		add_child(fighter2, i1)

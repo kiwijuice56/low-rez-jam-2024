@@ -66,6 +66,7 @@ func accept() -> void:
 
 func initialize() -> void:
 	for child in %PartyContainer.get_children():
+		%PartyContainer.remove_child(child)
 		child.queue_free()
 	for child in Ref.player_party.get_children():
 		var new_panel: PartyMemberPanel = party_member_panel_scene.instantiate()
