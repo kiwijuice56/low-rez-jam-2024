@@ -3,6 +3,7 @@ class_name PartyContainer extends Menu
 signal advanced(input: String)
 
 var choice_idx: int = 0
+var selected_idx: int = -1
 
 func _ready() -> void:
 	set_process_input(false)
@@ -51,11 +52,59 @@ func check_status(initial_index: int = 0) -> bool:
 			set_process_input(false)
 			get_child(choice_idx).unhover()
 			return true
-		%TipContainer.show_tip("check on who?")
+		%TipContainer.show_tip()
+		%TipLabel.text = "check on who?"
 		return await check_status(choice_idx)
 	if input == "cancel" or input == "menu":
 		%CancelPlayer.play()
 		set_process_input(false)
 		get_child(choice_idx).unhover()
 		return input == "menu"
+	return false
+
+func swap(initial_index: int = 0) -> bool:
+	choice_idx = initial_index
+	get_child(initial_index).hover()
+	 
+	%TipLabel.text = "swap who?"
+	
+	set_process_input(true)
+	var input: String = await advanced
+	if input == "accept":
+		%AcceptPlayer.play()
+		selected_idx = choice_idx
+		get_child(selected_idx).select()
+		
+		var full_exit: bool = await swap_second()
+		set_process_input(false)
+		get_child(choice_idx).unhover()
+		return full_exit
+	if input == "cancel" or input == "menu":
+		%CancelPlayer.play()
+		set_process_input(false)
+		get_child(choice_idx).unhover()
+		return input == "menu"
+	return false
+
+func swap_second() -> bool:
+	%TipLabel.text = "and who else?"
+	choice_idx = 0
+	get_child(choice_idx).hover()
+	
+	set_process_input(true)
+	var input: String = await advanced
+	
+	get_child(selected_idx).deselect()
+	
+	if input == "menu":
+		%CancelPlayer.play()
+		return true
+	if input == "cancel":
+		%CancelPlayer.play()
+		return await swap(selected_idx)
+	if input == "accept":
+		# perform swap
+		%AcceptPlayer.play()
+		return await swap(choice_idx)
+	
 	return false

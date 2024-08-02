@@ -41,7 +41,13 @@ func accept() -> void:
 				exit(true)
 			else:
 				set_process_input(true)
-		1: pass
+		1: 
+			%AcceptPlayer.play()
+			var full_exit: bool = await %PartyContainer.swap()
+			if full_exit:
+				exit(true)
+			else:
+				set_process_input(true)
 		2: 
 			%TipContainer.hide_tip()
 			
@@ -52,8 +58,8 @@ func accept() -> void:
 				exit(true)
 			else:
 				set_process_input(true)
-				
-			%TipContainer.show_tip("see your items")
+				%TipContainer.show_tip()
+				update_top_tip()
 		3: pass
 	
 	update_selection(-1)
@@ -73,7 +79,9 @@ func update_selection(old_idx: int) -> void:
 	if old_idx >= 0:
 		%FlickerContainer.get_child(old_idx).stop()
 	%FlickerContainer.get_child(choice_idx).flicker()
-	
+	update_top_tip()
+
+func update_top_tip() -> void:
 	match choice_idx:
 		0:
 			%TipLabel.text = "see party stats"
@@ -94,7 +102,8 @@ func enter() -> void:
 	Ref.world.is_paused = true
 	
 	%AcceptPlayer.play()
-	%TipContainer.show_tip("see party stats")
+	%TipContainer.show_tip()
+	update_top_tip()
 	
 	initialize()
 	

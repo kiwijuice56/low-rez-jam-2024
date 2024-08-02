@@ -2,8 +2,7 @@ class_name TipContainer extends PanelContainer
 
 const TRANS_TIME: float = 0.06
 
-func show_tip(text: String) -> void:
-	%TipLabel.text = text
+func show_tip() -> void:
 	get_parent().material.set_shader_parameter("fade", 1.0)
 	visible = true
 	
