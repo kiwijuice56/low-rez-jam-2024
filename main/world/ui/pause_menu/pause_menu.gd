@@ -48,7 +48,19 @@ func accept() -> void:
 				exit(true)
 			else:
 				set_process_input(true)
-		2: 
+		2:
+			%TipContainer.hide_tip()
+			
+			%AcceptPlayer.play()
+			%LevelSubmenu.enter()
+			var full_exit: bool = await %LevelSubmenu.exited
+			if full_exit:
+				exit(true)
+			else:
+				set_process_input(true)
+				%TipContainer.show_tip()
+				update_top_tip()
+		3: 
 			%TipContainer.hide_tip()
 			
 			%AcceptPlayer.play()
@@ -60,7 +72,7 @@ func accept() -> void:
 				set_process_input(true)
 				%TipContainer.show_tip()
 				update_top_tip()
-		3: pass
+		4: pass
 	
 	update_selection(-1)
 
@@ -89,8 +101,10 @@ func update_top_tip() -> void:
 		1:
 			%TipLabel.text = "swap your party"
 		2:
-			%TipLabel.text = "see your items"
+			%TipLabel.text = "see level + xp"
 		3:
+			%TipLabel.text = "see your items"
+		4:
 			%TipLabel.text = "change settings"
 
 func revoke_highlight() -> void:

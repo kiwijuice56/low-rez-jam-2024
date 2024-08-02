@@ -16,7 +16,7 @@
 - - - [x] Status screens (stats only)
 - - - [x] Moving in and out of party
 - - [x] Inventory
-- - [ ] Level and XP
+- - [?] Level and XP
 - - [ ] Settings
 - [ ] Overworld enemies
 - [ ] Combat system
