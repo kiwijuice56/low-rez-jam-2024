@@ -1,4 +1,4 @@
-class_name LevelSubmenu extends Menu
+class_name SettingsSubmenu extends Menu
 
 const TRANS_TIME: float = 0.1
 
@@ -12,13 +12,11 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("menu", false):
 		exit(true)
 
-func display_level() -> void:
-	%LevelLabel.text = str(Data.get_state("lvl"))
-	%XPLabel.text = str(Data.get_state("xp"))
-	%Bubble.material.set_shader_parameter("fV", float(Data.get_state("xp")) / Data.get_state("xp_goal"))
+func display_settings() -> void:
+	pass
 
 func enter() -> void:
-	display_level()
+	display_settings()
 	
 	get_parent().material.set_shader_parameter("fade", 1.0)
 	visible = true

@@ -72,7 +72,18 @@ func accept() -> void:
 				set_process_input(true)
 				%TipContainer.show_tip()
 				update_top_tip()
-		4: pass
+		4: 
+			%TipContainer.hide_tip()
+			
+			%AcceptPlayer.play()
+			%SettingsSubmenu.enter()
+			var full_exit: bool = await %SettingsSubmenu.exited
+			if full_exit:
+				exit(true)
+			else:
+				set_process_input(true)
+				%TipContainer.show_tip()
+				update_top_tip()
 	
 	update_selection(-1)
 

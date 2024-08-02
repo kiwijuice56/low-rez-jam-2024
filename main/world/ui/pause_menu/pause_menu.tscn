@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dpswo7nhpp30p"]
+[gd_scene load_steps=21 format=3 uid="uid://dpswo7nhpp30p"]
 
 [ext_resource type="Theme" uid="uid://evv5alve252b" path="res://main/theme/theme.tres" id="1_rs2m4"]
 [ext_resource type="PackedScene" uid="uid://bdir8ibmp15l2" path="res://main/world/ui/flicker/flicker.tscn" id="2_3c070"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://c776xclvodes4" path="res://main/world/ui/pause_menu/status_submenu/status_submenu.tscn" id="7_duba8"]
 [ext_resource type="AudioStream" uid="uid://b52h2qinfu6iw" path="res://main/theme/sound/cancel.tres" id="7_qkfc3"]
 [ext_resource type="AudioStream" uid="uid://c4md8ks1818q6" path="res://main/theme/sound/accept.tres" id="8_erf2o"]
+[ext_resource type="PackedScene" uid="uid://mu6vk1igk7td" path="res://main/world/ui/pause_menu/settings_submenu/settings_submenu.tscn" id="9_320y4"]
 [ext_resource type="AudioStream" uid="uid://dv1ag3s4up115" path="res://main/theme/sound/select.tres" id="9_r58b2"]
 [ext_resource type="PackedScene" uid="uid://bilxdps8h4csj" path="res://main/world/ui/pause_menu/level_submenu/level_submenu.tscn" id="10_55kj3"]
 [ext_resource type="Script" path="res://main/world/ui/pause_menu/tip_container.gd" id="12_7363m"]
@@ -24,6 +25,11 @@ content_margin_left = 1.0
 content_margin_top = 1.0
 content_margin_right = 1.0
 bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kwjk1"]
+shader = ExtResource("5_xg6n8")
+shader_parameter/fade = 0.3
+shader_parameter/tiling = 9.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jjrhp"]
 shader = ExtResource("5_xg6n8")
@@ -176,11 +182,24 @@ text = "aaaaa"
 
 [node name="ItemSubmenuCanvasGroup" type="CanvasGroup" parent="."]
 z_index = 1
-material = SubResource("ShaderMaterial_jjrhp")
+material = SubResource("ShaderMaterial_kwjk1")
 
 [node name="ItemSubmenu" parent="ItemSubmenuCanvasGroup" instance=ExtResource("5_e5v21")]
 unique_name_in_owner = true
 visible = false
+offset_right = 64.0
+offset_bottom = 64.0
+
+[node name="SettingsSubmenuCanvasGroup" type="CanvasGroup" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_jjrhp")
+
+[node name="SettingsSubmenu" parent="SettingsSubmenuCanvasGroup" instance=ExtResource("9_320y4")]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
 offset_right = 64.0
 offset_bottom = 64.0
 

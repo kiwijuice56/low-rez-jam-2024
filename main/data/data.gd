@@ -12,6 +12,9 @@ func _ready() -> void:
 	load_state(0)
 
 func initialize() -> void:
+	set_state("lvl", 1)
+	set_state("xp", 0)
+	set_state("xp_goal", 30)
 	set_state("party_order", ["ella"])
 	set_state("inventory/tofu", 0)
 	set_state("inventory/stirfry", 0)

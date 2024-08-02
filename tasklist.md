@@ -11,13 +11,13 @@
 - [x] Fighter system
 - [x] Party member system + party member pickups
 - [x] Overworld NPCs (friends)
-- [ ] Overworld UI
+- [x] Overworld UI
 - - [x] Party
 - - - [x] Status screens (stats only)
 - - - [x] Moving in and out of party
 - - [x] Inventory
-- - [?] Level and XP
-- - [ ] Settings
+- - [x] Level and XP
+- - [x] Settings
 - [ ] Overworld enemies
 - [ ] Combat system
 - - [ ] Battle flow (starting, looping thru turns, ending)
