@@ -1,6 +1,7 @@
 class_name Transition extends CanvasLayer
 
 func _ready() -> void:
+	visible = true
 	$BlockyFade.material.set_shader_parameter("fade", 0.0)
 
 func trans_in() -> void:
