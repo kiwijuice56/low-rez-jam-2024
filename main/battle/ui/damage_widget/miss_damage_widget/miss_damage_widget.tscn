@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://deotpp6wnlyl8"]
+
+[ext_resource type="PackedScene" uid="uid://lt8cgyjbyrmo" path="res://main/battle/ui/damage_widget/damage_widget.tscn" id="1_ceeve"]
+
+[node name="MissDamageWidget" instance=ExtResource("1_ceeve")]
+
+[node name="DamageLabel" parent="CanvasGroup/MarginContainer" index="0"]
+theme_override_colors/font_color = Color(0.564706, 0.407843, 0.486275, 1)
+text = " miss"

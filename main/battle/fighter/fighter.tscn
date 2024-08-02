@@ -1,15 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://bnbb4opeecksl"]
+[gd_scene load_steps=7 format=3 uid="uid://bnbb4opeecksl"]
 
 [ext_resource type="Script" path="res://main/battle/fighter/fighter.gd" id="1_7gdsa"]
 [ext_resource type="PackedScene" uid="uid://cuko56w08yuso" path="res://main/battle/action/action.tscn" id="2_42vt3"]
 [ext_resource type="PackedScene" uid="uid://lt8cgyjbyrmo" path="res://main/battle/ui/damage_widget/damage_widget.tscn" id="2_uefe0"]
 [ext_resource type="PackedScene" uid="uid://bfugie8wrqt4l" path="res://main/battle/ui/damage_widget/critical_damage_widget/critical_damage_widget.tscn" id="3_8bwf5"]
 [ext_resource type="Texture2D" uid="uid://c81ydnq2r2hdj" path="res://main/battle/fighter/enoch/enoch.png" id="3_kdrmx"]
+[ext_resource type="PackedScene" uid="uid://deotpp6wnlyl8" path="res://main/battle/ui/damage_widget/miss_damage_widget/miss_damage_widget.tscn" id="4_anc4h"]
 
 [node name="Fighter" type="Node2D"]
 script = ExtResource("1_7gdsa")
 normal_damage_widget = ExtResource("2_uefe0")
 critical_damage_widget = ExtResource("3_8bwf5")
+miss_damage_widget = ExtResource("4_anc4h")
 
 [node name="Actions" type="Node2D" parent="."]
 

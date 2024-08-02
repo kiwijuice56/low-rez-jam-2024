@@ -8,6 +8,7 @@ class_name Fighter extends Node2D
 @export_group("Damage Widget")
 @export var normal_damage_widget: PackedScene
 @export var critical_damage_widget: PackedScene
+@export var miss_damage_widget: PackedScene
 
 var hp: int
 var tp: int
@@ -28,21 +29,25 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("accept", false):
-		hurt(randi_range(1, 16), randf() < 0.24, false, false)
+		hurt(randi_range(1, 16), randf() < 0.24, randf() < 0.24, false)
 
 func hurt(damage: int, is_crit: bool, is_miss: bool, is_weak: bool) -> void:
+	var widget: DamageWidget
+	var text: String
+	
 	if is_miss:
-		pass
+		widget = miss_damage_widget.instantiate()
+		text = " miss"
 	elif is_crit or is_weak:
-		var new_widget: DamageWidget = critical_damage_widget.instantiate()
-		new_widget.damage(damage)
-		get_tree().get_root().add_child(new_widget)
-		new_widget.global_position = %Center.global_position
+		widget = critical_damage_widget.instantiate()
+		text = " " + str(damage)
 	else:
-		var new_widget: DamageWidget = normal_damage_widget.instantiate()
-		new_widget.damage(damage)
-		get_tree().get_root().add_child(new_widget)
-		new_widget.global_position = %Center.global_position
+		widget = normal_damage_widget.instantiate()
+		text = " " + str(damage)
+	
+	widget.damage(text)
+	get_tree().get_root().add_child(widget)
+	widget.global_position = %Center.global_position - Vector2(widget.get_node("%DamageLabel").size.x / 2, 0)
 
 func act(_data: Dictionary) -> Dictionary:
 	return {"targets": [], "action": null}

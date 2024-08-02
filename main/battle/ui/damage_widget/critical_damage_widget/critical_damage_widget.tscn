@@ -16,6 +16,8 @@ shader = ExtResource("2_gljrs")
 shader_parameter/palette = SubResource("GradientTexture1D_772v0")
 
 [node name="CriticalDamageWidget" instance=ExtResource("1_ljsbd")]
+speed_min = 1.0
+speed_max = 12.0
 
 [node name="CanvasGroup" parent="." index="0"]
 material = SubResource("ShaderMaterial_jttre")
@@ -23,3 +25,6 @@ use_mipmaps = true
 
 [node name="DamageLabel" parent="CanvasGroup/MarginContainer" index="0"]
 text = " 9"
+
+[node name="AnimationPlayer" parent="." index="1"]
+speed_scale = 0.8

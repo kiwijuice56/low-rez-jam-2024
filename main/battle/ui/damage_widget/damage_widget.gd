@@ -5,9 +5,9 @@ class_name DamageWidget extends Node2D
 
 var speed: float
 
-func damage(amount: int) -> void:
+func damage(text: String) -> void:
 	speed = randf_range(speed_min, speed_max) * (-1 if randf() < 0.5 else 1)
-	%DamageLabel.text = " " + str(amount)
+	%DamageLabel.text = text
 	%AnimationPlayer.play("bounce")
 	await %AnimationPlayer.animation_finished
 	queue_free()
