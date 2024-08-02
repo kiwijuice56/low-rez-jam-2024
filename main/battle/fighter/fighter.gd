@@ -10,8 +10,14 @@ class_name Fighter extends Node2D
 @export var critical_damage_widget: PackedScene
 @export var miss_damage_widget: PackedScene
 
-var hp: int
-var tp: int
+var hp: int:
+	set(val):
+		hp = val
+		update_ui()
+var tp: int:
+	set(val):
+		tp = val
+		update_ui()
 
 var critical_multiplier: float
 var accuracy_multiplier: float
@@ -29,8 +35,10 @@ func _ready() -> void:
 	%Sprite2D.material = %Sprite2D.material.duplicate()
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("accept", false):
-		hurt(randi_range(1, 16), randf() < 0.24, randf() < 0.24, false)
+	if %PointInfo.visible:
+		return
+	if event.is_action_pressed("cancel", false):
+		hurt(randi_range(1, 16), randf() < 0.24, randf() < 0.15, false)
 
 func hurt(damage: int, is_crit: bool, is_miss: bool, is_weak: bool) -> void:
 	var widget: DamageWidget
@@ -54,8 +62,13 @@ func hurt(damage: int, is_crit: bool, is_miss: bool, is_weak: bool) -> void:
 		text = " " + str(damage)
 	
 	widget.damage(text)
-	get_tree().get_root().add_child(widget)
+	# I know, this is terrible...
+	get_parent().get_parent().add_child(widget)
 	widget.global_position = %Center.global_position - Vector2(widget.get_node("%DamageLabel").size.x / 2, 0)
+
+func update_ui() -> void:
+	%HPColoredText.get_node("Label").text = " " + str(hp)
+	%TPColoredText.get_node("Label").text = " " + str(tp)
 
 func act(_data: Dictionary) -> Dictionary:
 	return {"targets": [], "action": null}

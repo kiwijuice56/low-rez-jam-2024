@@ -1,0 +1,74 @@
+[gd_scene load_steps=8 format=3 uid="uid://c7cfirjgacf35"]
+
+[ext_resource type="PackedScene" uid="uid://bnbb4opeecksl" path="res://main/battle/fighter/fighter.tscn" id="1_mylgi"]
+[ext_resource type="Script" path="res://main/battle/fighter/fighter_stats/fighter_stats.gd" id="2_wtt4c"]
+[ext_resource type="Texture2D" uid="uid://bd65dsv7n3o4r" path="res://main/battle/fighter/slime/slime.png" id="3_bhu5l"]
+
+[sub_resource type="Resource" id="Resource_0mx5o"]
+script = ExtResource("2_wtt4c")
+max_hp = 20
+max_tp = 20
+strength = 20
+magic = 20
+defence = 20
+luck = 20
+unlocked_skills = Array[int]([])
+
+[sub_resource type="Animation" id="Animation_t366u"]
+resource_name = "dance"
+length = 0.1
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteHolder/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_wjpip"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteHolder/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gtoga"]
+_data = {
+"RESET": SubResource("Animation_wjpip"),
+"dance": SubResource("Animation_t366u")
+}
+
+[node name="Slime" instance=ExtResource("1_mylgi")]
+stats = SubResource("Resource_0mx5o")
+
+[node name="Sprite2D" parent="SpriteHolder" index="0"]
+position = Vector2(-6, -12)
+texture = ExtResource("3_bhu5l")
+hframes = 3
+
+[node name="Center" parent="SpriteHolder" index="1"]
+position = Vector2(1, -6)
+
+[node name="PointInfo" parent="." index="3"]
+visible = false
+
+[node name="SpriteAnimationPlayer" type="AnimationPlayer" parent="." index="4"]
+libraries = {
+"": SubResource("AnimationLibrary_gtoga")
+}
+autoplay = "dance"
+speed_scale = 0.4

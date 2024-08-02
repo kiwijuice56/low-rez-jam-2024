@@ -130,12 +130,13 @@ unique_name_in_owner = true
 [node name="Sprite2D" type="Sprite2D" parent="SpriteHolder"]
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_u031k")
+position = Vector2(-4, -8)
 texture = ExtResource("3_kdrmx")
 centered = false
 
 [node name="Center" type="Marker2D" parent="SpriteHolder"]
 unique_name_in_owner = true
-position = Vector2(4, 3)
+position = Vector2(0, -5)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
@@ -144,9 +145,15 @@ libraries = {
 }
 speed_scale = 2.5
 
-[node name="HPColoredText" parent="." instance=ExtResource("8_uo7mv")]
-material = SubResource("ShaderMaterial_1r3so")
-position = Vector2(-2, 6)
+[node name="PointInfo" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-2, -2)
 
-[node name="TPColoredText" parent="." instance=ExtResource("8_uo7mv")]
-position = Vector2(-2, 12)
+[node name="HPColoredText" parent="PointInfo" instance=ExtResource("8_uo7mv")]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_1r3so")
+position = Vector2(-4, 0)
+
+[node name="TPColoredText" parent="PointInfo" instance=ExtResource("8_uo7mv")]
+unique_name_in_owner = true
+position = Vector2(-4, 6)
