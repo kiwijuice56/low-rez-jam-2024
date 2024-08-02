@@ -117,6 +117,10 @@ script = ExtResource("7_we58l")
 unique_name_in_owner = true
 visible = false
 
+[node name="BattleMusicPlayer" type="AudioStreamPlayer" parent="Battle"]
+unique_name_in_owner = true
+bus = &"Music"
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
@@ -128,7 +132,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Transition" parent="." instance=ExtResource("6_j5aj4")]
-visible = false
+layer = 2
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ge1nn")

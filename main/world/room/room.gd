@@ -13,3 +13,11 @@ func load_out() -> void:
 	var tween: Tween = get_tree().create_tween()
 	tween.tween_property(%MusicPlayer, "volume_db", -60, MUSIC_TRANS)
 	await tween.finished
+
+func pause_music() -> void:
+	await load_out()
+	%MusicPlayer.stop()
+
+func resume_music() -> void:
+	await load_in()
+	%MusicPlayer.play()

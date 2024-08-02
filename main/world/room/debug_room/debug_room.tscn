@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://wmlggwvrca1v"]
+[gd_scene load_steps=23 format=3 uid="uid://wmlggwvrca1v"]
 
 [ext_resource type="PackedScene" uid="uid://l1nxgrfgq8nb" path="res://main/world/room/room.tscn" id="1_lyot8"]
 [ext_resource type="PackedScene" uid="uid://dei0x5en37mu2" path="res://main/world/character/friend/friend.tscn" id="2_f2x4q"]
@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://cmyfrh6j55ulb" path="res://main/world/item_pickup/item_pickup.tscn" id="7_q7lai"]
 [ext_resource type="PackedScene" uid="uid://bnkxy1qwre0oj" path="res://main/world/character/enemy/enemy.tscn" id="9_t400i"]
 [ext_resource type="Script" path="res://main/world/character/enemy/encounter.gd" id="10_26ev5"]
+[ext_resource type="PackedScene" uid="uid://ingpp247yeyh" path="res://main/battle/ui/battle_background/watermelon/watermelon_battle_background.tscn" id="10_vjepj"]
+[ext_resource type="AudioStream" uid="uid://uxqbro8puosv" path="res://music/salad_slaughter.ogg" id="11_ajfvi"]
 
 [sub_resource type="Resource" id="Resource_nepoq"]
 script = ExtResource("3_2d463")
@@ -28,6 +30,8 @@ speed = "Normal"
 [sub_resource type="Resource" id="Resource_duvqj"]
 script = ExtResource("10_26ev5")
 fighters = Array[PackedScene]([ExtResource("5_tyvh1")])
+background = ExtResource("10_vjepj")
+music = ExtResource("11_ajfvi")
 xp_drop = 0
 
 [sub_resource type="Resource" id="Resource_ftoqs"]
@@ -82,12 +86,6 @@ conversation = Array[ExtResource("3_2d463")]([SubResource("Resource_nepoq"), Sub
 
 [node name="Enemy" parent="Characters/Enemies" index="0" instance=ExtResource("9_t400i")]
 position = Vector2(54, 0)
-encounter = SubResource("Resource_duvqj")
-conversation = Array[ExtResource("3_2d463")]([SubResource("Resource_ftoqs")])
-death_conversation = Array[ExtResource("3_2d463")]([SubResource("Resource_iltys")])
-
-[node name="Enemy2" parent="Characters/Enemies" index="1" instance=ExtResource("9_t400i")]
-position = Vector2(36, 0)
 encounter = SubResource("Resource_duvqj")
 conversation = Array[ExtResource("3_2d463")]([SubResource("Resource_ftoqs")])
 death_conversation = Array[ExtResource("3_2d463")]([SubResource("Resource_iltys")])
