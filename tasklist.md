@@ -18,9 +18,9 @@
 - - [x] Inventory
 - - [x] Level and XP
 - - [x] Settings
-- [ ] Overworld enemies
+- [x] Overworld enemies
 - [ ] Combat system
-- - [ ] Battle flow (starting, looping thru turns, ending)
+- - [?] Battle flow (starting, looping thru turns, ending)
 - - [ ] Damage labels
 - - [ ] Death, hit, strong hit, miss animations
 - - [ ] Attack animations

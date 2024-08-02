@@ -35,3 +35,9 @@ func swap(i1: int, i2: int) -> void:
 	else:
 		add_child(fighter1, i2)
 		add_child(fighter2, i1)
+
+func get_active_fighters() -> Array[Fighter]:
+	var fighters: Array[Fighter] = []
+	for i in range(min(3, get_child_count())):
+		fighters.append(get_child(i))
+	return fighters

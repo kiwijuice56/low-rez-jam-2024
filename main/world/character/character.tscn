@@ -12,6 +12,7 @@ unique_name_in_owner = true
 centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
 
 [node name="CollisionRays" type="Node2D" parent="."]
 unique_name_in_owner = true

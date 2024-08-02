@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://wmlggwvrca1v"]
+[gd_scene load_steps=21 format=3 uid="uid://wmlggwvrca1v"]
 
 [ext_resource type="PackedScene" uid="uid://l1nxgrfgq8nb" path="res://main/world/room/room.tscn" id="1_lyot8"]
 [ext_resource type="PackedScene" uid="uid://dei0x5en37mu2" path="res://main/world/character/friend/friend.tscn" id="2_f2x4q"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://bwgqs6twouujh" path="res://main/battle/fighter/enoch/enoch.tscn" id="5_tyvh1"]
 [ext_resource type="Resource" uid="uid://be2fbcpo5gd7a" path="res://main/world/ui/text_box/speakers/system/system_speaker.tres" id="7_mrk23"]
 [ext_resource type="PackedScene" uid="uid://cmyfrh6j55ulb" path="res://main/world/item_pickup/item_pickup.tscn" id="7_q7lai"]
+[ext_resource type="PackedScene" uid="uid://bnkxy1qwre0oj" path="res://main/world/character/enemy/enemy.tscn" id="9_t400i"]
+[ext_resource type="Script" path="res://main/world/character/enemy/encounter.gd" id="10_26ev5"]
 
 [sub_resource type="Resource" id="Resource_nepoq"]
 script = ExtResource("3_2d463")
@@ -21,6 +23,23 @@ speed = "Normal"
 script = ExtResource("3_2d463")
 speaker = ExtResource("7_mrk23")
 text = "enoch joined your party."
+speed = "Normal"
+
+[sub_resource type="Resource" id="Resource_duvqj"]
+script = ExtResource("10_26ev5")
+fighters = Array[PackedScene]([ExtResource("5_tyvh1")])
+xp_drop = 0
+
+[sub_resource type="Resource" id="Resource_ftoqs"]
+script = ExtResource("3_2d463")
+speaker = ExtResource("4_8hrq4")
+text = "eat shit, loser..."
+speed = "Normal"
+
+[sub_resource type="Resource" id="Resource_iltys"]
+script = ExtResource("3_2d463")
+speaker = ExtResource("4_8hrq4")
+text = "god damn it..."
 speed = "Normal"
 
 [sub_resource type="Resource" id="Resource_v2bbq"]
@@ -60,6 +79,19 @@ target_room = "debug_room2"
 position = Vector2(54, 18)
 fighter_scene = ExtResource("5_tyvh1")
 conversation = Array[ExtResource("3_2d463")]([SubResource("Resource_nepoq"), SubResource("Resource_lvlo6")])
+
+[node name="Enemy" parent="Characters/Enemies" index="0" instance=ExtResource("9_t400i")]
+position = Vector2(54, 0)
+encounter = SubResource("Resource_duvqj")
+requires_interact = true
+conversation = Array[ExtResource("3_2d463")]([SubResource("Resource_ftoqs")])
+death_conversation = Array[ExtResource("3_2d463")]([SubResource("Resource_iltys")])
+
+[node name="Enemy2" parent="Characters/Enemies" index="1" instance=ExtResource("9_t400i")]
+position = Vector2(36, 0)
+encounter = SubResource("Resource_duvqj")
+conversation = Array[ExtResource("3_2d463")]([SubResource("Resource_ftoqs")])
+death_conversation = Array[ExtResource("3_2d463")]([SubResource("Resource_iltys")])
 
 [node name="Friend" parent="Characters/Friends" index="0" instance=ExtResource("2_f2x4q")]
 position = Vector2(36, 27)

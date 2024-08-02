@@ -32,6 +32,12 @@ func move(dir: Vector2) -> void:
 	
 	in_movement = false
 
+func lock_area() -> void:
+	%CollisionShape2D.set_deferred("disabled", true)
+
+func unlock_area() -> void:
+	%CollisionShape2D.disabled = false
+
 func play_movement_animation() -> void:
 	pass
 
