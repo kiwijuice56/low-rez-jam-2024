@@ -33,7 +33,7 @@
 - - [ ] Basic flow/animation and action selection
 - - [ ] Target selection
 - - [ ] Press turn icons
-- - [ ] Battle backgrounds
+- - [x] Battle backgrounds
 - [ ] Progression system
 - - [ ] XP gain and leveling up after combat
 - - [ ] Stat growth distribution + formulas

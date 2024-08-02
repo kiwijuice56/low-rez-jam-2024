@@ -18,6 +18,8 @@ func battle(encounter: Encounter) -> bool:
 		%EnemyParty.add_child(new_fighter)
 		enemy_party.append(new_fighter)
 	
+	await get_tree().create_timer(10.0).timeout
+	
 	await Ref.transition.trans_out()
 	
 	await Ref.transition.trans_in()
