@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dl3ps7eki0b7b"]
+[gd_scene load_steps=21 format=3 uid="uid://dl3ps7eki0b7b"]
 
 [ext_resource type="PackedScene" uid="uid://txvddbv8pfiv" path="res://main/world/character/player/player.tscn" id="1_84yfs"]
 [ext_resource type="Script" path="res://main/main.gd" id="1_q20fr"]
@@ -11,7 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://c4j2ik0u6mdlm" path="res://main/transition/transition.tscn" id="6_j5aj4"]
 [ext_resource type="Script" path="res://main/battle/player_party/player_party.gd" id="7_we58l"]
 [ext_resource type="PackedScene" uid="uid://ingpp247yeyh" path="res://main/battle/ui/battle_background/watermelon/watermelon_battle_background.tscn" id="9_d6aqk"]
-[ext_resource type="Texture2D" uid="uid://bc3ym870tts3e" path="res://main/battle/ui/choice_menu/choice_button/choice_button1.png" id="10_yrkts"]
+[ext_resource type="PackedScene" uid="uid://bx3kup2vyqlma" path="res://main/battle/ui/choice_menu/choice_menu.tscn" id="10_o1rja"]
+[ext_resource type="PackedScene" uid="uid://1c3rge3mfp4r" path="res://main/battle/ui/press_turn_widget/press_turn/press_turn.tscn" id="12_8wuqk"]
 [ext_resource type="Shader" path="res://main/theme/palette_swapper.gdshader" id="12_pd2fh"]
 [ext_resource type="Texture2D" uid="uid://dc5ys0tummyop" path="res://main/theme/base_palette.png" id="13_vouqy"]
 [ext_resource type="Texture2D" uid="uid://c66yc787tsfw4" path="res://main/theme/modified_palette.png" id="14_5avsq"]
@@ -93,6 +94,12 @@ unique_name_in_owner = true
 
 [node name="WatermelonBattleBackground" parent="Battle/UI/BackgroundHolder" instance=ExtResource("9_d6aqk")]
 
+[node name="PlayerPositions" type="Node2D" parent="Battle/UI"]
+
+[node name="0" type="Node2D" parent="Battle/UI/PlayerPositions"]
+
+[node name="0" type="Marker2D" parent="Battle/UI/PlayerPositions/0"]
+
 [node name="TopBackground" type="ColorRect" parent="Battle/UI"]
 custom_minimum_size = Vector2(0, 16)
 offset_right = 64.0
@@ -102,84 +109,31 @@ color = Color(0, 0, 0, 1)
 
 [node name="BottomBackground" type="ColorRect" parent="Battle/UI"]
 custom_minimum_size = Vector2(0, 22)
-offset_top = 42.0
+offset_top = 44.0
 offset_right = 64.0
-offset_bottom = 64.0
+offset_bottom = 66.0
 size_flags_vertical = 8
 color = Color(0, 0, 0, 1)
 
-[node name="PlayerPositions" type="Node2D" parent="Battle/UI"]
+[node name="ChoiceMenu" parent="Battle/UI" instance=ExtResource("10_o1rja")]
 
-[node name="0" type="Node2D" parent="Battle/UI/PlayerPositions"]
+[node name="HP" type="Label" parent="Battle/UI"]
+offset_left = 1.0
+offset_top = 54.0
+offset_right = 23.0
+offset_bottom = 77.0
+theme = ExtResource("1_vk4h2")
+theme_override_colors/font_color = Color(0.0196078, 0.0784314, 0.133333, 1)
+text = "HP"
 
-[node name="0" type="Marker2D" parent="Battle/UI/PlayerPositions/0"]
-
-[node name="ChoiceMenu" type="Control" parent="Battle/UI"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ChoiceContainer" type="HBoxContainer" parent="Battle/UI/ChoiceMenu"]
-offset_left = 17.0
-offset_top = 48.0
-offset_right = 66.0
-offset_bottom = 88.0
-theme_override_constants/separation = 1
-
-[node name="ChoiceButton" type="TextureRect" parent="Battle/UI/ChoiceMenu/ChoiceContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-texture = ExtResource("10_yrkts")
-stretch_mode = 2
-
-[node name="ChoiceButton2" type="TextureRect" parent="Battle/UI/ChoiceMenu/ChoiceContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-texture = ExtResource("10_yrkts")
-stretch_mode = 2
-
-[node name="ChoiceButton3" type="TextureRect" parent="Battle/UI/ChoiceMenu/ChoiceContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-texture = ExtResource("10_yrkts")
-stretch_mode = 2
-
-[node name="ChoiceButton4" type="TextureRect" parent="Battle/UI/ChoiceMenu/ChoiceContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-texture = ExtResource("10_yrkts")
-stretch_mode = 2
-
-[node name="ChoiceButton5" type="TextureRect" parent="Battle/UI/ChoiceMenu/ChoiceContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-texture = ExtResource("10_yrkts")
-stretch_mode = 2
-
-[node name="Blocker1" type="ColorRect" parent="Battle/UI/ChoiceMenu"]
-custom_minimum_size = Vector2(32, 0)
-layout_mode = 0
-offset_left = -8.0
-offset_top = 47.0
-offset_right = 24.0
-offset_bottom = 59.0
-color = Color(0, 0, 0, 1)
-
-[node name="Blocker2" type="ColorRect" parent="Battle/UI/ChoiceMenu"]
-layout_mode = 0
-offset_left = 59.0
-offset_top = 47.0
-offset_right = 71.0
-offset_bottom = 59.0
-color = Color(0, 0, 0, 1)
+[node name="TP" type="Label" parent="Battle/UI"]
+offset_left = 1.0
+offset_top = 59.0
+offset_right = 20.0
+offset_bottom = 82.0
+theme = ExtResource("1_vk4h2")
+theme_override_colors/font_color = Color(0.0196078, 0.0784314, 0.133333, 1)
+text = "TP"
 
 [node name="InfoKey" type="VBoxContainer" parent="Battle/UI"]
 anchors_preset = 2
@@ -193,18 +147,12 @@ size_flags_vertical = 8
 theme = ExtResource("1_vk4h2")
 theme_override_constants/separation = 0
 
-[node name="HP" type="Label" parent="Battle/UI/InfoKey"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.0196078, 0.0784314, 0.133333, 1)
-text = "HP"
+[node name="PressTurnWidget" type="Node2D" parent="Battle/UI"]
+position = Vector2(1, 17)
 
-[node name="TP" type="Label" parent="Battle/UI/InfoKey"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.0196078, 0.0784314, 0.133333, 1)
-text = "TP"
+[node name="PressTurn" parent="Battle/UI/PressTurnWidget" instance=ExtResource("12_8wuqk")]
 
 [node name="PlayerParty" type="Node2D" parent="Battle"]
-unique_name_in_owner = true
 script = ExtResource("7_we58l")
 
 [node name="EnemyParty" type="Node2D" parent="Battle"]

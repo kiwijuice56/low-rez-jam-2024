@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cugxt1gt6rcod"
-path="res://.godot/imported/enemy_press_turn.png-4324bb4dca450fc61dd8bd0b8caa97f8.ctex"
+uid="uid://1u7oc823iiyq"
+path="res://.godot/imported/player_press_turn.png-46616c57249f50e19da1bcb3bf470d0f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://main/battle/ui/press_turn_widget/enemy_press_turn.png"
-dest_files=["res://.godot/imported/enemy_press_turn.png-4324bb4dca450fc61dd8bd0b8caa97f8.ctex"]
+source_file="res://main/battle/ui/press_turn_widget/press_turn/player_press_turn.png"
+dest_files=["res://.godot/imported/player_press_turn.png-46616c57249f50e19da1bcb3bf470d0f.ctex"]
 
 [params]
 

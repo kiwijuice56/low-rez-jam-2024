@@ -1,0 +1,201 @@
+[gd_scene load_steps=11 format=3 uid="uid://bx3kup2vyqlma"]
+
+[ext_resource type="Theme" uid="uid://evv5alve252b" path="res://main/theme/theme.tres" id="1_4r6vn"]
+[ext_resource type="Texture2D" uid="uid://bc3ym870tts3e" path="res://main/battle/ui/choice_menu/choice_button/choice_button1.png" id="2_3qc6l"]
+[ext_resource type="Texture2D" uid="uid://bbyv34w3mao51" path="res://main/battle/ui/choice_menu/arrow.png" id="3_6p17v"]
+[ext_resource type="Texture2D" uid="uid://dcmjubte1kcli" path="res://main/battle/ui/choice_menu/mini_blocker.png" id="4_8fk3a"]
+[ext_resource type="Shader" path="res://main/battle/ui/party_panel/colored_text.gdshader" id="5_02jme"]
+[ext_resource type="FontFile" uid="uid://cauc77kjpc67c" path="res://main/theme/mini_kiwi_font.ttf" id="6_exix4"]
+
+[sub_resource type="Gradient" id="Gradient_r6jpn"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.423077, 0.714286)
+colors = PackedColorArray(0.670588, 0.486275, 0.494118, 1, 0.564706, 0.407843, 0.486275, 1, 0.329412, 0.301961, 0.415686, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_p6p3o"]
+gradient = SubResource("Gradient_r6jpn")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aih4r"]
+shader = ExtResource("5_02jme")
+shader_parameter/palette = SubResource("GradientTexture1D_p6p3o")
+
+[sub_resource type="FontVariation" id="FontVariation_0kjtv"]
+base_font = ExtResource("6_exix4")
+spacing_space = -4
+spacing_top = -5
+
+[node name="ChoiceMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_4r6vn")
+
+[node name="ChoiceContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = 15.0
+offset_right = 34.0
+offset_bottom = 55.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 1
+
+[node name="ChoiceButton" type="TextureRect" parent="ChoiceContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("2_3qc6l")
+stretch_mode = 2
+
+[node name="ChoiceButton2" type="TextureRect" parent="ChoiceContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("2_3qc6l")
+stretch_mode = 2
+
+[node name="ChoiceButton3" type="TextureRect" parent="ChoiceContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("2_3qc6l")
+stretch_mode = 2
+
+[node name="ChoiceButton4" type="TextureRect" parent="ChoiceContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("2_3qc6l")
+stretch_mode = 2
+
+[node name="ChoiceButton6" type="TextureRect" parent="ChoiceContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("2_3qc6l")
+stretch_mode = 2
+
+[node name="ChoiceButton5" type="TextureRect" parent="ChoiceContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("2_3qc6l")
+stretch_mode = 2
+
+[node name="Blocker1" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 0
+offset_left = -8.0
+offset_top = 46.0
+offset_right = 24.0
+offset_bottom = 58.0
+color = Color(0, 0, 0, 1)
+
+[node name="Blocker2" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 59.0
+offset_top = 46.0
+offset_right = 71.0
+offset_bottom = 58.0
+color = Color(0, 0, 0, 1)
+
+[node name="Blocker3" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(37, 6)
+layout_mode = 0
+offset_left = 23.0
+offset_top = 41.0
+offset_right = 60.0
+offset_bottom = 47.0
+color = Color(0, 0, 0, 1)
+
+[node name="RightMore" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 49.0
+offset_right = 63.0
+offset_bottom = 54.0
+texture = ExtResource("3_6p17v")
+stretch_mode = 2
+
+[node name="LeftMore" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 49.0
+offset_right = 26.0
+offset_bottom = 54.0
+scale = Vector2(-1, 1)
+texture = ExtResource("3_6p17v")
+stretch_mode = 2
+
+[node name="MiniBlockerLeft" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 41.0
+offset_right = 26.0
+offset_bottom = 46.0
+scale = Vector2(-1, 1)
+texture = ExtResource("4_8fk3a")
+stretch_mode = 2
+
+[node name="MiniBlockerRight" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 41.0
+offset_right = 63.0
+offset_bottom = 46.0
+texture = ExtResource("4_8fk3a")
+stretch_mode = 2
+
+[node name="ChoiceLabel" type="Label" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(37, 0)
+layout_mode = 0
+offset_left = 23.0
+offset_top = 42.0
+offset_right = 60.0
+offset_bottom = 47.0
+text = "kill"
+horizontal_alignment = 1
+clip_text = true
+text_overrun_behavior = 3
+ellipsis_char = "."
+
+[node name="CostAmountLabel" type="Label" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(22, 0)
+layout_mode = 0
+offset_left = 16.0
+offset_top = 59.0
+offset_right = 38.0
+offset_bottom = 64.0
+theme_override_colors/font_color = Color(0.0196078, 0.0784314, 0.133333, 1)
+text = "count"
+horizontal_alignment = 2
+
+[node name="ColoredTextCost" type="CanvasGroup" parent="."]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_aih4r")
+position = Vector2(-1, -2)
+fit_margin = 0.0
+clear_margin = 0.0
+
+[node name="CostLabel" type="Label" parent="ColoredTextCost"]
+unique_name_in_owner = true
+offset_left = 39.0
+offset_top = 59.0
+offset_right = 47.0
+offset_bottom = 64.0
+theme = ExtResource("1_4r6vn")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = SubResource("FontVariation_0kjtv")
+text = " 99"

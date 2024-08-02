@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bfibji1baef8n"
-path="res://.godot/imported/swirl.png-53f4746ce4b68ab74d1acc1936539a32.ctex"
+path="res://.godot/imported/swirl.png-d72a36e57c0df3cbfcc27d12c8d42617.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://main/battle/ui/press_turn_widget/swirl.png"
-dest_files=["res://.godot/imported/swirl.png-53f4746ce4b68ab74d1acc1936539a32.ctex"]
+source_file="res://main/battle/ui/press_turn_widget/press_turn/swirl.png"
+dest_files=["res://.godot/imported/swirl.png-d72a36e57c0df3cbfcc27d12c8d42617.ctex"]
 
 [params]
 
