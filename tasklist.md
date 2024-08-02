@@ -19,9 +19,9 @@
 - - [x] Level and XP
 - - [x] Settings
 - [x] Overworld enemies
-- [ ] Combat system
+- [?] Combat system
 - - [?] Battle flow (starting, looping thru turns, ending)
-- - [ ] Damage labels
+- - [?] Damage labels
 - - [ ] Death, hit, strong hit, miss animations
 - - [ ] Attack animations
 - - [ ] Attack/heal actions and damage formulas

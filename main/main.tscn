@@ -94,7 +94,6 @@ color = Color(0, 0, 0, 1)
 
 [node name="PlayerParty" type="Node2D" parent="Battle"]
 unique_name_in_owner = true
-visible = false
 script = ExtResource("7_we58l")
 
 [node name="EnemyParty" type="Node2D" parent="Battle"]
