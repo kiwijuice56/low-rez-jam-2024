@@ -28,11 +28,11 @@
 - - [ ] Critical hits, misses, weakness hitting
 - - [ ] Revival actions
 - - [ ] Effects (code and animations) and effect actions
-- [?] Combat UI
+- [x] Combat UI
 - - [x] Party member controls and their positioning
 - - [x] Basic flow/animation and action selection
 - - [x] Target selection
-- - [?] Press turn icons
+- - [x] Press turn icons
 - - [x] Battle backgrounds
 - [ ] Progression system
 - - [ ] XP gain and leveling up after combat

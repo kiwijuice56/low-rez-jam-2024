@@ -1,8 +1,9 @@
 class_name Battle extends Node2D
 
 const TEXT_SPEED: int = 64
-const PREBATTLE_DELAY: float = 0.5
-const POST_ACTION_DELAY: float = 1.0
+const PREBATTLE_DELAY: float = 1.1
+const TURN_SWAP_DELAY: float = 1.0
+const POST_ACTION_DELAY: float = 0.8
 const MUSIC_TRANS_TIME: float = 0.2
 const TRANS_TIME: float = 0.08
 
@@ -35,6 +36,12 @@ func battle(encounter: Encounter) -> bool:
 	var enemy_party: Array[Fighter] = []
 	for scene in encounter.fighters:
 		var new_fighter: Fighter = scene.instantiate()
+		var base_name: String = new_fighter.name
+		var copy_count: int = enemies_with_name(enemy_party, base_name)
+		if copy_count > 0:
+			base_name += "-" + "abcdefghijkl"[copy_count - 1]
+		new_fighter.name = base_name
+		
 		%EnemyParty.add_child(new_fighter)
 		enemy_party.append(new_fighter)
 		new_fighter.visible = true
@@ -50,13 +57,16 @@ func battle(encounter: Encounter) -> bool:
 	### BATTLE LOOP ###
 	
 	var player_turn: bool = true
-	var current_party: Array[Fighter] = player_party if player_turn else enemy_party
+	
 	while true:
 		if len(get_alive_fighters(player_party)) == 0 or len(get_alive_fighters(enemy_party)) == 0:
 			break
+		var current_party: Array[Fighter] = player_party if player_turn else enemy_party
 		var idx: int = 0
-		var full_turns: int = len(get_alive_fighters(current_party)) * 2
+		var full_turns: int = len(get_alive_fighters(current_party))
 		var half_turns: int = 0
+		%PressTurnWidget.initialize(full_turns, player_turn)
+		await get_tree().create_timer(TURN_SWAP_DELAY).timeout
 		while full_turns + half_turns > 0:
 			var fighter: Fighter = current_party[idx]
 			idx = (idx + 1) % len(current_party)
@@ -69,25 +79,30 @@ func battle(encounter: Encounter) -> bool:
 			else:
 				choice = await fighter.get_choice(enemy_party, player_party)
 			
-			var turns_used: Action.TurnUsage = choice.action.act(choice.targets)
+			var turns_used: Action.TurnUsage = await choice.action.act(fighter, choice.targets)
 			if turns_used == Action.TurnUsage.NORMAL:
 				if half_turns > 0:
 					half_turns -= 1
 				else:
 					full_turns -= 1
+				await %PressTurnWidget.waste_turns(1)
 			if turns_used == Action.TurnUsage.ADVANTAGE:
 				if full_turns > 0:
 					full_turns -= 1
 					half_turns += 1
+					await %PressTurnWidget.flash_turn()
 				else:
+					await %PressTurnWidget.waste_turns(1)
 					half_turns -= 1
 			if turns_used == Action.TurnUsage.WASTE:
+				await %PressTurnWidget.waste_turns(min(2, full_turns))
 				for _i in range(2):
 					if half_turns > 0:
 						half_turns -= 1
 					else:
 						full_turns -= 1
 			await get_tree().create_timer(POST_ACTION_DELAY).timeout
+		player_turn = not player_turn
 
 	### BATTLE LOOP END ###
 	
@@ -103,6 +118,13 @@ func battle(encounter: Encounter) -> bool:
 	await Ref.transition.trans_out()
 	
 	return true
+
+func enemies_with_name(enemy_party: Array[Fighter], base_name: String) -> int:
+	var count: int = 0
+	for child in enemy_party:
+		if child.name.begins_with(base_name):
+			count += 1
+	return count
 
 func get_player_choice(fighter: Fighter, player_party: Array[Fighter], enemy_party: Array[Fighter]) -> Dictionary:
 	var stack: Array[Dictionary] = [{"level": "outer", "idx": 0}]
@@ -137,6 +159,7 @@ func get_player_choice(fighter: Fighter, player_party: Array[Fighter], enemy_par
 				var targets: Array[Fighter] = await _get_targets(node.action, fighter, player_party, enemy_party) 
 				if len(targets) == 0:
 					continue
+				return {"action": node.action, "targets": targets}
 			"skills":
 				_initialize_skills(fighter, player_party, enemy_party, node.idx)
 				if not %ChoiceMenu.mini_visible:
@@ -168,7 +191,7 @@ func get_player_choice(fighter: Fighter, player_party: Array[Fighter], enemy_par
 	
 	return {}
 
-func _get_targets(action: Action, fighter: Fighter, player_party: Array[Fighter], enemy_party: Array[Fighter]) -> Array[Fighter]:
+func _get_targets(action: Action, _fighter: Fighter, player_party: Array[Fighter], enemy_party: Array[Fighter]) -> Array[Fighter]:
 	var pool: Array[Fighter] = action.get_available_targets(player_party, enemy_party)
 	
 	if action.target_amount == "Single":

@@ -129,6 +129,7 @@ unique_name_in_owner = true
 
 [node name="Attack" parent="Actions" instance=ExtResource("2_42vt3")]
 icon = ExtResource("6_ju4h5")
+use_text = "%s attacked!"
 power = 1.0
 critical = 0.05
 hit_amount_max = 1

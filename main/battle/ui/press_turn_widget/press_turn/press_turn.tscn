@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://1c3rge3mfp4r"]
+[gd_scene load_steps=15 format=3 uid="uid://1c3rge3mfp4r"]
 
 [ext_resource type="Texture2D" uid="uid://1u7oc823iiyq" path="res://main/battle/ui/press_turn_widget/press_turn/player_press_turn.png" id="1_dojri"]
 [ext_resource type="Script" path="res://main/battle/ui/press_turn_widget/press_turn/press_turn.gd" id="2_6drhh"]
 [ext_resource type="Texture2D" uid="uid://bfibji1baef8n" path="res://main/battle/ui/press_turn_widget/press_turn/swirl.png" id="2_ylfxn"]
+[ext_resource type="Texture2D" uid="uid://cugxt1gt6rcod" path="res://main/battle/ui/press_turn_widget/press_turn/enemy_press_turn.png" id="3_q7g0s"]
+[ext_resource type="Texture2D" uid="uid://7ianniwhess3" path="res://main/world/item_pickup/circle.png" id="4_4sba1"]
 
 [sub_resource type="Animation" id="Animation_svmgf"]
 length = 0.001
@@ -54,7 +56,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
+"values": [6]
 }
 
 [sub_resource type="Animation" id="Animation_ji1h5"]
@@ -74,17 +76,58 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3]
 }
 
+[sub_resource type="Animation" id="Animation_bdytl"]
+resource_name = "waste"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [4, 5, 6]
+}
+
+[sub_resource type="Animation" id="Animation_dcg6d"]
+resource_name = "create"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [5, 4, 0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rxnyl"]
 _data = {
 "RESET": SubResource("Animation_w53au"),
-"flash": SubResource("Animation_ji1h5")
+"create": SubResource("Animation_dcg6d"),
+"flash": SubResource("Animation_ji1h5"),
+"waste": SubResource("Animation_bdytl")
 }
+
+[sub_resource type="Curve" id="Curve_irwbh"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.127536, 1), 0.0, 0.0, 0, 0, Vector2(0.684058, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
 
 [node name="PressTurn" type="Sprite2D"]
 texture = ExtResource("1_dojri")
 centered = false
-hframes = 4
+hframes = 7
+frame = 6
 script = ExtResource("2_6drhh")
+player_texture = ExtResource("1_dojri")
+enemy_texture = ExtResource("3_q7g0s")
 
 [node name="Flash" type="Sprite2D" parent="."]
 visible = false
@@ -99,7 +142,29 @@ libraries = {
 }
 speed_scale = 1.1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="MainAnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_rxnyl")
 }
+speed_scale = 2.0
+
+[node name="FlashParticles" type="CPUParticles2D" parent="."]
+unique_name_in_owner = true
+show_behind_parent = true
+position = Vector2(3, 2)
+emitting = false
+amount = 16
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource("4_4sba1")
+spread = 180.0
+gravity = Vector2(0, 32)
+initial_velocity_min = 32.0
+initial_velocity_max = 64.0
+orbit_velocity_min = -1.0
+orbit_velocity_max = 1.0
+scale_amount_min = 0.3
+scale_amount_max = 0.3
+scale_amount_curve = SubResource("Curve_irwbh")

@@ -71,5 +71,6 @@ func update_ui() -> void:
 	%HPColoredText.get_node("Label").text = " " + str(hp)
 	%TPColoredText.get_node("Label").text = " " + str(tp)
 
-func get_choice(_own_party: Array[Fighter], _other_party: Array[Fighter]) -> Dictionary:
-	return {"targets": [], "action": null}
+func get_choice(_own_party: Array[Fighter], other_party: Array[Fighter]) -> Dictionary:
+	var targets: Array[Fighter] = [other_party.pick_random()]
+	return {"targets": targets, "action": base_attack}

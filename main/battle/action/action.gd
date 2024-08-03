@@ -2,6 +2,7 @@ class_name Action extends Node2D
 
 @export var icon: Texture
 @export_multiline var description: String
+@export var use_text: String = "%s"
 @export var verb: String = "attack"
 @export var tp_cost: int
 @export var power: float
@@ -31,7 +32,9 @@ func _ready() -> void:
 	if not is_item:
 		owner_fighter = owner
 
-func act(_targets: Array[Fighter]) -> TurnUsage:
+func act(user: Fighter, targets: Array[Fighter]) -> TurnUsage:
+	Ref.battle_text.display_text(use_text % user.name, Ref.battle.TEXT_SPEED)
+	targets[0].hurt(5, false, false, false) 
 	return TurnUsage.NORMAL
 
 # action-specific stuff... ex: healing should not target fully healed fighters
