@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dl3ps7eki0b7b"]
+[gd_scene load_steps=23 format=3 uid="uid://dl3ps7eki0b7b"]
 
 [ext_resource type="PackedScene" uid="uid://txvddbv8pfiv" path="res://main/world/character/player/player.tscn" id="1_84yfs"]
 [ext_resource type="Script" path="res://main/main.gd" id="1_q20fr"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bx3kup2vyqlma" path="res://main/battle/ui/choice_menu/choice_menu.tscn" id="10_o1rja"]
 [ext_resource type="Script" path="res://main/world/ui/text_box/animated_text_label/animated_text_label.gd" id="10_u6xbh"]
 [ext_resource type="PackedScene" uid="uid://1c3rge3mfp4r" path="res://main/battle/ui/press_turn_widget/press_turn/press_turn.tscn" id="12_8wuqk"]
+[ext_resource type="PackedScene" uid="uid://7ffg50pelcx6" path="res://main/battle/ui/choice_menu/choice_button/choice_button.tscn" id="12_dv1jm"]
 [ext_resource type="Shader" path="res://main/theme/palette_swapper.gdshader" id="12_pd2fh"]
 [ext_resource type="Texture2D" uid="uid://dc5ys0tummyop" path="res://main/theme/base_palette.png" id="13_vouqy"]
 [ext_resource type="Texture2D" uid="uid://c66yc787tsfw4" path="res://main/theme/modified_palette.png" id="14_5avsq"]
@@ -131,7 +132,7 @@ autowrap_mode = 2
 script = ExtResource("10_u6xbh")
 
 [node name="ChoiceMenu" parent="Battle/UI" instance=ExtResource("10_o1rja")]
-visible = false
+choice_button_scene = ExtResource("12_dv1jm")
 
 [node name="HP" type="Label" parent="Battle/UI"]
 offset_left = 2.0
@@ -209,6 +210,7 @@ position = Vector2(53, 50)
 
 [node name="EnemyPositions" type="Node2D" parent="Battle/FighterLayer"]
 unique_name_in_owner = true
+visible = false
 
 [node name="0" type="Node2D" parent="Battle/FighterLayer/EnemyPositions"]
 visible = false
@@ -217,7 +219,6 @@ visible = false
 position = Vector2(32, 38)
 
 [node name="1" type="Node2D" parent="Battle/FighterLayer/EnemyPositions"]
-visible = false
 
 [node name="0" type="Marker2D" parent="Battle/FighterLayer/EnemyPositions/1"]
 position = Vector2(23, 38)
@@ -226,7 +227,6 @@ position = Vector2(23, 38)
 position = Vector2(41, 38)
 
 [node name="2" type="Node2D" parent="Battle/FighterLayer/EnemyPositions"]
-visible = false
 
 [node name="0" type="Marker2D" parent="Battle/FighterLayer/EnemyPositions/2"]
 position = Vector2(17, 38)

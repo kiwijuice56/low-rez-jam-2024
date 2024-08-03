@@ -3,7 +3,7 @@ class_name Battle extends Node2D
 const MUSIC_TRANS_TIME: float = 0.2
 
 func _ready() -> void:
-	%UI.visible = false
+	%UI.visible = true
 	%FighterLayer.visible = false
 
 func battle(encounter: Encounter) -> bool:

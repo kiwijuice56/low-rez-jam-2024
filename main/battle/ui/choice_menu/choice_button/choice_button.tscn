@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=3 uid="uid://7ffg50pelcx6"]
+
+[ext_resource type="Texture2D" uid="uid://bc3ym870tts3e" path="res://main/battle/ui/choice_menu/choice_button/choice_button1.png" id="1_hi1b2"]
+[ext_resource type="Script" path="res://main/battle/ui/choice_menu/choice_button/choice_button.gd" id="2_bgu8n"]
+[ext_resource type="Texture2D" uid="uid://cae560bmswb0l" path="res://main/battle/ui/choice_menu/choice_button/choice_button2.png" id="3_6yo4x"]
+[ext_resource type="Texture2D" uid="uid://dbbr4mrfjf3ir" path="res://main/battle/action/icons/icon_attack.png" id="3_ik2fl"]
+[ext_resource type="Texture2D" uid="uid://c4p7hpq8hq1uh" path="res://main/battle/ui/choice_menu/choice_button/choice_button3.png" id="4_pxoa1"]
+[ext_resource type="Texture2D" uid="uid://dmao46jxeq0td" path="res://main/battle/ui/choice_menu/choice_button/choice_button4.png" id="5_rd5cu"]
+
+[node name="ChoiceButton" type="TextureRect"]
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("1_hi1b2")
+stretch_mode = 2
+script = ExtResource("2_bgu8n")
+normal = ExtResource("1_hi1b2")
+hover = ExtResource("3_6yo4x")
+disabled = ExtResource("4_pxoa1")
+disabled_hover = ExtResource("5_rd5cu")
+
+[node name="Icon" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 8.0
+offset_bottom = 8.0
+texture = ExtResource("3_ik2fl")
+stretch_mode = 2
