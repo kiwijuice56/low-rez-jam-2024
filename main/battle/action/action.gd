@@ -45,6 +45,7 @@ func per_target_act(user: Fighter, target: Fighter, animation: BattleAnimation) 
 	await new_animation.animate()
 	
 	# DAMAGE CALCULATIONS #
+	target.hurt(randi_range(1, 12), false, randf() < 0.2, false)
 
 func act(user: Fighter, targets: Array[Fighter]) -> TurnUsage:
 	Ref.battle_text.display_text(use_text % user.name, Ref.battle.TEXT_SPEED)
@@ -52,18 +53,21 @@ func act(user: Fighter, targets: Array[Fighter]) -> TurnUsage:
 	for animation_scene in animations:
 		var animation: BattleAnimation = animation_scene.instantiate()
 		
+		# the "finisher" animation must always be a follow_target type
 		if animation.follows_target:
 			for _hit in range(randi_range(hit_amount_min, hit_amount_max)):
-				var actual_targets: Array[Fighter] 
+				var actual_targets: Array[Fighter] = []
+				
 				if target_amount == "Random":
 					actual_targets.append(targets.pick_random())
 				else:
 					actual_targets = targets
 				
-				for i in range(len(targets) - 1):
-					per_target_act(user, targets[i], animation)
+				for i in range(len(actual_targets) - 1):
+					per_target_act(user, actual_targets[i], animation)
 					await get_tree().create_timer(per_target_delay).timeout
-				await per_target_act(user, targets[len(targets) - 1], animation)
+				await per_target_act(user, actual_targets[len(actual_targets) - 1], animation)
+				await get_tree().create_timer(per_target_delay).timeout
 		else: # screen animations
 			if animation.layer == "Foreground":
 				Ref.battle_animation_foreground.add_child(animation)

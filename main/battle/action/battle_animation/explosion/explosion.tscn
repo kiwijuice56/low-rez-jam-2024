@@ -1,0 +1,67 @@
+[gd_scene load_steps=6 format=3 uid="uid://dagp5qivcpmn3"]
+
+[ext_resource type="PackedScene" uid="uid://bxwatmpi4g2ui" path="res://main/battle/action/battle_animation/battle_animation.tscn" id="1_rbr56"]
+[ext_resource type="Texture2D" uid="uid://cxynncmpbvc3t" path="res://main/battle/action/battle_animation/explosion/explosion.png" id="2_qfior"]
+
+[sub_resource type="Animation" id="Animation_arv5l"]
+resource_name = "explosion"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"advance"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_rx0dn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ytglu"]
+_data = {
+"RESET": SubResource("Animation_rx0dn"),
+"explosion": SubResource("Animation_arv5l")
+}
+
+[node name="Explosion" instance=ExtResource("1_rbr56")]
+follows_target = true
+
+[node name="AnimationPlayer" parent="." index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_ytglu")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_qfior")
+hframes = 6

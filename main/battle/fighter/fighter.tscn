@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bnbb4opeecksl"]
+[gd_scene load_steps=28 format=3 uid="uid://bnbb4opeecksl"]
 
 [ext_resource type="Script" path="res://main/battle/fighter/fighter.gd" id="1_7gdsa"]
 [ext_resource type="PackedScene" uid="uid://cuko56w08yuso" path="res://main/battle/action/action.tscn" id="2_42vt3"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://deotpp6wnlyl8" path="res://main/battle/ui/damage_widget/miss_damage_widget/miss_damage_widget.tscn" id="4_anc4h"]
 [ext_resource type="Shader" path="res://main/battle/fighter/flash.gdshader" id="6_ipv7e"]
 [ext_resource type="Texture2D" uid="uid://dbbr4mrfjf3ir" path="res://main/battle/action/icons/icon_attack.png" id="6_ju4h5"]
+[ext_resource type="PackedScene" uid="uid://dagp5qivcpmn3" path="res://main/battle/action/battle_animation/explosion/explosion.tscn" id="7_5ut8c"]
 [ext_resource type="Texture2D" uid="uid://dghv8njaox5rt" path="res://main/battle/action/icons/icon_pass.png" id="7_vcslg"]
 [ext_resource type="PackedScene" uid="uid://cvscxguxb7jke" path="res://main/battle/ui/colored_text/colored_text.tscn" id="8_uo7mv"]
 [ext_resource type="Script" path="res://main/battle/fighter/effect/charm.gd" id="9_2sqcm"]
@@ -141,6 +142,7 @@ power = 1.0
 critical = 0.05
 hit_amount_max = 1
 status_chance = 0.0
+animations = Array[PackedScene]([ExtResource("7_5ut8c")])
 
 [node name="Pass" parent="Actions" instance=ExtResource("2_42vt3")]
 icon = ExtResource("7_vcslg")

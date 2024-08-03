@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b0mc1xvjyod6d"]
+[gd_scene load_steps=9 format=3 uid="uid://b0mc1xvjyod6d"]
 
 [ext_resource type="PackedScene" uid="uid://bnbb4opeecksl" path="res://main/battle/fighter/fighter.tscn" id="1_h8m6s"]
 [ext_resource type="Script" path="res://main/battle/fighter/fighter_stats/fighter_stats.gd" id="2_6eory"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://1bbhd85mjdb6" path="res://main/battle/fighter/ella/ella.png" id="3_lpqai"]
 [ext_resource type="Texture2D" uid="uid://dbbr4mrfjf3ir" path="res://main/battle/action/icons/icon_attack.png" id="4_sggcg"]
 [ext_resource type="Texture2D" uid="uid://dwm2gd3f6v21p" path="res://main/battle/action/icons/icon_magic.png" id="5_waisw"]
+[ext_resource type="PackedScene" uid="uid://dagp5qivcpmn3" path="res://main/battle/action/battle_animation/explosion/explosion.tscn" id="6_bkskl"]
 
 [sub_resource type="Resource" id="Resource_glup2"]
 script = ExtResource("2_6eory")
@@ -35,12 +36,20 @@ icon = ExtResource("5_waisw")
 description = "elec magic to all foes"
 tp_cost = 8
 target_amount = "All"
+hit_amount_min = 2
+hit_amount_max = 4
+animations = Array[PackedScene]([ExtResource("6_bkskl")])
+per_target_delay = 0.2
 
 [node name="Genocide" parent="Actions/Skills" index="3" instance=ExtResource("3_7el6r")]
 icon = ExtResource("4_sggcg")
-description = "three hits to random foes"
+description = "many hits to random foes"
 tp_cost = 4
 target_amount = "Random"
+hit_amount_min = 2
+hit_amount_max = 2
+animations = Array[PackedScene]([ExtResource("6_bkskl")])
+per_target_delay = 0.2
 
 [node name="Sprite2D" parent="SpriteHolder" index="0"]
 texture = ExtResource("3_lpqai")
