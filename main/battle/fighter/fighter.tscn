@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bnbb4opeecksl"]
+[gd_scene load_steps=39 format=3 uid="uid://bnbb4opeecksl"]
 
 [ext_resource type="Script" path="res://main/battle/fighter/fighter.gd" id="1_7gdsa"]
 [ext_resource type="PackedScene" uid="uid://cuko56w08yuso" path="res://main/battle/action/action.tscn" id="2_42vt3"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dghv8njaox5rt" path="res://main/battle/action/icons/icon_pass.png" id="7_vcslg"]
 [ext_resource type="PackedScene" uid="uid://cvscxguxb7jke" path="res://main/battle/ui/colored_text/colored_text.tscn" id="8_uo7mv"]
 [ext_resource type="Script" path="res://main/battle/fighter/effect/charm.gd" id="9_2sqcm"]
+[ext_resource type="Script" path="res://main/battle/fighter/shadow.gd" id="9_7imjp"]
 [ext_resource type="Shader" path="res://main/battle/ui/colored_text/colored_text.gdshader" id="9_awhmu"]
 [ext_resource type="Script" path="res://main/battle/fighter/effect/broken.gd" id="9_blmhy"]
 [ext_resource type="Script" path="res://main/battle/fighter/effect/cool.gd" id="10_v1knl"]
@@ -28,6 +29,9 @@ shader = ExtResource("6_ipv7e")
 shader_parameter/flash = null
 shader_parameter/progress = 0.0
 shader_parameter/meltiness = 1.0
+shader_parameter/broken = true
+shader_parameter/h_frames = 1
+shader_parameter/broken_dist = 0.1
 shader_parameter/random_seed = 0.2
 
 [sub_resource type="Animation" id="Animation_8y2xf"]
@@ -273,6 +277,9 @@ target_group = "All"
 target_amount = "All"
 hit_amount_max = 1
 status_chance = 0.0
+
+[node name="ShadowSprite2D" type="Sprite2D" parent="."]
+script = ExtResource("9_7imjp")
 
 [node name="SpriteHolder" type="Node2D" parent="."]
 unique_name_in_owner = true

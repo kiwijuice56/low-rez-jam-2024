@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://c7cfirjgacf35"]
+[gd_scene load_steps=11 format=3 uid="uid://c7cfirjgacf35"]
 
 [ext_resource type="PackedScene" uid="uid://bnbb4opeecksl" path="res://main/battle/fighter/fighter.tscn" id="1_mylgi"]
 [ext_resource type="Script" path="res://main/battle/fighter/fighter_stats/fighter_stats.gd" id="2_wtt4c"]
+[ext_resource type="Shader" path="res://main/battle/fighter/flash.gdshader" id="3_4m07w"]
 [ext_resource type="Texture2D" uid="uid://bd65dsv7n3o4r" path="res://main/battle/fighter/slime/slime.png" id="3_bhu5l"]
+[ext_resource type="Texture2D" uid="uid://dqkasghqp64we" path="res://main/battle/fighter/slime/shadow.png" id="5_bfxls"]
 
 [sub_resource type="Resource" id="Resource_0mx5o"]
 script = ExtResource("2_wtt4c")
@@ -13,6 +15,16 @@ magic = 20
 defence = 20
 luck = 20
 unlocked_skills = Array[int]([])
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cemna"]
+shader = ExtResource("3_4m07w")
+shader_parameter/flash = null
+shader_parameter/progress = 0.0
+shader_parameter/meltiness = 1.0
+shader_parameter/broken = true
+shader_parameter/h_frames = 3
+shader_parameter/broken_dist = 0.1
+shader_parameter/random_seed = 0.2
 
 [sub_resource type="Animation" id="Animation_wjpip"]
 length = 0.001
@@ -56,12 +68,16 @@ _data = {
 stats = SubResource("Resource_0mx5o")
 innate_elec_weakness = true
 
+[node name="ShadowSprite2D" parent="." index="1"]
+texture = ExtResource("5_bfxls")
+
 [node name="Sprite2D" parent="SpriteHolder" index="0"]
+material = SubResource("ShaderMaterial_cemna")
 position = Vector2(-6, -12)
 texture = ExtResource("3_bhu5l")
 hframes = 3
 
-[node name="Center" parent="SpriteHolder" index="1"]
+[node name="Center" parent="SpriteHolder" index="2"]
 position = Vector2(1, -8)
 
 [node name="SpriteAnimationPlayer" type="AnimationPlayer" parent="." index="4"]

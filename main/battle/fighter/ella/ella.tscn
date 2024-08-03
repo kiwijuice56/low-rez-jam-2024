@@ -72,5 +72,5 @@ is_phys = true
 [node name="Sprite2D" parent="SpriteHolder" index="0"]
 texture = ExtResource("3_lpqai")
 
-[node name="Center" parent="SpriteHolder" index="1"]
+[node name="Center" parent="SpriteHolder" index="2"]
 position = Vector2(0, -4)

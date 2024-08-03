@@ -8,6 +8,10 @@ uniform float progress: hint_range(0.0, 1.0) = 0.0;
 // How jagged each band of melting pixels are
 uniform float meltiness: hint_range(0.0, 16.0) = 1.0;
 
+uniform bool broken;
+uniform int h_frames;
+uniform float broken_dist = 0.1;
+
 uniform float random_seed;
 
 float psuedo_rand(float x) {
@@ -28,6 +32,10 @@ void fragment() {
 	
 	// "delete" pixels out of range
 	if (uv.y <= 0.0) {
+		COLOR.a = 0.0;
+	}
+	
+	if (broken && distance(0.05*sin(UV.y * 16.0) + mod(UV.x, 1.0 / float(h_frames)) * float(h_frames), 0.5) < cos(2.0*TIME)*0.05 + broken_dist) {
 		COLOR.a = 0.0;
 	}
 }

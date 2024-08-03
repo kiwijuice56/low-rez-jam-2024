@@ -41,6 +41,7 @@ func _ready() -> void:
 	hp = stats.max_hp
 	tp = stats.max_tp
 	%Sprite2D.material = %Sprite2D.material.duplicate()
+	%Sprite2D.material.set_shader_parameter("h_frames", %Sprite2D.hframes)
 	%Effects.global_position = %Center.global_position
 
 func battle_reset() -> void:

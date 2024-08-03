@@ -7,13 +7,6 @@ const TURN_WIDTH: int = 4
 var turn_count: int
 var flash_idx: int
 
-
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_accept"):
-		flash_turn()
-	if event.is_action_pressed("ui_cancel"):
-		waste_turns(1)
-
 func initialize(full_turns: int, player: bool) -> void:
 	turn_count = full_turns
 	flash_idx = full_turns - 1
