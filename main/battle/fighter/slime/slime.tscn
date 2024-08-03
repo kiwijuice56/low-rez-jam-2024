@@ -62,7 +62,7 @@ texture = ExtResource("3_bhu5l")
 hframes = 3
 
 [node name="Center" parent="SpriteHolder" index="1"]
-position = Vector2(1, -6)
+position = Vector2(1, -8)
 
 [node name="SpriteAnimationPlayer" type="AnimationPlayer" parent="." index="4"]
 libraries = {

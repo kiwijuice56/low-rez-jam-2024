@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://c60165v1os0wx"]
+
+[ext_resource type="Script" path="res://main/battle/fighter/effect/stun.gd" id="1_qkw5m"]
+[ext_resource type="Texture2D" uid="uid://7ianniwhess3" path="res://main/world/item_pickup/circle.png" id="2_liesf"]
+
+[node name="Stun" type="Node2D"]
+script = ExtResource("1_qkw5m")
+radius = Vector2(6, 2)
+height = 2.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_liesf")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_liesf")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_liesf")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_liesf")
+
+[node name="Sprite2D5" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_liesf")

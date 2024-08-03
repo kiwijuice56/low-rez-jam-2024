@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bnbb4opeecksl"]
+[gd_scene load_steps=38 format=3 uid="uid://bnbb4opeecksl"]
 
 [ext_resource type="Script" path="res://main/battle/fighter/fighter.gd" id="1_7gdsa"]
 [ext_resource type="PackedScene" uid="uid://cuko56w08yuso" path="res://main/battle/action/action.tscn" id="2_42vt3"]
@@ -17,8 +17,11 @@
 [ext_resource type="Script" path="res://main/battle/fighter/effect/cool.gd" id="10_v1knl"]
 [ext_resource type="Script" path="res://main/battle/fighter/effect/aura.gd" id="11_kal80"]
 [ext_resource type="Script" path="res://main/battle/fighter/effect/oily.gd" id="12_qbuts"]
+[ext_resource type="Texture2D" uid="uid://bk72d5v1r0sc7" path="res://main/battle/fighter/effect/cool.png" id="12_yphxo"]
 [ext_resource type="Script" path="res://main/battle/fighter/effect/wet.gd" id="13_cwu21"]
 [ext_resource type="Script" path="res://main/battle/fighter/effect/charged.gd" id="14_1nsvt"]
+[ext_resource type="Script" path="res://main/battle/fighter/effect/stun.gd" id="19_2ltam"]
+[ext_resource type="Texture2D" uid="uid://dtcfui8bdacb2" path="res://main/battle/fighter/effect/stun.png" id="20_rwres"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u031k"]
 shader = ExtResource("6_ipv7e")
@@ -26,6 +29,52 @@ shader_parameter/flash = null
 shader_parameter/progress = 0.0
 shader_parameter/meltiness = 1.0
 shader_parameter/random_seed = 0.2
+
+[sub_resource type="Animation" id="Animation_8y2xf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_te6j8"]
+resource_name = "shine"
+length = 0.3333
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q1r83"]
+_data = {
+"RESET": SubResource("Animation_8y2xf"),
+"shine": SubResource("Animation_te6j8")
+}
+
+[sub_resource type="Gradient" id="Gradient_es1eo"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.145455, 0.368182, 0.604545, 0.809091)
+colors = PackedColorArray(0.580392, 0.564706, 0.54902, 1, 0.588235, 0.576471, 0.568627, 1, 0.588235, 0.588235, 0.588235, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_2pknv"]
+gradient = SubResource("Gradient_es1eo")
 
 [sub_resource type="Animation" id="Animation_vw8o4"]
 length = 0.001
@@ -77,6 +126,46 @@ tracks/3/keys = {
 "values": [0.0]
 }
 
+[sub_resource type="Animation" id="Animation_ko82r"]
+resource_name = "death"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteHolder:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.233333, 0.333333, 0.533333, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-3, -2), Vector2(3, 2), Vector2(2, -1), Vector2(-2, 2), Vector2(2, -1), Vector2(0, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpriteHolder/Sprite2D:material:shader_parameter/flash")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.166667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), null]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SpriteHolder/Sprite2D:material:shader_parameter/progress")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.333333, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
 [sub_resource type="Animation" id="Animation_y8yea"]
 resource_name = "hurt"
 tracks/0/type = "value"
@@ -116,46 +205,6 @@ tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 8, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 0.333333, 1)
-}
-
-[sub_resource type="Animation" id="Animation_ko82r"]
-resource_name = "death"
-length = 1.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SpriteHolder:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.233333, 0.333333, 0.533333, 0.7, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(-3, -2), Vector2(3, 2), Vector2(2, -1), Vector2(-2, 2), Vector2(2, -1), Vector2(0, 0), Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("SpriteHolder/Sprite2D:material:shader_parameter/flash")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.166667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), null]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("SpriteHolder/Sprite2D:material:shader_parameter/progress")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.333333, 1.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 1.0]
 }
 
 [sub_resource type="Animation" id="Animation_xmgxv"]
@@ -225,30 +274,6 @@ target_amount = "All"
 hit_amount_max = 1
 status_chance = 0.0
 
-[node name="Effects" type="Node2D" parent="."]
-unique_name_in_owner = true
-
-[node name="Charm" type="Node2D" parent="Effects"]
-script = ExtResource("9_2sqcm")
-
-[node name="Broken" type="Node2D" parent="Effects"]
-script = ExtResource("9_blmhy")
-
-[node name="Cool" type="Node2D" parent="Effects"]
-script = ExtResource("10_v1knl")
-
-[node name="Aura" type="Node2D" parent="Effects"]
-script = ExtResource("11_kal80")
-
-[node name="Oily" type="Node2D" parent="Effects"]
-script = ExtResource("12_qbuts")
-
-[node name="Wet" type="Node2D" parent="Effects"]
-script = ExtResource("13_cwu21")
-
-[node name="Charged" type="Node2D" parent="Effects"]
-script = ExtResource("14_1nsvt")
-
 [node name="SpriteHolder" type="Node2D" parent="."]
 unique_name_in_owner = true
 
@@ -258,6 +283,64 @@ material = SubResource("ShaderMaterial_u031k")
 position = Vector2(-4, -8)
 texture = ExtResource("3_kdrmx")
 centered = false
+
+[node name="Effects" type="Node2D" parent="SpriteHolder"]
+unique_name_in_owner = true
+position = Vector2(0, -5)
+
+[node name="Charm" type="Node2D" parent="SpriteHolder/Effects"]
+script = ExtResource("9_2sqcm")
+
+[node name="Broken" type="Node2D" parent="SpriteHolder/Effects"]
+script = ExtResource("9_blmhy")
+
+[node name="Cool" type="Node2D" parent="SpriteHolder/Effects"]
+position = Vector2(-3, -1)
+script = ExtResource("10_v1knl")
+
+[node name="Sprite2D" type="Sprite2D" parent="SpriteHolder/Effects/Cool"]
+texture = ExtResource("12_yphxo")
+centered = false
+hframes = 10
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SpriteHolder/Effects/Cool/Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_q1r83")
+}
+autoplay = "shine"
+speed_scale = 0.3
+
+[node name="Aura" type="Node2D" parent="SpriteHolder/Effects"]
+script = ExtResource("11_kal80")
+
+[node name="Oily" type="Node2D" parent="SpriteHolder/Effects"]
+script = ExtResource("12_qbuts")
+
+[node name="Wet" type="Node2D" parent="SpriteHolder/Effects"]
+script = ExtResource("13_cwu21")
+
+[node name="Charged" type="Node2D" parent="SpriteHolder/Effects"]
+script = ExtResource("14_1nsvt")
+
+[node name="Stun" type="Node2D" parent="SpriteHolder/Effects"]
+position = Vector2(0, -4)
+script = ExtResource("19_2ltam")
+gradient = SubResource("GradientTexture1D_2pknv")
+rotation_speed = 5.0
+radius = Vector2(8, 2)
+height = 2.0
+
+[node name="Sprite2D" type="Sprite2D" parent="SpriteHolder/Effects/Stun"]
+texture = ExtResource("20_rwres")
+
+[node name="Sprite2D2" type="Sprite2D" parent="SpriteHolder/Effects/Stun"]
+texture = ExtResource("20_rwres")
+
+[node name="Sprite2D3" type="Sprite2D" parent="SpriteHolder/Effects/Stun"]
+texture = ExtResource("20_rwres")
+
+[node name="Sprite2D4" type="Sprite2D" parent="SpriteHolder/Effects/Stun"]
+texture = ExtResource("20_rwres")
 
 [node name="Center" type="Marker2D" parent="SpriteHolder"]
 unique_name_in_owner = true

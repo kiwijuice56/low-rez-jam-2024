@@ -55,6 +55,7 @@ _data = {
 }
 
 [node name="Explosion" instance=ExtResource("1_rbr56")]
+z_index = 128
 follows_target = true
 
 [node name="AnimationPlayer" parent="." index="0"]

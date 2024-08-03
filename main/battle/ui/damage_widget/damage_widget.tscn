@@ -45,6 +45,7 @@ _data = {
 }
 
 [node name="DamageWidget" type="Node2D"]
+z_index = 256
 script = ExtResource("1_77f1x")
 
 [node name="CanvasGroup" type="CanvasGroup" parent="."]
