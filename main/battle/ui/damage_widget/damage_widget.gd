@@ -14,6 +14,3 @@ func damage(text: String) -> void:
 
 func _process(delta: float) -> void:
 	position.x += delta * speed
-	if %DamageLabel.material:
-		%DamageLabel.material.set_shader_parameter("rect_size", %DamageLabel.size)
-		%DamageLabel.material.set_shader_parameter("rect_global_position", %DamageLabel.global_position)

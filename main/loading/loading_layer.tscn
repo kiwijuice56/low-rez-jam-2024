@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://cvh8igwahj8wg"]
+
+[ext_resource type="Script" path="res://main/loading/loader.gd" id="1_orms1"]
+[ext_resource type="PackedScene" uid="uid://ch5b8se0xto88" path="res://main/loading/temporary_panel.tscn" id="2_2kbdd"]
+[ext_resource type="PackedScene" uid="uid://lt8cgyjbyrmo" path="res://main/battle/ui/damage_widget/damage_widget.tscn" id="2_vrn78"]
+[ext_resource type="PackedScene" uid="uid://bfugie8wrqt4l" path="res://main/battle/ui/damage_widget/critical_damage_widget/critical_damage_widget.tscn" id="3_ugkia"]
+[ext_resource type="PackedScene" uid="uid://deotpp6wnlyl8" path="res://main/battle/ui/damage_widget/miss_damage_widget/miss_damage_widget.tscn" id="4_c0u21"]
+[ext_resource type="PackedScene" uid="uid://cvscxguxb7jke" path="res://main/battle/ui/colored_text/colored_text.tscn" id="5_tr2bk"]
+
+[node name="LoadingLayer" type="CanvasLayer"]
+layer = -1
+script = ExtResource("1_orms1")
+panel_scene = ExtResource("2_2kbdd")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 12
+
+[node name="DamageWidget" parent="." instance=ExtResource("2_vrn78")]
+
+[node name="CriticalDamageWidget" parent="." instance=ExtResource("3_ugkia")]
+
+[node name="MissDamageWidget" parent="." instance=ExtResource("4_c0u21")]
+
+[node name="ColoredText" parent="." instance=ExtResource("5_tr2bk")]
+
+[node name="Cover" type="ColorRect" parent="."]
+z_index = 16
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
