@@ -13,6 +13,8 @@ var initial_x: float
 var internal_x: float
 var target_x: float
 
+var mini_visible: bool = true
+
 signal advanced(accepted: bool)
 
 func _ready() -> void:
@@ -26,9 +28,9 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("left"):
 		idx -= 1
 		update_info()
-	if event.is_action_pressed("accept"):
+	if event.is_action_pressed("accept", false):
 		test_accept()
-	if event.is_action_pressed("cancel") and cancel_enabled:
+	if event.is_action_pressed("cancel", false) and cancel_enabled:
 		advanced.emit(false)
 	target_x = -(idx + choice_count - 2) * BUTTON_WIDTH
 
@@ -48,6 +50,18 @@ func _process(delta: float) -> void:
 			candidate = %ChoiceContainer.get_child(i)
 			min_dist = new_dist
 	candidate.is_hovered = true
+
+func mini_trans_in() -> void:
+	var tween: Tween = get_tree().create_tween()
+	tween.tween_property(%ChoiceContainer, "position:y", 46, 0.05)
+	await tween.finished
+	mini_visible = true
+
+func mini_trans_out() -> void:
+	var tween: Tween = get_tree().create_tween()
+	tween.tween_property(%ChoiceContainer, "position:y", 46 + 10, 0.05)
+	await tween.finished
+	mini_visible = false
 
 func update_info() -> void:
 	var selected: ChoiceButton = %ChoiceContainer.get_child(posmod(idx, choice_count))

@@ -108,11 +108,12 @@ func get_player_choice(fighter: Fighter, player_party: Array[Fighter], enemy_par
 	var stack: Array[Dictionary] = [{"level": "outer", "idx": 0}]
 	while len(stack) > 0:
 		var node: Dictionary = stack.pop_back()
-		print(node, " ", stack)
 		match node.level:
 			"outer":
 				Ref.battle_text.display_text("what will %s do?" % fighter.name, TEXT_SPEED)
 				_initialize_outer(fighter, player_party, enemy_party, node.idx)
+				if not %ChoiceMenu.mini_visible:
+					await %ChoiceMenu.mini_trans_in()
 				if in_party_view:
 					await menu_view(fighter, player_party)
 				
@@ -125,7 +126,7 @@ func get_player_choice(fighter: Fighter, player_party: Array[Fighter], enemy_par
 				stack.append({"level": "outer", "idx": choice.idx})
 				
 				if "submenu" in choice:
-					print(choice)
+					await %ChoiceMenu.mini_trans_out()
 					stack.append({"level": choice.submenu, "idx": 0})
 				else:
 					stack.append({"level": "target", "action": choice.action})
@@ -137,23 +138,29 @@ func get_player_choice(fighter: Fighter, player_party: Array[Fighter], enemy_par
 					continue
 			"skills":
 				_initialize_skills(fighter, player_party, enemy_party, node.idx)
+				if not %ChoiceMenu.mini_visible:
+					await %ChoiceMenu.mini_trans_in()
 				if in_party_view:
 					await menu_view(fighter, player_party)
 				
 				var choice: Dictionary = await _get_action_choice()
 				
 				if not choice.action:
+					await %ChoiceMenu.mini_trans_out()
 					continue
 				stack.append({"level": "skills", "idx": choice.idx})
 				stack.append({"level": "target", "action": choice.action})
 			"items":
 				_initialize_items(fighter, player_party, enemy_party, node.idx)
+				if not %ChoiceMenu.mini_visible:
+					await %ChoiceMenu.mini_trans_in()
 				if in_party_view:
 					await menu_view(fighter, player_party)
 				
 				var choice: Dictionary = await _get_action_choice()
 				
 				if not choice.action:
+					await %ChoiceMenu.mini_trans_out()
 					continue
 				stack.append({"level": "items", "idx": choice.idx})
 				stack.append({"level": "target", "action": choice.action})
@@ -168,12 +175,11 @@ func _get_outer_choice() -> Dictionary:
 	if button.action:
 		return {"action": button.action, "idx": button.idx}
 	else:
-		print("!")
 		return {"submenu": button.action_name, "idx": button.idx}
 
 func _get_action_choice() -> Dictionary:
 	var button: ChoiceButton = await %ChoiceMenu.get_choice()
-	if button.action:
+	if button and button.action:
 		return {"action": button.action, "idx": button.idx}
 	else:
 		return {"action": null}
