@@ -20,4 +20,4 @@ func apply() -> void:
 
 func remove() -> void:
 	active = false
-	visible = false
+	visible = true # false

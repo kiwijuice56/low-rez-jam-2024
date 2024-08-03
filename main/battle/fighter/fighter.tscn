@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://bnbb4opeecksl"]
+[gd_scene load_steps=42 format=3 uid="uid://bnbb4opeecksl"]
 
 [ext_resource type="Script" path="res://main/battle/fighter/fighter.gd" id="1_7gdsa"]
 [ext_resource type="PackedScene" uid="uid://cuko56w08yuso" path="res://main/battle/action/action.tscn" id="2_42vt3"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" path="res://main/battle/fighter/effect/aura.gd" id="11_kal80"]
 [ext_resource type="Script" path="res://main/battle/fighter/effect/oily.gd" id="12_qbuts"]
 [ext_resource type="Texture2D" uid="uid://bk72d5v1r0sc7" path="res://main/battle/fighter/effect/cool.png" id="12_yphxo"]
+[ext_resource type="Texture2D" uid="uid://bjgmqyf6y41dr" path="res://main/battle/fighter/effect/charm.png" id="13_2r20h"]
 [ext_resource type="Script" path="res://main/battle/fighter/effect/wet.gd" id="13_cwu21"]
 [ext_resource type="Script" path="res://main/battle/fighter/effect/charged.gd" id="14_1nsvt"]
 [ext_resource type="Script" path="res://main/battle/fighter/effect/stun.gd" id="19_2ltam"]
@@ -72,10 +73,18 @@ _data = {
 "shine": SubResource("Animation_te6j8")
 }
 
+[sub_resource type="Gradient" id="Gradient_to583"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.309091, 0.745455)
+colors = PackedColorArray(0.670588, 0.486275, 0.494118, 1, 0.564706, 0.407843, 0.486275, 1, 0.329412, 0.301961, 0.415686, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_g5s5n"]
+gradient = SubResource("Gradient_to583")
+
 [sub_resource type="Gradient" id="Gradient_es1eo"]
 interpolation_mode = 1
-offsets = PackedFloat32Array(0.145455, 0.368182, 0.604545, 0.809091)
-colors = PackedColorArray(0.580392, 0.564706, 0.54902, 1, 0.588235, 0.576471, 0.568627, 1, 0.588235, 0.588235, 0.588235, 1, 1, 1, 1, 1)
+offsets = PackedFloat32Array(0, 0.25, 0.472727, 0.790909)
+colors = PackedColorArray(1, 1, 1, 1, 1, 0.882353, 0.788235, 1, 0.984314, 0.835294, 0.654902, 1, 0.854902, 0.690196, 0.560784, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_2pknv"]
 gradient = SubResource("Gradient_es1eo")
@@ -295,9 +304,6 @@ centered = false
 unique_name_in_owner = true
 position = Vector2(0, -5)
 
-[node name="Charm" type="Node2D" parent="SpriteHolder/Effects"]
-script = ExtResource("9_2sqcm")
-
 [node name="Broken" type="Node2D" parent="SpriteHolder/Effects"]
 script = ExtResource("9_blmhy")
 
@@ -328,6 +334,28 @@ script = ExtResource("13_cwu21")
 
 [node name="Charged" type="Node2D" parent="SpriteHolder/Effects"]
 script = ExtResource("14_1nsvt")
+
+[node name="Charm" type="Node2D" parent="SpriteHolder/Effects"]
+script = ExtResource("9_2sqcm")
+gradient = SubResource("GradientTexture1D_g5s5n")
+rotation_speed = 4.0
+radius = Vector2(7, 4)
+
+[node name="Sprite2D" type="Sprite2D" parent="SpriteHolder/Effects/Charm"]
+visible = false
+texture = ExtResource("13_2r20h")
+
+[node name="Sprite2D2" type="Sprite2D" parent="SpriteHolder/Effects/Charm"]
+visible = false
+texture = ExtResource("13_2r20h")
+
+[node name="Sprite2D3" type="Sprite2D" parent="SpriteHolder/Effects/Charm"]
+visible = false
+texture = ExtResource("13_2r20h")
+
+[node name="Sprite2D4" type="Sprite2D" parent="SpriteHolder/Effects/Charm"]
+visible = false
+texture = ExtResource("13_2r20h")
 
 [node name="Stun" type="Node2D" parent="SpriteHolder/Effects"]
 position = Vector2(0, -4)

@@ -20,4 +20,4 @@ func _process(delta: float) -> void:
 		child.position.y = sin(angle + angle_offset * i) * radius.y
 		child.z_index = sign(child.position.y) 
 		child.position.y += sin(height_angle + angle_offset * i) * height
-		child.modulate = gradient.gradient.sample(((child.position.y / radius.y) + 1.0) * 0.7 + 0.3)
+		child.modulate = gradient.gradient.sample(sin(height_angle + angle_offset * i)*0.5+0.5)
