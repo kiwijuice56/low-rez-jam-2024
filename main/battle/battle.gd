@@ -92,7 +92,68 @@ func battle(encounter: Encounter) -> bool:
 	return true
 
 func get_player_choice(fighter: Fighter, player_party: Array[Fighter], enemy_party: Array[Fighter]) -> Dictionary:
+	var stack: Array[Dictionary] = [{"level": "outer", "idx": 0}]
+	while len(stack) > 0:
+		var node: Dictionary = stack.pop_back()
+		match node.level:
+			"outer":
+				# [ initialize menu buttons here ] #
+				await menu_view()
+				
+				var choice: Dictionary = await _get_outer_choice(fighter, player_party, enemy_party, node["idx"])
+				
+				
+				if "pass" in choice:
+					await party_view()
+					return {"action": choice.action, "targets": []}
+				
+				stack.append({"level": "outer", "idx": choice.idx})
+				
+				if "submenu" in choice:
+					stack.append({"level": choice.submenu, "idx": 0})
+				else:
+					stack.append({"level": "target", "action": choice.action})
+			"target":
+				await party_view()
+				var targets: Array[Fighter] = _get_targets(node.action, fighter, player_party, enemy_party) 
+				if len(targets) == 0:
+					continue
+			"skill":
+				# [ initialize menu buttons here ] #
+				var choice: Dictionary = await _get_skill_choice(fighter, player_party, enemy_party, node["idx"])
+				
+				if not choice.action:
+					continue
+				stack.append({"level": "skill", "idx": choice.idx})
+				stack.append({"level": "target", "action": choice.action})
+			"item":
+				# [ initialize menu buttons here ] #
+				var choice: Dictionary = await _get_skill_choice(fighter, player_party, enemy_party, node["idx"])
+				
+				if not choice.action:
+					continue
+				stack.append({"level": "item", "idx": choice.idx})
+				stack.append({"level": "target", "action": choice.action})
+	
 	return {}
+
+func party_view() -> void:
+	pass
+
+func menu_view() -> void:
+	pass
+
+func _get_targets(action: Action, fighter: Fighter, player_party: Array[Fighter], enemy_party: Array[Fighter]) -> Array[Fighter]:
+	return []
+
+func _get_outer_choice(fighter: Fighter, player_party: Array[Fighter], enemy_party: Array[Fighter], initial_idx: int) -> Dictionary:
+	return {"action": null, "submenu": "skill", "pass": true, "idx": 0}
+
+func _get_skill_choice(fighter: Fighter, player_party: Array[Fighter], enemy_party: Array[Fighter], initial_idx: int) -> Dictionary:
+	return {"action": null, "idx": 0}
+
+func _get_item_choice(initial_idx: int, player_party: Array[Fighter], enemy_party: Array[Fighter]) -> Dictionary:
+	return {"action": null, "idx": 0}
 
 func get_alive_fighters(pool: Array[Fighter]) -> Array[Fighter]:
 	var alive: Array[Fighter] = []
