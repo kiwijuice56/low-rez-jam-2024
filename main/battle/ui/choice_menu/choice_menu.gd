@@ -97,5 +97,5 @@ func get_choice() -> ChoiceButton:
 	
 	if not accepted:
 		return null
-	%ChoiceContainer.get_child(posmod(idx, choice_count)).index = posmod(idx, choice_count)
+	%ChoiceContainer.get_child(posmod(idx, choice_count)).idx = posmod(idx, choice_count)
 	return %ChoiceContainer.get_child(posmod(idx, choice_count))

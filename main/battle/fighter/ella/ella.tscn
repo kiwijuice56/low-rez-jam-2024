@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b0mc1xvjyod6d"]
+[gd_scene load_steps=7 format=3 uid="uid://b0mc1xvjyod6d"]
 
 [ext_resource type="PackedScene" uid="uid://bnbb4opeecksl" path="res://main/battle/fighter/fighter.tscn" id="1_h8m6s"]
 [ext_resource type="Script" path="res://main/battle/fighter/fighter_stats/fighter_stats.gd" id="2_6eory"]
+[ext_resource type="PackedScene" uid="uid://cuko56w08yuso" path="res://main/battle/action/action.tscn" id="3_7el6r"]
 [ext_resource type="Texture2D" uid="uid://1bbhd85mjdb6" path="res://main/battle/fighter/ella/ella.png" id="3_lpqai"]
+[ext_resource type="Texture2D" uid="uid://dbbr4mrfjf3ir" path="res://main/battle/action/icons/icon_attack.png" id="4_sggcg"]
 
 [sub_resource type="Resource" id="Resource_glup2"]
 script = ExtResource("2_6eory")
@@ -16,6 +18,16 @@ unlocked_skills = Array[int]([])
 
 [node name="Ella" instance=ExtResource("1_h8m6s")]
 stats = SubResource("Resource_glup2")
+
+[node name="Stomp" parent="Actions/Skills" index="0" instance=ExtResource("3_7el6r")]
+icon = ExtResource("4_sggcg")
+description = "three weak hits"
+tp_cost = 4
+
+[node name="Mangle" parent="Actions/Skills" index="1" instance=ExtResource("3_7el6r")]
+icon = ExtResource("4_sggcg")
+description = "applies \"broken\""
+tp_cost = 8
 
 [node name="Sprite2D" parent="SpriteHolder" index="0"]
 texture = ExtResource("3_lpqai")

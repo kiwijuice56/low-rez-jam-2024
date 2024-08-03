@@ -1,7 +1,7 @@
 class_name Battle extends Node2D
 
 const TEXT_SPEED: int = 64
-const PREBATTLE_DELAY: float = 2.0
+const PREBATTLE_DELAY: float = 1.7
 const POST_ACTION_DELAY: float = 1.0
 const MUSIC_TRANS_TIME: float = 0.2
 const TRANS_TIME: float = 0.08
@@ -108,6 +108,7 @@ func get_player_choice(fighter: Fighter, player_party: Array[Fighter], enemy_par
 	var stack: Array[Dictionary] = [{"level": "outer", "idx": 0}]
 	while len(stack) > 0:
 		var node: Dictionary = stack.pop_back()
+		print(node, " ", stack)
 		match node.level:
 			"outer":
 				Ref.battle_text.display_text("what will %s do?" % fighter.name, TEXT_SPEED)
@@ -124,6 +125,7 @@ func get_player_choice(fighter: Fighter, player_party: Array[Fighter], enemy_par
 				stack.append({"level": "outer", "idx": choice.idx})
 				
 				if "submenu" in choice:
+					print(choice)
 					stack.append({"level": choice.submenu, "idx": 0})
 				else:
 					stack.append({"level": "target", "action": choice.action})
@@ -133,7 +135,7 @@ func get_player_choice(fighter: Fighter, player_party: Array[Fighter], enemy_par
 				var targets: Array[Fighter] = _get_targets(node.action, fighter, player_party, enemy_party) 
 				if len(targets) == 0:
 					continue
-			"skill":
+			"skills":
 				_initialize_skills(fighter, player_party, enemy_party, node.idx)
 				if in_party_view:
 					await menu_view(fighter, player_party)
@@ -142,9 +144,9 @@ func get_player_choice(fighter: Fighter, player_party: Array[Fighter], enemy_par
 				
 				if not choice.action:
 					continue
-				stack.append({"level": "skill", "idx": choice.idx})
+				stack.append({"level": "skills", "idx": choice.idx})
 				stack.append({"level": "target", "action": choice.action})
-			"item":
+			"items":
 				_initialize_items(fighter, player_party, enemy_party, node.idx)
 				if in_party_view:
 					await menu_view(fighter, player_party)
@@ -153,7 +155,7 @@ func get_player_choice(fighter: Fighter, player_party: Array[Fighter], enemy_par
 				
 				if not choice.action:
 					continue
-				stack.append({"level": "item", "idx": choice.idx})
+				stack.append({"level": "items", "idx": choice.idx})
 				stack.append({"level": "target", "action": choice.action})
 	
 	return {}
@@ -166,16 +168,21 @@ func _get_outer_choice() -> Dictionary:
 	if button.action:
 		return {"action": button.action, "idx": button.idx}
 	else:
+		print("!")
 		return {"submenu": button.action_name, "idx": button.idx}
 
 func _get_action_choice() -> Dictionary:
-	return {"action": null, "idx": 0}
+	var button: ChoiceButton = await %ChoiceMenu.get_choice()
+	if button.action:
+		return {"action": button.action, "idx": button.idx}
+	else:
+		return {"action": null}
 
 func _initialize_outer(fighter: Fighter, player_party: Array[Fighter], enemy_party: Array[Fighter], initial_idx: int) -> void:
 	var skill_button: ChoiceButton = %ChoiceMenu.choice_button_scene.instantiate()
-	skill_button.initialize_other("skill", preload("res://main/battle/action/icons/icon_skill.png"))
+	skill_button.initialize_other("skills", preload("res://main/battle/action/icons/icon_skill.png"))
 	var item_button: ChoiceButton = %ChoiceMenu.choice_button_scene.instantiate()
-	item_button.initialize_other("item", preload("res://main/battle/action/icons/icon_item.png"))
+	item_button.initialize_other("items", preload("res://main/battle/action/icons/icon_item.png"))
 	var attack_button: ChoiceButton = %ChoiceMenu.choice_button_scene.instantiate()
 	attack_button.initialize(fighter.base_attack, player_party, enemy_party)
 	var pass_button: ChoiceButton = %ChoiceMenu.choice_button_scene.instantiate()
@@ -189,8 +196,11 @@ func _initialize_items(_fighter: Fighter, player_party: Array[Fighter], enemy_pa
 	for skill in %ItemActions.get_children():
 		var new_button: ChoiceButton = %ChoiceMenu.choice_button_scene.instantiate()
 		new_button.initialize(skill, player_party, enemy_party, true)
-		
 		buttons.append(new_button)
+	var back_button: ChoiceButton = %ChoiceMenu.choice_button_scene.instantiate()
+	back_button.initialize_other("back", preload("res://main/battle/action/icons/icon_pass.png"))
+	back_button.description = "go back"
+	buttons.append(back_button)
 	%ChoiceMenu.initialize(initial_idx, true, buttons)
 
 func _initialize_skills(fighter: Fighter, player_party: Array[Fighter], enemy_party: Array[Fighter], initial_idx: int) -> void:
@@ -199,6 +209,10 @@ func _initialize_skills(fighter: Fighter, player_party: Array[Fighter], enemy_pa
 		var new_button: ChoiceButton = %ChoiceMenu.choice_button_scene.instantiate()
 		new_button.initialize(skill, player_party, enemy_party)
 		buttons.append(new_button)
+	var back_button: ChoiceButton = %ChoiceMenu.choice_button_scene.instantiate()
+	back_button.initialize_other("back", preload("res://main/battle/action/icons/icon_pass.png"))
+	back_button.description = "go back"
+	buttons.append(back_button)
 	%ChoiceMenu.initialize(initial_idx, true, buttons)
 
 func party_view(fighter: Fighter, player_party: Array[Fighter]) -> void:

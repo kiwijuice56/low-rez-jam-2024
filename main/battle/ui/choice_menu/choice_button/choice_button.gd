@@ -21,7 +21,7 @@ class_name ChoiceButton extends TextureRect
 
 @export var action: Action
 
-@export var index: int
+@export var idx: int
 
 @export var description: String
 
@@ -32,6 +32,7 @@ func initialize(new_action: Action, player_party: Array[Fighter], enemy_party: A
 	action = new_action
 	
 	action_name = new_action.name
+	description = new_action.description
 	
 	if is_item:
 		var count: int = Data.get_state("inventory/" + new_action.name.to_lower(), 0)
