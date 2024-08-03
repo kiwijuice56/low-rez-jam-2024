@@ -20,10 +20,10 @@
 - - [x] Settings
 - [x] Overworld enemies
 - [?] Combat system
-- - [?] Battle flow (starting, looping thru turns, ending)
+- - [x] Battle flow (starting, looping thru turns, ending)
 - - [x] Damage labels
-- - [?] Death, hit, strong hit, miss animations
-- - [?] Attack animations
+- - [x] Death, hit, strong hit, miss animations
+- - [x] Attack animations
 - - [ ] Attack/heal actions and damage formulas
 - - [ ] Critical hits, misses, weakness hitting
 - - [ ] Revival actions
