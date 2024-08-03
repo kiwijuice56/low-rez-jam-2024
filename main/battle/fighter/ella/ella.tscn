@@ -50,7 +50,21 @@ is_phys = true
 animations = Array[PackedScene]([ExtResource("6_bkskl")])
 per_target_delay = 0.2
 
-[node name="Mangle" parent="Actions/Skills" index="2" instance=ExtResource("3_7el6r")]
+[node name="Kill" parent="Actions/Skills" index="2" instance=ExtResource("3_7el6r")]
+icon = ExtResource("4_sggcg")
+description = "many hits to random foes"
+use_text = "%s wrecks them!"
+tp_cost = 4
+power = 2.0
+accuracy = 0.96
+critical = 0.15
+hit_amount_min = 4
+hit_amount_max = 8
+is_phys = true
+animations = Array[PackedScene]([ExtResource("6_bkskl")])
+per_target_delay = 0.2
+
+[node name="Mangle" parent="Actions/Skills" index="3" instance=ExtResource("3_7el6r")]
 icon = ExtResource("4_sggcg")
 description = "applies \"broken\""
 tp_cost = 8

@@ -140,8 +140,8 @@ func act(user: Fighter, targets: Array[Fighter]) -> TurnUsage:
 	return current_use
 
 # action-specific stuff... ex: healing should not target fully healed fighters
-func can_target(_target: Fighter) -> bool:
-	return true 
+func can_target(target: Fighter) -> bool:
+	return not target.dead and not revival or target.dead and revival
 
 func get_available_targets(own_party: Array[Fighter], other_party: Array[Fighter]) -> Array[Fighter]:
 	var targets: Array[Fighter] = []

@@ -17,10 +17,14 @@ class_name Fighter extends Node2D
 var hp: int:
 	set(val):
 		hp = val
+		hp = clamp(hp, 0, stats.max_hp)
+		if hp == 0:
+			dead = true
 		update_ui()
 var tp: int:
 	set(val):
 		tp = val
+		tp = clamp(tp, 0, stats.max_tp)
 		update_ui()
 
 var critical_multiplier: float
@@ -75,16 +79,18 @@ func hurt(damage: int, is_crit: bool, is_miss: bool, is_weak: bool) -> void:
 	%SpriteHolder.position = Vector2()
 	%Sprite2D.material.set_shader_parameter("flash", Color.BLACK)
 	
+	
+	
 	if is_miss:
 		%AnimationPlayer.play("miss")
 		widget = miss_damage_widget.instantiate()
 		text = " miss"
 	elif is_crit or is_weak:
-		%AnimationPlayer.play("hurt")
+		%AnimationPlayer.play("hurt" if hp - damage > 0 else "death")
 		widget = critical_damage_widget.instantiate()
 		text = " " + str(damage)
 	else:
-		%AnimationPlayer.play("hurt")
+		%AnimationPlayer.play("hurt" if hp - damage > 0 else "death")
 		widget = normal_damage_widget.instantiate()
 		text = " " + str(damage)
 	

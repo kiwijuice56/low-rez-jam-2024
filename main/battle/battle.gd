@@ -70,6 +70,8 @@ func battle(encounter: Encounter) -> bool:
 		%PressTurnWidget.initialize(full_turns, player_turn)
 		await get_tree().create_timer(TURN_SWAP_DELAY).timeout
 		while full_turns + half_turns > 0:
+			if len(get_alive_fighters(player_party)) == 0 or len(get_alive_fighters(enemy_party)) == 0:
+				break
 			var fighter: Fighter = current_party[idx]
 			idx = (idx + 1) % len(current_party)
 			if fighter.dead:
