@@ -35,7 +35,11 @@ window/stretch/mode="viewport"
 [file_customization]
 
 folder_colors={
+"res://assets/": "gray",
 "res://main/battle/": "yellow",
+"res://main/battle/action/battle_animation/": "teal",
+"res://main/battle/action/icons/": "teal",
+"res://main/battle/fighter/effect/": "teal",
 "res://main/battle/ui/": "orange",
 "res://main/world/": "blue",
 "res://main/world/ui/": "orange",

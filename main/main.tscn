@@ -104,6 +104,9 @@ position = Vector2(0, 2)
 
 [node name="WatermelonBattleBackground" parent="Battle/UI/BackgroundHolder" instance=ExtResource("9_d6aqk")]
 
+[node name="BackgroundAnimationHolder" type="Node2D" parent="Battle/UI"]
+unique_name_in_owner = true
+
 [node name="TopBackground" type="ColorRect" parent="Battle/UI"]
 custom_minimum_size = Vector2(0, 16)
 offset_top = -2.0
@@ -294,6 +297,9 @@ unique_name_in_owner = true
 [node name="TargetSelecter" parent="Battle/FighterLayer" instance=ExtResource("16_ytdqf")]
 unique_name_in_owner = true
 
+[node name="ForegroundAnimationHolder" type="Node2D" parent="Battle/FighterLayer"]
+unique_name_in_owner = true
+
 [node name="BattleMusicPlayer" type="AudioStreamPlayer" parent="Battle"]
 unique_name_in_owner = true
 bus = &"Music"
@@ -336,6 +342,10 @@ hit_amount_max = 1
 is_fire = true
 is_item = true
 
+[node name="AnimationLayer" type="CanvasLayer" parent="Battle"]
+
+[node name="ScreenAnimationLayer" type="CanvasLayer" parent="Battle/AnimationLayer"]
+
 [node name="PaletteLayer" type="CanvasLayer" parent="."]
 
 [node name="Filter" type="ColorRect" parent="PaletteLayer"]
@@ -351,7 +361,6 @@ layer = 2
 visible = false
 
 [node name="LoadingLayer" parent="." instance=ExtResource("24_gb8q0")]
-layer = -1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ge1nn")

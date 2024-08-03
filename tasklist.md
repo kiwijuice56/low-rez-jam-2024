@@ -23,7 +23,7 @@
 - - [?] Battle flow (starting, looping thru turns, ending)
 - - [x] Damage labels
 - - [?] Death, hit, strong hit, miss animations
-- - [ ] Attack animations
+- - [?] Attack animations
 - - [ ] Attack/heal actions and damage formulas
 - - [ ] Critical hits, misses, weakness hitting
 - - [ ] Revival actions

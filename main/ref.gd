@@ -10,3 +10,5 @@ extends Node
 @onready var battle: Battle = main.get_node("Battle")
 @onready var battle_text: AnimatedTextLabel = battle.get_node("%UI/Text")
 @onready var player_party: PlayerParty = battle.get_node("FighterLayer/PlayerParty")
+@onready var battle_animation_background: Node2D = battle.get_node("%BackgroundAnimationHolder")
+@onready var battle_animation_foreground: Node2D = battle.get_node("%ForegroundAnimationHolder")

@@ -20,6 +20,9 @@ class_name Action extends Node2D
 @export var is_fire: bool = false
 @export var is_elec: bool = false
 @export var is_water: bool = false
+@export_group("Animation")
+@export var animations: Array[PackedScene]
+@export var per_target_delay: float = 0.1
 @export_group("Item")
 @export var is_item: bool
 @export var revival: bool
@@ -32,9 +35,42 @@ func _ready() -> void:
 	if not is_item:
 		owner_fighter = owner
 
+func per_target_act(user: Fighter, target: Fighter, animation: BattleAnimation) -> void:
+	var new_animation: BattleAnimation = animation.duplicate()
+	if new_animation.layer == "Foreground":
+		Ref.battle_animation_foreground.add_child(new_animation)
+	else:
+		Ref.battle_animation_background.add_child(new_animation)
+	new_animation.global_position = target.get_node("%Center").global_position
+	await new_animation.animate()
+	
+	# DAMAGE CALCULATIONS #
+
 func act(user: Fighter, targets: Array[Fighter]) -> TurnUsage:
 	Ref.battle_text.display_text(use_text % user.name, Ref.battle.TEXT_SPEED)
-	targets[0].hurt(5, false, false, false) 
+
+	for animation_scene in animations:
+		var animation: BattleAnimation = animation_scene.instantiate()
+		
+		if animation.follows_target:
+			for _hit in range(randi_range(hit_amount_min, hit_amount_max)):
+				var actual_targets: Array[Fighter] 
+				if target_amount == "Random":
+					actual_targets.append(targets.pick_random())
+				else:
+					actual_targets = targets
+				
+				for i in range(len(targets) - 1):
+					per_target_act(user, targets[i], animation)
+					await get_tree().create_timer(per_target_delay).timeout
+				await per_target_act(user, targets[len(targets) - 1], animation)
+		else: # screen animations
+			if animation.layer == "Foreground":
+				Ref.battle_animation_foreground.add_child(animation)
+			else:
+				Ref.battle_animation_background.add_child(animation)	
+			await animation.animate()
+	
 	return TurnUsage.NORMAL
 
 # action-specific stuff... ex: healing should not target fully healed fighters
