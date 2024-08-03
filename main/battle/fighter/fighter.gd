@@ -32,6 +32,7 @@ var damage_in_multiplier: float
 var added_fire_weakness: bool = false
 var added_water_weakness: bool = false
 var added_elec_weakness: bool = false
+var added_phys_resistance: bool = false
 
 var dead: bool = false
 
@@ -40,6 +41,15 @@ func _ready() -> void:
 	hp = stats.max_hp
 	tp = stats.max_tp
 	%Sprite2D.material = %Sprite2D.material.duplicate()
+
+func after_turn() -> void:
+	for effect in %Effect.get_children():
+		if effect.active:
+			await effect.after_turn()
+
+func apply_effect(effect_name: String, duration: int ) -> void:
+	%Effect.get_node(effect_name).reset_timer(duration)
+	%Effect.get_node(effect_name).apply()
 
 func hurt(damage: int, is_crit: bool, is_miss: bool, is_weak: bool) -> void:
 	var widget: DamageWidget

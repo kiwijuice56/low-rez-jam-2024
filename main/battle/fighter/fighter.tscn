@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bnbb4opeecksl"]
+[gd_scene load_steps=27 format=3 uid="uid://bnbb4opeecksl"]
 
 [ext_resource type="Script" path="res://main/battle/fighter/fighter.gd" id="1_7gdsa"]
 [ext_resource type="PackedScene" uid="uid://cuko56w08yuso" path="res://main/battle/action/action.tscn" id="2_42vt3"]
@@ -10,7 +10,14 @@
 [ext_resource type="Texture2D" uid="uid://dbbr4mrfjf3ir" path="res://main/battle/action/icons/icon_attack.png" id="6_ju4h5"]
 [ext_resource type="Texture2D" uid="uid://dghv8njaox5rt" path="res://main/battle/action/icons/icon_pass.png" id="7_vcslg"]
 [ext_resource type="PackedScene" uid="uid://cvscxguxb7jke" path="res://main/battle/ui/colored_text/colored_text.tscn" id="8_uo7mv"]
+[ext_resource type="Script" path="res://main/battle/fighter/effect/charm.gd" id="9_2sqcm"]
 [ext_resource type="Shader" path="res://main/battle/ui/colored_text/colored_text.gdshader" id="9_awhmu"]
+[ext_resource type="Script" path="res://main/battle/fighter/effect/broken.gd" id="9_blmhy"]
+[ext_resource type="Script" path="res://main/battle/fighter/effect/cool.gd" id="10_v1knl"]
+[ext_resource type="Script" path="res://main/battle/fighter/effect/aura.gd" id="11_kal80"]
+[ext_resource type="Script" path="res://main/battle/fighter/effect/oily.gd" id="12_qbuts"]
+[ext_resource type="Script" path="res://main/battle/fighter/effect/wet.gd" id="13_cwu21"]
+[ext_resource type="Script" path="res://main/battle/fighter/effect/charged.gd" id="14_1nsvt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u031k"]
 shader = ExtResource("6_ipv7e")
@@ -142,6 +149,30 @@ target_group = "All"
 target_amount = "All"
 hit_amount_max = 1
 status_chance = 0.0
+
+[node name="Effects" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Charm" type="Node2D" parent="Effects"]
+script = ExtResource("9_2sqcm")
+
+[node name="Broken" type="Node2D" parent="Effects"]
+script = ExtResource("9_blmhy")
+
+[node name="Cool" type="Node2D" parent="Effects"]
+script = ExtResource("10_v1knl")
+
+[node name="Aura" type="Node2D" parent="Effects"]
+script = ExtResource("11_kal80")
+
+[node name="Oily" type="Node2D" parent="Effects"]
+script = ExtResource("12_qbuts")
+
+[node name="Wet" type="Node2D" parent="Effects"]
+script = ExtResource("13_cwu21")
+
+[node name="Charged" type="Node2D" parent="Effects"]
+script = ExtResource("14_1nsvt")
 
 [node name="SpriteHolder" type="Node2D" parent="."]
 unique_name_in_owner = true

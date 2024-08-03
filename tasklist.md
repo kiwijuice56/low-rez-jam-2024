@@ -27,7 +27,7 @@
 - - [ ] Attack/heal actions and damage formulas
 - - [ ] Critical hits, misses, weakness hitting
 - - [ ] Revival actions
-- - [ ] Effects (code and animations) and effect actions
+- - [?] Effects (code and animations) and effect actions
 - [x] Combat UI
 - - [x] Party member controls and their positioning
 - - [x] Basic flow/animation and action selection
