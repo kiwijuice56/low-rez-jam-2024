@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dl3ps7eki0b7b"]
+[gd_scene load_steps=28 format=3 uid="uid://dl3ps7eki0b7b"]
 
 [ext_resource type="PackedScene" uid="uid://txvddbv8pfiv" path="res://main/world/character/player/player.tscn" id="1_84yfs"]
 [ext_resource type="Script" path="res://main/main.gd" id="1_q20fr"]
@@ -19,8 +19,7 @@
 [ext_resource type="Script" path="res://main/battle/ui/press_turn_widget/press_turn_widget.gd" id="13_l2tg6"]
 [ext_resource type="Texture2D" uid="uid://dc5ys0tummyop" path="res://main/theme/base_palette.png" id="13_vouqy"]
 [ext_resource type="Texture2D" uid="uid://c66yc787tsfw4" path="res://main/theme/modified_palette.png" id="14_5avsq"]
-[ext_resource type="Script" path="res://main/battle/ui/target_selecter/target_selecter.gd" id="14_ebous"]
-[ext_resource type="PackedScene" uid="uid://dmgq8sm7cipce" path="res://main/battle/ui/target_selecter/target_icon/target_icon.tscn" id="15_v7yx1"]
+[ext_resource type="PackedScene" uid="uid://c28vf4m6j63l1" path="res://main/battle/ui/target_selecter/target_selecter.tscn" id="16_ytdqf"]
 [ext_resource type="PackedScene" uid="uid://cuko56w08yuso" path="res://main/battle/action/action.tscn" id="17_7qsbk"]
 [ext_resource type="Texture2D" uid="uid://bsogfupalaabr" path="res://main/battle/action/icons/icon_heal.png" id="18_s6qc8"]
 [ext_resource type="Texture2D" uid="uid://dwm2gd3f6v21p" path="res://main/battle/action/icons/icon_magic.png" id="19_e4607"]
@@ -291,12 +290,8 @@ script = ExtResource("7_we58l")
 [node name="EnemyParty" type="Node2D" parent="Battle/FighterLayer"]
 unique_name_in_owner = true
 
-[node name="TargetSelecter" type="Node2D" parent="Battle/FighterLayer"]
+[node name="TargetSelecter" parent="Battle/FighterLayer" instance=ExtResource("16_ytdqf")]
 unique_name_in_owner = true
-z_index = 1
-script = ExtResource("14_ebous")
-offset = Vector2(3, -10)
-target_icon = ExtResource("15_v7yx1")
 
 [node name="BattleMusicPlayer" type="AudioStreamPlayer" parent="Battle"]
 unique_name_in_owner = true

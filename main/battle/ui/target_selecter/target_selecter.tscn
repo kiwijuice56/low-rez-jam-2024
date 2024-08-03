@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://c28vf4m6j63l1"]
+
+[ext_resource type="Script" path="res://main/battle/ui/target_selecter/target_selecter.gd" id="1_ev6na"]
+[ext_resource type="PackedScene" uid="uid://dmgq8sm7cipce" path="res://main/battle/ui/target_selecter/target_icon/target_icon.tscn" id="2_gyvyq"]
+[ext_resource type="AudioStream" uid="uid://dv1ag3s4up115" path="res://main/theme/sound/select.tres" id="3_mlloj"]
+[ext_resource type="AudioStream" uid="uid://c4md8ks1818q6" path="res://main/theme/sound/accept.tres" id="4_uugh3"]
+[ext_resource type="AudioStream" uid="uid://b52h2qinfu6iw" path="res://main/theme/sound/cancel.tres" id="5_j6ghi"]
+
+[node name="TargetSelecter" type="Node2D"]
+z_index = 1
+script = ExtResource("1_ev6na")
+offset = Vector2(3, -10)
+target_icon = ExtResource("2_gyvyq")
+
+[node name="SelectPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_mlloj")
+bus = &"UI Sound Effect"
+
+[node name="AcceptPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_uugh3")
+bus = &"UI Sound Effect"
+
+[node name="CancelPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("5_j6ghi")
+bus = &"UI Sound Effect"

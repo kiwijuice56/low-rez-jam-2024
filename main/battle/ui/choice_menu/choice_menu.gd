@@ -23,14 +23,17 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("right"):
+		%SelectPlayer.play()
 		idx += 1
 		update_info()
 	if event.is_action_pressed("left"):
+		%SelectPlayer.play()
 		idx -= 1
 		update_info()
 	if event.is_action_pressed("accept", false):
 		test_accept()
 	if event.is_action_pressed("cancel", false) and cancel_enabled:
+		%CancelPlayer.play()
 		advanced.emit(false)
 	target_x = -(idx + choice_count - 2) * BUTTON_WIDTH
 
@@ -85,6 +88,7 @@ func update_position() -> void:
 
 func test_accept() -> void:
 	if not %ChoiceContainer.get_child(posmod(idx, choice_count)).is_disabled:
+		%AcceptPlayer.play()
 		advanced.emit(true)
 
 func initialize(initial_idx: int, can_cancel: bool, buttons: Array[ChoiceButton]) -> void:

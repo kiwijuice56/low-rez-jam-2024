@@ -15,14 +15,18 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if is_instance_valid(single_target):
 		if event.is_action_pressed("left", false):
+			%SelectPlayer.play()
 			idx -= 1
 		if event.is_action_pressed("right", false):
+			%SelectPlayer.play()
 			idx += 1
 		idx = (idx + len(fighter_pool)) % len(fighter_pool)
 		retarget(single_target, fighter_pool[idx])
 	if event.is_action_pressed("accept", false):
+		%AcceptPlayer.play()
 		advanced.emit(true)
 	if event.is_action_pressed("cancel", false):
+		%CancelPlayer.play()
 		advanced.emit(false)
 
 func select_single_target(pool: Array[Fighter]) -> Array[Fighter]:
