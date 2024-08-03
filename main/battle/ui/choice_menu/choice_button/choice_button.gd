@@ -21,6 +21,8 @@ class_name ChoiceButton extends TextureRect
 
 @export var action: Action
 
+@export var index: int
+
 func _ready() -> void:
 	update_texture()
 
@@ -35,7 +37,7 @@ func initialize(new_action: Action, player_party: Array[Fighter], enemy_party: A
 	
 	is_disabled = action.owner_fighter.tp < action.tp_cost or len(action.get_available_targets(player_party, enemy_party)) == 0
 	
-	%Icon.texture = action.texture
+	%Icon.texture = action.icon
 	
 	update_texture()
 

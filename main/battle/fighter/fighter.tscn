@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bnbb4opeecksl"]
+[gd_scene load_steps=20 format=3 uid="uid://bnbb4opeecksl"]
 
 [ext_resource type="Script" path="res://main/battle/fighter/fighter.gd" id="1_7gdsa"]
 [ext_resource type="PackedScene" uid="uid://cuko56w08yuso" path="res://main/battle/action/action.tscn" id="2_42vt3"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://c81ydnq2r2hdj" path="res://main/battle/fighter/enoch/enoch.png" id="3_kdrmx"]
 [ext_resource type="PackedScene" uid="uid://deotpp6wnlyl8" path="res://main/battle/ui/damage_widget/miss_damage_widget/miss_damage_widget.tscn" id="4_anc4h"]
 [ext_resource type="Shader" path="res://main/battle/fighter/flash.gdshader" id="6_ipv7e"]
+[ext_resource type="Texture2D" uid="uid://dbbr4mrfjf3ir" path="res://main/battle/action/icons/icon_attack.png" id="6_ju4h5"]
+[ext_resource type="Texture2D" uid="uid://dghv8njaox5rt" path="res://main/battle/action/icons/icon_pass.png" id="7_vcslg"]
 [ext_resource type="PackedScene" uid="uid://cvscxguxb7jke" path="res://main/battle/ui/colored_text/colored_text.tscn" id="8_uo7mv"]
 [ext_resource type="Shader" path="res://main/battle/ui/colored_text/colored_text.gdshader" id="9_awhmu"]
 
@@ -112,8 +114,10 @@ gradient = SubResource("Gradient_6qowg")
 shader = ExtResource("9_awhmu")
 shader_parameter/palette = SubResource("GradientTexture1D_r7ldv")
 
-[node name="Fighter" type="Node2D"]
+[node name="Fighter" type="Node2D" node_paths=PackedStringArray("base_attack", "base_pass")]
 script = ExtResource("1_7gdsa")
+base_attack = NodePath("Actions/Attack")
+base_pass = NodePath("Actions/Pass")
 normal_damage_widget = ExtResource("2_uefe0")
 critical_damage_widget = ExtResource("3_8bwf5")
 miss_damage_widget = ExtResource("4_anc4h")
@@ -121,8 +125,22 @@ miss_damage_widget = ExtResource("4_anc4h")
 [node name="Actions" type="Node2D" parent="."]
 
 [node name="Skills" type="Node2D" parent="Actions"]
+unique_name_in_owner = true
 
-[node name="Action" parent="Actions" instance=ExtResource("2_42vt3")]
+[node name="Attack" parent="Actions" instance=ExtResource("2_42vt3")]
+icon = ExtResource("6_ju4h5")
+power = 1.0
+critical = 0.05
+hit_amount_max = 1
+status_chance = 0.0
+
+[node name="Pass" parent="Actions" instance=ExtResource("2_42vt3")]
+icon = ExtResource("7_vcslg")
+accuracy = 0.0
+target_group = "All"
+target_amount = "All"
+hit_amount_max = 1
+status_chance = 0.0
 
 [node name="SpriteHolder" type="Node2D" parent="."]
 unique_name_in_owner = true

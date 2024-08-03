@@ -5,6 +5,8 @@ const PREBATTLE_DELAY: float = 2.0
 const POST_ACTION_DELAY: float = 1.0
 const MUSIC_TRANS_TIME: float = 0.2
 
+var in_party_view: bool = true
+
 func _ready() -> void:
 	%UI.visible = false
 	%FighterLayer.visible = false
@@ -97,13 +99,13 @@ func get_player_choice(fighter: Fighter, player_party: Array[Fighter], enemy_par
 		var node: Dictionary = stack.pop_back()
 		match node.level:
 			"outer":
-				# [ initialize menu buttons here ] #
-				await menu_view()
+				_initialize_outer(fighter, player_party, enemy_party, node.idx)
+				if in_party_view:
+					await menu_view(fighter)
 				
-				var choice: Dictionary = await _get_outer_choice(fighter, player_party, enemy_party, node["idx"])
+				var choice: Dictionary = await _get_outer_choice()
 				
-				
-				if "pass" in choice:
+				if "action" in choice and choice.action.action_name == "pass":
 					await party_view()
 					return {"action": choice.action, "targets": []}
 				
@@ -114,21 +116,28 @@ func get_player_choice(fighter: Fighter, player_party: Array[Fighter], enemy_par
 				else:
 					stack.append({"level": "target", "action": choice.action})
 			"target":
-				await party_view()
+				if not in_party_view:
+					await party_view()
 				var targets: Array[Fighter] = _get_targets(node.action, fighter, player_party, enemy_party) 
 				if len(targets) == 0:
 					continue
 			"skill":
-				# [ initialize menu buttons here ] #
-				var choice: Dictionary = await _get_skill_choice(fighter, player_party, enemy_party, node["idx"])
+				_initialize_skills(fighter, player_party, enemy_party, node.idx)
+				if in_party_view:
+					await menu_view(fighter)
+				
+				var choice: Dictionary = await _get_action_choice()
 				
 				if not choice.action:
 					continue
 				stack.append({"level": "skill", "idx": choice.idx})
 				stack.append({"level": "target", "action": choice.action})
 			"item":
-				# [ initialize menu buttons here ] #
-				var choice: Dictionary = await _get_skill_choice(fighter, player_party, enemy_party, node["idx"])
+				_initialize_items(fighter, player_party, enemy_party, node.idx)
+				if in_party_view:
+					await menu_view(fighter)
+				
+				var choice: Dictionary = await _get_action_choice()
 				
 				if not choice.action:
 					continue
@@ -137,23 +146,45 @@ func get_player_choice(fighter: Fighter, player_party: Array[Fighter], enemy_par
 	
 	return {}
 
-func party_view() -> void:
-	pass
-
-func menu_view() -> void:
-	pass
-
 func _get_targets(action: Action, fighter: Fighter, player_party: Array[Fighter], enemy_party: Array[Fighter]) -> Array[Fighter]:
 	return []
 
-func _get_outer_choice(fighter: Fighter, player_party: Array[Fighter], enemy_party: Array[Fighter], initial_idx: int) -> Dictionary:
-	return {"action": null, "submenu": "skill", "pass": true, "idx": 0}
+func _get_outer_choice() -> Dictionary:
+	var button: ChoiceButton = await %ChoiceMenu.get_choice()
+	if button.action:
+		return {"action": button.action, "idx": button.idx}
+	else:
+		return {"submenu": button.action_name, "idx": button.idx}
 
-func _get_skill_choice(fighter: Fighter, player_party: Array[Fighter], enemy_party: Array[Fighter], initial_idx: int) -> Dictionary:
+func _get_action_choice() -> Dictionary:
 	return {"action": null, "idx": 0}
 
-func _get_item_choice(initial_idx: int, player_party: Array[Fighter], enemy_party: Array[Fighter]) -> Dictionary:
-	return {"action": null, "idx": 0}
+func _initialize_outer(fighter: Fighter, player_party: Array[Fighter], enemy_party: Array[Fighter], initial_idx: int) -> void:
+	var skill_button: ChoiceButton = %ChoiceMenu.choice_button_scene.instantiate()
+	skill_button.initialize_other("skill", preload("res://main/battle/action/icons/icon_skill.png"))
+	var item_button: ChoiceButton = %ChoiceMenu.choice_button_scene.instantiate()
+	item_button.initialize_other("item", preload("res://main/battle/action/icons/icon_item.png"))
+	var attack_button: ChoiceButton = %ChoiceMenu.choice_button_scene.instantiate()
+	attack_button.initialize(fighter.base_attack, player_party, enemy_party)
+	var pass_button: ChoiceButton = %ChoiceMenu.choice_button_scene.instantiate()
+	pass_button.initialize(fighter.base_pass, player_party, enemy_party)
+	
+	var buttons: Array[ChoiceButton] = [attack_button, skill_button, item_button, pass_button]
+	%ChoiceMenu.initialize(initial_idx, false, buttons)
+
+func _initialize_items(_fighter: Fighter, player_party: Array[Fighter], enemy_party: Array[Fighter], initial_idx: int) -> void:
+	pass
+
+func _initialize_skills(fighter: Fighter, player_party: Array[Fighter], enemy_party: Array[Fighter], initial_idx: int) -> void:
+	pass
+
+func party_view() -> void:
+	in_party_view = true
+	%ChoiceMenu.visible = false
+
+func menu_view(fighter: Fighter) -> void:
+	in_party_view = false
+	%ChoiceMenu.visible = true
 
 func get_alive_fighters(pool: Array[Fighter]) -> Array[Fighter]:
 	var alive: Array[Fighter] = []

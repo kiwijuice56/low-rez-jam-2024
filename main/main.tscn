@@ -135,6 +135,7 @@ visible_characters_behavior = 1
 script = ExtResource("10_u6xbh")
 
 [node name="ChoiceMenu" parent="Battle/UI" instance=ExtResource("10_o1rja")]
+unique_name_in_owner = true
 choice_button_scene = ExtResource("12_dv1jm")
 
 [node name="HP" type="Label" parent="Battle/UI"]

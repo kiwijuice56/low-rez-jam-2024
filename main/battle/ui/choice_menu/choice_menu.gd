@@ -13,7 +13,7 @@ var initial_x: float
 var internal_x: float
 var target_x: float
 
-signal accepted
+signal advanced(accepted: bool)
 
 func _ready() -> void:
 	set_process_input(false)
@@ -27,11 +27,13 @@ func _input(event: InputEvent) -> void:
 		idx -= 1
 	if event.is_action_pressed("accept"):
 		test_accept()
+	if event.is_action_pressed("cancel") and cancel_enabled:
+		advanced.emit(false)
 	target_x = -(idx + choice_count - 2) * BUTTON_WIDTH
 
 func _process(delta: float) -> void:
 	internal_x = lerp(internal_x, target_x, MOVE_SPEED * delta)
-	%ChoiceContainer.global_position.x = initial_x + fposmod(internal_x, BUTTON_WIDTH * (choice_count))
+	update_position()
 	
 	for i in range(3 * choice_count):
 		%ChoiceContainer.get_child(i).is_hovered = false
@@ -46,15 +48,19 @@ func _process(delta: float) -> void:
 			min_dist = new_dist
 	candidate.is_hovered = true
 
+func update_position() -> void:
+	%ChoiceContainer.global_position.x = initial_x + fposmod(internal_x, BUTTON_WIDTH * (choice_count))
+
 func test_accept() -> void:
 	if not %ChoiceContainer.get_child(posmod(idx, choice_count)).is_disabled:
-		accepted.emit()
+		advanced.emit(true)
 
-func get_choice(initial_idx: int, can_cancel: bool, buttons: Array[ChoiceButton]) -> int:
+func initialize(initial_idx: int,  can_cancel: bool, buttons: Array[ChoiceButton]) -> void:
+	choice_count = len(buttons)
 	idx = initial_idx
 	cancel_enabled = can_cancel
-	choice_count = len(buttons)
 	
+	initial_x = %Center.global_position.x - BUTTON_WIDTH * (choice_count + 1)
 	target_x = -(initial_idx + choice_count - 2) * BUTTON_WIDTH
 	internal_x = target_x
 	
@@ -65,14 +71,19 @@ func get_choice(initial_idx: int, can_cancel: bool, buttons: Array[ChoiceButton]
 		for button in buttons:
 			var new_button: ChoiceButton = button.duplicate()
 			%ChoiceContainer.add_child(new_button)
-	initial_x = %Center.global_position.x - BUTTON_WIDTH * (choice_count + 1)
 	
+	update_position()
+
+func get_choice() -> ChoiceButton:
 	set_process(true)
 	set_process_input(true)
 	
-	await accepted
+	var accepted: bool = await advanced
 	
 	set_process_input(false)
 	set_process(false)
 	
-	return posmod(idx, choice_count)
+	if not accepted:
+		return null
+	%ChoiceContainer.get_child(posmod(idx, choice_count)).index = posmod(idx, choice_count)
+	return %ChoiceContainer.get_child(posmod(idx, choice_count))

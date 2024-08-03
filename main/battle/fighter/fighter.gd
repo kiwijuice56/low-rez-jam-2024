@@ -5,6 +5,10 @@ class_name Fighter extends Node2D
 @export var innate_elec_weakness: bool = false 
 @export var innate_water_weakness: bool = false
 
+@export_group("Action")
+@export var base_attack: Action
+@export var base_pass: Action
+
 @export_group("Damage Widget")
 @export var normal_damage_widget: PackedScene
 @export var critical_damage_widget: PackedScene
