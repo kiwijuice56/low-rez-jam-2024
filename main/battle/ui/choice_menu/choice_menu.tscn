@@ -1,11 +1,29 @@
-[gd_scene load_steps=7 format=3 uid="uid://bx3kup2vyqlma"]
+[gd_scene load_steps=12 format=3 uid="uid://bx3kup2vyqlma"]
 
 [ext_resource type="Theme" uid="uid://evv5alve252b" path="res://main/theme/theme.tres" id="1_4r6vn"]
 [ext_resource type="Script" path="res://main/battle/ui/choice_menu/choice_menu.gd" id="2_wme8r"]
 [ext_resource type="Texture2D" uid="uid://bbyv34w3mao51" path="res://main/battle/ui/choice_menu/arrow.png" id="3_6p17v"]
 [ext_resource type="PackedScene" uid="uid://7ffg50pelcx6" path="res://main/battle/ui/choice_menu/choice_button/choice_button.tscn" id="3_e4tvf"]
 [ext_resource type="Texture2D" uid="uid://dcmjubte1kcli" path="res://main/battle/ui/choice_menu/mini_blocker.png" id="4_8fk3a"]
-[ext_resource type="PackedScene" uid="uid://cvscxguxb7jke" path="res://main/battle/ui/colored_text/colored_text.tscn" id="5_jmnp4"]
+[ext_resource type="Shader" path="res://main/battle/ui/colored_text/colored_text.gdshader" id="6_0bggl"]
+[ext_resource type="FontFile" uid="uid://cauc77kjpc67c" path="res://main/theme/mini_kiwi_font.ttf" id="7_bcp54"]
+
+[sub_resource type="Gradient" id="Gradient_r6jpn"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.423077, 0.714286)
+colors = PackedColorArray(0.670588, 0.486275, 0.494118, 1, 0.564706, 0.407843, 0.486275, 1, 0.329412, 0.301961, 0.415686, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_p6p3o"]
+gradient = SubResource("Gradient_r6jpn")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aih4r"]
+shader = ExtResource("6_0bggl")
+shader_parameter/palette = SubResource("GradientTexture1D_p6p3o")
+
+[sub_resource type="FontVariation" id="FontVariation_0kjtv"]
+base_font = ExtResource("7_bcp54")
+spacing_space = -4
+spacing_top = -5
 
 [node name="ChoiceMenu" type="Control"]
 layout_mode = 3
@@ -146,9 +164,35 @@ theme_override_colors/font_color = Color(0.0196078, 0.0784314, 0.133333, 1)
 text = "count"
 horizontal_alignment = 2
 
-[node name="CostColoredText" parent="." instance=ExtResource("5_jmnp4")]
+[node name="CostColoredText" type="CanvasGroup" parent="."]
 unique_name_in_owner = true
+material = SubResource("ShaderMaterial_aih4r")
 position = Vector2(42, 54)
+fit_margin = 0.0
+clear_margin = 0.0
+
+[node name="Label" type="Label" parent="CostColoredText"]
+unique_name_in_owner = true
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 10.0
+offset_bottom = 9.0
+theme = ExtResource("1_4r6vn")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = SubResource("FontVariation_0kjtv")
+text = " 99"
+
+[node name="CostText" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 43.0
+offset_top = 56.0
+offset_right = 52.0
+offset_bottom = 63.0
+theme = ExtResource("1_4r6vn")
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = SubResource("FontVariation_0kjtv")
+text = " 99"
 
 [node name="Center" type="Marker2D" parent="."]
 unique_name_in_owner = true

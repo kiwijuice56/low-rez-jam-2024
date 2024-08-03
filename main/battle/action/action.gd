@@ -13,13 +13,21 @@ class_name Action extends Node2D
 @export_group("Status Effect")
 @export var status_chance: float = 1.0
 @export_flags("Poison", "Ablaze", "Bless", "Charm", "Broken", "Cool", "Aura", "Oily", "Wet", "Charged", "Stun") var status_effects: int
+@export_group("Element")
+@export var is_phys: bool = false
+@export var is_fire: bool = false
+@export var is_elec: bool = false
+@export var is_water: bool = false
+@export_group("Item")
+@export var is_item: bool
 
 var owner_fighter: Fighter
 
 enum TurnUsage { NORMAL, WASTE, ADVANTAGE }
 
 func _ready() -> void:
-	owner_fighter = owner
+	if not is_item:
+		owner_fighter = owner
 
 func act(_targets: Array[Fighter]) -> TurnUsage:
 	return TurnUsage.NORMAL

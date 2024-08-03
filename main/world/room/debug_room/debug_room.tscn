@@ -38,7 +38,7 @@ xp_drop = 0
 [sub_resource type="Resource" id="Resource_ftoqs"]
 script = ExtResource("3_2d463")
 speaker = ExtResource("4_8hrq4")
-text = "eat shit, loser..."
+text = "fight..."
 speed = "Normal"
 
 [sub_resource type="Resource" id="Resource_iltys"]

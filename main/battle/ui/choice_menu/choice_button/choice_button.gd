@@ -4,6 +4,8 @@ class_name ChoiceButton extends TextureRect
 @export var hover: Texture
 @export var disabled: Texture
 @export var disabled_hover: Texture
+@export var back: Texture
+@export var back_hover: Texture
 
 @export var action_name: String
 @export var cost_name: String
@@ -56,7 +58,9 @@ func initialize_other(new_name: String, new_icon: Texture) -> void:
 	update_texture()
 
 func update_texture() -> void:
-	if is_disabled:
+	if action_name == "back":
+		texture = back_hover if is_hovered else back
+	elif is_disabled:
 		texture = disabled_hover if is_hovered else disabled
 	else:
 		texture = hover if is_hovered else normal

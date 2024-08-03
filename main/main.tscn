@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dl3ps7eki0b7b"]
+[gd_scene load_steps=28 format=3 uid="uid://dl3ps7eki0b7b"]
 
 [ext_resource type="PackedScene" uid="uid://txvddbv8pfiv" path="res://main/world/character/player/player.tscn" id="1_84yfs"]
 [ext_resource type="Script" path="res://main/main.gd" id="1_q20fr"]
@@ -20,6 +20,9 @@
 [ext_resource type="Texture2D" uid="uid://c66yc787tsfw4" path="res://main/theme/modified_palette.png" id="14_5avsq"]
 [ext_resource type="Script" path="res://main/battle/ui/target_selecter/target_selecter.gd" id="14_ebous"]
 [ext_resource type="PackedScene" uid="uid://dmgq8sm7cipce" path="res://main/battle/ui/target_selecter/target_icon/target_icon.tscn" id="15_v7yx1"]
+[ext_resource type="PackedScene" uid="uid://cuko56w08yuso" path="res://main/battle/action/action.tscn" id="17_7qsbk"]
+[ext_resource type="Texture2D" uid="uid://bsogfupalaabr" path="res://main/battle/action/icons/icon_heal.png" id="18_s6qc8"]
+[ext_resource type="Texture2D" uid="uid://dwm2gd3f6v21p" path="res://main/battle/action/icons/icon_magic.png" id="19_e4607"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_on3yi"]
 shader = ExtResource("5_4102r")
@@ -296,6 +299,29 @@ bus = &"Music"
 
 [node name="ItemActions" type="Node2D" parent="Battle"]
 unique_name_in_owner = true
+
+[node name="Tofu" parent="Battle/ItemActions" instance=ExtResource("17_7qsbk")]
+icon = ExtResource("18_s6qc8")
+description = "heal one friend"
+target_group = "Own"
+hit_amount_max = 1
+is_item = true
+
+[node name="Stirfry" parent="Battle/ItemActions" instance=ExtResource("17_7qsbk")]
+icon = ExtResource("18_s6qc8")
+description = "heal all friends"
+target_group = "Own"
+target_amount = "All"
+hit_amount_max = 1
+is_item = true
+
+[node name="Tnt" parent="Battle/ItemActions" instance=ExtResource("17_7qsbk")]
+icon = ExtResource("19_e4607")
+description = "fire magic to all foes"
+target_amount = "All"
+hit_amount_max = 1
+is_fire = true
+is_item = true
 
 [node name="PaletteLayer" type="CanvasLayer" parent="."]
 

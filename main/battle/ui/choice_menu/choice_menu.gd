@@ -69,6 +69,14 @@ func update_info() -> void:
 	%CostAmountLabel.text = selected.cost_name
 	%CostColoredText.get_node("%Label").text = selected.cost_amount
 	
+	if selected.action and selected.action.is_item:
+		%CostText.text = selected.cost_amount
+		%CostText.visible = true
+		%CostColoredText.visible = false
+	else:
+		%CostText.visible = false
+		%CostColoredText.visible = true
+	
 	if len(selected.description) > 0:
 		Ref.battle_text.display_text(selected.description, Ref.battle.TEXT_SPEED)
 
