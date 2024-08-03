@@ -41,9 +41,9 @@ _data = {
 }
 
 [node name="TargetIcon" type="Sprite2D"]
-position = Vector2(18, 25)
 rotation = 1.5708
 texture = ExtResource("1_b8s6f")
+centered = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true

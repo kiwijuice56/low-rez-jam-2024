@@ -42,7 +42,7 @@ func battle(encounter: Encounter) -> bool:
 	
 	### BATTLE LOOP ###
 	
-	var player_turn: bool = false
+	var player_turn: bool = true
 	var current_party: Array[Fighter] = player_party if player_turn else enemy_party
 	while true:
 		if len(get_alive_fighters(player_party)) == 0 or len(get_alive_fighters(enemy_party)) == 0:
@@ -57,7 +57,7 @@ func battle(encounter: Encounter) -> bool:
 				continue
 			
 			var choice: Dictionary
-			if player_party:
+			if player_turn:
 				choice = await get_player_choice(fighter, player_party, enemy_party)
 			else:
 				choice = await fighter.get_choice(enemy_party, player_party)
@@ -99,6 +99,7 @@ func get_player_choice(fighter: Fighter, player_party: Array[Fighter], enemy_par
 		var node: Dictionary = stack.pop_back()
 		match node.level:
 			"outer":
+				Ref.battle_text.display_text("what will %s do?" % fighter.name, TEXT_SPEED)
 				_initialize_outer(fighter, player_party, enemy_party, node.idx)
 				if in_party_view:
 					await menu_view(fighter)

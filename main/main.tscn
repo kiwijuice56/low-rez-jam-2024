@@ -184,13 +184,14 @@ position = Vector2(12, 0)
 
 [node name="TargetSelecter" type="Node2D" parent="Battle/UI"]
 script = ExtResource("14_ebous")
-offset = Vector2(0, 8)
+offset = Vector2(3, -4)
 target_icon = ExtResource("15_v7yx1")
 
 [node name="TargetIcon" parent="Battle/UI/TargetSelecter" instance=ExtResource("15_v7yx1")]
 
 [node name="FighterLayer" type="CanvasLayer" parent="Battle"]
 unique_name_in_owner = true
+visible = false
 
 [node name="PlayerPositions" type="Node2D" parent="Battle/FighterLayer"]
 unique_name_in_owner = true

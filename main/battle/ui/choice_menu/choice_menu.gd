@@ -23,8 +23,10 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("right"):
 		idx += 1
+		update_info()
 	if event.is_action_pressed("left"):
 		idx -= 1
+		update_info()
 	if event.is_action_pressed("accept"):
 		test_accept()
 	if event.is_action_pressed("cancel") and cancel_enabled:
@@ -47,6 +49,15 @@ func _process(delta: float) -> void:
 			candidate = %ChoiceContainer.get_child(i)
 			min_dist = new_dist
 	candidate.is_hovered = true
+
+func update_info() -> void:
+	var selected: ChoiceButton = %ChoiceContainer.get_child(posmod(idx, choice_count))
+	%ChoiceLabel.text = selected.action_name
+	%CostAmountLabel.text = selected.cost_name
+	%CostColoredText.get_node("%Label").text = selected.cost_amount
+	
+	if len(selected.description) > 0:
+		Ref.battle_text.display_text(selected.description, Ref.battle.TEXT_SPEED)
 
 func update_position() -> void:
 	%ChoiceContainer.global_position.x = initial_x + fposmod(internal_x, BUTTON_WIDTH * (choice_count))

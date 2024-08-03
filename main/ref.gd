@@ -8,4 +8,5 @@ extends Node
 @onready var transition: Transition = main.get_node("Transition")
 
 @onready var battle: Battle = main.get_node("Battle")
+@onready var battle_text: AnimatedTextLabel = battle.get_node("%UI/Text")
 @onready var player_party: PlayerParty = battle.get_node("FighterLayer/PlayerParty")

@@ -23,6 +23,8 @@ class_name ChoiceButton extends TextureRect
 
 @export var index: int
 
+@export var description: String
+
 func _ready() -> void:
 	update_texture()
 

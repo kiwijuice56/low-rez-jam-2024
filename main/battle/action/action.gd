@@ -1,6 +1,7 @@
 class_name Action extends Node2D
 
 @export var icon: Texture
+@export_multiline var description: String
 @export var tp_cost: int
 @export var power: float
 @export var accuracy: float = 1.0
