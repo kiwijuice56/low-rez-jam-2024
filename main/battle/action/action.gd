@@ -15,8 +15,13 @@ class_name Action extends Node2D
 
 var owner_fighter: Fighter
 
+enum TurnUsage { NORMAL, WASTE, ADVANTAGE }
+
 func _ready() -> void:
 	owner_fighter = owner
+
+func act(_targets: Array[Fighter]) -> TurnUsage:
+	return TurnUsage.NORMAL
 
 # action-specific stuff... ex: healing should not target fully healed fighters
 func can_target(_target: Fighter) -> bool:

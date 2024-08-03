@@ -18,12 +18,7 @@ signal accepted
 func _ready() -> void:
 	set_process_input(false)
 	set_process(false)
-	var test_buttons: Array[ChoiceButton] = []
-	for i in range(8):
-		var new_button: ChoiceButton = choice_button_scene.instantiate()
-		new_button.is_disabled = i % 2 == 0
-		test_buttons.append(new_button)
-	get_choice(0, false, test_buttons)
+	visible = false
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("right"):

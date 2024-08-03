@@ -1,9 +1,12 @@
 class_name Battle extends Node2D
 
+const TEXT_SPEED: int = 64
+const PREBATTLE_DELAY: float = 2.0
+const POST_ACTION_DELAY: float = 1.0
 const MUSIC_TRANS_TIME: float = 0.2
 
 func _ready() -> void:
-	%UI.visible = true
+	%UI.visible = false
 	%FighterLayer.visible = false
 
 func battle(encounter: Encounter) -> bool:
@@ -29,10 +32,55 @@ func battle(encounter: Encounter) -> bool:
 		%EnemyParty.add_child(new_fighter)
 		enemy_party.append(new_fighter)
 	position_fighters(player_party, enemy_party)
+	%Text.display_text("a battle broke out!", TEXT_SPEED)
 	
 	await Ref.transition.trans_out()
 	
-	await get_tree().create_timer(90.0).timeout
+	await get_tree().create_timer(PREBATTLE_DELAY).timeout
+	
+	### BATTLE LOOP ###
+	
+	var player_turn: bool = false
+	var current_party: Array[Fighter] = player_party if player_turn else enemy_party
+	while true:
+		if len(get_alive_fighters(player_party)) == 0 or len(get_alive_fighters(enemy_party)) == 0:
+			break
+		var idx: int = 0
+		var full_turns: int = len(get_alive_fighters(current_party)) * 2
+		var half_turns: int = 0
+		while full_turns + half_turns > 0:
+			var fighter: Fighter = current_party[idx]
+			idx = (idx + 1) % len(current_party)
+			if fighter.dead:
+				continue
+			
+			var choice: Dictionary
+			if player_party:
+				choice = await get_player_choice(fighter, player_party, enemy_party)
+			else:
+				choice = await fighter.get_choice(enemy_party, player_party)
+			
+			var turns_used: Action.TurnUsage = choice.action.act(choice.targets)
+			if turns_used == Action.TurnUsage.NORMAL:
+				if half_turns > 0:
+					half_turns -= 1
+				else:
+					full_turns -= 1
+			if turns_used == Action.TurnUsage.ADVANTAGE:
+				if full_turns > 0:
+					full_turns -= 1
+					half_turns += 1
+				else:
+					half_turns -= 1
+			if turns_used == Action.TurnUsage.WASTE:
+				for _i in range(2):
+					if half_turns > 0:
+						half_turns -= 1
+					else:
+						full_turns -= 1
+			await get_tree().create_timer(POST_ACTION_DELAY).timeout
+
+	### BATTLE LOOP END ###
 	
 	await Ref.transition.trans_in()
 	%UI.visible = false
@@ -43,12 +91,21 @@ func battle(encounter: Encounter) -> bool:
 	
 	return true
 
+func get_player_choice(fighter: Fighter, player_party: Array[Fighter], enemy_party: Array[Fighter]) -> Dictionary:
+	return {}
+
+func get_alive_fighters(pool: Array[Fighter]) -> Array[Fighter]:
+	var alive: Array[Fighter] = []
+	for fighter in pool:
+		if not fighter.dead:
+			alive.append(fighter)
+	return alive
+
 func position_fighters(player_party: Array[Fighter], enemy_party: Array[Fighter]) -> void:
 	for i in range(len(player_party)):
 		player_party[i].global_position = %PlayerPositions.get_child(len(player_party) - 1).get_child(i).global_position
 	for i in range(len(enemy_party)):
 		enemy_party[i].global_position = %EnemyPositions.get_child(len(enemy_party) - 1).get_child(i).global_position
-
 
 func stop_music() -> void:
 	%BattleMusicPlayer.volume_db = 0

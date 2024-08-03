@@ -29,6 +29,8 @@ var added_fire_weakness: bool = false
 var added_water_weakness: bool = false
 var added_elec_weakness: bool = false
 
+var dead: bool = false
+
 func _ready() -> void:
 	hp = stats.max_hp
 	tp = stats.max_tp
@@ -70,5 +72,5 @@ func update_ui() -> void:
 	%HPColoredText.get_node("Label").text = " " + str(hp)
 	%TPColoredText.get_node("Label").text = " " + str(tp)
 
-func act(_data: Dictionary) -> Dictionary:
+func get_choice(_own_party: Array[Fighter], _other_party: Array[Fighter]) -> Dictionary:
 	return {"targets": [], "action": null}

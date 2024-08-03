@@ -31,7 +31,7 @@
 - [?] Combat UI
 - - [?] Party member controls and their positioning
 - - [?] Basic flow/animation and action selection
-- - [ ] Target selection
+- - [?] Target selection
 - - [?] Press turn icons
 - - [x] Battle backgrounds
 - [ ] Progression system

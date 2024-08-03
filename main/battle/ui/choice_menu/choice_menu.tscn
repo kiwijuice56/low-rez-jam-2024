@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://bx3kup2vyqlma"]
+[gd_scene load_steps=7 format=3 uid="uid://bx3kup2vyqlma"]
 
 [ext_resource type="Theme" uid="uid://evv5alve252b" path="res://main/theme/theme.tres" id="1_4r6vn"]
-[ext_resource type="Texture2D" uid="uid://bc3ym870tts3e" path="res://main/battle/ui/choice_menu/choice_button/choice_button1.png" id="2_3qc6l"]
 [ext_resource type="Script" path="res://main/battle/ui/choice_menu/choice_menu.gd" id="2_wme8r"]
 [ext_resource type="Texture2D" uid="uid://bbyv34w3mao51" path="res://main/battle/ui/choice_menu/arrow.png" id="3_6p17v"]
 [ext_resource type="PackedScene" uid="uid://7ffg50pelcx6" path="res://main/battle/ui/choice_menu/choice_button/choice_button.tscn" id="3_e4tvf"]
@@ -37,73 +36,17 @@ theme_override_constants/separation = 1
 [node name="ChoiceButton" parent="ChoiceContainer" instance=ExtResource("3_e4tvf")]
 layout_mode = 2
 
-[node name="ChoiceButton2" type="TextureRect" parent="ChoiceContainer"]
+[node name="ChoiceButton2" parent="ChoiceContainer" instance=ExtResource("3_e4tvf")]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-texture = ExtResource("2_3qc6l")
-stretch_mode = 2
 
-[node name="ChoiceButton3" type="TextureRect" parent="ChoiceContainer"]
+[node name="ChoiceButton3" parent="ChoiceContainer" instance=ExtResource("3_e4tvf")]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-texture = ExtResource("2_3qc6l")
-stretch_mode = 2
 
-[node name="ChoiceButton4" type="TextureRect" parent="ChoiceContainer"]
+[node name="ChoiceButton4" parent="ChoiceContainer" instance=ExtResource("3_e4tvf")]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-texture = ExtResource("2_3qc6l")
-stretch_mode = 2
 
-[node name="ChoiceButton6" type="TextureRect" parent="ChoiceContainer"]
+[node name="ChoiceButton5" parent="ChoiceContainer" instance=ExtResource("3_e4tvf")]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-texture = ExtResource("2_3qc6l")
-stretch_mode = 2
-
-[node name="ChoiceButton5" type="TextureRect" parent="ChoiceContainer"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-texture = ExtResource("2_3qc6l")
-stretch_mode = 2
-
-[node name="ChoiceButton7" type="TextureRect" parent="ChoiceContainer"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-texture = ExtResource("2_3qc6l")
-stretch_mode = 2
-
-[node name="ChoiceButton8" type="TextureRect" parent="ChoiceContainer"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-texture = ExtResource("2_3qc6l")
-stretch_mode = 2
-
-[node name="ChoiceButton10" type="TextureRect" parent="ChoiceContainer"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-texture = ExtResource("2_3qc6l")
-stretch_mode = 2
-
-[node name="ChoiceButton9" type="TextureRect" parent="ChoiceContainer"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-texture = ExtResource("2_3qc6l")
-stretch_mode = 2
 
 [node name="Blocker1" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(32, 0)
