@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://bnbb4opeecksl"]
+[gd_scene load_steps=54 format=3 uid="uid://bnbb4opeecksl"]
 
 [ext_resource type="Script" path="res://main/battle/fighter/fighter.gd" id="1_7gdsa"]
 [ext_resource type="PackedScene" uid="uid://cuko56w08yuso" path="res://main/battle/action/action.tscn" id="2_42vt3"]
@@ -20,8 +20,12 @@
 [ext_resource type="Script" path="res://main/battle/fighter/effect/oily.gd" id="12_qbuts"]
 [ext_resource type="Texture2D" uid="uid://bk72d5v1r0sc7" path="res://main/battle/fighter/effect/cool.png" id="12_yphxo"]
 [ext_resource type="Texture2D" uid="uid://bjgmqyf6y41dr" path="res://main/battle/fighter/effect/charm.png" id="13_2r20h"]
+[ext_resource type="Texture2D" uid="uid://7ianniwhess3" path="res://main/world/item_pickup/circle.png" id="13_byshb"]
 [ext_resource type="Script" path="res://main/battle/fighter/effect/wet.gd" id="13_cwu21"]
+[ext_resource type="Script" path="res://main/battle/fighter/effect/effect.gd" id="13_rmtpq"]
 [ext_resource type="Script" path="res://main/battle/fighter/effect/charged.gd" id="14_1nsvt"]
+[ext_resource type="Texture2D" uid="uid://b2j3uq7sfgb4c" path="res://main/battle/fighter/effect/burning.png" id="14_wg7il"]
+[ext_resource type="Texture2D" uid="uid://ccrtbhwcjirw7" path="res://main/battle/fighter/effect/wet.png" id="18_rck3c"]
 [ext_resource type="Script" path="res://main/battle/fighter/effect/stun.gd" id="19_2ltam"]
 [ext_resource type="Texture2D" uid="uid://dtcfui8bdacb2" path="res://main/battle/fighter/effect/stun.png" id="20_rwres"]
 
@@ -34,6 +38,53 @@ shader_parameter/broken = true
 shader_parameter/h_frames = 1
 shader_parameter/broken_dist = 0.1
 shader_parameter/random_seed = 0.2
+
+[sub_resource type="Curve" id="Curve_tclgk"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.266667, 1), 0.0, 0.0, 0, 0, Vector2(0.596296, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.0229523), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_488oo"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.163551, 0.537383, 0.78972, 0.911215)
+colors = PackedColorArray(0.329412, 0.301961, 0.415686, 1, 0.564706, 0.407843, 0.486275, 1, 0.670588, 0.486275, 0.494118, 1, 0.564706, 0.407843, 0.486275, 1, 0.329412, 0.301961, 0.415686, 1)
+
+[sub_resource type="Animation" id="Animation_1bl7v"]
+resource_name = "burn"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_0tdt1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y5p6x"]
+_data = {
+"RESET": SubResource("Animation_0tdt1"),
+"burn": SubResource("Animation_1bl7v")
+}
 
 [sub_resource type="Animation" id="Animation_8y2xf"]
 length = 0.001
@@ -73,6 +124,20 @@ _data = {
 "shine": SubResource("Animation_te6j8")
 }
 
+[sub_resource type="Curve" id="Curve_0na3w"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.137037, 1), 0.0, 0.0, 0, 0, Vector2(0.618518, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_ho1v0"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.168224, 0.285047, 0.443925, 0.626168, 0.906542)
+colors = PackedColorArray(1, 1, 1, 1, 0.588235, 0.588235, 0.588235, 1, 0.333333, 0.317647, 0.32549, 1, 0.235294, 0.235294, 0.243137, 1, 0.192157, 0.2, 0.207843, 1, 0.180392, 0.192157, 0.203922, 1)
+
+[sub_resource type="Gradient" id="Gradient_u6sxs"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.247664, 0.53271, 0.775701)
+colors = PackedColorArray(0.207843, 0.258824, 0.352941, 1, 0.101961, 0.231373, 0.345098, 1, 0.0431373, 0.176471, 0.278431, 1, 0.0196078, 0.0784314, 0.133333, 1)
+
 [sub_resource type="Gradient" id="Gradient_to583"]
 interpolation_mode = 1
 offsets = PackedFloat32Array(0, 0.309091, 0.745455)
@@ -83,7 +148,7 @@ gradient = SubResource("Gradient_to583")
 
 [sub_resource type="Gradient" id="Gradient_es1eo"]
 interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.25, 0.472727, 0.790909)
+offsets = PackedFloat32Array(0, 0.35, 0.572727, 0.790909)
 colors = PackedColorArray(1, 1, 1, 1, 1, 0.882353, 0.788235, 1, 0.984314, 0.835294, 0.654902, 1, 0.854902, 0.690196, 0.560784, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_2pknv"]
@@ -304,6 +369,39 @@ centered = false
 unique_name_in_owner = true
 position = Vector2(0, -5)
 
+[node name="Bleed" type="Node2D" parent="SpriteHolder/Effects"]
+script = ExtResource("13_rmtpq")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="SpriteHolder/Effects/Bleed"]
+amount = 12
+texture = ExtResource("13_byshb")
+direction = Vector2(0.4, -1)
+spread = 23.6
+gravity = Vector2(0, 64)
+initial_velocity_min = 12.0
+initial_velocity_max = 32.0
+scale_amount_min = 0.2
+scale_amount_max = 0.2
+scale_amount_curve = SubResource("Curve_tclgk")
+color_ramp = SubResource("Gradient_488oo")
+
+[node name="Burning" type="Node2D" parent="SpriteHolder/Effects"]
+script = ExtResource("13_rmtpq")
+
+[node name="Sprite2D" type="Sprite2D" parent="SpriteHolder/Effects/Burning"]
+visible = false
+position = Vector2(-8, -10)
+texture = ExtResource("14_wg7il")
+centered = false
+hframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SpriteHolder/Effects/Burning/Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_y5p6x")
+}
+autoplay = "burn"
+speed_scale = 0.6
+
 [node name="Broken" type="Node2D" parent="SpriteHolder/Effects"]
 script = ExtResource("9_blmhy")
 
@@ -312,6 +410,7 @@ position = Vector2(-3, -1)
 script = ExtResource("10_v1knl")
 
 [node name="Sprite2D" type="Sprite2D" parent="SpriteHolder/Effects/Cool"]
+visible = false
 texture = ExtResource("12_yphxo")
 centered = false
 hframes = 10
@@ -329,8 +428,32 @@ script = ExtResource("11_kal80")
 [node name="Oily" type="Node2D" parent="SpriteHolder/Effects"]
 script = ExtResource("12_qbuts")
 
+[node name="Oil" type="CPUParticles2D" parent="SpriteHolder/Effects/Oily"]
+visible = false
+position = Vector2(0, -3)
+amount = 3
+lifetime = 0.6
+texture = ExtResource("18_rck3c")
+emission_shape = 1
+emission_sphere_radius = 5.0
+gravity = Vector2(0, 128)
+scale_amount_curve = SubResource("Curve_0na3w")
+color_ramp = SubResource("Gradient_ho1v0")
+
 [node name="Wet" type="Node2D" parent="SpriteHolder/Effects"]
 script = ExtResource("13_cwu21")
+
+[node name="Water" type="CPUParticles2D" parent="SpriteHolder/Effects/Wet"]
+visible = false
+position = Vector2(0, -3)
+amount = 3
+lifetime = 0.6
+texture = ExtResource("18_rck3c")
+emission_shape = 1
+emission_sphere_radius = 4.0
+gravity = Vector2(0, 128)
+scale_amount_curve = SubResource("Curve_0na3w")
+color_ramp = SubResource("Gradient_u6sxs")
 
 [node name="Charged" type="Node2D" parent="SpriteHolder/Effects"]
 script = ExtResource("14_1nsvt")
@@ -366,15 +489,19 @@ radius = Vector2(8, 2)
 height = 2.0
 
 [node name="Sprite2D" type="Sprite2D" parent="SpriteHolder/Effects/Stun"]
+visible = false
 texture = ExtResource("20_rwres")
 
 [node name="Sprite2D2" type="Sprite2D" parent="SpriteHolder/Effects/Stun"]
+visible = false
 texture = ExtResource("20_rwres")
 
 [node name="Sprite2D3" type="Sprite2D" parent="SpriteHolder/Effects/Stun"]
+visible = false
 texture = ExtResource("20_rwres")
 
 [node name="Sprite2D4" type="Sprite2D" parent="SpriteHolder/Effects/Stun"]
+visible = false
 texture = ExtResource("20_rwres")
 
 [node name="Center" type="Marker2D" parent="SpriteHolder"]
