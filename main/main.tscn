@@ -121,6 +121,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="Text" type="RichTextLabel" parent="Battle/UI"]
 unique_name_in_owner = true
+clip_contents = false
 custom_minimum_size = Vector2(60, 11)
 anchors_preset = 10
 anchor_right = 1.0
@@ -131,7 +132,7 @@ offset_bottom = 13.0
 grow_horizontal = 2
 theme = ExtResource("1_vk4h2")
 theme_override_constants/line_separation = 1
-text = "what will enoch do?"
+text = "?"
 scroll_active = false
 autowrap_mode = 2
 visible_characters_behavior = 1
@@ -184,13 +185,6 @@ position = Vector2(8, 0)
 
 [node name="PressTurn4" parent="Battle/UI/PressTurnWidget" instance=ExtResource("12_8wuqk")]
 position = Vector2(12, 0)
-
-[node name="TargetSelecter" type="Node2D" parent="Battle/UI"]
-script = ExtResource("14_ebous")
-offset = Vector2(3, -4)
-target_icon = ExtResource("15_v7yx1")
-
-[node name="TargetIcon" parent="Battle/UI/TargetSelecter" instance=ExtResource("15_v7yx1")]
 
 [node name="MenuFighterPosition" type="Marker2D" parent="Battle/UI"]
 unique_name_in_owner = true
@@ -293,6 +287,13 @@ script = ExtResource("7_we58l")
 [node name="EnemyParty" type="Node2D" parent="Battle/FighterLayer"]
 unique_name_in_owner = true
 
+[node name="TargetSelecter" type="Node2D" parent="Battle/FighterLayer"]
+unique_name_in_owner = true
+z_index = 1
+script = ExtResource("14_ebous")
+offset = Vector2(3, -10)
+target_icon = ExtResource("15_v7yx1")
+
 [node name="BattleMusicPlayer" type="AudioStreamPlayer" parent="Battle"]
 unique_name_in_owner = true
 bus = &"Music"
@@ -303,6 +304,7 @@ unique_name_in_owner = true
 [node name="Tofu" parent="Battle/ItemActions" instance=ExtResource("17_7qsbk")]
 icon = ExtResource("18_s6qc8")
 description = "heal one friend"
+verb = "feed to"
 target_group = "Own"
 hit_amount_max = 1
 is_item = true
@@ -310,14 +312,25 @@ is_item = true
 [node name="Stirfry" parent="Battle/ItemActions" instance=ExtResource("17_7qsbk")]
 icon = ExtResource("18_s6qc8")
 description = "heal all friends"
+verb = "feed to"
 target_group = "Own"
 target_amount = "All"
 hit_amount_max = 1
 is_item = true
 
+[node name="Vitamin" parent="Battle/ItemActions" instance=ExtResource("17_7qsbk")]
+icon = ExtResource("18_s6qc8")
+description = "revive a friend"
+verb = "feed to"
+target_group = "Own"
+hit_amount_max = 1
+is_item = true
+revival = true
+
 [node name="Tnt" parent="Battle/ItemActions" instance=ExtResource("17_7qsbk")]
 icon = ExtResource("19_e4607")
 description = "fire magic to all foes"
+verb = "hurl at"
 target_amount = "All"
 hit_amount_max = 1
 is_fire = true

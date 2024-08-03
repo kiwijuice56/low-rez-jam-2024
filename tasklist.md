@@ -29,9 +29,9 @@
 - - [ ] Revival actions
 - - [ ] Effects (code and animations) and effect actions
 - [?] Combat UI
-- - [?] Party member controls and their positioning
-- - [?] Basic flow/animation and action selection
-- - [?] Target selection
+- - [x] Party member controls and their positioning
+- - [x] Basic flow/animation and action selection
+- - [x] Target selection
 - - [?] Press turn icons
 - - [x] Battle backgrounds
 - [ ] Progression system

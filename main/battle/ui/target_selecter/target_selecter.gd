@@ -16,7 +16,7 @@ func _input(event: InputEvent) -> void:
 	if is_instance_valid(single_target):
 		if event.is_action_pressed("left", false):
 			idx -= 1
-		if event.is_action_pressed("left", false):
+		if event.is_action_pressed("right", false):
 			idx += 1
 		idx = (idx + len(fighter_pool)) % len(fighter_pool)
 		retarget(single_target, fighter_pool[idx])
@@ -26,13 +26,14 @@ func _input(event: InputEvent) -> void:
 		advanced.emit(false)
 
 func select_single_target(pool: Array[Fighter]) -> Array[Fighter]:
+	idx = 0
 	fighter_pool = pool
 	
 	var new_target: Sprite2D = target_icon.instantiate()
 	add_child(new_target)
 	single_target = new_target
 	
-	new_target.retarget(fighter_pool[0])
+	retarget(new_target, fighter_pool[0])
 	
 	set_process_input(true)
 	
@@ -74,4 +75,4 @@ func select_all_targets(pool: Array[Fighter]) -> Array[Fighter]:
 func retarget(target: Sprite2D, fighter: Fighter) -> void:
 	target.get_node("%AnimationPlayer").stop()
 	target.get_node("%AnimationPlayer").play("flash")
-	single_target.global_position = fighter.get_node("%Center").global_position + offset
+	target.global_position = fighter.get_node("%Center").global_position + offset

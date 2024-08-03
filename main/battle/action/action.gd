@@ -2,6 +2,7 @@ class_name Action extends Node2D
 
 @export var icon: Texture
 @export_multiline var description: String
+@export var verb: String = "attack"
 @export var tp_cost: int
 @export var power: float
 @export var accuracy: float = 1.0
@@ -20,6 +21,7 @@ class_name Action extends Node2D
 @export var is_water: bool = false
 @export_group("Item")
 @export var is_item: bool
+@export var revival: bool
 
 var owner_fighter: Fighter
 

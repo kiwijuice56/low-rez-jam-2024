@@ -18,7 +18,6 @@ func initialize() -> void:
 	set_state("party_order", ["ella"])
 	set_state("inventory/tofu", 0)
 	set_state("inventory/stirfry", 0)
-	set_state("inventory/tofu", 0)
 	set_state("inventory/vitamin", 0)
 	set_state("inventory/tnt", 0)
 

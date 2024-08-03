@@ -1,7 +1,7 @@
 class_name Battle extends Node2D
 
 const TEXT_SPEED: int = 64
-const PREBATTLE_DELAY: float = 1.7
+const PREBATTLE_DELAY: float = 0.5
 const POST_ACTION_DELAY: float = 1.0
 const MUSIC_TRANS_TIME: float = 0.2
 const TRANS_TIME: float = 0.08
@@ -119,7 +119,7 @@ func get_player_choice(fighter: Fighter, player_party: Array[Fighter], enemy_par
 				
 				var choice: Dictionary = await _get_outer_choice()
 				
-				if "action" in choice and choice.action.action_name == "pass":
+				if "action" in choice and choice.action.name == "pass":
 					await party_view(fighter, player_party)
 					return {"action": choice.action, "targets": []}
 				
@@ -131,9 +131,10 @@ func get_player_choice(fighter: Fighter, player_party: Array[Fighter], enemy_par
 				else:
 					stack.append({"level": "target", "action": choice.action})
 			"target":
+				Ref.battle_text.display_text("%s who?" % node.action.verb, TEXT_SPEED)
 				if not in_party_view:
 					await party_view(fighter, player_party)
-				var targets: Array[Fighter] = _get_targets(node.action, fighter, player_party, enemy_party) 
+				var targets: Array[Fighter] = await _get_targets(node.action, fighter, player_party, enemy_party) 
 				if len(targets) == 0:
 					continue
 			"skills":
@@ -168,7 +169,14 @@ func get_player_choice(fighter: Fighter, player_party: Array[Fighter], enemy_par
 	return {}
 
 func _get_targets(action: Action, fighter: Fighter, player_party: Array[Fighter], enemy_party: Array[Fighter]) -> Array[Fighter]:
-	return []
+	var pool: Array[Fighter] = action.get_available_targets(player_party, enemy_party)
+	
+	if action.target_amount == "Single":
+		var target: Array[Fighter] = await %TargetSelecter.select_single_target(pool)
+		return target
+	else:
+		var empty: Array[Fighter] = []
+		return pool if await %TargetSelecter.select_all_targets(pool) else empty
 
 func _get_outer_choice() -> Dictionary:
 	var button: ChoiceButton = await %ChoiceMenu.get_choice()

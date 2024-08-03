@@ -41,12 +41,6 @@ func _ready() -> void:
 	tp = stats.max_tp
 	%Sprite2D.material = %Sprite2D.material.duplicate()
 
-func _input(event: InputEvent) -> void:
-	if %PointInfo.visible:
-		return
-	if event.is_action_pressed("cancel", false):
-		hurt(randi_range(1, 16), randf() < 0.24, randf() < 0.15, false)
-
 func hurt(damage: int, is_crit: bool, is_miss: bool, is_weak: bool) -> void:
 	var widget: DamageWidget
 	var text: String
