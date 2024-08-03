@@ -54,6 +54,7 @@ _data = {
 
 [node name="Slime" instance=ExtResource("1_mylgi")]
 stats = SubResource("Resource_0mx5o")
+innate_elec_weakness = true
 
 [node name="Sprite2D" parent="SpriteHolder" index="0"]
 position = Vector2(-6, -12)
@@ -63,12 +64,12 @@ hframes = 3
 [node name="Center" parent="SpriteHolder" index="1"]
 position = Vector2(1, -6)
 
-[node name="PointInfo" parent="." index="3"]
-visible = false
-
 [node name="SpriteAnimationPlayer" type="AnimationPlayer" parent="." index="4"]
 libraries = {
 "": SubResource("AnimationLibrary_gtoga")
 }
 autoplay = "dance"
 speed_scale = 0.4
+
+[node name="PointInfo" parent="." index="5"]
+visible = false

@@ -24,8 +24,8 @@
 - - [x] Damage labels
 - - [x] Death, hit, strong hit, miss animations
 - - [x] Attack animations
-- - [ ] Attack/heal actions and damage formulas
-- - [ ] Critical hits, misses, weakness hitting
+- - [x] Attack/heal actions and damage formulas
+- - [x] Critical hits, misses, weakness hitting
 - - [ ] Revival actions
 - - [?] Effects (code and animations) and effect actions
 - [x] Combat UI

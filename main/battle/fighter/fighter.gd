@@ -42,6 +42,21 @@ func _ready() -> void:
 	tp = stats.max_tp
 	%Sprite2D.material = %Sprite2D.material.duplicate()
 
+func battle_reset() -> void:
+	for effect in %Effects.get_children():
+		effect.fighter = self
+		effect.remove()
+	
+	critical_multiplier = 1.0
+	accuracy_multiplier = 1.0
+	dodge_multiplier = 1.0
+	damage_in_multiplier = 1.0
+	damage_out_multiplier = 1.0
+	added_fire_weakness = false
+	added_water_weakness = false
+	added_elec_weakness = false
+	added_phys_resistance = false
+
 func after_turn() -> void:
 	for effect in %Effect.get_children():
 		if effect.active:
@@ -72,8 +87,10 @@ func hurt(damage: int, is_crit: bool, is_miss: bool, is_weak: bool) -> void:
 		widget = normal_damage_widget.instantiate()
 		text = " " + str(damage)
 	
+	hp -= int(damage)
+	
 	widget.damage(text)
-	# I know, this is terrible...
+	
 	get_parent().get_parent().add_child(widget)
 	widget.global_position = %Center.global_position - Vector2(widget.get_node("%DamageLabel").size.x / 2, 0)
 

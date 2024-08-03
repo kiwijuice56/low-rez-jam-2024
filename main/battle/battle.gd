@@ -32,6 +32,7 @@ func battle(encounter: Encounter) -> bool:
 	var player_party: Array[Fighter] = Ref.player_party.get_active_fighters()
 	for fighter in player_party:
 		fighter.visible = true
+		fighter.battle_reset()
 	
 	var enemy_party: Array[Fighter] = []
 	for scene in encounter.fighters:
@@ -44,6 +45,7 @@ func battle(encounter: Encounter) -> bool:
 		
 		%EnemyParty.add_child(new_fighter)
 		enemy_party.append(new_fighter)
+		new_fighter.battle_reset()
 		new_fighter.visible = true
 	position_fighters(player_party, enemy_party)
 	%Text.display_text("a battle broke out!", TEXT_SPEED)
@@ -102,6 +104,7 @@ func battle(encounter: Encounter) -> bool:
 					else:
 						full_turns -= 1
 			await get_tree().create_timer(POST_ACTION_DELAY).timeout
+		%Text.display_text(" ", TEXT_SPEED)
 		player_turn = not player_turn
 
 	### BATTLE LOOP END ###
