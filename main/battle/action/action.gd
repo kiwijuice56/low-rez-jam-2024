@@ -19,7 +19,8 @@ const DELAY: float = 0.4
 @export var hit_amount_max: int = 13
 @export_group("Status Effect")
 @export var status_chance: float = 1.0
-@export_flags("Poison", "Ablaze", "Bless", "Charm", "Broken", "Cool", "Aura", "Oily", "Wet", "Charged", "Stun") var status_effects: int
+### "Bleed", "Ablaze", "Bless", "Charm", "Broken", "Cool", "Aura", "Oily", "Wet", "Charged", "Stun"
+@export var status_effects: Array[String]
 @export_group("Element")
 @export var is_phys: bool = false
 @export var is_fire: bool = false
@@ -65,13 +66,22 @@ func hit_calculation(user: Fighter, target: Fighter) -> Dictionary:
 	if is_phys and target.added_phys_resistance:
 		data.damage *= 0.5
 	
-	if randf() < critical * user.critical_multiplier:
+	var luck_boost: float = 1.0 + 0.25 * clamp((user.stats.luck - target.stats.luck) / 33.0, -1, 1)
+	
+	if critical > 0 and randf() < critical * user.critical_multiplier * luck_boost:
 		data.crit = true
 		data.damage *= 2
 	
-	if randf() > accuracy / target.dodge_multiplier * user.accuracy_multiplier:
+	if accuracy < 1 and randf() > accuracy / target.dodge_multiplier * user.accuracy_multiplier * luck_boost:
 		data.miss = true
 		data.damage = 0
+	
+	if randf() < status_chance * luck_boost:
+		var base_status_turns: float = randf_range(0.0, 0.25) + 3.0 * (1.0 + (user.stats.luck - target.stats.luck) / 32.0)
+		for status in status_effects:
+			var actual_turns: int = max(1, round(base_status_turns * target.get_node("%Effects").get_node(status).length_multiplier))
+			target.get_node("%Effects").get_node(status).reset_timer(actual_turns)
+			target.get_node("%Effects").get_node(status).apply()
 	
 	return data
 
@@ -85,9 +95,7 @@ func per_target_act(user: Fighter, target: Fighter, animation: BattleAnimation) 
 	await new_animation.animate()
 	
 	var data: Dictionary = hit_calculation(user, target)
-	print(data)
 	target.hurt(data.damage, "crit" in data, "miss" in data, "weak" in data)
-	
 	
 	if "miss" in data:
 		current_use = TurnUsage.WASTE

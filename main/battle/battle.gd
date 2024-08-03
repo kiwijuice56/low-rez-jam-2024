@@ -103,6 +103,7 @@ func battle(encounter: Encounter) -> bool:
 						half_turns -= 1
 					else:
 						full_turns -= 1
+			await fighter.after_turn()
 			await get_tree().create_timer(POST_ACTION_DELAY).timeout
 		%Text.display_text(" ", TEXT_SPEED)
 		player_turn = not player_turn

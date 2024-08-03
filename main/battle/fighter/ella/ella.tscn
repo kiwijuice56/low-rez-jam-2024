@@ -10,8 +10,8 @@
 
 [sub_resource type="Resource" id="Resource_glup2"]
 script = ExtResource("2_6eory")
-max_hp = 12
-max_tp = 9
+max_hp = 99
+max_tp = 99
 strength = 12
 magic = 9
 defence = 12
@@ -21,19 +21,7 @@ unlocked_skills = Array[int]([])
 [node name="Ella" instance=ExtResource("1_h8m6s")]
 stats = SubResource("Resource_glup2")
 
-[node name="Stomp" parent="Actions/Skills" index="0" instance=ExtResource("3_7el6r")]
-icon = ExtResource("4_sggcg")
-description = "three weak hits"
-tp_cost = 4
-power = 1.5
-accuracy = 0.97
-critical = 0.08
-hit_amount_min = 3
-hit_amount_max = 3
-is_phys = true
-animations = Array[PackedScene]([ExtResource("6_bkskl")])
-
-[node name="Nova" parent="Actions/Skills" index="1" instance=ExtResource("3_7el6r")]
+[node name="Nova" parent="Actions/Skills" index="0" instance=ExtResource("3_7el6r")]
 icon = ExtResource("5_waisw")
 description = "elec magic to all foes"
 tp_cost = 8
@@ -41,11 +29,12 @@ power = 3.0
 target_amount = "All"
 hit_amount_min = 2
 hit_amount_max = 4
+status_effects = Array[String](["Ablaze"])
 is_elec = true
 animations = Array[PackedScene]([ExtResource("6_bkskl")])
 per_target_delay = 0.2
 
-[node name="Explode" parent="Actions/Skills" index="2" instance=ExtResource("3_7el6r")]
+[node name="Explode" parent="Actions/Skills" index="1" instance=ExtResource("3_7el6r")]
 icon = ExtResource("4_sggcg")
 description = "many hits to random foes"
 use_text = "%s wrecks them!"
@@ -56,11 +45,12 @@ critical = 0.15
 target_amount = "Random"
 hit_amount_min = 4
 hit_amount_max = 8
+status_effects = Array[String](["Bleed"])
 is_phys = true
 animations = Array[PackedScene]([ExtResource("6_bkskl")])
 per_target_delay = 0.2
 
-[node name="Mangle" parent="Actions/Skills" index="3" instance=ExtResource("3_7el6r")]
+[node name="Mangle" parent="Actions/Skills" index="2" instance=ExtResource("3_7el6r")]
 icon = ExtResource("4_sggcg")
 description = "applies \"broken\""
 tp_cost = 8

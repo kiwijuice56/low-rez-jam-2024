@@ -38,8 +38,6 @@ var dead: bool = false
 
 func _ready() -> void:
 	visible = false
-	hp = stats.max_hp
-	tp = stats.max_tp
 	%Sprite2D.material = %Sprite2D.material.duplicate()
 	%Sprite2D.material.set_shader_parameter("h_frames", %Sprite2D.hframes)
 	%Effects.global_position = %Center.global_position
@@ -48,7 +46,8 @@ func battle_reset() -> void:
 	for effect in %Effects.get_children():
 		effect.fighter = self
 		effect.remove()
-	
+	hp = stats.max_hp
+	tp = stats.max_tp
 	critical_multiplier = 1.0
 	accuracy_multiplier = 1.0
 	dodge_multiplier = 1.0
@@ -60,7 +59,7 @@ func battle_reset() -> void:
 	added_phys_resistance = false
 
 func after_turn() -> void:
-	for effect in %Effect.get_children():
+	for effect in %Effects.get_children():
 		if effect.active:
 			await effect.after_turn()
 

@@ -1,6 +1,6 @@
 class_name Effect extends Node2D
 
-@export var length_multiplier: float
+@export var length_multiplier: float = 1.0
 
 var active: bool = false
 var timer: int 
@@ -20,4 +20,4 @@ func apply() -> void:
 
 func remove() -> void:
 	active = false
-	visible = true # false
+	visible = false
