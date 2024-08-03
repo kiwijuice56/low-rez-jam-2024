@@ -18,7 +18,6 @@ signal advanced(accepted: bool)
 func _ready() -> void:
 	set_process_input(false)
 	set_process(false)
-	visible = false
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("right"):
@@ -60,13 +59,13 @@ func update_info() -> void:
 		Ref.battle_text.display_text(selected.description, Ref.battle.TEXT_SPEED)
 
 func update_position() -> void:
-	%ChoiceContainer.global_position.x = initial_x + fposmod(internal_x, BUTTON_WIDTH * (choice_count))
+	%ChoiceContainer.global_position.x = initial_x + fposmod(internal_x, BUTTON_WIDTH * choice_count)
 
 func test_accept() -> void:
 	if not %ChoiceContainer.get_child(posmod(idx, choice_count)).is_disabled:
 		advanced.emit(true)
 
-func initialize(initial_idx: int,  can_cancel: bool, buttons: Array[ChoiceButton]) -> void:
+func initialize(initial_idx: int, can_cancel: bool, buttons: Array[ChoiceButton]) -> void:
 	choice_count = len(buttons)
 	idx = initial_idx
 	cancel_enabled = can_cancel
@@ -83,7 +82,9 @@ func initialize(initial_idx: int,  can_cancel: bool, buttons: Array[ChoiceButton
 			var new_button: ChoiceButton = button.duplicate()
 			%ChoiceContainer.add_child(new_button)
 	
-	update_position()
+	%ChoiceContainer.get_child(choice_count + initial_idx).is_hovered = true
+	update_info()
+	update_position.call_deferred()
 
 func get_choice() -> ChoiceButton:
 	set_process(true)

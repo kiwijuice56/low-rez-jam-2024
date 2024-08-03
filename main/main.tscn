@@ -189,6 +189,10 @@ target_icon = ExtResource("15_v7yx1")
 
 [node name="TargetIcon" parent="Battle/UI/TargetSelecter" instance=ExtResource("15_v7yx1")]
 
+[node name="MenuFighterPosition" type="Marker2D" parent="Battle/UI"]
+unique_name_in_owner = true
+position = Vector2(15, 50)
+
 [node name="FighterLayer" type="CanvasLayer" parent="Battle"]
 unique_name_in_owner = true
 visible = false
@@ -289,6 +293,9 @@ unique_name_in_owner = true
 [node name="BattleMusicPlayer" type="AudioStreamPlayer" parent="Battle"]
 unique_name_in_owner = true
 bus = &"Music"
+
+[node name="ItemActions" type="Node2D" parent="Battle"]
+unique_name_in_owner = true
 
 [node name="PaletteLayer" type="CanvasLayer" parent="."]
 

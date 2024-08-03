@@ -4,6 +4,7 @@ const TEXT_SPEED: int = 64
 const PREBATTLE_DELAY: float = 2.0
 const POST_ACTION_DELAY: float = 1.0
 const MUSIC_TRANS_TIME: float = 0.2
+const TRANS_TIME: float = 0.08
 
 var in_party_view: bool = true
 
@@ -28,13 +29,19 @@ func battle(encounter: Encounter) -> bool:
 	%FighterLayer.visible = true
 	
 	var player_party: Array[Fighter] = Ref.player_party.get_active_fighters()
+	for fighter in player_party:
+		fighter.visible = true
+	
 	var enemy_party: Array[Fighter] = []
 	for scene in encounter.fighters:
 		var new_fighter: Fighter = scene.instantiate()
 		%EnemyParty.add_child(new_fighter)
 		enemy_party.append(new_fighter)
+		new_fighter.visible = true
 	position_fighters(player_party, enemy_party)
 	%Text.display_text("a battle broke out!", TEXT_SPEED)
+	
+	await party_view(player_party[0], player_party)
 	
 	await Ref.transition.trans_out()
 	
@@ -85,6 +92,10 @@ func battle(encounter: Encounter) -> bool:
 	### BATTLE LOOP END ###
 	
 	await Ref.transition.trans_in()
+	
+	for fighter in player_party:
+		fighter.visible = false
+	
 	%UI.visible = false
 	%FighterLayer.visible = false
 	Ref.world.loaded_room.resume_music()
@@ -102,12 +113,12 @@ func get_player_choice(fighter: Fighter, player_party: Array[Fighter], enemy_par
 				Ref.battle_text.display_text("what will %s do?" % fighter.name, TEXT_SPEED)
 				_initialize_outer(fighter, player_party, enemy_party, node.idx)
 				if in_party_view:
-					await menu_view(fighter)
+					await menu_view(fighter, player_party)
 				
 				var choice: Dictionary = await _get_outer_choice()
 				
 				if "action" in choice and choice.action.action_name == "pass":
-					await party_view()
+					await party_view(fighter, player_party)
 					return {"action": choice.action, "targets": []}
 				
 				stack.append({"level": "outer", "idx": choice.idx})
@@ -118,14 +129,14 @@ func get_player_choice(fighter: Fighter, player_party: Array[Fighter], enemy_par
 					stack.append({"level": "target", "action": choice.action})
 			"target":
 				if not in_party_view:
-					await party_view()
+					await party_view(fighter, player_party)
 				var targets: Array[Fighter] = _get_targets(node.action, fighter, player_party, enemy_party) 
 				if len(targets) == 0:
 					continue
 			"skill":
 				_initialize_skills(fighter, player_party, enemy_party, node.idx)
 				if in_party_view:
-					await menu_view(fighter)
+					await menu_view(fighter, player_party)
 				
 				var choice: Dictionary = await _get_action_choice()
 				
@@ -136,7 +147,7 @@ func get_player_choice(fighter: Fighter, player_party: Array[Fighter], enemy_par
 			"item":
 				_initialize_items(fighter, player_party, enemy_party, node.idx)
 				if in_party_view:
-					await menu_view(fighter)
+					await menu_view(fighter, player_party)
 				
 				var choice: Dictionary = await _get_action_choice()
 				
@@ -174,18 +185,63 @@ func _initialize_outer(fighter: Fighter, player_party: Array[Fighter], enemy_par
 	%ChoiceMenu.initialize(initial_idx, false, buttons)
 
 func _initialize_items(_fighter: Fighter, player_party: Array[Fighter], enemy_party: Array[Fighter], initial_idx: int) -> void:
-	pass
+	var buttons: Array[ChoiceButton] = []
+	for skill in %ItemActions.get_children():
+		var new_button: ChoiceButton = %ChoiceMenu.choice_button_scene.instantiate()
+		new_button.initialize(skill, player_party, enemy_party, true)
+		
+		buttons.append(new_button)
+	%ChoiceMenu.initialize(initial_idx, true, buttons)
 
 func _initialize_skills(fighter: Fighter, player_party: Array[Fighter], enemy_party: Array[Fighter], initial_idx: int) -> void:
-	pass
+	var buttons: Array[ChoiceButton] = []
+	for skill in fighter.get_node("%Skills").get_children():
+		var new_button: ChoiceButton = %ChoiceMenu.choice_button_scene.instantiate()
+		new_button.initialize(skill, player_party, enemy_party)
+		buttons.append(new_button)
+	%ChoiceMenu.initialize(initial_idx, true, buttons)
 
-func party_view() -> void:
+func party_view(fighter: Fighter, player_party: Array[Fighter]) -> void:
+	var tween: Tween = get_tree().create_tween().set_parallel(true)
+	
+	%ChoiceMenu.position.y = 0
+	tween.tween_property(%ChoiceMenu, "position:y", 25, TRANS_TIME)
+	
+	fighter.global_position = %MenuFighterPosition.global_position 
+	tween.tween_property(fighter, "global_position:y", %MenuFighterPosition.global_position.y + 25, TRANS_TIME)
+	
+	await tween.finished
+	
+	tween = get_tree().create_tween().set_parallel(true)
+	
+	position_players(player_party, Vector2(0, 25))
+	for member in player_party:
+		tween.tween_property(member, "global_position:y", member.global_position.y - 25, TRANS_TIME)
+	
+	await tween.finished
+	
 	in_party_view = true
-	%ChoiceMenu.visible = false
 
-func menu_view(fighter: Fighter) -> void:
+func menu_view(fighter: Fighter, player_party: Array[Fighter]) -> void:
+	var tween: Tween = get_tree().create_tween().set_parallel(true)
+	position_players(player_party, Vector2())
+	for member in player_party:
+		tween.tween_property(member, "global_position:y", member.global_position.y + 25, TRANS_TIME)
+	
+	await tween.finished
+	
+	tween = get_tree().create_tween().set_parallel(true)
+	
+	%ChoiceMenu.position.y = 25
+	tween.tween_property(%ChoiceMenu, "position:y", 0, TRANS_TIME)
+	
+	fighter.global_position = %MenuFighterPosition.global_position + Vector2(0, 25)
+	tween.tween_property(fighter, "global_position:y", %MenuFighterPosition.global_position.y, TRANS_TIME)
+	
+	await tween.finished
+	
 	in_party_view = false
-	%ChoiceMenu.visible = true
+	
 
 func get_alive_fighters(pool: Array[Fighter]) -> Array[Fighter]:
 	var alive: Array[Fighter] = []
@@ -194,9 +250,12 @@ func get_alive_fighters(pool: Array[Fighter]) -> Array[Fighter]:
 			alive.append(fighter)
 	return alive
 
-func position_fighters(player_party: Array[Fighter], enemy_party: Array[Fighter]) -> void:
+func position_players(player_party: Array[Fighter], offset: Vector2) -> void:
 	for i in range(len(player_party)):
-		player_party[i].global_position = %PlayerPositions.get_child(len(player_party) - 1).get_child(i).global_position
+		player_party[i].global_position = offset + %PlayerPositions.get_child(len(player_party) - 1).get_child(i).global_position
+
+func position_fighters(player_party: Array[Fighter], enemy_party: Array[Fighter]) -> void:
+	position_players(player_party, Vector2())
 	for i in range(len(enemy_party)):
 		enemy_party[i].global_position = %EnemyPositions.get_child(len(enemy_party) - 1).get_child(i).global_position
 

@@ -36,6 +36,7 @@ var added_elec_weakness: bool = false
 var dead: bool = false
 
 func _ready() -> void:
+	visible = false
 	hp = stats.max_hp
 	tp = stats.max_tp
 	%Sprite2D.material = %Sprite2D.material.duplicate()
