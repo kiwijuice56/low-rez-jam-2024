@@ -19,7 +19,7 @@
 - - [x] Level and XP
 - - [x] Settings
 - [x] Overworld enemies
-- [?] Combat system
+- [x] Combat system
 - - [x] Battle flow (starting, looping thru turns, ending)
 - - [x] Damage labels (healing)
 - - [x] Death, hit, strong hit, miss animations
@@ -28,7 +28,7 @@
 - - [x] Critical hits, misses, weakness hitting
 - - [x] Revival actions + complete death state and animations
 - - [x] Pass action
-- - [?] Effects (code and animations) and effect actions
+- - [x] Effects (code and animations) and effect actions
 - [x] Combat UI
 - - [x] Party member controls and their positioning
 - - [x] Basic flow/animation and action selection

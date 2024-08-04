@@ -117,7 +117,7 @@ func hurt(damage: int, is_crit: bool, is_miss: bool, is_weak: bool, is_revival: 
 	
 	hp -= damage
 	
-	if not damage == 0:
+	if not damage == 0 or is_miss:
 		widget.damage(text)
 		get_parent().get_parent().add_child(widget)
 		widget.global_position = %Center.global_position - Vector2(widget.get_node("%DamageLabel").size.x / 2, 0)

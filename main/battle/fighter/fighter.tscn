@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://bnbb4opeecksl"]
+[gd_scene load_steps=59 format=3 uid="uid://bnbb4opeecksl"]
 
 [ext_resource type="Script" path="res://main/battle/fighter/fighter.gd" id="1_7gdsa"]
 [ext_resource type="PackedScene" uid="uid://cuko56w08yuso" path="res://main/battle/action/action.tscn" id="2_42vt3"]
@@ -25,9 +25,10 @@
 [ext_resource type="Texture2D" uid="uid://bjgmqyf6y41dr" path="res://main/battle/fighter/effect/charm.png" id="13_2r20h"]
 [ext_resource type="Texture2D" uid="uid://7ianniwhess3" path="res://main/world/item_pickup/circle.png" id="13_byshb"]
 [ext_resource type="Script" path="res://main/battle/fighter/effect/wet.gd" id="13_cwu21"]
-[ext_resource type="Script" path="res://main/battle/fighter/effect/effect.gd" id="13_rmtpq"]
 [ext_resource type="Script" path="res://main/battle/fighter/effect/charged.gd" id="14_1nsvt"]
 [ext_resource type="Texture2D" uid="uid://b2j3uq7sfgb4c" path="res://main/battle/fighter/effect/burning.png" id="14_wg7il"]
+[ext_resource type="Script" path="res://main/battle/fighter/effect/damage_effect.gd" id="15_mmlcr"]
+[ext_resource type="PackedScene" uid="uid://28chlk8w3lmf" path="res://main/battle/action/battle_animation/heal/heal.tscn" id="18_hxygw"]
 [ext_resource type="Texture2D" uid="uid://ccrtbhwcjirw7" path="res://main/battle/fighter/effect/wet.png" id="18_rck3c"]
 [ext_resource type="Script" path="res://main/battle/fighter/effect/stun.gd" id="19_2ltam"]
 [ext_resource type="Texture2D" uid="uid://dtcfui8bdacb2" path="res://main/battle/fighter/effect/stun.png" id="20_rwres"]
@@ -428,9 +429,10 @@ centered = false
 unique_name_in_owner = true
 position = Vector2(0, -5)
 
-[node name="Bleed" type="Node2D" parent="SpriteHolder/Effects"]
+[node name="Bleed" type="Node2D" parent="SpriteHolder/Effects" node_paths=PackedStringArray("action")]
 visible = false
-script = ExtResource("13_rmtpq")
+script = ExtResource("15_mmlcr")
+action = NodePath("BleedAction")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="SpriteHolder/Effects/Bleed"]
 amount = 12
@@ -445,9 +447,30 @@ scale_amount_max = 0.2
 scale_amount_curve = SubResource("Curve_tclgk")
 color_ramp = SubResource("Gradient_488oo")
 
-[node name="Ablaze" type="Node2D" parent="SpriteHolder/Effects"]
+[node name="BleedAction" parent="SpriteHolder/Effects/Bleed" instance=ExtResource("2_42vt3")]
+unique_name_in_owner = true
+position = Vector2(3, 7)
+icon = ExtResource("6_ju4h5")
+use_text = "%s is bleeding!"
+proportion_damage = 0.07
+hit_amount_max = 1
+status_chance = 0.0
+animations = Array[PackedScene]([ExtResource("7_5ut8c")])
+
+[node name="Ablaze" type="Node2D" parent="SpriteHolder/Effects" node_paths=PackedStringArray("action")]
 visible = false
-script = ExtResource("13_rmtpq")
+script = ExtResource("15_mmlcr")
+action = NodePath("BurnAction")
+
+[node name="BurnAction" parent="SpriteHolder/Effects/Ablaze" instance=ExtResource("2_42vt3")]
+unique_name_in_owner = true
+position = Vector2(3, 7)
+icon = ExtResource("6_ju4h5")
+use_text = "%s is ablaze!"
+proportion_damage = 0.07
+hit_amount_max = 1
+status_chance = 0.0
+animations = Array[PackedScene]([ExtResource("7_5ut8c")])
 
 [node name="Sprite2D" type="Sprite2D" parent="SpriteHolder/Effects/Ablaze"]
 position = Vector2(-8, -10)
@@ -461,6 +484,27 @@ libraries = {
 }
 autoplay = "burn"
 speed_scale = 0.6
+
+[node name="Bless" type="Node2D" parent="SpriteHolder/Effects" node_paths=PackedStringArray("action")]
+visible = false
+script = ExtResource("15_mmlcr")
+action = NodePath("BlessAction")
+
+[node name="BlessAction" parent="SpriteHolder/Effects/Bless" instance=ExtResource("2_42vt3")]
+unique_name_in_owner = true
+position = Vector2(3, 7)
+icon = ExtResource("6_ju4h5")
+use_text = "%s is holy!"
+proportion_damage = -0.07
+hit_amount_max = 1
+status_chance = 0.0
+animations = Array[PackedScene]([ExtResource("18_hxygw")])
+
+[node name="Sprite2D" type="Sprite2D" parent="SpriteHolder/Effects/Bless"]
+position = Vector2(-8, -10)
+texture = ExtResource("14_wg7il")
+centered = false
+hframes = 3
 
 [node name="Broken" type="Node2D" parent="SpriteHolder/Effects"]
 visible = false

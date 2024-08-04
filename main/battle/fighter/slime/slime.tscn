@@ -80,6 +80,8 @@ animations = Array[PackedScene]([ExtResource("4_7c3sp")])
 
 [node name="Attack" parent="Actions" index="1"]
 target_amount = "All"
+status_chance = 1.0
+status_effects = Array[String](["Bleed"])
 
 [node name="ShadowSprite2D" parent="." index="1"]
 texture = ExtResource("5_bfxls")

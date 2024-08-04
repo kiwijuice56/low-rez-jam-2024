@@ -12,6 +12,7 @@ const DELAY: float = 0.4
 @export var accuracy: float = 1.0
 @export var critical: float = 0.0
 @export var piece: bool = false
+@export var proportion_damage: float = 0
 @export var constant_damage: int = 0
 @export var change_tp: bool = false
 @export_enum("magic", "strength") var attack_stat: String = "strength" 
@@ -77,8 +78,8 @@ func hit_calculation(user: Fighter, target: Fighter) -> Dictionary:
 	if accuracy < 1 and randf() > accuracy / target.dodge_multiplier * user.accuracy_multiplier * luck_boost:
 		data.miss = true
 		data.damage = 0
-	
-	if randf() < status_chance * luck_boost:
+		
+	if not "miss" in data and (status_chance >= 1 or randf() < status_chance * luck_boost):
 		var base_status_turns: float = randf_range(0.0, 0.25) + 3.0 * (1.0 + (user.stats.luck - target.stats.luck) / 32.0)
 		for status in status_effects:
 			var status_node: Effect = target.get_node("%Effects").get_node(status)
@@ -87,6 +88,9 @@ func hit_calculation(user: Fighter, target: Fighter) -> Dictionary:
 			
 			if not target.dead and not status_node.active:
 				status_node.apply()
+	
+	if not is_zero_approx(proportion_damage):
+		data.damage = round(proportion_damage * (target.stats.max_tp if change_tp else target.stats.max_hp))
 	
 	return data
 
