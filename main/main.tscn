@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dl3ps7eki0b7b"]
+[gd_scene load_steps=30 format=3 uid="uid://dl3ps7eki0b7b"]
 
 [ext_resource type="PackedScene" uid="uid://txvddbv8pfiv" path="res://main/world/character/player/player.tscn" id="1_84yfs"]
 [ext_resource type="Script" path="res://main/main.gd" id="1_q20fr"]
@@ -43,11 +43,6 @@ shader_parameter/palette_size = 23
 shader_parameter/x = 0.0
 shader_parameter/palette_1 = ExtResource("13_vouqy")
 shader_parameter/palette_2 = ExtResource("14_5avsq")
-
-[sub_resource type="Environment" id="Environment_ge1nn"]
-background_mode = 3
-background_canvas_max_layer = 10
-adjustment_saturation = 1.15
 
 [node name="Main" type="Node"]
 script = ExtResource("1_q20fr")
@@ -381,6 +376,3 @@ layer = 2
 visible = false
 
 [node name="LoadingLayer" parent="." instance=ExtResource("24_gb8q0")]
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_ge1nn")

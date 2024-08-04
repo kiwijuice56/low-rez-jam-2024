@@ -15,7 +15,7 @@ max_tp = 99
 strength = 12
 magic = 9
 defence = 12
-luck = 9
+luck = 99
 unlocked_skills = Array[int]([])
 
 [node name="Ella" instance=ExtResource("1_h8m6s")]
