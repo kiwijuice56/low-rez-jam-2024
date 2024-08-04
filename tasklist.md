@@ -21,13 +21,13 @@
 - [x] Overworld enemies
 - [?] Combat system
 - - [x] Battle flow (starting, looping thru turns, ending)
-- - [?] Damage labels (healing)
+- - [x] Damage labels (healing)
 - - [x] Death, hit, strong hit, miss animations
 - - [x] Attack animations
 - - [x] Attack/heal actions and damage formulas
 - - [x] Critical hits, misses, weakness hitting
 - - [ ] Revival actions
-- - [ ] Pass action
+- - [x] Pass action
 - - [?] Effects (code and animations) and effect actions
 - [x] Combat UI
 - - [x] Party member controls and their positioning

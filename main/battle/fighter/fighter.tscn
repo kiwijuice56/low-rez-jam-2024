@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://bnbb4opeecksl"]
+[gd_scene load_steps=57 format=3 uid="uid://bnbb4opeecksl"]
 
 [ext_resource type="Script" path="res://main/battle/fighter/fighter.gd" id="1_7gdsa"]
 [ext_resource type="PackedScene" uid="uid://cuko56w08yuso" path="res://main/battle/action/action.tscn" id="2_42vt3"]
@@ -6,10 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://bfugie8wrqt4l" path="res://main/battle/ui/damage_widget/critical_damage_widget/critical_damage_widget.tscn" id="3_8bwf5"]
 [ext_resource type="Texture2D" uid="uid://c81ydnq2r2hdj" path="res://main/battle/fighter/enoch/enoch.png" id="3_kdrmx"]
 [ext_resource type="PackedScene" uid="uid://deotpp6wnlyl8" path="res://main/battle/ui/damage_widget/miss_damage_widget/miss_damage_widget.tscn" id="4_anc4h"]
+[ext_resource type="PackedScene" uid="uid://ce4cnfbite600" path="res://main/battle/ui/damage_widget/heal_damage_widget/heal_damage_widget.tscn" id="5_xhgs1"]
 [ext_resource type="Shader" path="res://main/battle/fighter/flash.gdshader" id="6_ipv7e"]
 [ext_resource type="Texture2D" uid="uid://dbbr4mrfjf3ir" path="res://main/battle/action/icons/icon_attack.png" id="6_ju4h5"]
 [ext_resource type="PackedScene" uid="uid://dagp5qivcpmn3" path="res://main/battle/action/battle_animation/explosion/explosion.tscn" id="7_5ut8c"]
 [ext_resource type="Texture2D" uid="uid://dghv8njaox5rt" path="res://main/battle/action/icons/icon_pass.png" id="7_vcslg"]
+[ext_resource type="Script" path="res://main/battle/action/pass/pass.gd" id="8_ooc0e"]
 [ext_resource type="PackedScene" uid="uid://cvscxguxb7jke" path="res://main/battle/ui/colored_text/colored_text.tscn" id="8_uo7mv"]
 [ext_resource type="Script" path="res://main/battle/fighter/effect/charm.gd" id="9_2sqcm"]
 [ext_resource type="Script" path="res://main/battle/fighter/shadow.gd" id="9_7imjp"]
@@ -301,10 +303,26 @@ tracks/0/keys = {
 "values": [1.0, 0.0]
 }
 
+[sub_resource type="Animation" id="Animation_cku3n"]
+resource_name = "heal"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteHolder/Sprite2D:material:shader_parameter/flash")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3d25s"]
 _data = {
 "RESET": SubResource("Animation_vw8o4"),
 "death": SubResource("Animation_ko82r"),
+"heal": SubResource("Animation_cku3n"),
 "hurt": SubResource("Animation_y8yea"),
 "miss": SubResource("Animation_15xcu"),
 "revive": SubResource("Animation_xmgxv")
@@ -329,6 +347,7 @@ base_pass = NodePath("Actions/Pass")
 normal_damage_widget = ExtResource("2_uefe0")
 critical_damage_widget = ExtResource("3_8bwf5")
 miss_damage_widget = ExtResource("4_anc4h")
+heal_damage_widget = ExtResource("5_xhgs1")
 
 [node name="Actions" type="Node2D" parent="."]
 
@@ -345,7 +364,9 @@ status_chance = 0.0
 animations = Array[PackedScene]([ExtResource("7_5ut8c")])
 
 [node name="Pass" parent="Actions" instance=ExtResource("2_42vt3")]
+script = ExtResource("8_ooc0e")
 icon = ExtResource("7_vcslg")
+use_text = "%s passed their turn!"
 accuracy = 0.0
 target_group = "All"
 target_amount = "All"

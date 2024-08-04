@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dl3ps7eki0b7b"]
+[gd_scene load_steps=30 format=3 uid="uid://dl3ps7eki0b7b"]
 
 [ext_resource type="PackedScene" uid="uid://txvddbv8pfiv" path="res://main/world/character/player/player.tscn" id="1_84yfs"]
 [ext_resource type="Script" path="res://main/main.gd" id="1_q20fr"]
@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://c28vf4m6j63l1" path="res://main/battle/ui/target_selecter/target_selecter.tscn" id="16_ytdqf"]
 [ext_resource type="PackedScene" uid="uid://cuko56w08yuso" path="res://main/battle/action/action.tscn" id="17_7qsbk"]
 [ext_resource type="Texture2D" uid="uid://bsogfupalaabr" path="res://main/battle/action/icons/icon_heal.png" id="18_s6qc8"]
+[ext_resource type="PackedScene" uid="uid://dagp5qivcpmn3" path="res://main/battle/action/battle_animation/explosion/explosion.tscn" id="19_1o4l7"]
 [ext_resource type="Texture2D" uid="uid://dwm2gd3f6v21p" path="res://main/battle/action/icons/icon_magic.png" id="19_e4607"]
 [ext_resource type="PackedScene" uid="uid://cvh8igwahj8wg" path="res://main/loading/loading_layer.tscn" id="24_gb8q0"]
 
@@ -311,14 +312,17 @@ unique_name_in_owner = true
 icon = ExtResource("18_s6qc8")
 description = "heal one friend"
 verb = "feed to"
+constant_damage = -20
 target_group = "Own"
 hit_amount_max = 1
+animations = Array[PackedScene]([ExtResource("19_1o4l7")])
 is_item = true
 
 [node name="Stirfry" parent="Battle/ItemActions" instance=ExtResource("17_7qsbk")]
 icon = ExtResource("18_s6qc8")
 description = "heal all friends"
 verb = "feed to"
+constant_damage = -20
 target_group = "Own"
 target_amount = "All"
 hit_amount_max = 1

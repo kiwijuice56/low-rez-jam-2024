@@ -147,9 +147,10 @@ func get_player_choice(fighter: Fighter, player_party: Array[Fighter], enemy_par
 				
 				var choice: Dictionary = await _get_outer_choice()
 				
-				if "action" in choice and choice.action.name == "pass":
+				if "action" in choice and choice.action.name.to_lower() == "pass":
 					await party_view(fighter, player_party)
-					return {"action": choice.action, "targets": []}
+					var empty: Array[Fighter] = []
+					return {"action": choice.action, "targets": empty}
 				
 				stack.append({"level": "outer", "idx": choice.idx})
 				

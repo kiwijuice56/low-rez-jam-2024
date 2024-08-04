@@ -13,6 +13,7 @@ class_name Fighter extends Node2D
 @export var normal_damage_widget: PackedScene
 @export var critical_damage_widget: PackedScene
 @export var miss_damage_widget: PackedScene
+@export var heal_damage_widget: PackedScene
 
 var hp: int:
 	set(val):
@@ -79,8 +80,6 @@ func hurt(damage: int, is_crit: bool, is_miss: bool, is_weak: bool) -> void:
 	%SpriteHolder.position = Vector2()
 	%Sprite2D.material.set_shader_parameter("flash", Color.BLACK)
 	
-	
-	
 	if is_miss:
 		%AnimationPlayer.play("miss")
 		widget = miss_damage_widget.instantiate()
@@ -89,6 +88,10 @@ func hurt(damage: int, is_crit: bool, is_miss: bool, is_weak: bool) -> void:
 		%AnimationPlayer.play("hurt" if hp - damage > 0 else "death")
 		widget = critical_damage_widget.instantiate()
 		text = " " + str(damage)
+	elif damage < 0:
+		%AnimationPlayer.play("heal")
+		widget = heal_damage_widget.instantiate()
+		text = " +" + str(abs(damage))
 	else:
 		%AnimationPlayer.play("hurt" if hp - damage > 0 else "death")
 		widget = normal_damage_widget.instantiate()
