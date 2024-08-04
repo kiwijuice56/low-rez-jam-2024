@@ -40,7 +40,7 @@ theme = ExtResource("2_54tkr")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = 0
 theme_override_fonts/font = SubResource("FontVariation_0kjtv")
-text = " 99"
+text = " 999"
 horizontal_alignment = 2
 
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer"]

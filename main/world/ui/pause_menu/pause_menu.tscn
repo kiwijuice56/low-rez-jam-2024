@@ -1,19 +1,39 @@
-[gd_scene load_steps=21 format=3 uid="uid://dpswo7nhpp30p"]
+[gd_scene load_steps=28 format=3 uid="uid://dpswo7nhpp30p"]
 
 [ext_resource type="Theme" uid="uid://evv5alve252b" path="res://main/theme/theme.tres" id="1_rs2m4"]
 [ext_resource type="PackedScene" uid="uid://bdir8ibmp15l2" path="res://main/world/ui/flicker/flicker.tscn" id="2_3c070"]
 [ext_resource type="Script" path="res://main/world/ui/pause_menu/pause_menu.gd" id="2_qvlpx"]
 [ext_resource type="PackedScene" uid="uid://cb507pxkyk0xm" path="res://main/world/ui/pause_menu/party_member_panel/party_member_panel.tscn" id="3_iq85w"]
+[ext_resource type="Shader" path="res://main/battle/ui/colored_text/colored_text.gdshader" id="5_2n0dd"]
 [ext_resource type="Script" path="res://main/world/ui/pause_menu/party_container/party_container.gd" id="5_7c4nc"]
 [ext_resource type="PackedScene" uid="uid://ck1yu543qt4gw" path="res://main/world/ui/pause_menu/item_submenu/item_submenu.tscn" id="5_e5v21"]
 [ext_resource type="Shader" path="res://main/transition/screen_blocky_fade.gdshader" id="5_xg6n8"]
+[ext_resource type="FontFile" uid="uid://cauc77kjpc67c" path="res://main/theme/mini_kiwi_font.ttf" id="6_drd7e"]
 [ext_resource type="PackedScene" uid="uid://c776xclvodes4" path="res://main/world/ui/pause_menu/status_submenu/status_submenu.tscn" id="7_duba8"]
+[ext_resource type="Texture2D" uid="uid://cuf4uqsylhxdh" path="res://main/world/ui/shop_menu/soul.png" id="7_hsq6w"]
 [ext_resource type="AudioStream" uid="uid://b52h2qinfu6iw" path="res://main/theme/sound/cancel.tres" id="7_qkfc3"]
 [ext_resource type="AudioStream" uid="uid://c4md8ks1818q6" path="res://main/theme/sound/accept.tres" id="8_erf2o"]
 [ext_resource type="PackedScene" uid="uid://mu6vk1igk7td" path="res://main/world/ui/pause_menu/settings_submenu/settings_submenu.tscn" id="9_320y4"]
 [ext_resource type="AudioStream" uid="uid://dv1ag3s4up115" path="res://main/theme/sound/select.tres" id="9_r58b2"]
 [ext_resource type="PackedScene" uid="uid://bilxdps8h4csj" path="res://main/world/ui/pause_menu/level_submenu/level_submenu.tscn" id="10_55kj3"]
 [ext_resource type="Script" path="res://main/world/ui/pause_menu/tip_container.gd" id="12_7363m"]
+
+[sub_resource type="Gradient" id="Gradient_r6jpn"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.423077, 0.714286)
+colors = PackedColorArray(0.207843, 0.258824, 0.352941, 1, 0.101961, 0.231373, 0.345098, 1, 0.0431373, 0.176471, 0.278431, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_p6p3o"]
+gradient = SubResource("Gradient_r6jpn")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vt5cm"]
+shader = ExtResource("5_2n0dd")
+shader_parameter/palette = SubResource("GradientTexture1D_p6p3o")
+
+[sub_resource type="FontVariation" id="FontVariation_0kjtv"]
+base_font = ExtResource("6_drd7e")
+spacing_space = -4
+spacing_top = -5
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8vrae"]
 shader = ExtResource("5_xg6n8")
@@ -69,64 +89,108 @@ theme_override_constants/margin_top = 1
 theme_override_constants/margin_right = 1
 theme_override_constants/margin_bottom = 1
 
-[node name="MainPanel" type="PanelContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 1
+
+[node name="MainPanel" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MainPanel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MainPanel"]
 layout_mode = 2
 theme_override_constants/separation = 1
 
-[node name="FlickerContainer" type="VBoxContainer" parent="MarginContainer/MainPanel/HBoxContainer"]
+[node name="FlickerContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MainPanel/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 2
 
-[node name="Flicker" parent="MarginContainer/MainPanel/HBoxContainer/FlickerContainer" instance=ExtResource("2_3c070")]
+[node name="Flicker" parent="MarginContainer/VBoxContainer/MainPanel/HBoxContainer/FlickerContainer" instance=ExtResource("2_3c070")]
 layout_mode = 2
 
-[node name="Flicker2" parent="MarginContainer/MainPanel/HBoxContainer/FlickerContainer" instance=ExtResource("2_3c070")]
+[node name="Flicker2" parent="MarginContainer/VBoxContainer/MainPanel/HBoxContainer/FlickerContainer" instance=ExtResource("2_3c070")]
 layout_mode = 2
 
-[node name="Flicker3" parent="MarginContainer/MainPanel/HBoxContainer/FlickerContainer" instance=ExtResource("2_3c070")]
+[node name="Flicker3" parent="MarginContainer/VBoxContainer/MainPanel/HBoxContainer/FlickerContainer" instance=ExtResource("2_3c070")]
 layout_mode = 2
 
-[node name="Flicker4" parent="MarginContainer/MainPanel/HBoxContainer/FlickerContainer" instance=ExtResource("2_3c070")]
+[node name="Flicker4" parent="MarginContainer/VBoxContainer/MainPanel/HBoxContainer/FlickerContainer" instance=ExtResource("2_3c070")]
 layout_mode = 2
 
-[node name="Flicker5" parent="MarginContainer/MainPanel/HBoxContainer/FlickerContainer" instance=ExtResource("2_3c070")]
+[node name="Flicker5" parent="MarginContainer/VBoxContainer/MainPanel/HBoxContainer/FlickerContainer" instance=ExtResource("2_3c070")]
 layout_mode = 2
 
-[node name="ChoiceContainer" type="VBoxContainer" parent="MarginContainer/MainPanel/HBoxContainer"]
+[node name="ChoiceContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MainPanel/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 1
 
-[node name="Party" type="Label" parent="MarginContainer/MainPanel/HBoxContainer/ChoiceContainer"]
+[node name="Party" type="Label" parent="MarginContainer/VBoxContainer/MainPanel/HBoxContainer/ChoiceContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.588235, 0.588235, 0.588235, 1)
 text = "status"
 
-[node name="Swap" type="Label" parent="MarginContainer/MainPanel/HBoxContainer/ChoiceContainer"]
+[node name="Swap" type="Label" parent="MarginContainer/VBoxContainer/MainPanel/HBoxContainer/ChoiceContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.588235, 0.588235, 0.588235, 1)
 text = "swap"
 
-[node name="Level" type="Label" parent="MarginContainer/MainPanel/HBoxContainer/ChoiceContainer"]
+[node name="Level" type="Label" parent="MarginContainer/VBoxContainer/MainPanel/HBoxContainer/ChoiceContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.588235, 0.588235, 0.588235, 1)
 text = "level"
 
-[node name="Stuff" type="Label" parent="MarginContainer/MainPanel/HBoxContainer/ChoiceContainer"]
+[node name="Stuff" type="Label" parent="MarginContainer/VBoxContainer/MainPanel/HBoxContainer/ChoiceContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.588235, 0.588235, 0.588235, 1)
 text = "stuff"
 
-[node name="Config" type="Label" parent="MarginContainer/MainPanel/HBoxContainer/ChoiceContainer"]
+[node name="Config" type="Label" parent="MarginContainer/VBoxContainer/MainPanel/HBoxContainer/ChoiceContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.588235, 0.588235, 0.588235, 1)
 text = "config"
+
+[node name="SoulContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="SoulText" type="CanvasGroup" parent="MarginContainer/VBoxContainer/SoulContainer"]
+unique_name_in_owner = true
+z_index = 1
+material = SubResource("ShaderMaterial_vt5cm")
+position = Vector2(1, 1)
+fit_margin = 0.0
+clear_margin = 0.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/SoulContainer/SoulText"]
+offset_right = 13.0
+offset_bottom = 7.0
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/SoulContainer/SoulText/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(13, 0)
+layout_mode = 2
+theme = ExtResource("1_rs2m4")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = SubResource("FontVariation_0kjtv")
+text = " 999"
+horizontal_alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/SoulContainer/SoulText/HBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+size_flags_vertical = 8
+texture = ExtResource("7_hsq6w")
+stretch_mode = 2
+
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/SoulContainer"]
+custom_minimum_size = Vector2(16, 6)
+layout_mode = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
 layout_mode = 2

@@ -11,6 +11,7 @@ var choice_idx: int = 0
 func _ready() -> void:
 	set_process_input(false)
 	visible = false
+	%SoulText.visible = false
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("accept", false):
@@ -88,6 +89,7 @@ func accept() -> void:
 	update_selection(-1)
 
 func initialize() -> void:
+	%SoulText.get_node("%Label").text = " " + str(Data.get_state("souls", 0))
 	for child in %PartyContainer.get_children():
 		%PartyContainer.remove_child(child)
 		child.queue_free()
@@ -143,6 +145,7 @@ func enter() -> void:
 	var tween: Tween = get_tree().create_tween()
 	tween.tween_property(get_parent().material, "shader_parameter/fade", 0, TRANS_TIME)
 	await tween.finished
+	%SoulText.visible = true
 	
 	set_process_input(true)
 	
@@ -150,7 +153,7 @@ func enter() -> void:
 
 func exit(full_exit: bool = false) -> void:
 	set_process_input(false)
-	
+	%SoulText.visible = false
 	get_parent().material.set_shader_parameter("fade", 0.0)
 	visible = true
 	
