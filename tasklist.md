@@ -26,7 +26,7 @@
 - - [x] Attack animations
 - - [x] Attack/heal actions and damage formulas
 - - [x] Critical hits, misses, weakness hitting
-- - [ ] Revival actions + complete death state and animations
+- - [x] Revival actions + complete death state and animations
 - - [x] Pass action
 - - [?] Effects (code and animations) and effect actions
 - [x] Combat UI

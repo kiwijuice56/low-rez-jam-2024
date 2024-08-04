@@ -7,6 +7,7 @@ const DELAY: float = 0.4
 @export var use_text: String = "%s"
 @export var verb: String = "attack"
 @export var tp_cost: int
+@export_group("Damage")
 @export var power: float
 @export var accuracy: float = 1.0
 @export var critical: float = 0.0
@@ -97,6 +98,10 @@ func per_target_act(user: Fighter, target: Fighter, animation: BattleAnimation) 
 		Ref.battle_animation_background.add_child(new_animation)
 	new_animation.global_position = target.get_node("%Center").global_position
 	await new_animation.animate()
+	
+	if revival:
+		target.hurt(0, false, false, false, true)
+		return
 	
 	var data: Dictionary = hit_calculation(user, target)
 	

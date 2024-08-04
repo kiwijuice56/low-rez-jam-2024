@@ -72,24 +72,33 @@ func kill() -> void:
 	dead = true
 	cure_all_effects()
 
+func revive() -> void:
+	hp = stats.max_hp
+	dead = false
+	update_ui()
+
 func after_turn() -> void:
 	for effect in %Effects.get_children():
 		if effect.active:
 			await effect.after_turn()
 
 # changing HP
-func hurt(damage: int, is_crit: bool, is_miss: bool, is_weak: bool) -> void:
+func hurt(damage: int, is_crit: bool, is_miss: bool, is_weak: bool, is_revival: bool = false) -> void:
 	var widget: DamageWidget
 	var text: String
 	
-	if dead:
+	if dead and not is_revival:
 		return
 	
-	%AnimationPlayer.stop()
+	%AnimationPlayer.stop(true)
 	%SpriteHolder.position = Vector2()
 	%Sprite2D.material.set_shader_parameter("flash", Color.BLACK)
 	
-	if is_miss:
+	if is_revival:
+		revive()
+		%AnimationPlayer.play("revive")
+		return
+	elif is_miss:
 		%AnimationPlayer.play("miss")
 		widget = miss_damage_widget.instantiate()
 		text = " miss"

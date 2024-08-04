@@ -341,6 +341,16 @@ hit_amount_max = 1
 animations = Array[PackedScene]([ExtResource("19_nv760")])
 is_item = true
 
+[node name="Spider" parent="Battle/ItemActions" instance=ExtResource("17_7qsbk")]
+icon = ExtResource("18_s6qc8")
+description = "scares a friend back to life"
+verb = "revive"
+target_group = "Own"
+hit_amount_max = 1
+animations = Array[PackedScene]([ExtResource("19_nv760")])
+is_item = true
+revival = true
+
 [node name="Tnt" parent="Battle/ItemActions" instance=ExtResource("17_7qsbk")]
 icon = ExtResource("19_e4607")
 description = "a big fire bomb"

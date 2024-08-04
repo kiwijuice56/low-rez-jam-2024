@@ -73,8 +73,13 @@ innate_elec_weakness = true
 [node name="Bam" parent="Actions/Skills" index="0" instance=ExtResource("3_vwhtk")]
 description = "a killa move"
 use_text = "%s killed!"
-power = 3.0
+power = 1.0
+target_amount = "All"
+hit_amount_max = 1
 animations = Array[PackedScene]([ExtResource("4_7c3sp")])
+
+[node name="Attack" parent="Actions" index="1"]
+target_amount = "All"
 
 [node name="ShadowSprite2D" parent="." index="1"]
 texture = ExtResource("5_bfxls")

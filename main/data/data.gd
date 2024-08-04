@@ -19,6 +19,7 @@ func initialize() -> void:
 	set_state("inventory/tofu", 2)
 	set_state("inventory/stirfry", 2)
 	set_state("inventory/vitamin", 2)
+	set_state("inventory/spider", 2)
 	set_state("inventory/tnt", 2)
 
 func set_state(property_path: String, val: Variant) -> void:
