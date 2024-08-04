@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://wmlggwvrca1v"]
+[gd_scene load_steps=26 format=3 uid="uid://wmlggwvrca1v"]
 
 [ext_resource type="PackedScene" uid="uid://l1nxgrfgq8nb" path="res://main/world/room/room.tscn" id="1_lyot8"]
 [ext_resource type="PackedScene" uid="uid://dei0x5en37mu2" path="res://main/world/character/friend/friend.tscn" id="2_f2x4q"]
@@ -16,6 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://uxqbro8puosv" path="res://main/music/salad_slaughter.ogg" id="11_ajfvi"]
 [ext_resource type="PackedScene" uid="uid://c7cfirjgacf35" path="res://main/battle/fighter/slime/slime.tscn" id="11_s1sci"]
 [ext_resource type="PackedScene" uid="uid://dfjd13fkiyly0" path="res://main/world/character/friend/shopkeep/shopkeep.tscn" id="14_s2123"]
+[ext_resource type="PackedScene" uid="uid://dd7jtwvmbffbg" path="res://main/world/character/friend/saver/saver.tscn" id="17_6d275"]
 
 [sub_resource type="Resource" id="Resource_nepoq"]
 script = ExtResource("3_2d463")
@@ -107,3 +108,8 @@ item = "tofu"
 position = Vector2(-18, 9)
 item = "tnt"
 amount = 4
+
+[node name="Saver" parent="." index="7" instance=ExtResource("17_6d275")]
+position = Vector2(72, 18)
+room = "debug_room"
+anchor = "Default"

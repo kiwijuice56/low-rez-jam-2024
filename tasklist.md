@@ -43,4 +43,4 @@
 - - [ ] Level up status pop-ups
 - - [x] Skill unlock menu + animations
 - [ ] Title UI
-- [?] Game Over UI
+- [x] Game Over UI

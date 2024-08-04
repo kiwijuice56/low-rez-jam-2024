@@ -1,0 +1,32 @@
+[gd_scene load_steps=8 format=3 uid="uid://dd7jtwvmbffbg"]
+
+[ext_resource type="PackedScene" uid="uid://dei0x5en37mu2" path="res://main/world/character/friend/friend.tscn" id="1_hvfcf"]
+[ext_resource type="Script" path="res://main/world/character/friend/saver/saver.gd" id="2_d3ifb"]
+[ext_resource type="Script" path="res://main/world/ui/text_box/dialogue/dialogue.gd" id="2_ddtfc"]
+[ext_resource type="Resource" uid="uid://dlmiqjcuxb8x8" path="res://main/world/ui/text_box/speakers/saver/saver_speaker.tres" id="3_kw1c3"]
+
+[sub_resource type="Resource" id="Resource_nf4kq"]
+script = ExtResource("2_ddtfc")
+speaker = ExtResource("3_kw1c3")
+text = "ok._ hope your power goes out._ lets see how that goes."
+speed = "Normal"
+
+[sub_resource type="Resource" id="Resource_c3jbg"]
+script = ExtResource("2_ddtfc")
+speaker = ExtResource("3_kw1c3")
+text = "ok._ i just wrote it down._ you can go now."
+speed = "Normal"
+
+[sub_resource type="Resource" id="Resource_b5oc1"]
+script = ExtResource("2_ddtfc")
+speaker = ExtResource("3_kw1c3")
+text = "wanna save your game?"
+speed = "Normal"
+
+[node name="Saver" instance=ExtResource("1_hvfcf")]
+script = ExtResource("2_d3ifb")
+reject_conversation = Array[ExtResource("2_ddtfc")]([SubResource("Resource_nf4kq")])
+done_conversation = Array[ExtResource("2_ddtfc")]([SubResource("Resource_c3jbg")])
+room = ""
+anchor = ""
+conversation = Array[ExtResource("2_ddtfc")]([SubResource("Resource_b5oc1")])

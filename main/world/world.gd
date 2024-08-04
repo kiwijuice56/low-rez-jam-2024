@@ -6,9 +6,6 @@ var is_paused: bool = false
 var loaded_room: Room
 var loaded_room_name: String
 
-func _ready() -> void:
-	load_room("debug_room")
-
 func load_room(room_name: String, anchor: String = "Default", trans_in: bool = true) -> void:
 	is_paused = true
 	
