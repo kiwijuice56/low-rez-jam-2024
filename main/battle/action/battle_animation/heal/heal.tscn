@@ -1,0 +1,67 @@
+[gd_scene load_steps=6 format=3 uid="uid://28chlk8w3lmf"]
+
+[ext_resource type="PackedScene" uid="uid://bxwatmpi4g2ui" path="res://main/battle/action/battle_animation/battle_animation.tscn" id="1_83a7i"]
+[ext_resource type="Texture2D" uid="uid://b4i2oixwcm116" path="res://main/battle/action/battle_animation/heal/heal.png" id="2_f51s5"]
+
+[sub_resource type="Animation" id="Animation_rtkmp"]
+resource_name = "heal"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.233333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"advance"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_hfdg8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0e1sm"]
+_data = {
+"RESET": SubResource("Animation_hfdg8"),
+"heal": SubResource("Animation_rtkmp")
+}
+
+[node name="Heal" instance=ExtResource("1_83a7i")]
+follows_target = true
+
+[node name="AnimationPlayer" parent="." index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_0e1sm")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_f51s5")
+hframes = 12

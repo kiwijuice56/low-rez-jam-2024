@@ -110,7 +110,7 @@ func per_target_act(user: Fighter, target: Fighter, animation: BattleAnimation) 
 func act(user: Fighter, targets: Array[Fighter]) -> TurnUsage:
 	current_use = TurnUsage.NORMAL
 	if is_item:
-		Data.set_state("inventory/" + name, Data.get_state("inventory/" + name, 0) - 1)
+		Data.set_state("inventory/" + name.to_lower(), Data.get_state("inventory/" + name.to_lower(), 0) - 1)
 	else:
 		user.tp -= tp_cost
 	
