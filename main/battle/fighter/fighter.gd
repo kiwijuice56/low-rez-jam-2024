@@ -14,6 +14,7 @@ class_name Fighter extends Node2D
 @export var critical_damage_widget: PackedScene
 @export var miss_damage_widget: PackedScene
 @export var heal_damage_widget: PackedScene
+@export var tp_damage_widget: PackedScene
 
 var hp: int:
 	set(val):
@@ -72,6 +73,7 @@ func apply_effect(effect_name: String, duration: int ) -> void:
 	%Effect.get_node(effect_name).reset_timer(duration)
 	%Effect.get_node(effect_name).apply()
 
+# changing HP
 func hurt(damage: int, is_crit: bool, is_miss: bool, is_weak: bool) -> void:
 	var widget: DamageWidget
 	var text: String
@@ -97,9 +99,22 @@ func hurt(damage: int, is_crit: bool, is_miss: bool, is_weak: bool) -> void:
 		widget = normal_damage_widget.instantiate()
 		text = " " + str(damage)
 	
-	hp -= int(damage)
+	hp -= damage
 	
 	widget.damage(text)
+	
+	get_parent().get_parent().add_child(widget)
+	widget.global_position = %Center.global_position - Vector2(widget.get_node("%DamageLabel").size.x / 2, 0)
+
+# changing TP
+func change_tp(damage: int) -> void:
+	tp -= damage
+	
+	var widget: DamageWidget = tp_damage_widget.instantiate()
+	if damage <= 0:
+		widget.damage(" +" + str(abs(damage)))
+	else:
+		widget.damage(" " + str(damage))
 	
 	get_parent().get_parent().add_child(widget)
 	widget.global_position = %Center.global_position - Vector2(widget.get_node("%DamageLabel").size.x / 2, 0)

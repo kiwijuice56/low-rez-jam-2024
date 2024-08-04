@@ -12,6 +12,7 @@ const DELAY: float = 0.4
 @export var critical: float = 0.0
 @export var piece: bool = false
 @export var constant_damage: int = 0
+@export var change_tp: bool = false
 @export_enum("magic", "strength") var attack_stat: String = "strength" 
 @export_enum("Other", "Own", "All") var target_group: String = "Other"
 @export_enum("Single", "All", "Random") var target_amount: String = "Single"
@@ -95,7 +96,11 @@ func per_target_act(user: Fighter, target: Fighter, animation: BattleAnimation) 
 	await new_animation.animate()
 	
 	var data: Dictionary = hit_calculation(user, target)
-	target.hurt(data.damage, "crit" in data, "miss" in data, "weak" in data)
+	
+	if change_tp:
+		target.change_tp(data.damage)
+	else:
+		target.hurt(data.damage, "crit" in data, "miss" in data, "weak" in data)
 	
 	if "miss" in data:
 		current_use = TurnUsage.WASTE

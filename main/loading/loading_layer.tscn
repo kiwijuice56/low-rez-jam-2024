@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cvh8igwahj8wg"]
+[gd_scene load_steps=9 format=3 uid="uid://cvh8igwahj8wg"]
 
 [ext_resource type="Script" path="res://main/loading/loader.gd" id="1_orms1"]
 [ext_resource type="PackedScene" uid="uid://ch5b8se0xto88" path="res://main/loading/temporary_panel.tscn" id="2_2kbdd"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bfugie8wrqt4l" path="res://main/battle/ui/damage_widget/critical_damage_widget/critical_damage_widget.tscn" id="3_ugkia"]
 [ext_resource type="PackedScene" uid="uid://deotpp6wnlyl8" path="res://main/battle/ui/damage_widget/miss_damage_widget/miss_damage_widget.tscn" id="4_c0u21"]
 [ext_resource type="PackedScene" uid="uid://cvscxguxb7jke" path="res://main/battle/ui/colored_text/colored_text.tscn" id="5_tr2bk"]
+[ext_resource type="PackedScene" uid="uid://ce4cnfbite600" path="res://main/battle/ui/damage_widget/heal_damage_widget/heal_damage_widget.tscn" id="6_jm5oc"]
+[ext_resource type="PackedScene" uid="uid://dkmng4n35a0hr" path="res://main/battle/ui/damage_widget/tp_damage_widget/tp_damage_widget.tscn" id="7_36sh5"]
 
 [node name="LoadingLayer" type="CanvasLayer"]
 layer = -1
@@ -28,6 +30,10 @@ columns = 12
 [node name="CriticalDamageWidget" parent="." instance=ExtResource("3_ugkia")]
 
 [node name="MissDamageWidget" parent="." instance=ExtResource("4_c0u21")]
+
+[node name="HealDamageWidget" parent="." instance=ExtResource("6_jm5oc")]
+
+[node name="TPDamageWidget" parent="." instance=ExtResource("7_36sh5")]
 
 [node name="ColoredText" parent="." instance=ExtResource("5_tr2bk")]
 

@@ -42,6 +42,7 @@ tp_cost = 4
 power = 2.0
 accuracy = 0.96
 critical = 0.15
+change_tp = true
 target_amount = "Random"
 hit_amount_min = 4
 hit_amount_max = 8

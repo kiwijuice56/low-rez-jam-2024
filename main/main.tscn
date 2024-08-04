@@ -330,12 +330,14 @@ is_item = true
 
 [node name="Vitamin" parent="Battle/ItemActions" instance=ExtResource("17_7qsbk")]
 icon = ExtResource("18_s6qc8")
-description = "revive a friend"
+description = "heal all TP"
 verb = "feed to"
+constant_damage = -99
+change_tp = true
 target_group = "Own"
 hit_amount_max = 1
+animations = Array[PackedScene]([ExtResource("19_1o4l7")])
 is_item = true
-revival = true
 
 [node name="Tnt" parent="Battle/ItemActions" instance=ExtResource("17_7qsbk")]
 icon = ExtResource("19_e4607")

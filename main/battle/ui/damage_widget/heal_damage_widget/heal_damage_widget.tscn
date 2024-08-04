@@ -16,6 +16,7 @@ shader = ExtResource("2_564kt")
 shader_parameter/palette = SubResource("GradientTexture1D_jb6um")
 
 [node name="HealDamageWidget" instance=ExtResource("1_fah2q")]
+speed_max = 2.0
 
 [node name="CanvasGroup" parent="." index="0"]
 material = SubResource("ShaderMaterial_ep4l5")
