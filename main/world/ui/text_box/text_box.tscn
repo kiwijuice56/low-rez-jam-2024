@@ -88,6 +88,7 @@ size_flags_vertical = 8
 
 [node name="AnimatedTextLabel" type="RichTextLabel" parent="TextBackground"]
 unique_name_in_owner = true
+clip_contents = false
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 size_flags_vertical = 0

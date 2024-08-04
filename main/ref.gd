@@ -4,6 +4,7 @@ extends Node
 @onready var world: World = main.get_node("World")
 @onready var world_textbox: TextBox = world.get_node("UI/MarginContainer/TextCanvasGroup/TextBox")
 @onready var pause_menu: PauseMenu = world.get_node("UI/MarginContainer/PauseMenuCanvasGroup/PauseMenu")
+@onready var shop_menu: ShopMenu = world.get_node("UI/MarginContainer/ShopMenu")
 @onready var player: Player = world.get_node("Player")
 @onready var transition: Transition = main.get_node("Transition")
 

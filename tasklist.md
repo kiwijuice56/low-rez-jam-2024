@@ -41,6 +41,6 @@
 - - [x] Skill unlocking
 - [?] Progression UI
 - - [ ] Level up status pop-ups
-- - [?] Skill unlock menu + animations
+- - [x] Skill unlock menu + animations
 - [ ] Title UI
 - [ ] Game Over UI

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://728xo0t3m477"]
+[gd_scene load_steps=24 format=3 uid="uid://728xo0t3m477"]
 
 [ext_resource type="Theme" uid="uid://evv5alve252b" path="res://main/theme/theme.tres" id="1_0e0l4"]
 [ext_resource type="Script" path="res://main/world/ui/shop_menu/shop_menu.gd" id="2_8cqnn"]
@@ -6,11 +6,34 @@
 [ext_resource type="Texture2D" uid="uid://bbyv34w3mao51" path="res://main/battle/ui/choice_menu/arrow.png" id="2_mg701"]
 [ext_resource type="Texture2D" uid="uid://duig11rt8jtcp" path="res://main/theme/palette_dark.png" id="3_0audf"]
 [ext_resource type="Texture2D" uid="uid://1bbhd85mjdb6" path="res://main/battle/fighter/ella/ella.png" id="3_1hmb4"]
+[ext_resource type="Script" path="res://main/world/ui/text_box/dialogue/dialogue.gd" id="3_lyiag"]
 [ext_resource type="PackedScene" uid="uid://7ffg50pelcx6" path="res://main/battle/ui/choice_menu/choice_button/choice_button.tscn" id="4_ctio6"]
 [ext_resource type="FontFile" uid="uid://cauc77kjpc67c" path="res://main/theme/mini_kiwi_font.ttf" id="4_ifx36"]
 [ext_resource type="Texture2D" uid="uid://bkun1agq8ikk2" path="res://main/battle/ui/battle_background/textures/big_dots.png" id="4_jo51e"]
+[ext_resource type="Resource" uid="uid://chjfh685p4h6g" path="res://main/world/ui/text_box/speakers/default/default_speaker.tres" id="4_qq6jg"]
 [ext_resource type="Texture2D" uid="uid://emchhlwgswks" path="res://main/battle/ui/battle_background/textures/square.png" id="5_cfrck"]
 [ext_resource type="PackedScene" uid="uid://b2x6gyr2bsiwy" path="res://main/world/ui/shop_menu/soul_text.tscn" id="6_wn2t7"]
+[ext_resource type="AudioStream" uid="uid://b52h2qinfu6iw" path="res://main/theme/sound/cancel.tres" id="12_3nx1n"]
+[ext_resource type="AudioStream" uid="uid://c4md8ks1818q6" path="res://main/theme/sound/accept.tres" id="13_2iue2"]
+[ext_resource type="AudioStream" uid="uid://dv1ag3s4up115" path="res://main/theme/sound/select.tres" id="13_o54u5"]
+
+[sub_resource type="Resource" id="Resource_hp4be"]
+script = ExtResource("3_lyiag")
+speaker = ExtResource("4_qq6jg")
+text = "are you sure you wanna buy this?"
+speed = "Normal"
+
+[sub_resource type="Resource" id="Resource_iesmf"]
+script = ExtResource("3_lyiag")
+speaker = ExtResource("4_qq6jg")
+text = "you already own this."
+speed = "Normal"
+
+[sub_resource type="Resource" id="Resource_qymeq"]
+script = ExtResource("3_lyiag")
+speaker = ExtResource("4_qq6jg")
+text = "you're too poor. sorry."
+speed = "Normal"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pijvu"]
 shader = ExtResource("2_f0jaj")
@@ -56,9 +79,13 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_0e0l4")
 script = ExtResource("2_8cqnn")
+confirm_conversation = Array[ExtResource("3_lyiag")]([SubResource("Resource_hp4be")])
+already_owned_conversation = Array[ExtResource("3_lyiag")]([SubResource("Resource_iesmf")])
+not_enough_conversation = Array[ExtResource("3_lyiag")]([SubResource("Resource_qymeq")])
 
 [node name="Background" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_pijvu")
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 color = Color(0.265361, 0.265361, 0.265361, 1)
 
@@ -66,15 +93,22 @@ color = Color(0.265361, 0.265361, 0.265361, 1)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_exa1y")
 
-[node name="Control" type="Control" parent="PanelContainer"]
-layout_mode = 2
+[node name="Control" type="Node2D" parent="PanelContainer"]
 
 [node name="TitleContainer" type="HBoxContainer" parent="PanelContainer/Control"]
-layout_mode = 2
-offset_left = 2.0
-offset_right = 55.0
-offset_bottom = 5.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 5.0
+offset_top = 3.0
+offset_right = 58.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
+theme = ExtResource("1_0e0l4")
 
 [node name="Left" type="TextureRect" parent="PanelContainer/Control/TitleContainer"]
 layout_mode = 2
@@ -84,19 +118,20 @@ flip_h = true
 [node name="SkillNameLabel" type="Label" parent="PanelContainer/Control/TitleContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "skill name"
+size_flags_horizontal = 6
+text = "aaaaaaaa"
 
 [node name="Right" type="TextureRect" parent="PanelContainer/Control/TitleContainer"]
 layout_mode = 2
 texture = ExtResource("2_mg701")
 
 [node name="OwnerContainer" type="HBoxContainer" parent="PanelContainer/Control"]
-layout_mode = 2
-offset_left = 15.0
-offset_top = 8.0
-offset_right = 42.0
-offset_bottom = 16.0
+offset_left = 17.0
+offset_top = 10.0
+offset_right = 44.0
+offset_bottom = 18.0
 size_flags_horizontal = 4
+theme = ExtResource("1_0e0l4")
 theme_override_constants/separation = 3
 
 [node name="FighterIcon" type="TextureRect" parent="PanelContainer/Control/OwnerContainer"]
@@ -108,27 +143,27 @@ texture = ExtResource("3_1hmb4")
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = SubResource("FontVariation_nl477")
-text = "ella"
+text = "ellaaa"
 
 [node name="Description" type="Label" parent="PanelContainer/Control"]
 unique_name_in_owner = true
-layout_mode = 2
-offset_left = 1.0
-offset_top = 30.0
-offset_right = 59.0
-offset_bottom = 45.0
+offset_left = 3.0
+offset_top = 34.0
+offset_right = 61.0
+offset_bottom = 49.0
+theme = ExtResource("1_0e0l4")
 theme_override_constants/line_spacing = 0
 text = "description
 description a aaaa"
 autowrap_mode = 2
 
 [node name="SoulContainer" type="HBoxContainer" parent="PanelContainer/Control"]
-layout_mode = 2
-offset_left = 1.0
-offset_top = 52.0
-offset_right = 23.0
-offset_bottom = 57.0
+offset_left = 2.0
+offset_top = 57.0
+offset_right = 24.0
+offset_bottom = 62.0
 size_flags_vertical = 10
+theme = ExtResource("1_0e0l4")
 theme_override_constants/separation = 0
 
 [node name="Cost" type="Label" parent="PanelContainer/Control/SoulContainer"]
@@ -145,12 +180,12 @@ unique_name_in_owner = true
 position = Vector2(23, -1)
 
 [node name="ActionContainer" type="HBoxContainer" parent="PanelContainer/Control"]
-layout_mode = 2
-offset_left = 18.0
-offset_top = 18.0
-offset_right = 59.0
-offset_bottom = 28.0
+offset_left = 17.0
+offset_top = 21.0
+offset_right = 58.0
+offset_bottom = 31.0
 size_flags_horizontal = 4
+theme = ExtResource("1_0e0l4")
 theme_override_constants/separation = 2
 
 [node name="ChoiceButton" parent="PanelContainer/Control/ActionContainer" instance=ExtResource("4_ctio6")]
@@ -166,3 +201,18 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = SubResource("FontVariation_nl477")
 text = "owned"
+
+[node name="CancelPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("12_3nx1n")
+bus = &"UI Sound Effect"
+
+[node name="AcceptPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("13_2iue2")
+bus = &"UI Sound Effect"
+
+[node name="SelectPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("13_o54u5")
+bus = &"UI Sound Effect"

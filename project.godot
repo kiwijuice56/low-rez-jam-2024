@@ -43,9 +43,9 @@ folder_colors={
 "res://main/battle/action/icons/": "teal",
 "res://main/battle/fighter/effect/": "teal",
 "res://main/battle/ui/": "orange",
+"res://main/music/": "green",
 "res://main/world/": "blue",
-"res://main/world/ui/": "orange",
-"res://music/": "green"
+"res://main/world/ui/": "orange"
 }
 
 [input]

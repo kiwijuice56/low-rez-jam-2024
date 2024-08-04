@@ -1,0 +1,30 @@
+[gd_scene load_steps=8 format=3 uid="uid://dfjd13fkiyly0"]
+
+[ext_resource type="PackedScene" uid="uid://dei0x5en37mu2" path="res://main/world/character/friend/friend.tscn" id="1_8aaek"]
+[ext_resource type="Script" path="res://main/world/character/friend/shopkeep/shopkeep.gd" id="2_2vurq"]
+[ext_resource type="Script" path="res://main/world/ui/text_box/dialogue/dialogue.gd" id="3_kuu5a"]
+[ext_resource type="Resource" uid="uid://be2fbcpo5gd7a" path="res://main/world/ui/text_box/speakers/system/system_speaker.tres" id="4_ppwh4"]
+
+[sub_resource type="Resource" id="Resource_74qvp"]
+script = ExtResource("3_kuu5a")
+speaker = ExtResource("4_ppwh4")
+text = "burn."
+speed = "Normal"
+
+[sub_resource type="Resource" id="Resource_f20ts"]
+script = ExtResource("3_kuu5a")
+speaker = ExtResource("4_ppwh4")
+text = "thanks."
+speed = "Normal"
+
+[sub_resource type="Resource" id="Resource_7py44"]
+script = ExtResource("3_kuu5a")
+speaker = ExtResource("4_ppwh4")
+text = "buy something?"
+speed = "Normal"
+
+[node name="Shopkeep" instance=ExtResource("1_8aaek")]
+script = ExtResource("2_2vurq")
+reject_conversation = Array[ExtResource("3_kuu5a")]([SubResource("Resource_74qvp")])
+done_conversation = Array[ExtResource("3_kuu5a")]([SubResource("Resource_f20ts")])
+conversation = Array[ExtResource("3_kuu5a")]([SubResource("Resource_7py44")])

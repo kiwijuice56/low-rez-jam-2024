@@ -29,7 +29,7 @@ func _on_char_advanced() -> void:
 	%CharSoundPlayer.play()
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("accept", false) or event.is_action_pressed("cancel", false):
+	if event.is_action_pressed("accept", false):
 		continued.emit()
 	if choice_size == 0:
 		return
@@ -119,6 +119,9 @@ func get_choice(choices: Array[String]) -> String:
 	choice_size = 0
 	
 	return choices[choice_idx]
+
+func enter() -> void:
+	entered.emit()
 
 func exit(full_exit: bool = false) -> void:
 	get_parent().material.set_shader_parameter("fade", 0.0)

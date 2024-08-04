@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://dl3ps7eki0b7b"]
+[gd_scene load_steps=31 format=3 uid="uid://dl3ps7eki0b7b"]
 
 [ext_resource type="PackedScene" uid="uid://txvddbv8pfiv" path="res://main/world/character/player/player.tscn" id="1_84yfs"]
 [ext_resource type="Script" path="res://main/main.gd" id="1_q20fr"]
@@ -38,11 +38,6 @@ shader = ExtResource("5_4102r")
 shader_parameter/fade = 0.09
 shader_parameter/tiling = 9.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_mbkj2"]
-shader = ExtResource("5_4102r")
-shader_parameter/fade = 0.09
-shader_parameter/tiling = 9.0
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fxtiv"]
 shader = ExtResource("12_pd2fh")
 shader_parameter/palette_size = 23
@@ -71,6 +66,9 @@ theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 0
 
+[node name="ShopMenu" parent="World/UI/MarginContainer" instance=ExtResource("7_7e6v2")]
+layout_mode = 2
+
 [node name="TextCanvasGroup" type="CanvasGroup" parent="World/UI/MarginContainer"]
 material = SubResource("ShaderMaterial_on3yi")
 
@@ -82,6 +80,7 @@ offset_left = 1.0
 offset_top = 1.0
 offset_right = 63.0
 offset_bottom = 63.0
+default_color = Color(0.588235, 0.588235, 0.588235, 1)
 
 [node name="PauseMenuCanvasGroup" type="CanvasGroup" parent="World/UI/MarginContainer"]
 material = SubResource("ShaderMaterial_gljt7")
@@ -92,11 +91,6 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 offset_right = 64.0
 offset_bottom = 64.0
-
-[node name="ShopMenuCanvasGroup" type="CanvasGroup" parent="World/UI/MarginContainer"]
-material = SubResource("ShaderMaterial_mbkj2")
-
-[node name="ShopMenu" parent="World/UI/MarginContainer/ShopMenuCanvasGroup" instance=ExtResource("7_7e6v2")]
 
 [node name="Player" parent="World" instance=ExtResource("1_84yfs")]
 
