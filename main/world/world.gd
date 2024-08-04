@@ -9,10 +9,10 @@ var loaded_room_name: String
 func _ready() -> void:
 	load_room("debug_room")
 
-func load_room(room_name: String, anchor: String = "Default") -> void:
+func load_room(room_name: String, anchor: String = "Default", trans_in: bool = true) -> void:
 	is_paused = true
 	
-	if is_instance_valid(loaded_room):
+	if is_instance_valid(loaded_room) and trans_in:
 		await Ref.transition.trans_in()
 	
 	var old_name: String = loaded_room_name 

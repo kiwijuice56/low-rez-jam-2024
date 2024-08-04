@@ -26,7 +26,6 @@ func start_battle() -> void:
 	if Ref.world.is_paused:
 		return
 	Ref.world.is_paused = true
-	# Ref.player.lock_area()
 	await Ref.world_textbox.display_conversation(conversation)
 	
 	if await Ref.battle.battle(encounter):
@@ -37,6 +36,5 @@ func die() -> void:
 		await Ref.world_textbox.display_conversation(death_conversation)
 		await Ref.world_textbox.exit()
 	Data.set_state(Ref.world.loaded_room_name + "/" + name, true)
-	# Ref.player.unlock_area()
 	Ref.world.set_deferred("is_paused", false)
 	queue_free()

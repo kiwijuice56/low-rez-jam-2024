@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dl3ps7eki0b7b"]
+[gd_scene load_steps=32 format=3 uid="uid://dl3ps7eki0b7b"]
 
 [ext_resource type="PackedScene" uid="uid://txvddbv8pfiv" path="res://main/world/character/player/player.tscn" id="1_84yfs"]
 [ext_resource type="Script" path="res://main/main.gd" id="1_q20fr"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://c4j2ik0u6mdlm" path="res://main/transition/transition.tscn" id="6_j5aj4"]
 [ext_resource type="PackedScene" uid="uid://728xo0t3m477" path="res://main/world/ui/shop_menu/shop_menu.tscn" id="7_7e6v2"]
 [ext_resource type="Script" path="res://main/battle/player_party/player_party.gd" id="7_we58l"]
+[ext_resource type="PackedScene" uid="uid://crjxe4tprt1q1" path="res://main/game_over/game_over.tscn" id="8_enrvm"]
 [ext_resource type="PackedScene" uid="uid://ingpp247yeyh" path="res://main/battle/ui/battle_background/watermelon/watermelon_battle_background.tscn" id="9_d6aqk"]
 [ext_resource type="PackedScene" uid="uid://bx3kup2vyqlma" path="res://main/battle/ui/choice_menu/choice_menu.tscn" id="10_o1rja"]
 [ext_resource type="Script" path="res://main/world/ui/text_box/animated_text_label/animated_text_label.gd" id="10_u6xbh"]
@@ -80,7 +81,6 @@ offset_left = 1.0
 offset_top = 1.0
 offset_right = 63.0
 offset_bottom = 63.0
-default_color = Color(0.588235, 0.588235, 0.588235, 1)
 
 [node name="PauseMenuCanvasGroup" type="CanvasGroup" parent="World/UI/MarginContainer"]
 material = SubResource("ShaderMaterial_gljt7")
@@ -366,7 +366,11 @@ is_item = true
 
 [node name="ScreenAnimationLayer" type="CanvasLayer" parent="Battle/AnimationLayer"]
 
+[node name="GameOver" parent="." instance=ExtResource("8_enrvm")]
+visible = false
+
 [node name="PaletteLayer" type="CanvasLayer" parent="."]
+layer = 4
 
 [node name="Filter" type="ColorRect" parent="PaletteLayer"]
 material = SubResource("ShaderMaterial_fxtiv")
@@ -377,7 +381,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Transition" parent="." instance=ExtResource("6_j5aj4")]
-layer = 2
+layer = 8
 visible = false
 
 [node name="LoadingLayer" parent="." instance=ExtResource("24_gb8q0")]

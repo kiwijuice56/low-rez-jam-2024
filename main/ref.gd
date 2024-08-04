@@ -13,3 +13,5 @@ extends Node
 @onready var player_party: PlayerParty = battle.get_node("FighterLayer/PlayerParty")
 @onready var battle_animation_background: Node2D = battle.get_node("%BackgroundAnimationHolder")
 @onready var battle_animation_foreground: Node2D = battle.get_node("%ForegroundAnimationHolder")
+
+@onready var game_over: GameOver = main.get_node("GameOver")

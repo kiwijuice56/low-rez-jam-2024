@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://crjxe4tprt1q1"]
+
+[ext_resource type="Shader" path="res://main/game_over/paint.gdshader" id="1_7bv2x"]
+[ext_resource type="Script" path="res://main/game_over/game_over.gd" id="1_iv7ve"]
+[ext_resource type="Texture2D" uid="uid://dejao1qkcdvoq" path="res://main/game_over/gameover_palette.png" id="2_ujmc1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ipfmd"]
+shader = ExtResource("1_7bv2x")
+shader_parameter/polar_coordinates = false
+shader_parameter/polar_center = Vector2(0.5, 0.5)
+shader_parameter/polar_zoom = 1.0
+shader_parameter/polar_repeat = 1.0
+shader_parameter/spin_rotation = null
+shader_parameter/spin_speed = 16.0
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/colour_1 = Color(0.29219, 0.29219, 0.29219, 1)
+shader_parameter/colour_2 = Color(0, 0, 0, 1)
+shader_parameter/colour_3 = Color(1, 1, 1, 1)
+shader_parameter/contrast = 0.17
+shader_parameter/spin_amount = 0.36
+shader_parameter/pixel_filter = 1024.0
+shader_parameter/palette_size = 7
+shader_parameter/palette = ExtResource("2_ujmc1")
+
+[sub_resource type="Animation" id="Animation_o11i3"]
+resource_name = "game_over"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v54la"]
+_data = {
+"game_over": SubResource("Animation_o11i3")
+}
+
+[node name="GameOver" type="CanvasLayer"]
+layer = 2
+script = ExtResource("1_iv7ve")
+
+[node name="DeathBackground" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_ipfmd")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_v54la")
+}

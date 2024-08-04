@@ -112,18 +112,28 @@ func battle(encounter: Encounter) -> bool:
 
 	### BATTLE LOOP END ###
 	
-	await Ref.transition.trans_in()
+	stop_music()
 	
+	var lose: bool = len(get_alive_fighters(player_party)) == 0
+	if lose:
+		await Ref.game_over.game_over()
+	else:
+		await Ref.transition.trans_in()
+	
+	# cleanup stuffs
 	for fighter in player_party:
 		fighter.visible = false
-	
 	%UI.visible = false
 	%FighterLayer.visible = false
 	Ref.world.loaded_room.resume_music()
-	stop_music()
-	await Ref.transition.trans_out()
 	
-	return true
+	if lose:
+		Ref.world.load_room("hell", "Default", false)
+	else:
+		# LEVEL UP stuff
+		await Ref.transition.trans_out()
+	
+	return not lose
 
 func enemies_with_name(enemy_party: Array[Fighter], base_name: String) -> int:
 	var count: int = 0

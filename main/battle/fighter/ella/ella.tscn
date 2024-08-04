@@ -10,7 +10,7 @@
 
 [sub_resource type="Resource" id="Resource_glup2"]
 script = ExtResource("2_6eory")
-max_hp = 99
+max_hp = 1
 max_tp = 99
 strength = 12
 magic = 9

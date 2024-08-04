@@ -189,7 +189,7 @@ texture = ExtResource("7_hsq6w")
 stretch_mode = 2
 
 [node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/SoulContainer"]
-custom_minimum_size = Vector2(16, 6)
+custom_minimum_size = Vector2(15, 6)
 layout_mode = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
