@@ -20,7 +20,7 @@ var hp: int:
 	set(val):
 		hp = val
 		hp = clamp(hp, 0, stats.max_hp)
-		if hp == 0:
+		if hp <= 0:
 			dead = true
 		update_ui()
 var tp: int:
@@ -78,6 +78,9 @@ func hurt(damage: int, is_crit: bool, is_miss: bool, is_weak: bool) -> void:
 	var widget: DamageWidget
 	var text: String
 	
+	if dead:
+		return
+	
 	%AnimationPlayer.stop()
 	%SpriteHolder.position = Vector2()
 	%Sprite2D.material.set_shader_parameter("flash", Color.BLACK)
@@ -123,6 +126,25 @@ func update_ui() -> void:
 	%HPColoredText.get_node("Label").text = " " + str(hp)
 	%TPColoredText.get_node("Label").text = " " + str(tp)
 
-func get_choice(_own_party: Array[Fighter], other_party: Array[Fighter]) -> Dictionary:
-	var targets: Array[Fighter] = [other_party.pick_random()]
-	return {"targets": targets, "action": base_attack}
+# pick random
+func get_choice(own_party: Array[Fighter], other_party: Array[Fighter]) -> Dictionary:
+	var all_actions: Array[Action] = []
+	all_actions.append(base_attack)
+	for action in %Skills.get_children():
+		all_actions.append(action)
+	
+	var possible_actions: Array[Action] = []
+	for action in all_actions:
+		if len(action.get_available_targets(own_party, other_party)) > 0:
+			possible_actions.append(action)
+	
+	var action: Action = possible_actions.pick_random()
+	var targets: Array[Fighter] = []
+	
+	match action.target_amount:
+		"Single": 
+			targets.append(action.get_available_targets(own_party, other_party).pick_random())
+		_:
+			targets = action.get_available_targets(own_party, other_party)
+	
+	return {"targets": targets, "action": action}

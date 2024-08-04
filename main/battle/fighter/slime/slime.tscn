@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://c7cfirjgacf35"]
+[gd_scene load_steps=13 format=3 uid="uid://c7cfirjgacf35"]
 
 [ext_resource type="PackedScene" uid="uid://bnbb4opeecksl" path="res://main/battle/fighter/fighter.tscn" id="1_mylgi"]
 [ext_resource type="Script" path="res://main/battle/fighter/fighter_stats/fighter_stats.gd" id="2_wtt4c"]
 [ext_resource type="Shader" path="res://main/battle/fighter/flash.gdshader" id="3_4m07w"]
 [ext_resource type="Texture2D" uid="uid://bd65dsv7n3o4r" path="res://main/battle/fighter/slime/slime.png" id="3_bhu5l"]
+[ext_resource type="PackedScene" uid="uid://cuko56w08yuso" path="res://main/battle/action/action.tscn" id="3_vwhtk"]
+[ext_resource type="PackedScene" uid="uid://dagp5qivcpmn3" path="res://main/battle/action/battle_animation/explosion/explosion.tscn" id="4_7c3sp"]
 [ext_resource type="Texture2D" uid="uid://dqkasghqp64we" path="res://main/battle/fighter/slime/shadow.png" id="5_bfxls"]
 
 [sub_resource type="Resource" id="Resource_0mx5o"]
@@ -67,6 +69,12 @@ _data = {
 [node name="Slime" instance=ExtResource("1_mylgi")]
 stats = SubResource("Resource_0mx5o")
 innate_elec_weakness = true
+
+[node name="Bam" parent="Actions/Skills" index="0" instance=ExtResource("3_vwhtk")]
+description = "a killa move"
+use_text = "%s killed!"
+power = 3.0
+animations = Array[PackedScene]([ExtResource("4_7c3sp")])
 
 [node name="ShadowSprite2D" parent="." index="1"]
 texture = ExtResource("5_bfxls")
