@@ -250,6 +250,9 @@ func _initialize_items(_fighter: Fighter, player_party: Array[Fighter], enemy_pa
 func _initialize_skills(fighter: Fighter, player_party: Array[Fighter], enemy_party: Array[Fighter], initial_idx: int) -> void:
 	var buttons: Array[ChoiceButton] = []
 	for skill in fighter.get_node("%Skills").get_children():
+		if skill.get_index() not in fighter.stats.unlocked_skills:
+			continue
+		
 		var new_button: ChoiceButton = %ChoiceMenu.choice_button_scene.instantiate()
 		new_button.initialize(skill, player_party, enemy_party)
 		buttons.append(new_button)

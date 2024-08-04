@@ -35,6 +35,8 @@ const DELAY: float = 0.4
 @export_group("Item")
 @export var is_item: bool
 @export var revival: bool
+@export_group("Item")
+@export var soul_cost: int
 
 var owner_fighter: Fighter
 var current_use: TurnUsage

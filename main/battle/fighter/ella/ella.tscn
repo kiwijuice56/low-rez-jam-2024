@@ -16,7 +16,7 @@ strength = 12
 magic = 9
 defence = 12
 luck = 99
-unlocked_skills = Array[int]([])
+unlocked_skills = Array[int]([0, 2, 3])
 
 [node name="Ella" instance=ExtResource("1_h8m6s")]
 stats = SubResource("Resource_glup2")

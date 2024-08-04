@@ -12,6 +12,7 @@ func _ready() -> void:
 	load_state(0)
 
 func initialize() -> void:
+	set_state("souls", 0)
 	set_state("lvl", 1)
 	set_state("xp", 15)
 	set_state("xp_goal", 30)

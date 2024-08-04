@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dl3ps7eki0b7b"]
+[gd_scene load_steps=32 format=3 uid="uid://dl3ps7eki0b7b"]
 
 [ext_resource type="PackedScene" uid="uid://txvddbv8pfiv" path="res://main/world/character/player/player.tscn" id="1_84yfs"]
 [ext_resource type="Script" path="res://main/main.gd" id="1_q20fr"]
@@ -9,6 +9,7 @@
 [ext_resource type="Shader" path="res://main/transition/screen_blocky_fade.gdshader" id="5_4102r"]
 [ext_resource type="Script" path="res://main/battle/battle.gd" id="6_ccn40"]
 [ext_resource type="PackedScene" uid="uid://c4j2ik0u6mdlm" path="res://main/transition/transition.tscn" id="6_j5aj4"]
+[ext_resource type="PackedScene" uid="uid://728xo0t3m477" path="res://main/world/ui/shop_menu/shop_menu.tscn" id="7_7e6v2"]
 [ext_resource type="Script" path="res://main/battle/player_party/player_party.gd" id="7_we58l"]
 [ext_resource type="PackedScene" uid="uid://ingpp247yeyh" path="res://main/battle/ui/battle_background/watermelon/watermelon_battle_background.tscn" id="9_d6aqk"]
 [ext_resource type="PackedScene" uid="uid://bx3kup2vyqlma" path="res://main/battle/ui/choice_menu/choice_menu.tscn" id="10_o1rja"]
@@ -33,6 +34,11 @@ shader_parameter/fade = 0.09
 shader_parameter/tiling = 9.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gljt7"]
+shader = ExtResource("5_4102r")
+shader_parameter/fade = 0.09
+shader_parameter/tiling = 9.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mbkj2"]
 shader = ExtResource("5_4102r")
 shader_parameter/fade = 0.09
 shader_parameter/tiling = 9.0
@@ -86,6 +92,11 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 offset_right = 64.0
 offset_bottom = 64.0
+
+[node name="ShopMenuCanvasGroup" type="CanvasGroup" parent="World/UI/MarginContainer"]
+material = SubResource("ShaderMaterial_mbkj2")
+
+[node name="ShopMenu" parent="World/UI/MarginContainer/ShopMenuCanvasGroup" instance=ExtResource("7_7e6v2")]
 
 [node name="Player" parent="World" instance=ExtResource("1_84yfs")]
 
