@@ -1,10 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://dpdv3nq03k8nu"]
+[gd_scene load_steps=11 format=3 uid="uid://dpdv3nq03k8nu"]
 
 [ext_resource type="Texture2D" uid="uid://bgsbq87nkcsv2" path="res://main/world/ui/text_box/speakers/default/default_portrait.png" id="1_5grlb"]
 [ext_resource type="Script" path="res://main/world/ui/text_box/text_box.gd" id="1_cm34o"]
 [ext_resource type="Theme" uid="uid://evv5alve252b" path="res://main/theme/theme.tres" id="1_ohfux"]
 [ext_resource type="Script" path="res://main/world/ui/text_box/animated_text_label/animated_text_label.gd" id="2_611fg"]
+[ext_resource type="PackedScene" uid="uid://dcq4seg83acba" path="res://main/world/ui/text_box/choice_label.tscn" id="3_qr7j0"]
 [ext_resource type="PackedScene" uid="uid://bdir8ibmp15l2" path="res://main/world/ui/flicker/flicker.tscn" id="5_j34ag"]
+[ext_resource type="AudioStream" uid="uid://c4md8ks1818q6" path="res://main/theme/sound/accept.tres" id="6_en1kw"]
+[ext_resource type="AudioStream" uid="uid://dup5a0fn08co1" path="res://main/theme/sound/continue.tres" id="7_53u4n"]
+[ext_resource type="AudioStream" uid="uid://b52h2qinfu6iw" path="res://main/theme/sound/cancel.tres" id="7_rhola"]
+[ext_resource type="AudioStream" uid="uid://dv1ag3s4up115" path="res://main/theme/sound/select.tres" id="8_oepsa"]
 
 [node name="TextBox" type="MarginContainer"]
 anchors_preset = 15
@@ -14,6 +19,10 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_ohfux")
 script = ExtResource("1_cm34o")
+label_scene = ExtResource("3_qr7j0")
+flicker_scene = ExtResource("5_j34ag")
+default_color = Color(0.588235, 0.588235, 0.588235, 1)
+select_color = Color(1, 1, 1, 1)
 
 [node name="PortraitContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -27,6 +36,50 @@ size_flags_horizontal = 0
 size_flags_vertical = 8
 texture = ExtResource("1_5grlb")
 stretch_mode = 2
+
+[node name="ChoiceContainer" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-2, -2)
+
+[node name="ChoiceVBox" type="VBoxContainer" parent="ChoiceContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 64)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ohfux")
+theme_override_constants/separation = 1
+
+[node name="Background" type="PanelContainer" parent="ChoiceContainer/ChoiceVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ChoiceContainer/ChoiceVBox/Background"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_constants/separation = 1
+
+[node name="FlickerContainer" type="VBoxContainer" parent="ChoiceContainer/ChoiceVBox/Background/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="TextChoiceContainer" type="VBoxContainer" parent="ChoiceContainer/ChoiceVBox/Background/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Spacer" type="Control" parent="ChoiceContainer/ChoiceVBox"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+size_flags_vertical = 8
 
 [node name="TextBackground" type="PanelContainer" parent="."]
 custom_minimum_size = Vector2(0, 24)
@@ -52,3 +105,23 @@ layout_mode = 2
 unique_name_in_owner = true
 volume_db = -12.0
 bus = &"Voice"
+
+[node name="AcceptPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("6_en1kw")
+bus = &"UI Sound Effect"
+
+[node name="ContinuePlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("7_53u4n")
+bus = &"UI Sound Effect"
+
+[node name="CancelPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("7_rhola")
+bus = &"UI Sound Effect"
+
+[node name="SelectPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("8_oepsa")
+bus = &"UI Sound Effect"

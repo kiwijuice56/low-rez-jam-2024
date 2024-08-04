@@ -1,5 +1,9 @@
 class_name ShopMenu extends Menu
 
+func _ready() -> void:
+	set_process_input(false)
+	visible = false
+
 func initialize(fighter: Fighter, action: Action) -> void:
 	%SoulText.get_node("%Label").text = " " + str(Data.get_state("souls", 0))
 	

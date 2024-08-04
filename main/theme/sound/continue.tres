@@ -1,0 +1,8 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=2 format=3 uid="uid://dup5a0fn08co1"]
+
+[ext_resource type="AudioStream" uid="uid://sv87rgglqf4f" path="res://main/theme/sound/ui_continue.ogg" id="1_pgfae"]
+
+[resource]
+random_pitch = 1.02
+streams_count = 1
+stream_0/stream = ExtResource("1_pgfae")
