@@ -47,7 +47,7 @@ func hit_calculation(user: Fighter, target: Fighter) -> Dictionary:
 	var data: Dictionary = {}
 	
 	if constant_damage == 0:
-		data.damage = randf_range(0.8, 1.1) *  (Data.get_state("lvl") + (power + user.stats.get(attack_stat)))
+		data.damage = power * randf_range(0.8, 1.1) * (Data.get_state("lvl") + user.stats.get(attack_stat))
 		if not piece:
 			data.damage *= 24.0 / (24.0 + user.stats.defence)
 	else:
@@ -80,9 +80,12 @@ func hit_calculation(user: Fighter, target: Fighter) -> Dictionary:
 	if randf() < status_chance * luck_boost:
 		var base_status_turns: float = randf_range(0.0, 0.25) + 3.0 * (1.0 + (user.stats.luck - target.stats.luck) / 32.0)
 		for status in status_effects:
-			var actual_turns: int = max(1, round(base_status_turns * target.get_node("%Effects").get_node(status).length_multiplier))
-			target.get_node("%Effects").get_node(status).reset_timer(actual_turns)
-			target.get_node("%Effects").get_node(status).apply()
+			var status_node: Effect = target.get_node("%Effects").get_node(status)
+			var actual_turns: int = max(1, round(base_status_turns * status_node.length_multiplier))
+			status_node.reset_timer(actual_turns)
+			
+			if not target.dead and not status_node.active:
+				status_node.apply()
 	
 	return data
 

@@ -26,7 +26,7 @@
 - - [x] Attack animations
 - - [x] Attack/heal actions and damage formulas
 - - [x] Critical hits, misses, weakness hitting
-- - [ ] Revival actions
+- - [ ] Revival actions + complete death state and animations
 - - [x] Pass action
 - - [?] Effects (code and animations) and effect actions
 - [x] Combat UI
@@ -43,3 +43,4 @@
 - - [ ] Level up status pop-ups
 - - [ ] Skill unlock menu + animations
 - [ ] Title UI
+- [ ] Game Over UI

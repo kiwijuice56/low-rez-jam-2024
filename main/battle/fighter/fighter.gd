@@ -21,7 +21,7 @@ var hp: int:
 		hp = val
 		hp = clamp(hp, 0, stats.max_hp)
 		if hp <= 0:
-			dead = true
+			kill()
 		update_ui()
 var tp: int:
 	set(val):
@@ -48,10 +48,14 @@ func _ready() -> void:
 	%Sprite2D.material.set_shader_parameter("h_frames", %Sprite2D.hframes)
 	%Effects.global_position = %Center.global_position
 
-func battle_reset() -> void:
+func cure_all_effects() -> void:
 	for effect in %Effects.get_children():
 		effect.fighter = self
-		effect.remove()
+		if effect.active:
+			effect.remove()
+
+func battle_reset() -> void:
+	cure_all_effects()
 	hp = stats.max_hp
 	tp = stats.max_tp
 	critical_multiplier = 1.0
@@ -64,14 +68,14 @@ func battle_reset() -> void:
 	added_elec_weakness = false
 	added_phys_resistance = false
 
+func kill() -> void:
+	dead = true
+	cure_all_effects()
+
 func after_turn() -> void:
 	for effect in %Effects.get_children():
 		if effect.active:
 			await effect.after_turn()
-
-func apply_effect(effect_name: String, duration: int ) -> void:
-	%Effect.get_node(effect_name).reset_timer(duration)
-	%Effect.get_node(effect_name).apply()
 
 # changing HP
 func hurt(damage: int, is_crit: bool, is_miss: bool, is_weak: bool) -> void:
@@ -104,23 +108,28 @@ func hurt(damage: int, is_crit: bool, is_miss: bool, is_weak: bool) -> void:
 	
 	hp -= damage
 	
-	widget.damage(text)
-	
-	get_parent().get_parent().add_child(widget)
-	widget.global_position = %Center.global_position - Vector2(widget.get_node("%DamageLabel").size.x / 2, 0)
+	if not damage == 0:
+		widget.damage(text)
+		get_parent().get_parent().add_child(widget)
+		widget.global_position = %Center.global_position - Vector2(widget.get_node("%DamageLabel").size.x / 2, 0)
 
 # changing TP
 func change_tp(damage: int) -> void:
+	if dead:
+		return
+	
 	tp -= damage
 	
-	var widget: DamageWidget = tp_damage_widget.instantiate()
-	if damage <= 0:
-		widget.damage(" +" + str(abs(damage)))
-	else:
-		widget.damage(" " + str(damage))
-	
-	get_parent().get_parent().add_child(widget)
-	widget.global_position = %Center.global_position - Vector2(widget.get_node("%DamageLabel").size.x / 2, 0)
+	if not damage == 0:
+		var widget: DamageWidget = tp_damage_widget.instantiate()
+		if damage < 0:
+			widget.damage(" +" + str(abs(damage)))
+		else:
+			widget.damage(" " + str(damage))
+		
+		
+		get_parent().get_parent().add_child(widget)
+		widget.global_position = %Center.global_position - Vector2(widget.get_node("%DamageLabel").size.x / 2, 0)
 
 func update_ui() -> void:
 	%HPColoredText.get_node("Label").text = " " + str(hp)
