@@ -1,6 +1,7 @@
 shader_type canvas_item;
 
 uniform vec4 flash: source_color;
+uniform vec4 flash2: source_color;
 
 // Animate from 0 to 1
 uniform float progress: hint_range(0.0, 1.0) = 0.0;
@@ -27,8 +28,8 @@ void fragment() {
 	// Created jagged edges for each pixel on the x-axis 
 	uv.y -= progress * meltiness * psuedo_rand(UV.x - mod(UV.x, TEXTURE_PIXEL_SIZE.x));
 	
-	COLOR.rgb += flash.rgb;
 	COLOR = texture(TEXTURE, uv);
+	COLOR.rgb += flash.rgb + flash2.rgb;
 	
 	// "delete" pixels out of range
 	if (uv.y <= 0.0) {
