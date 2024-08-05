@@ -1,16 +1,16 @@
 [gd_resource type="Resource" script_class="Speaker" load_steps=5 format=3 uid="uid://dlmiqjcuxb8x8"]
 
-[ext_resource type="Texture2D" uid="uid://bgsbq87nkcsv2" path="res://main/world/ui/text_box/speakers/default/default_portrait.png" id="1_oyabq"]
+[ext_resource type="Texture2D" uid="uid://c8hku0oh37any" path="res://main/world/ui/text_box/speakers/saver/saver.png" id="1_g53jl"]
 [ext_resource type="Script" path="res://main/world/ui/text_box/speakers/speaker.gd" id="2_6pqh6"]
-[ext_resource type="AudioStream" uid="uid://daigg0kln3lvj" path="res://main/world/ui/text_box/speakers/default/default_voice.wav" id="3_x58e4"]
+[ext_resource type="AudioStream" uid="uid://b8pb4vi6yg75m" path="res://main/world/ui/text_box/speakers/shopkeep/shopkeep_voice.ogg" id="3_fq11g"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_yyo3n"]
-random_pitch = 1.1
+random_pitch = 1.2
 streams_count = 1
-stream_0/stream = ExtResource("3_x58e4")
+stream_0/stream = ExtResource("3_fq11g")
 
 [resource]
 script = ExtResource("2_6pqh6")
-portrait = ExtResource("1_oyabq")
+portrait = ExtResource("1_g53jl")
 voice = SubResource("AudioStreamRandomizer_yyo3n")
 chars_per_second = 38

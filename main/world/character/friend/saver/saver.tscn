@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dd7jtwvmbffbg"]
+[gd_scene load_steps=12 format=3 uid="uid://dd7jtwvmbffbg"]
 
 [ext_resource type="PackedScene" uid="uid://dei0x5en37mu2" path="res://main/world/character/friend/friend.tscn" id="1_hvfcf"]
 [ext_resource type="Script" path="res://main/world/character/friend/saver/saver.gd" id="2_d3ifb"]
 [ext_resource type="Script" path="res://main/world/ui/text_box/dialogue/dialogue.gd" id="2_ddtfc"]
 [ext_resource type="Resource" uid="uid://dlmiqjcuxb8x8" path="res://main/world/ui/text_box/speakers/saver/saver_speaker.tres" id="3_kw1c3"]
+[ext_resource type="Texture2D" uid="uid://bodg5xbb67lnd" path="res://main/world/character/friend/saver/saver.png" id="5_mqqhn"]
 
 [sub_resource type="Resource" id="Resource_nf4kq"]
 script = ExtResource("2_ddtfc")
@@ -23,6 +24,44 @@ speaker = ExtResource("3_kw1c3")
 text = "wanna save your game?"
 speed = "Normal"
 
+[sub_resource type="Animation" id="Animation_ndx7d"]
+resource_name = "waggle"
+length = 0.1333
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_mv3f4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_630y1"]
+_data = {
+"RESET": SubResource("Animation_mv3f4"),
+"waggle": SubResource("Animation_ndx7d")
+}
+
 [node name="Saver" instance=ExtResource("1_hvfcf")]
 script = ExtResource("2_d3ifb")
 reject_conversation = Array[ExtResource("2_ddtfc")]([SubResource("Resource_nf4kq")])
@@ -30,3 +69,15 @@ done_conversation = Array[ExtResource("2_ddtfc")]([SubResource("Resource_c3jbg")
 room = ""
 anchor = ""
 conversation = Array[ExtResource("2_ddtfc")]([SubResource("Resource_b5oc1")])
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(0, -2)
+texture = ExtResource("5_mqqhn")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
+libraries = {
+"": SubResource("AnimationLibrary_630y1")
+}
+autoplay = "waggle"
+speed_scale = 0.3

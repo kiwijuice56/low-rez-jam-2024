@@ -264,7 +264,7 @@ bus = &"UI Sound Effect"
 [node name="LevelUpPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_k6oxo")
-volume_db = 7.36
+volume_db = 3.0
 pitch_scale = 0.83
 bus = &"UI Sound Effect"
 
