@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://728xo0t3m477"]
+[gd_scene load_steps=27 format=3 uid="uid://728xo0t3m477"]
 
 [ext_resource type="Theme" uid="uid://evv5alve252b" path="res://main/theme/theme.tres" id="1_0e0l4"]
 [ext_resource type="Script" path="res://main/world/ui/shop_menu/shop_menu.gd" id="2_8cqnn"]
@@ -7,31 +7,33 @@
 [ext_resource type="Texture2D" uid="uid://duig11rt8jtcp" path="res://main/theme/palette_dark.png" id="3_0audf"]
 [ext_resource type="Texture2D" uid="uid://1bbhd85mjdb6" path="res://main/battle/fighter/ella/ella.png" id="3_1hmb4"]
 [ext_resource type="Script" path="res://main/world/ui/text_box/dialogue/dialogue.gd" id="3_lyiag"]
+[ext_resource type="Resource" uid="uid://drv8y7ev3u1j1" path="res://main/world/ui/text_box/speakers/shopkeep/shopkeep_speaker.tres" id="4_4hguv"]
 [ext_resource type="PackedScene" uid="uid://7ffg50pelcx6" path="res://main/battle/ui/choice_menu/choice_button/choice_button.tscn" id="4_ctio6"]
 [ext_resource type="FontFile" uid="uid://cauc77kjpc67c" path="res://main/theme/mini_kiwi_font.ttf" id="4_ifx36"]
 [ext_resource type="Texture2D" uid="uid://bkun1agq8ikk2" path="res://main/battle/ui/battle_background/textures/big_dots.png" id="4_jo51e"]
-[ext_resource type="Resource" uid="uid://chjfh685p4h6g" path="res://main/world/ui/text_box/speakers/default/default_speaker.tres" id="4_qq6jg"]
 [ext_resource type="Texture2D" uid="uid://emchhlwgswks" path="res://main/battle/ui/battle_background/textures/square.png" id="5_cfrck"]
 [ext_resource type="PackedScene" uid="uid://b2x6gyr2bsiwy" path="res://main/world/ui/shop_menu/soul_text.tscn" id="6_wn2t7"]
 [ext_resource type="AudioStream" uid="uid://b52h2qinfu6iw" path="res://main/theme/sound/cancel.tres" id="12_3nx1n"]
 [ext_resource type="AudioStream" uid="uid://c4md8ks1818q6" path="res://main/theme/sound/accept.tres" id="13_2iue2"]
 [ext_resource type="AudioStream" uid="uid://dv1ag3s4up115" path="res://main/theme/sound/select.tres" id="13_o54u5"]
+[ext_resource type="AudioStream" uid="uid://mo7vhqqqhk3v" path="res://main/world/ui/shop_menu/buy.ogg" id="17_566on"]
+[ext_resource type="AudioStream" uid="uid://boqfdim03dwld" path="res://main/music/hell_shop.ogg" id="17_kfck8"]
 
 [sub_resource type="Resource" id="Resource_hp4be"]
 script = ExtResource("3_lyiag")
-speaker = ExtResource("4_qq6jg")
-text = "are you sure you wanna buy this?"
+speaker = ExtResource("4_4hguv")
+text = "you sure about buying this?"
 speed = "Normal"
 
 [sub_resource type="Resource" id="Resource_iesmf"]
 script = ExtResource("3_lyiag")
-speaker = ExtResource("4_qq6jg")
-text = "you already own this."
+speaker = ExtResource("4_4hguv")
+text = "you already have that. moron."
 speed = "Normal"
 
 [sub_resource type="Resource" id="Resource_qymeq"]
 script = ExtResource("3_lyiag")
-speaker = ExtResource("4_qq6jg")
+speaker = ExtResource("4_4hguv")
 text = "you're too poor. sorry."
 speed = "Normal"
 
@@ -70,6 +72,11 @@ base_font = ExtResource("4_ifx36")
 spacing_space = -3
 spacing_top = -6
 spacing_bottom = -1
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_2jn77"]
+random_pitch = 1.02
+streams_count = 1
+stream_0/stream = ExtResource("17_566on")
 
 [node name="ShopMenu" type="MarginContainer"]
 anchors_preset = 15
@@ -216,3 +223,16 @@ bus = &"UI Sound Effect"
 unique_name_in_owner = true
 stream = ExtResource("13_o54u5")
 bus = &"UI Sound Effect"
+
+[node name="ShopPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_2jn77")
+volume_db = 4.0
+bus = &"UI Sound Effect"
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("17_kfck8")
+volume_db = -7.0
+pitch_scale = 1.2
+bus = &"Music"

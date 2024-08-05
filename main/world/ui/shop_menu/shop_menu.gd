@@ -68,7 +68,14 @@ func enter() -> void:
 	entered.emit()
 
 func shop() -> void:
+	Ref.world.loaded_room.pause_music()
 	set_process_input(true)
+	
+	%MusicPlayer.volume_db = -60
+	%MusicPlayer.play()
+	var tween: Tween = get_tree().create_tween()
+	tween.tween_property(%MusicPlayer, "volume_db", -4.0, 0.3)
+	await tween.finished
 	
 	while true:
 		var accepted: bool = await continued
@@ -78,8 +85,17 @@ func shop() -> void:
 			set_process_input(true)
 		else:
 			break
+	Ref.world.loaded_room.resume_music()
+	
+	stop_music()
 	
 	set_process_input(false)
+
+func stop_music() -> void:
+	var tween: Tween = get_tree().create_tween()
+	tween.tween_property(%MusicPlayer, "volume_db", -60, 0.3)
+	await tween.finished
+	%MusicPlayer.stop()
 
 func buy() -> void:
 	var fighter: Fighter = screens[screen_idx].fighter
@@ -100,6 +116,7 @@ func buy() -> void:
 	await Ref.world_textbox.exit()
 	
 	if choice == "yes":
+		%ShopPlayer.play()
 		Data.set_state("souls", Data.get_state("souls", 0) - action.soul_cost)
 		fighter.stats.unlocked_skills.append(action.get_index())
 		refocus()

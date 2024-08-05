@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Speaker" load_steps=5 format=3 uid="uid://drv8y7ev3u1j1"]
+
+[ext_resource type="Texture2D" uid="uid://s6v67vanybgl" path="res://main/world/ui/text_box/speakers/shopkeep/shopkeep.png" id="1_l6xtt"]
+[ext_resource type="Script" path="res://main/world/ui/text_box/speakers/speaker.gd" id="2_0pl73"]
+[ext_resource type="AudioStream" uid="uid://b8pb4vi6yg75m" path="res://main/world/ui/text_box/speakers/shopkeep/shopkeep_voice.ogg" id="3_avkt4"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_c46ps"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("3_avkt4")
+
+[resource]
+script = ExtResource("2_0pl73")
+portrait = ExtResource("1_l6xtt")
+voice = SubResource("AudioStreamRandomizer_c46ps")
+chars_per_second = 38

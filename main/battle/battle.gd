@@ -125,7 +125,7 @@ func battle(encounter: Encounter) -> bool:
 		await %LevelSubmenu.exit()
 		
 		await %StatusSubmenu.display_level_ups(levels)
-		await %StatusSubmenu.exit()
+		# await %StatusSubmenu.exit()
 		
 		await Ref.transition.trans_in()
 	

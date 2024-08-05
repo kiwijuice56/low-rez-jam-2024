@@ -55,14 +55,18 @@ func display_level_ups(level_up_amount: int) -> void:
 		%DefValLabelNew.text = str(fighter.stats.defence)
 		%LucValLabelNew.text = str(fighter.stats.luck)
 		
-		if i == 0:
-			await enter()
+		
+		await enter()
 		
 		can_advance = true
 		%Flicker.flicker()
 		await advanced
 		can_advance = false
 		%Flicker.stop()
+		
+		var tween: Tween = get_tree().create_tween()
+		tween.tween_property(get_parent().material, "shader_parameter/fade", 1, TRANS_TIME)
+		await tween.finished
 
 func enter() -> void:
 	if mode == "status":
