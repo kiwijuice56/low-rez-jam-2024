@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://bnbb4opeecksl"]
+[gd_scene load_steps=60 format=3 uid="uid://bnbb4opeecksl"]
 
 [ext_resource type="Script" path="res://main/battle/fighter/fighter.gd" id="1_7gdsa"]
 [ext_resource type="PackedScene" uid="uid://cuko56w08yuso" path="res://main/battle/action/action.tscn" id="2_42vt3"]
@@ -32,6 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://ccrtbhwcjirw7" path="res://main/battle/fighter/effect/wet.png" id="18_rck3c"]
 [ext_resource type="Script" path="res://main/battle/fighter/effect/stun.gd" id="19_2ltam"]
 [ext_resource type="Texture2D" uid="uid://dtcfui8bdacb2" path="res://main/battle/fighter/effect/stun.png" id="20_rwres"]
+[ext_resource type="AudioStream" uid="uid://b127odfeormih" path="res://main/battle/fighter/hit_sound.tres" id="33_10x80"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u031k"]
 shader = ExtResource("6_ipv7e")
@@ -158,6 +159,18 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 0.882353, 0.788235, 1, 0.984314, 0.8352
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_2pknv"]
 gradient = SubResource("Gradient_es1eo")
 
+[sub_resource type="Gradient" id="Gradient_6qowg"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.423077, 0.708791)
+colors = PackedColorArray(1, 0.882353, 0.788235, 1, 0.984314, 0.835294, 0.654902, 1, 0.854902, 0.690196, 0.560784, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_r7ldv"]
+gradient = SubResource("Gradient_6qowg")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1r3so"]
+shader = ExtResource("9_awhmu")
+shader_parameter/palette = SubResource("GradientTexture1D_r7ldv")
+
 [sub_resource type="Animation" id="Animation_vw8o4"]
 length = 0.001
 tracks/0/type = "value"
@@ -219,6 +232,18 @@ tracks/4/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HitSound:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_ko82r"]
 resource_name = "death"
@@ -271,6 +296,18 @@ tracks/3/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HitSound:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.0001),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
 
 [sub_resource type="Animation" id="Animation_cku3n"]
 resource_name = "heal"
@@ -312,6 +349,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), null]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HitSound:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_15xcu"]
@@ -365,18 +414,6 @@ _data = {
 "miss": SubResource("Animation_15xcu"),
 "revive": SubResource("Animation_xmgxv")
 }
-
-[sub_resource type="Gradient" id="Gradient_6qowg"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.423077, 0.708791)
-colors = PackedColorArray(1, 0.882353, 0.788235, 1, 0.984314, 0.835294, 0.654902, 1, 0.854902, 0.690196, 0.560784, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_r7ldv"]
-gradient = SubResource("Gradient_6qowg")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1r3so"]
-shader = ExtResource("9_awhmu")
-shader_parameter/palette = SubResource("GradientTexture1D_r7ldv")
 
 [node name="Fighter" type="Node2D" node_paths=PackedStringArray("base_attack", "base_pass")]
 script = ExtResource("1_7gdsa")
@@ -609,13 +646,6 @@ texture = ExtResource("20_rwres")
 unique_name_in_owner = true
 position = Vector2(0, -5)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-unique_name_in_owner = true
-libraries = {
-"": SubResource("AnimationLibrary_3d25s")
-}
-speed_scale = 2.5
-
 [node name="PointInfo" type="Node2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(-2, -2)
@@ -628,3 +658,15 @@ position = Vector2(-4, 0)
 [node name="TPColoredText" parent="PointInfo" instance=ExtResource("8_uo7mv")]
 unique_name_in_owner = true
 position = Vector2(-4, 6)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_3d25s")
+}
+speed_scale = 2.5
+
+[node name="HitSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("33_10x80")
+volume_db = -7.0
+bus = &"Sound Effect"

@@ -1,13 +1,19 @@
-[gd_scene load_steps=7 format=3 uid="uid://bnkxy1qwre0oj"]
+[gd_scene load_steps=9 format=3 uid="uid://bnkxy1qwre0oj"]
 
 [ext_resource type="PackedScene" uid="uid://df7dk7qqm8ylw" path="res://main/world/character/character.tscn" id="1_xm2al"]
 [ext_resource type="Script" path="res://main/world/character/enemy/enemy.gd" id="2_rs1g8"]
 [ext_resource type="Script" path="res://main/world/ui/text_box/dialogue/dialogue.gd" id="3_1qsro"]
 [ext_resource type="Texture2D" uid="uid://caho2lmh3wuc5" path="res://main/world/character/friend/glaggler/glaggler.png" id="3_ns7hg"]
 [ext_resource type="PackedScene" uid="uid://dqjhry378atdi" path="res://main/world/interactable/interactable.tscn" id="4_5f501"]
+[ext_resource type="AudioStream" uid="uid://bv7seh4wn27gc" path="res://main/world/character/enemy/encounter_sound.wav" id="6_o04og"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_75737"]
 size = Vector2(6, 6)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_7y7m8"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("6_o04og")
 
 [node name="Enemy" instance=ExtResource("1_xm2al")]
 script = ExtResource("2_rs1g8")
@@ -31,3 +37,9 @@ requires_facing = true
 
 [node name="CollisionRays" parent="." index="3"]
 position = Vector2(5, 3)
+
+[node name="EncounterSound" type="AudioStreamPlayer" parent="." index="4"]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_7y7m8")
+volume_db = -3.0
+bus = &"Sound Effect"

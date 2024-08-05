@@ -25,8 +25,10 @@ func _on_interacted(_interact_initiator: Character) -> void:
 func start_battle() -> void:
 	if Ref.world.is_paused:
 		return
+	
 	Ref.world.is_paused = true
 	await Ref.world_textbox.display_conversation(conversation)
+	%EncounterSound.play()
 	
 	if await Ref.battle.battle(encounter):
 		await die()
