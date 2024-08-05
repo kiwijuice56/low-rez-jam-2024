@@ -18,7 +18,7 @@ unlocked_skills = Array[int]([])
 [node name="Enoch" instance=ExtResource("1_0srf7")]
 stats = SubResource("Resource_5x17d")
 
-[node name="Action" parent="Actions/Skills" index="0" instance=ExtResource("3_7vfs5")]
+[node name="Elohim" parent="Actions/Skills" index="0" instance=ExtResource("3_7vfs5")]
 icon = ExtResource("4_rvg7l")
-description = "this one sucks"
-soul_cost = 99
+description = "huge fire hit to all foes"
+soul_cost = 30

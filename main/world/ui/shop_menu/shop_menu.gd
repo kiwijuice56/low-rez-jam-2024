@@ -2,6 +2,10 @@ class_name ShopMenu extends Menu
 
 const TRANS_TIME: float = 0.1
 
+@export var bg_1: ShaderMaterial
+@export var bg_2: ShaderMaterial
+@export var bg_3: ShaderMaterial
+
 @export var confirm_conversation: Array[Dialogue]
 @export var already_owned_conversation: Array[Dialogue]
 @export var not_enough_conversation: Array[Dialogue]
@@ -34,6 +38,13 @@ func _input(event: InputEvent) -> void:
 		refocus()
 
 func refocus() -> void:
+	match screen_idx % 3:
+		0:
+			%Background.material = bg_1
+		1:
+			%Background.material = bg_2
+		2:
+			%Background.material = bg_3
 	initialize(screens[screen_idx].fighter, screens[screen_idx].action)
 
 func initialize(fighter: Fighter, action: Action) -> void:
