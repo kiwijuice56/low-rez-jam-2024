@@ -49,51 +49,6 @@ shader_parameter/palette_2 = ExtResource("14_5avsq")
 [node name="Main" type="Node"]
 script = ExtResource("1_q20fr")
 
-[node name="World" type="Node2D" parent="."]
-y_sort_enabled = true
-script = ExtResource("2_wo4dc")
-
-[node name="UI" type="CanvasLayer" parent="World"]
-
-[node name="MarginContainer" type="MarginContainer" parent="World/UI"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("1_vk4h2")
-theme_override_constants/margin_left = 0
-theme_override_constants/margin_top = 0
-theme_override_constants/margin_right = 0
-theme_override_constants/margin_bottom = 0
-
-[node name="ShopMenu" parent="World/UI/MarginContainer" instance=ExtResource("7_7e6v2")]
-layout_mode = 2
-
-[node name="TextCanvasGroup" type="CanvasGroup" parent="World/UI/MarginContainer"]
-material = SubResource("ShaderMaterial_on3yi")
-
-[node name="TextBox" parent="World/UI/MarginContainer/TextCanvasGroup" instance=ExtResource("3_541dq")]
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 63.0
-offset_bottom = 63.0
-
-[node name="PauseMenuCanvasGroup" type="CanvasGroup" parent="World/UI/MarginContainer"]
-material = SubResource("ShaderMaterial_gljt7")
-
-[node name="PauseMenu" parent="World/UI/MarginContainer/PauseMenuCanvasGroup" instance=ExtResource("5_5g66t")]
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_right = 64.0
-offset_bottom = 64.0
-
-[node name="Player" parent="World" instance=ExtResource("1_84yfs")]
-
 [node name="Battle" type="Node2D" parent="."]
 script = ExtResource("6_ccn40")
 
@@ -362,9 +317,54 @@ is_fire = true
 animations = Array[PackedScene]([ExtResource("19_1o4l7")])
 is_item = true
 
-[node name="AnimationLayer" type="CanvasLayer" parent="Battle"]
+[node name="World" type="Node2D" parent="."]
+y_sort_enabled = true
+script = ExtResource("2_wo4dc")
 
-[node name="ScreenAnimationLayer" type="CanvasLayer" parent="Battle/AnimationLayer"]
+[node name="UI" type="CanvasLayer" parent="World"]
+layer = 2
+
+[node name="TextboxLayer" type="CanvasLayer" parent="World/UI"]
+layer = 0
+
+[node name="TextCanvasGroup" type="CanvasGroup" parent="World/UI/TextboxLayer"]
+material = SubResource("ShaderMaterial_on3yi")
+
+[node name="TextBox" parent="World/UI/TextboxLayer/TextCanvasGroup" instance=ExtResource("3_541dq")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="World/UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_vk4h2")
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="ShopMenu" parent="World/UI/MarginContainer" instance=ExtResource("7_7e6v2")]
+layout_mode = 2
+
+[node name="PauseMenuCanvasGroup" type="CanvasGroup" parent="World/UI/MarginContainer"]
+material = SubResource("ShaderMaterial_gljt7")
+
+[node name="PauseMenu" parent="World/UI/MarginContainer/PauseMenuCanvasGroup" instance=ExtResource("5_5g66t")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 64.0
+offset_bottom = 64.0
+
+[node name="Player" parent="World" instance=ExtResource("1_84yfs")]
 
 [node name="GameOver" parent="." instance=ExtResource("8_enrvm")]
 visible = false
