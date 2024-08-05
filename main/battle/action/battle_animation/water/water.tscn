@@ -1,0 +1,285 @@
+[gd_scene load_steps=11 format=3 uid="uid://bp7v78t1p5vil"]
+
+[ext_resource type="PackedScene" uid="uid://bxwatmpi4g2ui" path="res://main/battle/action/battle_animation/battle_animation.tscn" id="1_uasau"]
+[ext_resource type="Texture2D" uid="uid://c4ladf5bbng4o" path="res://main/battle/action/battle_animation/water/water.png" id="2_sfp50"]
+[ext_resource type="Texture2D" uid="uid://ccrtbhwcjirw7" path="res://main/battle/fighter/effect/wet.png" id="3_fqey1"]
+[ext_resource type="AudioStream" uid="uid://bn70faemlkhks" path="res://main/battle/action/battle_animation/water/bubbles.ogg" id="4_a7ixp"]
+[ext_resource type="AudioStream" uid="uid://q8yu2pn8bpmq" path="res://main/battle/action/battle_animation/water/splash.ogg" id="5_nuond"]
+
+[sub_resource type="Animation" id="Animation_gdkos"]
+resource_name = "bubble"
+length = 2.0
+step = 0.05
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0.1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.0945624, -0.420032, 0, -0.100438, 0.397366, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4, 0.85, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0.1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.154562, -0.28723, 0, -0.115438, 0.281164, 0.25, 0),
+"times": PackedFloat32Array(0, 0.3, 0.795, 1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -16, -0.25, 0, 0.54702, 1.26592, 0, -0.47798, -0.134547, 0.25, 0),
+"times": PackedFloat32Array(0, 0.25, 1.015)
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SpitWater:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.665),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"advance"
+}]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("BubblesPlayer:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("SplashPlayer:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Sprite2D/Water:emitting")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.7, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, false]
+}
+
+[sub_resource type="Animation" id="Animation_rrgo0"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1e-05, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1e-05, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SpitWater:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("BubblesPlayer:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("SplashPlayer:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Sprite2D/Water:emitting")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rle7w"]
+_data = {
+"RESET": SubResource("Animation_rrgo0"),
+"bubble": SubResource("Animation_gdkos")
+}
+
+[sub_resource type="Curve" id="Curve_t4nvp"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.137037, 1), 0.0, 0.0, 0, 0, Vector2(0.618518, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_u6sxs"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.247664, 0.53271, 0.775701)
+colors = PackedColorArray(0.207843, 0.258824, 0.352941, 1, 0.101961, 0.231373, 0.345098, 1, 0.0431373, 0.176471, 0.278431, 1, 0.0196078, 0.0784314, 0.133333, 1)
+
+[node name="Water" instance=ExtResource("1_uasau")]
+follows_target = true
+
+[node name="AnimationPlayer" parent="." index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_rle7w")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="1"]
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("2_sfp50")
+hframes = 2
+frame = 1
+
+[node name="Water" type="CPUParticles2D" parent="Sprite2D" index="0"]
+show_behind_parent = true
+position = Vector2(0, 6)
+lifetime = 0.5
+texture = ExtResource("3_fqey1")
+emission_shape = 1
+emission_sphere_radius = 6.0
+gravity = Vector2(0, 256)
+scale_amount_curve = SubResource("Curve_t4nvp")
+color_ramp = SubResource("Gradient_u6sxs")
+
+[node name="SpitWater" type="CPUParticles2D" parent="." index="2"]
+show_behind_parent = true
+position = Vector2(0, 6e-05)
+emitting = false
+amount = 16
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource("3_fqey1")
+emission_shape = 1
+emission_sphere_radius = 6.0
+direction = Vector2(0, -1)
+spread = 16.0
+gravity = Vector2(0, 128)
+initial_velocity_min = 32.0
+initial_velocity_max = 96.0
+angular_velocity_min = -100.0
+angular_velocity_max = 100.0
+scale_amount_curve = SubResource("Curve_t4nvp")
+color_ramp = SubResource("Gradient_u6sxs")
+
+[node name="BubblesPlayer" type="AudioStreamPlayer" parent="." index="3"]
+stream = ExtResource("4_a7ixp")
+volume_db = 6.0
+bus = &"Sound Effect"
+
+[node name="SplashPlayer" type="AudioStreamPlayer" parent="." index="4"]
+stream = ExtResource("5_nuond")
+volume_db = 4.0
+bus = &"Sound Effect"

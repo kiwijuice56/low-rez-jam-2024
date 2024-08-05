@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://bnbb4opeecksl"]
+[gd_scene load_steps=76 format=3 uid="uid://bnbb4opeecksl"]
 
 [ext_resource type="Script" path="res://main/battle/fighter/fighter.gd" id="1_7gdsa"]
 [ext_resource type="PackedScene" uid="uid://cuko56w08yuso" path="res://main/battle/action/action.tscn" id="2_42vt3"]
@@ -218,6 +218,10 @@ point_count = 4
 interpolation_mode = 1
 offsets = PackedFloat32Array(0, 0.168224, 0.285047, 0.443925, 0.626168, 0.906542)
 colors = PackedColorArray(1, 1, 1, 1, 0.588235, 0.588235, 0.588235, 1, 0.333333, 0.317647, 0.32549, 1, 0.235294, 0.235294, 0.243137, 1, 0.192157, 0.2, 0.207843, 1, 0.180392, 0.192157, 0.203922, 1)
+
+[sub_resource type="Curve" id="Curve_t4nvp"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.137037, 1), 0.0, 0.0, 0, 0, Vector2(0.618518, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
 
 [sub_resource type="Gradient" id="Gradient_u6sxs"]
 interpolation_mode = 1
@@ -792,7 +796,7 @@ texture = ExtResource("18_rck3c")
 emission_shape = 1
 emission_sphere_radius = 4.0
 gravity = Vector2(0, 128)
-scale_amount_curve = SubResource("Curve_0na3w")
+scale_amount_curve = SubResource("Curve_t4nvp")
 color_ramp = SubResource("Gradient_u6sxs")
 
 [node name="Charged" type="Node2D" parent="SpriteHolder/Effects"]

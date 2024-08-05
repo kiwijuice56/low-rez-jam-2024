@@ -1,16 +1,18 @@
-[gd_scene load_steps=13 format=3 uid="uid://c7cfirjgacf35"]
+[gd_scene load_steps=15 format=3 uid="uid://c7cfirjgacf35"]
 
 [ext_resource type="PackedScene" uid="uid://bnbb4opeecksl" path="res://main/battle/fighter/fighter.tscn" id="1_mylgi"]
 [ext_resource type="Script" path="res://main/battle/fighter/fighter_stats/fighter_stats.gd" id="2_wtt4c"]
 [ext_resource type="Shader" path="res://main/battle/fighter/flash.gdshader" id="3_4m07w"]
 [ext_resource type="Texture2D" uid="uid://bd65dsv7n3o4r" path="res://main/battle/fighter/slime/slime.png" id="3_bhu5l"]
 [ext_resource type="PackedScene" uid="uid://cuko56w08yuso" path="res://main/battle/action/action.tscn" id="3_vwhtk"]
-[ext_resource type="PackedScene" uid="uid://dagp5qivcpmn3" path="res://main/battle/action/battle_animation/explosion/explosion.tscn" id="4_7c3sp"]
+[ext_resource type="PackedScene" uid="uid://bp7v78t1p5vil" path="res://main/battle/action/battle_animation/water/water.tscn" id="4_y6hbp"]
 [ext_resource type="Texture2D" uid="uid://dqkasghqp64we" path="res://main/battle/fighter/slime/shadow.png" id="5_bfxls"]
+[ext_resource type="PackedScene" uid="uid://cp1oupuymf0u8" path="res://main/battle/action/battle_animation/elec/elec_flash.tscn" id="5_kulbe"]
+[ext_resource type="PackedScene" uid="uid://bt0t88dexj4lo" path="res://main/battle/action/battle_animation/elec/elec.tscn" id="6_o3vxp"]
 
 [sub_resource type="Resource" id="Resource_0mx5o"]
 script = ExtResource("2_wtt4c")
-max_hp = 60
+max_hp = 5
 max_tp = 15
 strength = 15
 magic = 15
@@ -69,7 +71,7 @@ _data = {
 
 [node name="Slime" instance=ExtResource("1_mylgi")]
 stats = SubResource("Resource_0mx5o")
-innate_elec_weakness = true
+innate_water_weakness = true
 
 [node name="Bam" parent="Actions/Skills" index="0" instance=ExtResource("3_vwhtk")]
 description = "a killa move"
@@ -78,12 +80,13 @@ power = 1.0
 accuracy = 0.5
 target_amount = "All"
 hit_amount_max = 1
-animations = Array[PackedScene]([ExtResource("4_7c3sp")])
+animations = Array[PackedScene]([ExtResource("4_y6hbp")])
 
 [node name="Attack" parent="Actions" index="1"]
 target_amount = "All"
 status_chance = 1.0
 status_effects = Array[String](["Bleed"])
+animations = Array[PackedScene]([ExtResource("5_kulbe"), ExtResource("6_o3vxp")])
 
 [node name="ShadowSprite2D" parent="." index="1"]
 texture = ExtResource("5_bfxls")

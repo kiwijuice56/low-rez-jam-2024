@@ -116,6 +116,8 @@ func battle(encounter: Encounter) -> bool:
 	### BATTLE LOOP END ###
 	
 	stop_music()
+	%Text.display_text("   ", TEXT_SPEED)
+	await get_tree().create_timer(1.0).timeout
 	
 	var lose: bool = len(get_alive_fighters(player_party)) == 0
 	if lose:
@@ -344,7 +346,7 @@ func position_fighters(player_party: Array[Fighter], enemy_party: Array[Fighter]
 func stop_music() -> void:
 	%BattleMusicPlayer.volume_db = 0
 	var tween: Tween = get_tree().create_tween()
-	tween.tween_property(%BattleMusicPlayer, "volume_db", -60, MUSIC_TRANS_TIME)
+	tween.tween_property(%BattleMusicPlayer, "volume_db", -60, MUSIC_TRANS_TIME * 8)
 	await tween.finished
 
 func start_music(stream: AudioStream) -> void:

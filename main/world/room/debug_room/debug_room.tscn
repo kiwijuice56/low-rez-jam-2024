@@ -13,8 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://bnkxy1qwre0oj" path="res://main/world/character/enemy/enemy.tscn" id="9_t400i"]
 [ext_resource type="Script" path="res://main/world/character/enemy/encounter.gd" id="10_26ev5"]
 [ext_resource type="PackedScene" uid="uid://ingpp247yeyh" path="res://main/battle/ui/battle_background/watermelon/watermelon_battle_background.tscn" id="10_vjepj"]
-[ext_resource type="AudioStream" uid="uid://uxqbro8puosv" path="res://main/music/salad_slaughter.ogg" id="11_ajfvi"]
 [ext_resource type="PackedScene" uid="uid://c7cfirjgacf35" path="res://main/battle/fighter/slime/slime.tscn" id="11_s1sci"]
+[ext_resource type="AudioStream" uid="uid://bjju4gb81vhty" path="res://main/music/mindful_killing.ogg" id="12_ap8p3"]
 [ext_resource type="PackedScene" uid="uid://dfjd13fkiyly0" path="res://main/world/character/friend/shopkeep/shopkeep.tscn" id="14_s2123"]
 [ext_resource type="PackedScene" uid="uid://dd7jtwvmbffbg" path="res://main/world/character/friend/saver/saver.tscn" id="17_6d275"]
 
@@ -34,8 +34,8 @@ speed = "Normal"
 script = ExtResource("10_26ev5")
 fighters = Array[PackedScene]([ExtResource("11_s1sci"), ExtResource("11_s1sci")])
 background = ExtResource("10_vjepj")
-music = ExtResource("11_ajfvi")
-xp_drop = 128
+music = ExtResource("12_ap8p3")
+xp_drop = 256
 
 [sub_resource type="Resource" id="Resource_ftoqs"]
 script = ExtResource("3_2d463")
