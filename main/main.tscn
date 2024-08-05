@@ -198,7 +198,7 @@ bus = &"UI Sound Effect"
 [node name="WasteTurnPlayer" type="AudioStreamPlayer" parent="Battle/UI"]
 unique_name_in_owner = true
 stream = ExtResource("14_lm6dr")
-volume_db = -4.0
+volume_db = -7.0
 bus = &"UI Sound Effect"
 
 [node name="FighterLayer" type="CanvasLayer" parent="Battle"]
@@ -415,10 +415,11 @@ offset_bottom = 64.0
 [node name="Player" parent="World" instance=ExtResource("1_84yfs")]
 
 [node name="GameOver" parent="." instance=ExtResource("8_enrvm")]
+layer = 12
 visible = false
 
 [node name="PaletteLayer" type="CanvasLayer" parent="."]
-layer = 4
+layer = 20
 
 [node name="Filter" type="ColorRect" parent="PaletteLayer"]
 material = SubResource("ShaderMaterial_fxtiv")
@@ -429,7 +430,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Transition" parent="." instance=ExtResource("6_j5aj4")]
-layer = 8
+layer = 16
 visible = false
 
 [node name="LoadingLayer" parent="." instance=ExtResource("24_gb8q0")]

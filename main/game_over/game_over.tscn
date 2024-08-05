@@ -1,8 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://crjxe4tprt1q1"]
+[gd_scene load_steps=16 format=3 uid="uid://crjxe4tprt1q1"]
 
 [ext_resource type="Shader" path="res://main/game_over/paint.gdshader" id="1_7bv2x"]
 [ext_resource type="Script" path="res://main/game_over/game_over.gd" id="1_iv7ve"]
 [ext_resource type="Texture2D" uid="uid://dejao1qkcdvoq" path="res://main/game_over/gameover_palette.png" id="2_ujmc1"]
+[ext_resource type="Texture2D" uid="uid://bbe21aa773nqd" path="res://main/game_over/body.png" id="4_7nqa2"]
+[ext_resource type="Texture2D" uid="uid://d34a731fhi0ky" path="res://main/game_over/skull.png" id="5_a7tn4"]
+[ext_resource type="Texture2D" uid="uid://fmmimc767kek" path="res://main/game_over/head.png" id="6_2eiic"]
+[ext_resource type="Shader" path="res://main/battle/fighter/flash.gdshader" id="6_8o462"]
+[ext_resource type="Texture2D" uid="uid://fhh2wnj3ex24" path="res://main/game_over/bow.png" id="7_vp10l"]
+[ext_resource type="AudioStream" uid="uid://b1praohh13akw" path="res://main/music/siren_curse.ogg" id="9_kkfog"]
+[ext_resource type="AudioStream" uid="uid://dcaxhqu7fpcw6" path="res://main/game_over/die.ogg" id="10_1e6tl"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ipfmd"]
 shader = ExtResource("1_7bv2x")
@@ -13,7 +20,7 @@ shader_parameter/polar_repeat = 1.0
 shader_parameter/spin_rotation = null
 shader_parameter/spin_speed = 16.0
 shader_parameter/offset = Vector2(0, 0)
-shader_parameter/colour_1 = Color(0.29219, 0.29219, 0.29219, 1)
+shader_parameter/colour_1 = Color(0.304462, 0.304462, 0.304462, 1)
 shader_parameter/colour_2 = Color(0, 0, 0, 1)
 shader_parameter/colour_3 = Color(1, 1, 1, 1)
 shader_parameter/contrast = 0.17
@@ -24,11 +31,122 @@ shader_parameter/palette = ExtResource("2_ujmc1")
 
 [sub_resource type="Animation" id="Animation_o11i3"]
 resource_name = "game_over"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head:material:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.433333, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MusicPlayer:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MusicPlayer:volume_db")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.33333, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [14.0, 14.0, -60.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("DiePlayer:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.433333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_nc3tq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head:material:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MusicPlayer:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MusicPlayer:volume_db")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("DiePlayer:autoplay")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_v54la"]
 _data = {
+"RESET": SubResource("Animation_nc3tq"),
 "game_over": SubResource("Animation_o11i3")
 }
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h64xd"]
+shader = ExtResource("6_8o462")
+shader_parameter/flash = null
+shader_parameter/progress = 0.0
+shader_parameter/meltiness = 2.054
+shader_parameter/broken = false
+shader_parameter/h_frames = null
+shader_parameter/broken_dist = 0.1
+shader_parameter/random_seed = 0.12
 
 [node name="GameOver" type="CanvasLayer"]
 layer = 2
@@ -47,3 +165,30 @@ unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_v54la")
 }
+speed_scale = 0.25
+
+[node name="Body" type="Sprite2D" parent="."]
+texture = ExtResource("4_7nqa2")
+centered = false
+
+[node name="Skull" type="Sprite2D" parent="."]
+texture = ExtResource("5_a7tn4")
+centered = false
+
+[node name="Head" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_h64xd")
+texture = ExtResource("6_2eiic")
+centered = false
+
+[node name="Bow" type="Sprite2D" parent="."]
+texture = ExtResource("7_vp10l")
+centered = false
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_kkfog")
+bus = &"Music"
+
+[node name="DiePlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_1e6tl")
+volume_db = -7.0
+bus = &"Sound Effect"
