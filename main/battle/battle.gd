@@ -118,6 +118,11 @@ func battle(encounter: Encounter) -> bool:
 	if lose:
 		await Ref.game_over.game_over()
 	else:
+		# level up stuffs
+		%LevelSubmenu.mode = "level up"
+		await %LevelSubmenu.enter()
+		var levels: int = await %LevelSubmenu.battle_end_sequence(encounter.xp_drop)
+		await %LevelSubmenu.exit()
 		await Ref.transition.trans_in()
 	
 	# cleanup stuffs
@@ -130,8 +135,6 @@ func battle(encounter: Encounter) -> bool:
 	if lose:
 		Ref.world.load_room("hell", "Default", false)
 	else:
-		await Ref.pause_menu.get_node("%LevelSubmenu").enter()
-		var levels: int = await Ref.pause_menu.get_node("%LevelSubmenu").battle_end_sequence(encounter.xp_drop)
 		await Ref.transition.trans_out()
 	
 	return not lose

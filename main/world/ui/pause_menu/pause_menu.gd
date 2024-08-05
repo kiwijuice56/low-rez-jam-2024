@@ -53,6 +53,7 @@ func accept() -> void:
 			%TipContainer.hide_tip()
 			
 			%AcceptPlayer.play()
+			%LevelSubmenu.mode = "status"
 			%LevelSubmenu.enter()
 			var full_exit: bool = await %LevelSubmenu.exited
 			if full_exit:

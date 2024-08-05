@@ -18,24 +18,27 @@ var fake_xp_f: float = 0:
 			fake_xp = int(fake_xp_f)
 		%Bubble.material.set_shader_parameter("fV", fake_xp_f / Data.get_state("xp_goal"))
 
-var can_leave: bool = false
+signal advanced
 
 func _ready() -> void:
 	visible = false
 	set_process_input(false)
 
 func _input(event: InputEvent) -> void:
-	if not can_leave:
-		return
-	if event.is_action_pressed("cancel", false):
-		%CancelPlayer.play()
-		exit(false)
-	if event.is_action_pressed("menu", false):
-		%CancelPlayer.play()
-		exit(true)
+	if mode == "level up":
+		if event.is_action_pressed("accept", false):
+			%AcceptPlayer.play()
+			advanced.emit()
+	if mode == "status":
+		if event.is_action_pressed("cancel", false):
+			%CancelPlayer.play()
+			exit(false)
+		if event.is_action_pressed("menu", false):
+			%CancelPlayer.play()
+			exit(true)
 
 func display_level() -> void:
-	if mode == "staus":
+	if mode == "status":
 		%TitleLabel.text = "level + xp"
 	else:
 		%TitleLabel.text = "you win!"
@@ -93,6 +96,9 @@ func battle_end_sequence(xp_gained: int) -> int:
 	await get_tree().create_timer(1.0).timeout
 	Data.set_state("xp", fake_xp)
 	Data.set_state("xp_goal", get_xp_goal(Data.get_state("lvl")))
+	
+	await advanced
+	
 	return level_ups
 
 func enter() -> void:
@@ -107,7 +113,6 @@ func enter() -> void:
 	
 	set_process_input(true)
 	entered.emit()
-	battle_end_sequence(999)
 
 func exit(full_exit: bool = false) -> void:
 	set_process_input(false)

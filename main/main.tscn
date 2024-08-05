@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://dl3ps7eki0b7b"]
+[gd_scene load_steps=34 format=3 uid="uid://dl3ps7eki0b7b"]
 
 [ext_resource type="PackedScene" uid="uid://txvddbv8pfiv" path="res://main/world/character/player/player.tscn" id="1_84yfs"]
 [ext_resource type="Script" path="res://main/main.gd" id="1_q20fr"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://ingpp247yeyh" path="res://main/battle/ui/battle_background/watermelon/watermelon_battle_background.tscn" id="9_d6aqk"]
 [ext_resource type="PackedScene" uid="uid://bx3kup2vyqlma" path="res://main/battle/ui/choice_menu/choice_menu.tscn" id="10_o1rja"]
 [ext_resource type="Script" path="res://main/world/ui/text_box/animated_text_label/animated_text_label.gd" id="10_u6xbh"]
+[ext_resource type="PackedScene" uid="uid://bilxdps8h4csj" path="res://main/world/ui/pause_menu/level_submenu/level_submenu.tscn" id="11_c3ygn"]
 [ext_resource type="PackedScene" uid="uid://1c3rge3mfp4r" path="res://main/battle/ui/press_turn_widget/press_turn/press_turn.tscn" id="12_8wuqk"]
 [ext_resource type="PackedScene" uid="uid://7ffg50pelcx6" path="res://main/battle/ui/choice_menu/choice_button/choice_button.tscn" id="12_dv1jm"]
 [ext_resource type="Shader" path="res://main/theme/palette_swapper.gdshader" id="12_pd2fh"]
@@ -28,6 +29,11 @@
 [ext_resource type="Texture2D" uid="uid://dwm2gd3f6v21p" path="res://main/battle/action/icons/icon_magic.png" id="19_e4607"]
 [ext_resource type="PackedScene" uid="uid://28chlk8w3lmf" path="res://main/battle/action/battle_animation/heal/heal.tscn" id="19_nv760"]
 [ext_resource type="PackedScene" uid="uid://cvh8igwahj8wg" path="res://main/loading/loading_layer.tscn" id="24_gb8q0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1nlqh"]
+shader = ExtResource("5_4102r")
+shader_parameter/fade = 0.0
+shader_parameter/tiling = 9.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_on3yi"]
 shader = ExtResource("5_4102r")
@@ -149,6 +155,18 @@ position = Vector2(8, 0)
 
 [node name="PressTurn4" parent="Battle/UI/PressTurnWidget" instance=ExtResource("12_8wuqk")]
 position = Vector2(12, 0)
+
+[node name="AfterBattleLayer" type="CanvasLayer" parent="Battle/UI"]
+layer = 2
+
+[node name="LevelCanvasGroup" type="CanvasGroup" parent="Battle/UI/AfterBattleLayer"]
+material = SubResource("ShaderMaterial_1nlqh")
+
+[node name="LevelSubmenu" parent="Battle/UI/AfterBattleLayer/LevelCanvasGroup" instance=ExtResource("11_c3ygn")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 64)
+offset_right = 64.0
+offset_bottom = 64.0
 
 [node name="MenuFighterPosition" type="Marker2D" parent="Battle/UI"]
 unique_name_in_owner = true

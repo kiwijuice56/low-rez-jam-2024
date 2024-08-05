@@ -1,10 +1,11 @@
-[gd_scene load_steps=21 format=3 uid="uid://bilxdps8h4csj"]
+[gd_scene load_steps=22 format=3 uid="uid://bilxdps8h4csj"]
 
 [ext_resource type="Theme" uid="uid://evv5alve252b" path="res://main/theme/theme.tres" id="1_wh3mp"]
 [ext_resource type="Script" path="res://main/world/ui/pause_menu/level_submenu/level_submenu.gd" id="1_xesah"]
 [ext_resource type="Shader" path="res://main/world/ui/pause_menu/level_submenu/liquid_bubble.gdshader" id="3_lw3tn"]
 [ext_resource type="AudioStream" uid="uid://b52h2qinfu6iw" path="res://main/theme/sound/cancel.tres" id="4_jtl14"]
 [ext_resource type="AudioStream" uid="uid://b3cpps5g8b2hw" path="res://main/world/ui/pause_menu/level_submenu/xp_gain.ogg" id="5_4wwbj"]
+[ext_resource type="AudioStream" uid="uid://c4md8ks1818q6" path="res://main/theme/sound/accept.tres" id="5_5oc7y"]
 [ext_resource type="AudioStream" uid="uid://b4s81apumu4p1" path="res://main/world/ui/pause_menu/level_submenu/level_up.ogg" id="6_rktn0"]
 [ext_resource type="Texture2D" uid="uid://7ianniwhess3" path="res://main/world/item_pickup/circle.png" id="7_o8k2n"]
 [ext_resource type="Texture2D" uid="uid://5awwqnueqt3b" path="res://main/world/ui/pause_menu/level_submenu/circle.png" id="8_t3ine"]
@@ -245,6 +246,11 @@ size_flags_horizontal = 4
 [node name="CancelPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("4_jtl14")
+bus = &"UI Sound Effect"
+
+[node name="AcceptPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("5_5oc7y")
 bus = &"UI Sound Effect"
 
 [node name="XPGainPlayer" type="AudioStreamPlayer" parent="."]
