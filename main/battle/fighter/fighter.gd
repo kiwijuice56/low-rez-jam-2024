@@ -5,6 +5,14 @@ class_name Fighter extends Node2D
 @export var innate_elec_weakness: bool = false 
 @export var innate_water_weakness: bool = false
 
+@export_group("Level")
+@export var strength_grow: int = 1
+@export var magic_grow: int = 1
+@export var defence_grow: int = 1
+@export var luck_grow: int = 1
+@export var max_hp_grow: int = 2
+@export var max_tp_grow: int = 2
+
 @export_group("Action")
 @export var base_attack: Action
 @export var base_pass: Action

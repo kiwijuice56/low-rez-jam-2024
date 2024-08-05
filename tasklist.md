@@ -36,11 +36,11 @@
 - - [x] Press turn icons
 - - [x] Battle backgrounds
 - [?] Progression system
-- - [ ] XP gain and leveling up after combat
-- - [ ] Stat growth distribution + formulas
+- - [x] XP gain and leveling up after combat
+- - [?] Stat growth distribution + formulas
 - - [x] Skill unlocking
 - [?] Progression UI
-- - [ ] Level up status pop-ups
+- - [?] Level up status pop-ups
 - - [x] Skill unlock menu + animations
 - [ ] Title UI
 - [x] Game Over UI

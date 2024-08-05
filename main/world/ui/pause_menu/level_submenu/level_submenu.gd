@@ -2,21 +2,82 @@ class_name LevelSubmenu extends Menu
 
 const TRANS_TIME: float = 0.1
 
+var fake_xp: int = 0:
+	set(val):
+		fake_xp = val
+		Data.set_state("xp", fake_xp)
+		%XPLabel.text = str(fake_xp)
+var fake_xp_f: float = 0:
+	set(val):
+		fake_xp_f = val
+		if not int(fake_xp_f) == fake_xp:
+			fake_xp = int(fake_xp_f)
+		%Bubble.material.set_shader_parameter("fV", fake_xp_f / Data.get_state("xp_goal"))
+
+var can_leave: bool = false
+
 func _ready() -> void:
 	visible = false
 	set_process_input(false)
 
 func _input(event: InputEvent) -> void:
+	if not can_leave:
+		return
 	if event.is_action_pressed("cancel", false):
+		%CancelPlayer.play()
 		exit(false)
 	if event.is_action_pressed("menu", false):
+		%CancelPlayer.play()
 		exit(true)
 
 func display_level() -> void:
 	%LevelLabel.text = str(Data.get_state("lvl"))
-	%XPLabel.text = str(Data.get_state("xp"))
+	%XPLabel.text = "%d" % Data.get_state("xp")
 	%Bubble.material.set_shader_parameter("fV", float(Data.get_state("xp")) / Data.get_state("xp_goal"))
 
+func level_up() -> void:
+	Data.set_state("lvl", Data.get_state("lvl") + 1)
+	
+	%LevelLabel.text = str(Data.get_state("lvl"))
+	await get_tree().create_timer(1.0).timeout
+	var tween: Tween = get_tree().create_tween()
+	tween.tween_property(self, "fake_xp_f", 0, 0.5)
+	await tween.finished
+	
+	
+	
+	Data.set_state("xp_goal", get_xp_goal(Data.get_state("lvl")))
+	Data.set_state("xp", 0)
+	fake_xp = 0
+
+func get_xp_goal(level: int) -> int:
+	return int(15 + pow(level / 99.0, 0.5) * 985)
+
+func battle_end_sequence(xp_gained: int) -> void:
+	fake_xp = Data.get_state("xp") 
+	fake_xp_f = Data.get_state("xp") 
+	while xp_gained > 0:
+		var will_level_up: bool = false
+		var sub_level_award: int = 0
+		if Data.get_state("xp") + xp_gained >= Data.get_state("xp_goal"):
+			will_level_up = true
+			sub_level_award = Data.get_state("xp_goal") - Data.get_state("xp")
+		else:
+			sub_level_award = xp_gained
+		var tween: Tween = get_tree().create_tween()
+		tween.tween_property(self, "fake_xp_f", fake_xp_f + sub_level_award, 1.0)
+		await tween.finished
+		
+		xp_gained -= sub_level_award
+		
+		if will_level_up:
+			await level_up()
+		else:
+			break
+	await get_tree().create_timer(1.0).timeout
+	Data.set_state("xp", fake_xp)
+	Data.set_state("xp_goal", get_xp_goal(Data.get_state("lvl")))
+	
 func enter() -> void:
 	display_level()
 	
@@ -29,11 +90,10 @@ func enter() -> void:
 	
 	set_process_input(true)
 	entered.emit()
+	battle_end_sequence(999)
 
 func exit(full_exit: bool = false) -> void:
 	set_process_input(false)
-	
-	%CancelPlayer.play()
 	
 	var tween: Tween = get_tree().create_tween()
 	tween.tween_property(get_parent().material, "shader_parameter/fade", 1.0, TRANS_TIME)
