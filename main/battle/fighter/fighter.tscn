@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://bnbb4opeecksl"]
+[gd_scene load_steps=72 format=3 uid="uid://bnbb4opeecksl"]
 
 [ext_resource type="Script" path="res://main/battle/fighter/fighter.gd" id="1_7gdsa"]
 [ext_resource type="PackedScene" uid="uid://cuko56w08yuso" path="res://main/battle/action/action.tscn" id="2_42vt3"]
@@ -31,7 +31,10 @@
 [ext_resource type="PackedScene" uid="uid://28chlk8w3lmf" path="res://main/battle/action/battle_animation/heal/heal.tscn" id="18_hxygw"]
 [ext_resource type="Texture2D" uid="uid://ccrtbhwcjirw7" path="res://main/battle/fighter/effect/wet.png" id="18_rck3c"]
 [ext_resource type="Script" path="res://main/battle/fighter/effect/stun.gd" id="19_2ltam"]
+[ext_resource type="Texture2D" uid="uid://bt3nhw2t3iwpj" path="res://main/battle/fighter/effect/bless.png" id="19_nkajc"]
 [ext_resource type="Texture2D" uid="uid://dtcfui8bdacb2" path="res://main/battle/fighter/effect/stun.png" id="20_rwres"]
+[ext_resource type="Texture2D" uid="uid://kjrcvx0ub2xy" path="res://main/battle/fighter/effect/aura.png" id="24_2w7f7"]
+[ext_resource type="Script" path="res://main/battle/fighter/follow_floor.gd" id="25_ngxfg"]
 [ext_resource type="AudioStream" uid="uid://b127odfeormih" path="res://main/battle/fighter/hit_sound.tres" id="33_10x80"]
 [ext_resource type="AudioStream" uid="uid://bcipan3xccunn" path="res://main/battle/fighter/maraca.ogg" id="34_nra32"]
 
@@ -92,6 +95,44 @@ _data = {
 "burn": SubResource("Animation_1bl7v")
 }
 
+[sub_resource type="Animation" id="Animation_k0pmb"]
+resource_name = "shimmer"
+length = 0.1333
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_456iq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_51pl1"]
+_data = {
+"RESET": SubResource("Animation_456iq"),
+"shimmer": SubResource("Animation_k0pmb")
+}
+
 [sub_resource type="Animation" id="Animation_8y2xf"]
 length = 0.001
 tracks/0/type = "value"
@@ -128,6 +169,44 @@ tracks/0/keys = {
 _data = {
 "RESET": SubResource("Animation_8y2xf"),
 "shine": SubResource("Animation_te6j8")
+}
+
+[sub_resource type="Animation" id="Animation_o1r1v"]
+resource_name = "shine"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+}
+
+[sub_resource type="Animation" id="Animation_pegrv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fi60e"]
+_data = {
+"RESET": SubResource("Animation_pegrv"),
+"shine": SubResource("Animation_o1r1v")
 }
 
 [sub_resource type="Curve" id="Curve_0na3w"]
@@ -530,6 +609,7 @@ action = NodePath("BleedAction")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="SpriteHolder/Effects/Bleed"]
 amount = 12
+speed_scale = 1.5
 texture = ExtResource("13_byshb")
 direction = Vector2(0.4, -1)
 spread = 23.6
@@ -567,10 +647,12 @@ status_chance = 0.0
 animations = Array[PackedScene]([ExtResource("7_5ut8c")])
 
 [node name="Sprite2D" type="Sprite2D" parent="SpriteHolder/Effects/Ablaze"]
-position = Vector2(-8, -10)
+position = Vector2(0, 5)
 texture = ExtResource("14_wg7il")
 centered = false
+offset = Vector2(-7, -15)
 hframes = 3
+script = ExtResource("25_ngxfg")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SpriteHolder/Effects/Ablaze/Sprite2D"]
 libraries = {
@@ -595,10 +677,16 @@ status_chance = 0.0
 animations = Array[PackedScene]([ExtResource("18_hxygw")])
 
 [node name="Sprite2D" type="Sprite2D" parent="SpriteHolder/Effects/Bless"]
-position = Vector2(-8, -10)
-texture = ExtResource("14_wg7il")
+position = Vector2(-2, -10)
+texture = ExtResource("19_nkajc")
 centered = false
-hframes = 3
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SpriteHolder/Effects/Bless/Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_51pl1")
+}
+speed_scale = 0.5
 
 [node name="Broken" type="Node2D" parent="SpriteHolder/Effects"]
 visible = false
@@ -624,6 +712,19 @@ speed_scale = 0.3
 [node name="Aura" type="Node2D" parent="SpriteHolder/Effects"]
 visible = false
 script = ExtResource("11_kal80")
+
+[node name="Sprite2D" type="Sprite2D" parent="SpriteHolder/Effects/Aura"]
+texture = ExtResource("24_2w7f7")
+centered = false
+offset = Vector2(-4, -18)
+hframes = 9
+script = ExtResource("25_ngxfg")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SpriteHolder/Effects/Aura/Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_fi60e")
+}
+autoplay = "shine"
 
 [node name="Oily" type="Node2D" parent="SpriteHolder/Effects"]
 visible = false
