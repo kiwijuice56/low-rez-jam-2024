@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://bnbb4opeecksl"]
+[gd_scene load_steps=63 format=3 uid="uid://bnbb4opeecksl"]
 
 [ext_resource type="Script" path="res://main/battle/fighter/fighter.gd" id="1_7gdsa"]
 [ext_resource type="PackedScene" uid="uid://cuko56w08yuso" path="res://main/battle/action/action.tscn" id="2_42vt3"]
@@ -33,6 +33,7 @@
 [ext_resource type="Script" path="res://main/battle/fighter/effect/stun.gd" id="19_2ltam"]
 [ext_resource type="Texture2D" uid="uid://dtcfui8bdacb2" path="res://main/battle/fighter/effect/stun.png" id="20_rwres"]
 [ext_resource type="AudioStream" uid="uid://b127odfeormih" path="res://main/battle/fighter/hit_sound.tres" id="33_10x80"]
+[ext_resource type="AudioStream" uid="uid://bcipan3xccunn" path="res://main/battle/fighter/maraca.ogg" id="34_nra32"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u031k"]
 shader = ExtResource("6_ipv7e")
@@ -244,6 +245,29 @@ tracks/5/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("SpriteHolder:position:y")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("StartSound:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_ko82r"]
 resource_name = "death"
@@ -405,6 +429,33 @@ tracks/1/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_7kxjp"]
+resource_name = "start"
+length = 1.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteHolder:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -3, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, -5, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.233333, 0.5, 0.566667, 0.766667, 1.06667)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StartSound:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3d25s"]
 _data = {
 "RESET": SubResource("Animation_vw8o4"),
@@ -412,8 +463,14 @@ _data = {
 "heal": SubResource("Animation_cku3n"),
 "hurt": SubResource("Animation_y8yea"),
 "miss": SubResource("Animation_15xcu"),
-"revive": SubResource("Animation_xmgxv")
+"revive": SubResource("Animation_xmgxv"),
+"start": SubResource("Animation_7kxjp")
 }
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_8misl"]
+random_pitch = 1.05
+streams_count = 1
+stream_0/stream = ExtResource("34_nra32")
 
 [node name="Fighter" type="Node2D" node_paths=PackedStringArray("base_attack", "base_pass")]
 script = ExtResource("1_7gdsa")
@@ -669,4 +726,9 @@ speed_scale = 2.5
 [node name="HitSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("33_10x80")
 volume_db = -7.0
+bus = &"Sound Effect"
+
+[node name="StartSound" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_8misl")
+volume_db = -12.0
 bus = &"Sound Effect"

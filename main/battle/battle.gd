@@ -83,6 +83,7 @@ func battle(encounter: Encounter) -> bool:
 			else:
 				choice = await fighter.get_choice(enemy_party, player_party)
 			
+			fighter.start_turn()
 			var turns_used: Action.TurnUsage = await choice.action.act(fighter, choice.targets)
 			if turns_used == Action.TurnUsage.NORMAL:
 				if half_turns > 0:

@@ -85,6 +85,9 @@ func revive() -> void:
 	dead = false
 	update_ui()
 
+func start_turn() -> void:
+	%AnimationPlayer.play("start")
+
 func after_turn() -> void:
 	for effect in %Effects.get_children():
 		if effect.active:

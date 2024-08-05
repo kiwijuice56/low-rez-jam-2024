@@ -1,18 +1,100 @@
-[gd_scene load_steps=9 format=3 uid="uid://cvh8igwahj8wg"]
+[gd_scene load_steps=19 format=3 uid="uid://cvh8igwahj8wg"]
 
 [ext_resource type="Script" path="res://main/loading/loader.gd" id="1_orms1"]
 [ext_resource type="PackedScene" uid="uid://ch5b8se0xto88" path="res://main/loading/temporary_panel.tscn" id="2_2kbdd"]
 [ext_resource type="PackedScene" uid="uid://lt8cgyjbyrmo" path="res://main/battle/ui/damage_widget/damage_widget.tscn" id="2_vrn78"]
+[ext_resource type="Shader" path="res://main/battle/ui/battle_background/background_image_wave.gdshader" id="3_eak03"]
 [ext_resource type="PackedScene" uid="uid://bfugie8wrqt4l" path="res://main/battle/ui/damage_widget/critical_damage_widget/critical_damage_widget.tscn" id="3_ugkia"]
 [ext_resource type="PackedScene" uid="uid://deotpp6wnlyl8" path="res://main/battle/ui/damage_widget/miss_damage_widget/miss_damage_widget.tscn" id="4_c0u21"]
+[ext_resource type="Texture2D" uid="uid://duig11rt8jtcp" path="res://main/theme/palette_dark.png" id="4_smhot"]
 [ext_resource type="PackedScene" uid="uid://cvscxguxb7jke" path="res://main/battle/ui/colored_text/colored_text.tscn" id="5_tr2bk"]
+[ext_resource type="Texture2D" uid="uid://bkun1agq8ikk2" path="res://main/battle/ui/battle_background/textures/big_dots.png" id="5_v48v4"]
+[ext_resource type="Texture2D" uid="uid://emchhlwgswks" path="res://main/battle/ui/battle_background/textures/square.png" id="6_37g2t"]
 [ext_resource type="PackedScene" uid="uid://ce4cnfbite600" path="res://main/battle/ui/damage_widget/heal_damage_widget/heal_damage_widget.tscn" id="6_jm5oc"]
+[ext_resource type="Texture2D" uid="uid://id28ob6rkt1y" path="res://main/battle/ui/battle_background/textures/ring.png" id="7_7vn07"]
 [ext_resource type="PackedScene" uid="uid://dkmng4n35a0hr" path="res://main/battle/ui/damage_widget/tp_damage_widget/tp_damage_widget.tscn" id="7_36sh5"]
+[ext_resource type="Texture2D" uid="uid://5awwqnueqt3b" path="res://main/world/ui/pause_menu/level_submenu/circle.png" id="8_mv0mr"]
+[ext_resource type="Texture2D" uid="uid://d1u4mbnfmrseq" path="res://main/battle/ui/battle_background/textures/grid_diagonal.png" id="9_tuboa"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_khm7c"]
+shader = ExtResource("3_eak03")
+shader_parameter/palette_size = 13
+shader_parameter/idx_1 = 0
+shader_parameter/idx_2 = 1
+shader_parameter/idx_3 = 2
+shader_parameter/idx_4 = 3
+shader_parameter/speed_a = 0.08
+shader_parameter/speed_b = 0.1
+shader_parameter/speed_c = 64.0
+shader_parameter/wave_a = 0.2
+shader_parameter/wave_b = 0.3
+shader_parameter/palette = ExtResource("4_smhot")
+shader_parameter/tex_a = ExtResource("5_v48v4")
+shader_parameter/tex_b = ExtResource("5_v48v4")
+shader_parameter/tex_c = ExtResource("6_37g2t")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0vibi"]
+shader = ExtResource("3_eak03")
+shader_parameter/palette_size = 13
+shader_parameter/idx_1 = 1
+shader_parameter/idx_2 = 2
+shader_parameter/idx_3 = 3
+shader_parameter/idx_4 = 4
+shader_parameter/speed_a = 0.08
+shader_parameter/speed_b = 0.1
+shader_parameter/speed_c = 64.0
+shader_parameter/wave_a = 0.2
+shader_parameter/wave_b = 0.3
+shader_parameter/palette = ExtResource("4_smhot")
+shader_parameter/tex_a = ExtResource("7_7vn07")
+shader_parameter/tex_b = ExtResource("8_mv0mr")
+shader_parameter/tex_c = ExtResource("6_37g2t")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nraru"]
+shader = ExtResource("3_eak03")
+shader_parameter/palette_size = 13
+shader_parameter/idx_1 = 3
+shader_parameter/idx_2 = 4
+shader_parameter/idx_3 = 5
+shader_parameter/idx_4 = 6
+shader_parameter/speed_a = 0.08
+shader_parameter/speed_b = 0.1
+shader_parameter/speed_c = 64.0
+shader_parameter/wave_a = 0.2
+shader_parameter/wave_b = 0.3
+shader_parameter/palette = ExtResource("4_smhot")
+shader_parameter/tex_a = ExtResource("9_tuboa")
+shader_parameter/tex_b = ExtResource("7_7vn07")
+shader_parameter/tex_c = ExtResource("6_37g2t")
 
 [node name="LoadingLayer" type="CanvasLayer"]
 layer = -1
 script = ExtResource("1_orms1")
 panel_scene = ExtResource("2_2kbdd")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_khm7c")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_0vibi")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_nraru")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="GridContainer" type="GridContainer" parent="."]
 unique_name_in_owner = true

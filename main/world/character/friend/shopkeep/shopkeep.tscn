@@ -9,19 +9,19 @@
 [sub_resource type="Resource" id="Resource_74qvp"]
 script = ExtResource("3_kuu5a")
 speaker = ExtResource("4_ee3p1")
-text = "suit yourself. moron."
+text = "you're going to need me._"
 speed = "Normal"
 
 [sub_resource type="Resource" id="Resource_f20ts"]
 script = ExtResource("3_kuu5a")
 speaker = ExtResource("4_ee3p1")
-text = "that all? fizz off then."
+text = "that all?_ fizz off then."
 speed = "Normal"
 
 [sub_resource type="Resource" id="Resource_7py44"]
 script = ExtResource("3_kuu5a")
 speaker = ExtResource("4_ee3p1")
-text = "hey. i'll trade souls for skills. interested?"
+text = "hey._ i'll trade souls for skills._ interested?"
 speed = "Normal"
 
 [sub_resource type="Animation" id="Animation_i5ijc"]

@@ -82,13 +82,13 @@ speed = "Normal"
 [sub_resource type="Resource" id="Resource_iesmf"]
 script = ExtResource("3_lyiag")
 speaker = ExtResource("4_4hguv")
-text = "you already have that. are you stupid?"
+text = "you already have that._ are you stupid?"
 speed = "Normal"
 
 [sub_resource type="Resource" id="Resource_qymeq"]
 script = ExtResource("3_lyiag")
 speaker = ExtResource("4_4hguv")
-text = "you're too poor. sorry."
+text = "you're too poor._ sorry."
 speed = "Normal"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_exa1y"]
