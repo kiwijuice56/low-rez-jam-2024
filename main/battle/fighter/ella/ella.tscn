@@ -8,13 +8,13 @@
 [ext_resource type="Texture2D" uid="uid://dwm2gd3f6v21p" path="res://main/battle/action/icons/icon_magic.png" id="5_waisw"]
 [ext_resource type="PackedScene" uid="uid://dagp5qivcpmn3" path="res://main/battle/action/battle_animation/explosion/explosion.tscn" id="6_bkskl"]
 [ext_resource type="PackedScene" uid="uid://cp1oupuymf0u8" path="res://main/battle/action/battle_animation/elec/elec_flash.tscn" id="7_7ennw"]
-[ext_resource type="PackedScene" uid="uid://bp7v78t1p5vil" path="res://main/battle/action/battle_animation/water/water.tscn" id="7_uw523"]
 [ext_resource type="PackedScene" uid="uid://bt0t88dexj4lo" path="res://main/battle/action/battle_animation/elec/elec.tscn" id="8_0ggly"]
+[ext_resource type="PackedScene" uid="uid://ba1ms3n6hoq78" path="res://main/battle/action/battle_animation/fire/fire_flash.tscn" id="9_35mk5"]
 
 [sub_resource type="Resource" id="Resource_glup2"]
 script = ExtResource("2_6eory")
-max_hp = 10
-max_tp = 45
+max_hp = 99
+max_tp = 99
 strength = 12
 magic = 9
 defence = 12
@@ -28,8 +28,9 @@ stats = SubResource("Resource_glup2")
 icon = ExtResource("4_sggcg")
 description = "many hits to one foe"
 use_text = "%s wrecks them!"
+verb = "stomp"
 tp_cost = 4
-power = 2.0
+power = 1.0
 accuracy = 0.96
 critical = 0.15
 hit_amount_min = 4
@@ -41,54 +42,61 @@ per_target_delay = 0.2
 [node name="Mangle" parent="Actions/Skills" index="1" instance=ExtResource("3_7el6r")]
 icon = ExtResource("4_sggcg")
 description = "breaks one foe"
+use_text = "%s breaks them!"
+verb = "mangle"
 tp_cost = 7
 hit_amount_max = 1
 status_effects = Array[String](["Broken"])
-is_phys = true
 animations = Array[PackedScene]([ExtResource("6_bkskl")])
 
 [node name="Thunder" parent="Actions/Skills" index="2" instance=ExtResource("3_7el6r")]
 icon = ExtResource("5_waisw")
 description = "elec hit to one foe"
+use_text = "%s shocks them!"
+verb = "shock"
 tp_cost = 8
 power = 1.0
-hit_amount_max = 1
-status_effects = Array[String](["Ablaze"])
-is_elec = true
-animations = Array[PackedScene]([ExtResource("6_bkskl")])
-per_target_delay = 0.2
-
-[node name="Splash" parent="Actions/Skills" index="3" instance=ExtResource("3_7el6r")]
-icon = ExtResource("5_waisw")
-description = "water hit to one foe"
-use_text = "%s splashes them!"
-tp_cost = 6
-power = 0.75
 attack_stat = "magic"
 hit_amount_max = 1
-status_effects = Array[String](["Wet"])
-is_water = true
-animations = Array[PackedScene]([ExtResource("7_uw523")])
-per_target_delay = 0.2
-soul_cost = 7
-
-[node name="Nova" parent="Actions/Skills" index="4" instance=ExtResource("3_7el6r")]
-icon = ExtResource("5_waisw")
-description = "huge elec hit to all foes, stuns"
-use_text = "%s summons thor!"
-tp_cost = 15
-power = 1.5
-attack_stat = "magic"
-target_amount = "All"
-hit_amount_max = 1
+status_chance = 0.3
 status_effects = Array[String](["Charged"])
 is_elec = true
 animations = Array[PackedScene]([ExtResource("7_7ennw"), ExtResource("8_0ggly")])
 per_target_delay = 0.2
-soul_cost = 12
 
-[node name="Attack" parent="Actions" index="1"]
+[node name="Explode" parent="Actions/Skills" index="3" instance=ExtResource("3_7el6r")]
+icon = ExtResource("4_sggcg")
+description = "hits to random foes"
+use_text = "%s splashes them!"
+verb = "explode"
+tp_cost = 12
+power = 0.75
+accuracy = 0.97
+critical = 0.1
+target_amount = "Random"
+hit_amount_min = 6
+hit_amount_max = 9
 is_phys = true
+animations = Array[PackedScene]([ExtResource("9_35mk5"), ExtResource("6_bkskl")])
+per_target_delay = 0.05
+soul_cost = 7
+
+[node name="Nova" parent="Actions/Skills" index="4" instance=ExtResource("3_7el6r")]
+icon = ExtResource("5_waisw")
+description = "big elec hit to all foes, stuns"
+use_text = "%s summons thor!"
+verb = "shock"
+tp_cost = 18
+power = 1.5
+attack_stat = "magic"
+target_amount = "All"
+hit_amount_max = 1
+status_chance = 0.2
+status_effects = Array[String](["Stun"])
+is_elec = true
+animations = Array[PackedScene]([ExtResource("7_7ennw"), ExtResource("8_0ggly")])
+per_target_delay = 0.2
+soul_cost = 15
 
 [node name="Sprite2D" parent="SpriteHolder" index="0"]
 texture = ExtResource("3_lpqai")

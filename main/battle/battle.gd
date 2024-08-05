@@ -77,14 +77,23 @@ func battle(encounter: Encounter) -> bool:
 			if fighter.dead:
 				continue
 			
-			var choice: Dictionary
-			if player_turn:
-				choice = await get_player_choice(fighter, player_party, enemy_party)
-			else:
-				choice = await fighter.get_choice(enemy_party, player_party)
+			var stunned: bool = fighter.get_node("%Effects").get_node("Stun").active
+			var turns_used: Action.TurnUsage
 			
-			fighter.start_turn()
-			var turns_used: Action.TurnUsage = await choice.action.act(fighter, choice.targets)
+			if not stunned:
+				var choice: Dictionary
+				if player_turn:
+					choice = await get_player_choice(fighter, player_party, enemy_party)
+				else:
+					choice = await fighter.get_choice(enemy_party, player_party)
+				
+				fighter.start_turn()
+				turns_used = await choice.action.act(fighter, choice.targets)
+			else:
+				%Text.display_text("%s is stunned..." % fighter.name, TEXT_SPEED) 
+				await get_tree().create_timer(1.0).timeout
+				turns_used = Action.TurnUsage.NORMAL
+			
 			if turns_used == Action.TurnUsage.NORMAL:
 				if half_turns > 0:
 					half_turns -= 1

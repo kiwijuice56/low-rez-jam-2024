@@ -25,8 +25,8 @@ func _process(delta: float) -> void:
 
 func apply() -> void:
 	super.apply()
-	fighter.damage_out_multiplier -= 0.4
+	fighter.damage_out_multiplier -= 0.6
 
 func remove() -> void:
 	super.remove()
-	fighter.damage_out_multiplier += 0.4
+	fighter.damage_out_multiplier += 0.6

@@ -26,7 +26,7 @@ func waste_turns(amount: int) -> void:
 		else:
 			get_child(turn_count - 1 - i).waste()
 	turn_count -= amount
-	flash_idx = max(flash_idx, turn_count - 1)
+	flash_idx = min(flash_idx, turn_count - 1)
 
 func flash_turn() -> void:
 	await get_child(flash_idx).start_flashing()
