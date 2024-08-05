@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cmyfrh6j55ulb"]
+[gd_scene load_steps=16 format=3 uid="uid://cmyfrh6j55ulb"]
 
 [ext_resource type="Script" path="res://main/world/item_pickup/item_pickup.gd" id="1_undrc"]
 [ext_resource type="PackedScene" uid="uid://dqjhry378atdi" path="res://main/world/interactable/interactable.tscn" id="2_ktln7"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cqm6ywf0ydxjp" path="res://main/world/item_pickup/pickup.png" id="2_vu784"]
 [ext_resource type="Resource" uid="uid://be2fbcpo5gd7a" path="res://main/world/ui/text_box/speakers/system/system_speaker.tres" id="3_b6756"]
 [ext_resource type="Texture2D" uid="uid://7ianniwhess3" path="res://main/world/item_pickup/circle.png" id="4_2bxgc"]
+[ext_resource type="AudioStream" uid="uid://bkrjxavo3torg" path="res://main/world/item_pickup/item_collect.ogg" id="7_1akg4"]
 
 [sub_resource type="Resource" id="Resource_l834l"]
 script = ExtResource("2_tsyg8")
@@ -25,6 +26,32 @@ size = Vector2(6, 6)
 [sub_resource type="Curve" id="Curve_c00m4"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.313167, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
+
+[sub_resource type="Animation" id="Animation_584ri"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ItemSprite:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(3, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ItemSprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.3, 0.3)]
+}
 
 [sub_resource type="Animation" id="Animation_84tut"]
 resource_name = "bob"
@@ -53,37 +80,15 @@ tracks/1/keys = {
 "values": [Vector2(0.2, 0.2), Vector2(0.6, 0.6), Vector2(0.2, 0.2)]
 }
 
-[sub_resource type="Animation" id="Animation_584ri"]
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ItemSprite:position:y")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(3, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ItemSprite:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0.3, 0.3)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_i1h7j"]
 _data = {
 "RESET": SubResource("Animation_584ri"),
 "bob": SubResource("Animation_84tut")
 }
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4gfee"]
+streams_count = 1
+stream_0/stream = ExtResource("7_1akg4")
 
 [node name="ItemPickup" type="Area2D"]
 script = ExtResource("1_undrc")
@@ -130,3 +135,9 @@ libraries = {
 }
 autoplay = "bob"
 speed_scale = 0.5
+
+[node name="PickupSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_4gfee")
+volume_db = 7.0
+bus = &"Sound Effect"
