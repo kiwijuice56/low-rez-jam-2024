@@ -92,6 +92,7 @@ func battle(encounter: Encounter) -> bool:
 				await %PressTurnWidget.waste_turns(1)
 			if turns_used == Action.TurnUsage.ADVANTAGE:
 				if full_turns > 0:
+					%GainTurnPlayer.play()
 					full_turns -= 1
 					half_turns += 1
 					await %PressTurnWidget.flash_turn()
@@ -99,6 +100,7 @@ func battle(encounter: Encounter) -> bool:
 					await %PressTurnWidget.waste_turns(1)
 					half_turns -= 1
 			if turns_used == Action.TurnUsage.WASTE:
+				%WasteTurnPlayer.play()
 				await %PressTurnWidget.waste_turns(min(2, full_turns))
 				for _i in range(2):
 					if half_turns > 0:

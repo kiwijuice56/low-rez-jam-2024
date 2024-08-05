@@ -10,13 +10,13 @@
 
 [sub_resource type="Resource" id="Resource_glup2"]
 script = ExtResource("2_6eory")
-max_hp = 1
-max_tp = 99
+max_hp = 45
+max_tp = 45
 strength = 12
 magic = 9
 defence = 12
 luck = 99
-unlocked_skills = Array[int]([0, 1, 2])
+unlocked_skills = Array[int]([0, 1, 2, 3, 4])
 
 [node name="Ella" instance=ExtResource("1_h8m6s")]
 stats = SubResource("Resource_glup2")
@@ -38,7 +38,7 @@ per_target_delay = 0.2
 [node name="Mangle" parent="Actions/Skills" index="1" instance=ExtResource("3_7el6r")]
 icon = ExtResource("4_sggcg")
 description = "breaks one foe"
-tp_cost = 8
+tp_cost = 7
 hit_amount_max = 1
 status_effects = Array[String](["Broken"])
 is_phys = true
@@ -48,10 +48,8 @@ animations = Array[PackedScene]([ExtResource("6_bkskl")])
 icon = ExtResource("5_waisw")
 description = "elec hit to one foe"
 tp_cost = 8
-power = 4.0
-target_amount = "All"
-hit_amount_min = 2
-hit_amount_max = 4
+power = 1.0
+hit_amount_max = 1
 status_effects = Array[String](["Ablaze"])
 is_elec = true
 animations = Array[PackedScene]([ExtResource("6_bkskl")])
@@ -61,11 +59,12 @@ per_target_delay = 0.2
 icon = ExtResource("4_sggcg")
 description = "huge hits to random foes"
 use_text = "%s wrecks them!"
-tp_cost = 4
-power = 0.5
+tp_cost = 12
+power = 0.75
 critical = 0.15
-target_amount = "All"
-hit_amount_max = 1
+target_amount = "Random"
+hit_amount_min = 2
+hit_amount_max = 5
 status_effects = Array[String](["Bless"])
 is_phys = true
 animations = Array[PackedScene]([ExtResource("6_bkskl")])
@@ -74,12 +73,11 @@ soul_cost = 7
 
 [node name="Nova" parent="Actions/Skills" index="4" instance=ExtResource("3_7el6r")]
 icon = ExtResource("5_waisw")
-description = "huge elec hit to all foes"
-tp_cost = 8
-power = 4.0
+description = "huge elec hit to all foes, stuns"
+tp_cost = 15
+power = 1.5
 target_amount = "All"
-hit_amount_min = 2
-hit_amount_max = 4
+hit_amount_max = 1
 status_effects = Array[String](["Ablaze"])
 is_elec = true
 animations = Array[PackedScene]([ExtResource("6_bkskl")])

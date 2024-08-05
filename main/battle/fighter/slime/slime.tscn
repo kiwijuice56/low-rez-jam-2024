@@ -10,12 +10,12 @@
 
 [sub_resource type="Resource" id="Resource_0mx5o"]
 script = ExtResource("2_wtt4c")
-max_hp = 1
-max_tp = 20
-strength = 20
-magic = 20
-defence = 20
-luck = 20
+max_hp = 60
+max_tp = 15
+strength = 15
+magic = 15
+defence = 15
+luck = 12
 unlocked_skills = Array[int]([])
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cemna"]
@@ -74,6 +74,7 @@ innate_elec_weakness = true
 description = "a killa move"
 use_text = "%s killed!"
 power = 1.0
+accuracy = 0.5
 target_amount = "All"
 hit_amount_max = 1
 animations = Array[PackedScene]([ExtResource("4_7c3sp")])
@@ -95,12 +96,12 @@ hframes = 3
 [node name="Center" parent="SpriteHolder" index="2"]
 position = Vector2(1, -8)
 
+[node name="PointInfo" parent="." index="3"]
+visible = false
+
 [node name="SpriteAnimationPlayer" type="AnimationPlayer" parent="." index="4"]
 libraries = {
 "": SubResource("AnimationLibrary_gtoga")
 }
 autoplay = "dance"
 speed_scale = 0.4
-
-[node name="PointInfo" parent="." index="5"]
-visible = false

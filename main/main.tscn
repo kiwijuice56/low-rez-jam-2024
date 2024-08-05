@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://dl3ps7eki0b7b"]
+[gd_scene load_steps=38 format=3 uid="uid://dl3ps7eki0b7b"]
 
 [ext_resource type="PackedScene" uid="uid://txvddbv8pfiv" path="res://main/world/character/player/player.tscn" id="1_84yfs"]
 [ext_resource type="Script" path="res://main/main.gd" id="1_q20fr"]
@@ -21,8 +21,10 @@
 [ext_resource type="Shader" path="res://main/theme/palette_swapper.gdshader" id="12_pd2fh"]
 [ext_resource type="PackedScene" uid="uid://c776xclvodes4" path="res://main/world/ui/pause_menu/status_submenu/status_submenu.tscn" id="12_uwucu"]
 [ext_resource type="Script" path="res://main/battle/ui/press_turn_widget/press_turn_widget.gd" id="13_l2tg6"]
+[ext_resource type="AudioStream" uid="uid://b2s65syiblxmw" path="res://main/battle/ui/press_turn_widget/gain_turn.ogg" id="13_rxtkj"]
 [ext_resource type="Texture2D" uid="uid://dc5ys0tummyop" path="res://main/theme/base_palette.png" id="13_vouqy"]
 [ext_resource type="Texture2D" uid="uid://c66yc787tsfw4" path="res://main/theme/modified_palette.png" id="14_5avsq"]
+[ext_resource type="AudioStream" uid="uid://db7ex31kk05wd" path="res://main/battle/ui/press_turn_widget/lose_turn.ogg" id="14_lm6dr"]
 [ext_resource type="PackedScene" uid="uid://c28vf4m6j63l1" path="res://main/battle/ui/target_selecter/target_selecter.tscn" id="16_ytdqf"]
 [ext_resource type="PackedScene" uid="uid://cuko56w08yuso" path="res://main/battle/action/action.tscn" id="17_7qsbk"]
 [ext_resource type="Texture2D" uid="uid://bsogfupalaabr" path="res://main/battle/action/icons/icon_heal.png" id="18_s6qc8"]
@@ -187,6 +189,17 @@ offset_bottom = 64.0
 [node name="MenuFighterPosition" type="Marker2D" parent="Battle/UI"]
 unique_name_in_owner = true
 position = Vector2(15, 50)
+
+[node name="GainTurnPlayer" type="AudioStreamPlayer" parent="Battle/UI"]
+unique_name_in_owner = true
+stream = ExtResource("13_rxtkj")
+bus = &"UI Sound Effect"
+
+[node name="WasteTurnPlayer" type="AudioStreamPlayer" parent="Battle/UI"]
+unique_name_in_owner = true
+stream = ExtResource("14_lm6dr")
+volume_db = -4.0
+bus = &"UI Sound Effect"
 
 [node name="FighterLayer" type="CanvasLayer" parent="Battle"]
 unique_name_in_owner = true
