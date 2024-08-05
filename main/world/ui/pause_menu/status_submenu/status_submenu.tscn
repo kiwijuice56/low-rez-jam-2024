@@ -1,10 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://c776xclvodes4"]
+[gd_scene load_steps=10 format=3 uid="uid://c776xclvodes4"]
 
 [ext_resource type="Theme" uid="uid://evv5alve252b" path="res://main/theme/theme.tres" id="1_0n28a"]
 [ext_resource type="Script" path="res://main/world/ui/pause_menu/status_submenu/status_submenu.gd" id="1_cu4im"]
 [ext_resource type="Texture2D" uid="uid://1bbhd85mjdb6" path="res://main/battle/fighter/ella/ella.png" id="3_8ad6c"]
 [ext_resource type="PackedScene" uid="uid://bdir8ibmp15l2" path="res://main/world/ui/flicker/flicker.tscn" id="3_pohwk"]
+[ext_resource type="FontFile" uid="uid://cauc77kjpc67c" path="res://main/theme/mini_kiwi_font.ttf" id="4_keqg0"]
 [ext_resource type="AudioStream" uid="uid://b52h2qinfu6iw" path="res://main/theme/sound/cancel.tres" id="5_7wgnl"]
+[ext_resource type="Texture2D" uid="uid://ivdjeloeel8m" path="res://main/world/ui/pause_menu/status_submenu/arrow.png" id="5_nt23j"]
+[ext_resource type="AudioStream" uid="uid://c4md8ks1818q6" path="res://main/theme/sound/accept.tres" id="8_eh4q6"]
+
+[sub_resource type="FontVariation" id="FontVariation_vi0xk"]
+base_font = ExtResource("4_keqg0")
+spacing_space = -4
+spacing_top = -6
+spacing_bottom = -1
 
 [node name="StatusSubmenu" type="MarginContainer"]
 anchors_preset = 15
@@ -23,11 +32,12 @@ script = ExtResource("1_cu4im")
 layout_mode = 2
 
 [node name="Flicker" parent="PanelContainer" instance=ExtResource("3_pohwk")]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
 layout_mode = 2
-theme_override_constants/separation = 2
+theme_override_constants/separation = 1
 
 [node name="FighterNameLabel" type="Label" parent="PanelContainer/VBoxContainer"]
 unique_name_in_owner = true
@@ -44,7 +54,7 @@ text = "stats"
 
 [node name="StatPage" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 8
+theme_override_constants/separation = 4
 
 [node name="StatNameContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/StatPage"]
 layout_mode = 2
@@ -55,6 +65,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_color = Color(1, 0.882353, 0.788235, 1)
+theme_override_fonts/font = SubResource("FontVariation_vi0xk")
 text = "max HP"
 
 [node name="MaxTPLabel" type="Label" parent="PanelContainer/VBoxContainer/StatPage/StatNameContainer"]
@@ -62,6 +73,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_color = Color(0.670588, 0.486275, 0.494118, 1)
+theme_override_fonts/font = SubResource("FontVariation_vi0xk")
 text = "max TP"
 
 [node name="StrLabel" type="Label" parent="PanelContainer/VBoxContainer/StatPage/StatNameContainer"]
@@ -69,6 +81,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_color = Color(0.329412, 0.301961, 0.415686, 1)
+theme_override_fonts/font = SubResource("FontVariation_vi0xk")
 text = "str"
 
 [node name="MagLabel" type="Label" parent="PanelContainer/VBoxContainer/StatPage/StatNameContainer"]
@@ -76,6 +89,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_color = Color(0.207843, 0.258824, 0.352941, 1)
+theme_override_fonts/font = SubResource("FontVariation_vi0xk")
 text = "mag"
 
 [node name="DefLabel" type="Label" parent="PanelContainer/VBoxContainer/StatPage/StatNameContainer"]
@@ -83,6 +97,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_color = Color(0.101961, 0.231373, 0.345098, 1)
+theme_override_fonts/font = SubResource("FontVariation_vi0xk")
 text = "def"
 
 [node name="LucLabel" type="Label" parent="PanelContainer/VBoxContainer/StatPage/StatNameContainer"]
@@ -90,52 +105,154 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_color = Color(0.0431373, 0.176471, 0.278431, 1)
+theme_override_fonts/font = SubResource("FontVariation_vi0xk")
 text = "luc"
 
-[node name="StatValueContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/StatPage"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/StatPage"]
 layout_mode = 2
 size_flags_horizontal = 10
 theme_override_constants/separation = 1
 
-[node name="MaxHPValLabel" type="Label" parent="PanelContainer/VBoxContainer/StatPage/StatValueContainer"]
+[node name="StatValueContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/StatPage/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 1
+
+[node name="MaxHPValLabel" type="Label" parent="PanelContainer/VBoxContainer/StatPage/HBoxContainer/StatValueContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
+theme_override_fonts/font = SubResource("FontVariation_vi0xk")
 text = "99"
 horizontal_alignment = 2
 
-[node name="MaxTPValLabel" type="Label" parent="PanelContainer/VBoxContainer/StatPage/StatValueContainer"]
+[node name="MaxTPValLabel" type="Label" parent="PanelContainer/VBoxContainer/StatPage/HBoxContainer/StatValueContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
+theme_override_fonts/font = SubResource("FontVariation_vi0xk")
 text = "99"
 horizontal_alignment = 2
 
-[node name="StrValLabel" type="Label" parent="PanelContainer/VBoxContainer/StatPage/StatValueContainer"]
+[node name="StrValLabel" type="Label" parent="PanelContainer/VBoxContainer/StatPage/HBoxContainer/StatValueContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
+theme_override_fonts/font = SubResource("FontVariation_vi0xk")
 text = "99"
 horizontal_alignment = 2
 
-[node name="MagValLabel" type="Label" parent="PanelContainer/VBoxContainer/StatPage/StatValueContainer"]
+[node name="MagValLabel" type="Label" parent="PanelContainer/VBoxContainer/StatPage/HBoxContainer/StatValueContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
+theme_override_fonts/font = SubResource("FontVariation_vi0xk")
 text = "99"
 horizontal_alignment = 2
 
-[node name="DefValLabel" type="Label" parent="PanelContainer/VBoxContainer/StatPage/StatValueContainer"]
+[node name="DefValLabel" type="Label" parent="PanelContainer/VBoxContainer/StatPage/HBoxContainer/StatValueContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
+theme_override_fonts/font = SubResource("FontVariation_vi0xk")
 text = "99"
 horizontal_alignment = 2
 
-[node name="LucValLabel" type="Label" parent="PanelContainer/VBoxContainer/StatPage/StatValueContainer"]
+[node name="LucValLabel" type="Label" parent="PanelContainer/VBoxContainer/StatPage/HBoxContainer/StatValueContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
+theme_override_fonts/font = SubResource("FontVariation_vi0xk")
+text = "99"
+horizontal_alignment = 2
+
+[node name="ArrowContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/StatPage/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 1
+
+[node name="Arrow" type="TextureRect" parent="PanelContainer/VBoxContainer/StatPage/HBoxContainer/ArrowContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+texture = ExtResource("5_nt23j")
+
+[node name="Arrow2" type="TextureRect" parent="PanelContainer/VBoxContainer/StatPage/HBoxContainer/ArrowContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+texture = ExtResource("5_nt23j")
+
+[node name="Arrow3" type="TextureRect" parent="PanelContainer/VBoxContainer/StatPage/HBoxContainer/ArrowContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+texture = ExtResource("5_nt23j")
+
+[node name="Arrow4" type="TextureRect" parent="PanelContainer/VBoxContainer/StatPage/HBoxContainer/ArrowContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+texture = ExtResource("5_nt23j")
+
+[node name="Arrow5" type="TextureRect" parent="PanelContainer/VBoxContainer/StatPage/HBoxContainer/ArrowContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+texture = ExtResource("5_nt23j")
+
+[node name="Arrow6" type="TextureRect" parent="PanelContainer/VBoxContainer/StatPage/HBoxContainer/ArrowContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+texture = ExtResource("5_nt23j")
+
+[node name="NewStatValueContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/StatPage/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 1
+
+[node name="MaxHPValLabelNew" type="Label" parent="PanelContainer/VBoxContainer/StatPage/HBoxContainer/NewStatValueContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_fonts/font = SubResource("FontVariation_vi0xk")
+text = "99"
+horizontal_alignment = 2
+
+[node name="MaxTPValLabelNew" type="Label" parent="PanelContainer/VBoxContainer/StatPage/HBoxContainer/NewStatValueContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_fonts/font = SubResource("FontVariation_vi0xk")
+text = "99"
+horizontal_alignment = 2
+
+[node name="StrValLabelNew" type="Label" parent="PanelContainer/VBoxContainer/StatPage/HBoxContainer/NewStatValueContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_fonts/font = SubResource("FontVariation_vi0xk")
+text = "99"
+horizontal_alignment = 2
+
+[node name="MagValLabelNew" type="Label" parent="PanelContainer/VBoxContainer/StatPage/HBoxContainer/NewStatValueContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_fonts/font = SubResource("FontVariation_vi0xk")
+text = "99"
+horizontal_alignment = 2
+
+[node name="DefValLabelNew" type="Label" parent="PanelContainer/VBoxContainer/StatPage/HBoxContainer/NewStatValueContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_fonts/font = SubResource("FontVariation_vi0xk")
+text = "99"
+horizontal_alignment = 2
+
+[node name="LucValLabelNew" type="Label" parent="PanelContainer/VBoxContainer/StatPage/HBoxContainer/NewStatValueContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_fonts/font = SubResource("FontVariation_vi0xk")
 text = "99"
 horizontal_alignment = 2
 
@@ -150,4 +267,9 @@ stretch_mode = 2
 [node name="CancelPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("5_7wgnl")
+bus = &"UI Sound Effect"
+
+[node name="AcceptPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("8_eh4q6")
 bus = &"UI Sound Effect"

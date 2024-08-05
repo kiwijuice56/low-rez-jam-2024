@@ -45,6 +45,7 @@ func check_status(initial_index: int = 0) -> bool:
 		%TipContainer.hide_tip()
 		%AcceptPlayer.play()
 		set_process_input(false)
+		%StatusSubmenu.mode = "status"
 		%StatusSubmenu.display_fighter_status(get_child(choice_idx).fighter)
 		await %StatusSubmenu.enter()
 		var full_exit: bool = await %StatusSubmenu.exited

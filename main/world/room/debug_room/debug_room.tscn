@@ -35,7 +35,7 @@ script = ExtResource("10_26ev5")
 fighters = Array[PackedScene]([ExtResource("11_s1sci"), ExtResource("11_s1sci")])
 background = ExtResource("10_vjepj")
 music = ExtResource("11_ajfvi")
-xp_drop = 1200
+xp_drop = 128
 
 [sub_resource type="Resource" id="Resource_ftoqs"]
 script = ExtResource("3_2d463")

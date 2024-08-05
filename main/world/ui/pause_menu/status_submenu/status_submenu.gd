@@ -2,19 +2,31 @@ class_name StatusSubmenu extends Menu
 
 const TRANS_TIME: float = 0.1
 
+var mode: String = "level up"
+var can_advance: bool = false
+
+signal advanced
+
 func _ready() -> void:
 	visible = false
 	set_process_input(false)
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("cancel", false):
-		exit(false)
-	if event.is_action_pressed("menu", false):
-		exit(true)
+	if mode == "status":
+		if event.is_action_pressed("cancel", false):
+			%CancelPlayer.play()
+			exit(false)
+		if event.is_action_pressed("menu", false):
+			%CancelPlayer.play()
+			exit(true)
+	else:
+		if can_advance and event.is_action_pressed("accept", false):
+			%AcceptPlayer.play()
+			advanced.emit()
 
 func display_fighter_status(fighter: Fighter) -> void:
 	%FighterNameLabel.text = fighter.name
-	%InfoLabel.text = "status"
+	%InfoLabel.text = "stats"
 	%FighterIcon.texture = fighter.get_node("%Sprite2D").texture
 	%MaxHPValLabel.text = str(fighter.stats.max_hp)
 	%MaxTPValLabel.text = str(fighter.stats.max_tp)
@@ -23,7 +35,43 @@ func display_fighter_status(fighter: Fighter) -> void:
 	%DefValLabel.text = str(fighter.stats.defence)
 	%LucValLabel.text = str(fighter.stats.luck)
 
+func display_level_ups(level_up_amount: int) -> void:
+	for i in range(Ref.player_party.get_child_count()):
+		var fighter: Fighter = Ref.player_party.get_child(i)
+		
+		display_fighter_status(fighter)
+		
+		fighter.stats.strength += fighter.strength_grow * level_up_amount
+		fighter.stats.magic += fighter.magic_grow * level_up_amount
+		fighter.stats.defence += fighter.defence_grow * level_up_amount
+		fighter.stats.luck += fighter.luck_grow * level_up_amount
+		fighter.stats.max_hp += fighter.max_hp_grow * level_up_amount
+		fighter.stats.max_tp += fighter.max_tp_grow * level_up_amount
+		
+		%MaxHPValLabelNew.text = str(fighter.stats.max_hp)
+		%MaxTPValLabelNew.text = str(fighter.stats.max_tp)
+		%StrValLabelNew.text = str(fighter.stats.strength)
+		%MagValLabelNew.text = str(fighter.stats.magic)
+		%DefValLabelNew.text = str(fighter.stats.defence)
+		%LucValLabelNew.text = str(fighter.stats.luck)
+		
+		if i == 0:
+			await enter()
+		
+		can_advance = true
+		%Flicker.flicker()
+		await advanced
+		can_advance = false
+		%Flicker.stop()
+
 func enter() -> void:
+	if mode == "status":
+		%ArrowContainer.visible = false
+		%NewStatValueContainer.visible = false
+	else:
+		%ArrowContainer.visible = true
+		%NewStatValueContainer.visible = true
+	
 	get_parent().material.set_shader_parameter("fade", 1.0)
 	visible = true
 	
@@ -36,8 +84,6 @@ func enter() -> void:
 
 func exit(full_exit: bool = false) -> void:
 	set_process_input(false)
-	
-	%CancelPlayer.play()
 	
 	var tween: Tween = get_tree().create_tween()
 	tween.tween_property(get_parent().material, "shader_parameter/fade", 1.0, TRANS_TIME)

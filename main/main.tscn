@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://dl3ps7eki0b7b"]
+[gd_scene load_steps=36 format=3 uid="uid://dl3ps7eki0b7b"]
 
 [ext_resource type="PackedScene" uid="uid://txvddbv8pfiv" path="res://main/world/character/player/player.tscn" id="1_84yfs"]
 [ext_resource type="Script" path="res://main/main.gd" id="1_q20fr"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://1c3rge3mfp4r" path="res://main/battle/ui/press_turn_widget/press_turn/press_turn.tscn" id="12_8wuqk"]
 [ext_resource type="PackedScene" uid="uid://7ffg50pelcx6" path="res://main/battle/ui/choice_menu/choice_button/choice_button.tscn" id="12_dv1jm"]
 [ext_resource type="Shader" path="res://main/theme/palette_swapper.gdshader" id="12_pd2fh"]
+[ext_resource type="PackedScene" uid="uid://c776xclvodes4" path="res://main/world/ui/pause_menu/status_submenu/status_submenu.tscn" id="12_uwucu"]
 [ext_resource type="Script" path="res://main/battle/ui/press_turn_widget/press_turn_widget.gd" id="13_l2tg6"]
 [ext_resource type="Texture2D" uid="uid://dc5ys0tummyop" path="res://main/theme/base_palette.png" id="13_vouqy"]
 [ext_resource type="Texture2D" uid="uid://c66yc787tsfw4" path="res://main/theme/modified_palette.png" id="14_5avsq"]
@@ -31,6 +32,11 @@
 [ext_resource type="PackedScene" uid="uid://cvh8igwahj8wg" path="res://main/loading/loading_layer.tscn" id="24_gb8q0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1nlqh"]
+shader = ExtResource("5_4102r")
+shader_parameter/fade = 0.0
+shader_parameter/tiling = 9.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8xmgo"]
 shader = ExtResource("5_4102r")
 shader_parameter/fade = 0.0
 shader_parameter/tiling = 9.0
@@ -60,6 +66,7 @@ script = ExtResource("6_ccn40")
 
 [node name="UI" type="CanvasLayer" parent="Battle"]
 unique_name_in_owner = true
+layer = 4
 
 [node name="BackgroundHolder" type="Node2D" parent="Battle/UI"]
 unique_name_in_owner = true
@@ -157,12 +164,21 @@ position = Vector2(8, 0)
 position = Vector2(12, 0)
 
 [node name="AfterBattleLayer" type="CanvasLayer" parent="Battle/UI"]
-layer = 2
+layer = 6
 
 [node name="LevelCanvasGroup" type="CanvasGroup" parent="Battle/UI/AfterBattleLayer"]
 material = SubResource("ShaderMaterial_1nlqh")
 
 [node name="LevelSubmenu" parent="Battle/UI/AfterBattleLayer/LevelCanvasGroup" instance=ExtResource("11_c3ygn")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 64)
+offset_right = 64.0
+offset_bottom = 64.0
+
+[node name="StatusCanvasGroup" type="CanvasGroup" parent="Battle/UI/AfterBattleLayer"]
+material = SubResource("ShaderMaterial_8xmgo")
+
+[node name="StatusSubmenu" parent="Battle/UI/AfterBattleLayer/StatusCanvasGroup" instance=ExtResource("12_uwucu")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(64, 64)
 offset_right = 64.0
@@ -174,6 +190,7 @@ position = Vector2(15, 50)
 
 [node name="FighterLayer" type="CanvasLayer" parent="Battle"]
 unique_name_in_owner = true
+layer = 5
 visible = false
 
 [node name="PlayerPositions" type="Node2D" parent="Battle/FighterLayer"]
@@ -343,7 +360,7 @@ script = ExtResource("2_wo4dc")
 layer = 2
 
 [node name="TextboxLayer" type="CanvasLayer" parent="World/UI"]
-layer = 0
+layer = 3
 
 [node name="TextCanvasGroup" type="CanvasGroup" parent="World/UI/TextboxLayer"]
 material = SubResource("ShaderMaterial_on3yi")

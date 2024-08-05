@@ -4,6 +4,7 @@ const TRANS_TIME: float = 0.1
 
 var mode: String = "level up"
 
+var can_advance: bool = false
 var ignore_change: bool = false
 var fake_xp: int = 0:
 	set(val):
@@ -26,7 +27,7 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if mode == "level up":
-		if event.is_action_pressed("accept", false):
+		if can_advance and event.is_action_pressed("accept", false):
 			%AcceptPlayer.play()
 			advanced.emit()
 	if mode == "status":
@@ -97,7 +98,11 @@ func battle_end_sequence(xp_gained: int) -> int:
 	Data.set_state("xp", fake_xp)
 	Data.set_state("xp_goal", get_xp_goal(Data.get_state("lvl")))
 	
+	%Flicker.flicker()
+	can_advance = true
 	await advanced
+	%Flicker.stop()
+	can_advance = false
 	
 	return level_ups
 

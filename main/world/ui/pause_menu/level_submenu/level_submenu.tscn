@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bilxdps8h4csj"]
+[gd_scene load_steps=23 format=3 uid="uid://bilxdps8h4csj"]
 
 [ext_resource type="Theme" uid="uid://evv5alve252b" path="res://main/theme/theme.tres" id="1_wh3mp"]
 [ext_resource type="Script" path="res://main/world/ui/pause_menu/level_submenu/level_submenu.gd" id="1_xesah"]
@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://b4s81apumu4p1" path="res://main/world/ui/pause_menu/level_submenu/level_up.ogg" id="6_rktn0"]
 [ext_resource type="Texture2D" uid="uid://7ianniwhess3" path="res://main/world/item_pickup/circle.png" id="7_o8k2n"]
 [ext_resource type="Texture2D" uid="uid://5awwqnueqt3b" path="res://main/world/ui/pause_menu/level_submenu/circle.png" id="8_t3ine"]
+[ext_resource type="PackedScene" uid="uid://bdir8ibmp15l2" path="res://main/world/ui/flicker/flicker.tscn" id="10_n2ih4"]
 
 [sub_resource type="Gradient" id="Gradient_v6maa"]
 interpolation_mode = 1
@@ -300,3 +301,14 @@ unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_dsdng")
 }
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 1
+
+[node name="Flicker" parent="MarginContainer" instance=ExtResource("10_n2ih4")]
+unique_name_in_owner = true
+layout_mode = 2

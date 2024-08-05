@@ -123,6 +123,10 @@ func battle(encounter: Encounter) -> bool:
 		await %LevelSubmenu.enter()
 		var levels: int = await %LevelSubmenu.battle_end_sequence(encounter.xp_drop)
 		await %LevelSubmenu.exit()
+		
+		await %StatusSubmenu.display_level_ups(levels)
+		await %StatusSubmenu.exit()
+		
 		await Ref.transition.trans_in()
 	
 	# cleanup stuffs
