@@ -1,0 +1,84 @@
+[gd_scene load_steps=14 format=3 uid="uid://2dvesvmwkgiu"]
+
+[ext_resource type="PackedScene" uid="uid://bnbb4opeecksl" path="res://main/battle/fighter/fighter.tscn" id="1_m8tob"]
+[ext_resource type="Script" path="res://main/battle/fighter/fighter_stats/fighter_stats.gd" id="2_8cafn"]
+[ext_resource type="PackedScene" uid="uid://cuko56w08yuso" path="res://main/battle/action/action.tscn" id="3_yp4ep"]
+[ext_resource type="Texture2D" uid="uid://ce6qni3nbs81c" path="res://main/battle/action/icons/icon_charm.png" id="4_mnk4s"]
+[ext_resource type="Texture2D" uid="uid://dqexef62bofal" path="res://main/battle/fighter/dawa/dawa.png" id="4_rdjgl"]
+[ext_resource type="PackedScene" uid="uid://dagp5qivcpmn3" path="res://main/battle/action/battle_animation/explosion/explosion.tscn" id="5_iosml"]
+[ext_resource type="Texture2D" uid="uid://ujj2nvu7pc07" path="res://main/battle/action/icons/icon_cool.png" id="6_jqmyi"]
+[ext_resource type="PackedScene" uid="uid://28chlk8w3lmf" path="res://main/battle/action/battle_animation/heal/heal.tscn" id="7_yfo1i"]
+[ext_resource type="Texture2D" uid="uid://dwm2gd3f6v21p" path="res://main/battle/action/icons/icon_magic.png" id="8_tp2tn"]
+[ext_resource type="PackedScene" uid="uid://bp7v78t1p5vil" path="res://main/battle/action/battle_animation/water/water.tscn" id="9_u4ugb"]
+[ext_resource type="Texture2D" uid="uid://by443douhckhw" path="res://main/battle/action/icons/icon_oil.png" id="10_1pcml"]
+[ext_resource type="PackedScene" uid="uid://d2n822iw1iha7" path="res://main/battle/action/battle_animation/fire/fire.tscn" id="11_4eyqg"]
+
+[sub_resource type="Resource" id="Resource_qfyhu"]
+script = ExtResource("2_8cafn")
+max_hp = 10
+max_tp = 15
+strength = 1
+magic = 2
+defence = 1
+luck = 4
+unlocked_skills = Array[int]([0, 1, 3])
+
+[node name="Dawa" instance=ExtResource("1_m8tob")]
+stats = SubResource("Resource_qfyhu")
+luck_grow = 3
+max_tp_grow = 4
+
+[node name="Cuddle" parent="Actions/Skills" index="0" instance=ExtResource("3_yp4ep")]
+icon = ExtResource("4_mnk4s")
+description = "charms one foe"
+use_text = "%s cuddles them!"
+verb = "charm"
+tp_cost = 5
+status_effects = Array[String](["Charm"])
+animations = Array[PackedScene]([ExtResource("5_iosml")])
+
+[node name="Cheer" parent="Actions/Skills" index="1" instance=ExtResource("3_yp4ep")]
+icon = ExtResource("6_jqmyi")
+description = "hypes one friend"
+use_text = "%s says nice things!"
+verb = "hype"
+tp_cost = 10
+status_effects = Array[String](["Cool"])
+animations = Array[PackedScene]([ExtResource("7_yfo1i")])
+
+[node name="Gift" parent="Actions/Skills" index="2" instance=ExtResource("3_yp4ep")]
+description = "gives a friend some TP"
+use_text = "%s gives TP!"
+verb = "gift to"
+tp_cost = 10
+constant_damage = -8
+change_tp = true
+status_chance = 0.0
+animations = Array[PackedScene]([ExtResource("7_yfo1i")])
+
+[node name="Bubble" parent="Actions/Skills" index="3" instance=ExtResource("3_yp4ep")]
+icon = ExtResource("8_tp2tn")
+description = "water hit to one foe"
+use_text = "%s splashes them!"
+verb = "splash"
+tp_cost = 7
+power = 2.25
+attack_stat = "magic"
+hit_amount_max = 1
+status_chance = 0.25
+status_effects = Array[String](["Wet"])
+is_water = true
+animations = Array[PackedScene]([ExtResource("9_u4ugb")])
+soul_cost = 3
+
+[node name="Olivoli" parent="Actions/Skills" index="4" instance=ExtResource("3_yp4ep")]
+icon = ExtResource("10_1pcml")
+description = "oilis up one foe"
+use_text = "%s oils them up!"
+verb = "oil"
+status_effects = Array[String](["Oily"])
+animations = Array[PackedScene]([ExtResource("11_4eyqg")])
+soul_cost = 10
+
+[node name="Sprite2D" parent="SpriteHolder" index="0"]
+texture = ExtResource("4_rdjgl")

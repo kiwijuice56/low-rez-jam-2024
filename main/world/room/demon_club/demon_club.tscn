@@ -8,6 +8,21 @@
 [ext_resource type="PackedScene" uid="uid://dfjd13fkiyly0" path="res://main/world/character/friend/shopkeep/shopkeep.tscn" id="6_s13mb"]
 [ext_resource type="Texture2D" uid="uid://bavi3kbx5ot0q" path="res://main/world/room/demon_club/eye.png" id="7_qa3pg"]
 
+[sub_resource type="Animation" id="Animation_1ba7h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="Animation" id="Animation_t0gav"]
 resource_name = "sway"
 length = 0.067
@@ -23,21 +38,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [0, 1, 2]
-}
-
-[sub_resource type="Animation" id="Animation_1ba7h"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cvxa5"]
@@ -59,6 +59,9 @@ centered = false
 [node name="CollisionLayer" parent="." index="3"]
 layer_0/tile_data = PackedInt32Array(262144, 0, 0, 262145, 0, 0, 262146, 0, 0, 262147, 0, 0, 196611, 0, 0, 196612, 0, 0, 196613, 0, 0, 196614, 0, 0, 196615, 0, 0, 196616, 0, 0, 196617, 0, 0, 262153, 0, 0, 262154, 0, 0, 262155, 0, 0, 262156, 0, 0, 327679, 0, 0, 393215, 0, 0, 458751, 0, 0, 524287, 0, 0, 458752, 0, 0, 458753, 0, 0, 458754, 0, 0, 458755, 0, 0, 458756, 0, 0, 458757, 0, 0, 458758, 0, 0, 458759, 0, 0, 458760, 0, 0, 458761, 0, 0, 458762, 0, 0, 458763, 0, 0, 458764, 0, 0, 458765, 0, 0, 393229, 0, 0, 327693, 0, 0, 262157, 0, 0)
 
+[node name="Default" parent="Anchors" index="0"]
+position = Vector2(45, 54)
+
 [node name="Door" type="Marker2D" parent="Anchors" index="1"]
 position = Vector2(9, 45)
 
@@ -73,6 +76,8 @@ position = Vector2(99, 36)
 
 [node name="Saver" parent="Characters/Friends" index="0" instance=ExtResource("5_lyq27")]
 position = Vector2(36, 36)
+room = "demon_room"
+anchor = "Default"
 
 [node name="Shopkeep" parent="Characters/Friends" index="1" instance=ExtResource("6_s13mb")]
 position = Vector2(63, 45)

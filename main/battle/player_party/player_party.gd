@@ -3,7 +3,17 @@ class_name PlayerParty extends Node2D
 const FIGHTER_PATH: String = "res://main/battle/fighter/"
 
 func add_member(fighter_scene: PackedScene) -> void:
-	add_child(fighter_scene.instantiate())
+	var new_fighter: Fighter = fighter_scene.instantiate()
+	add_child(new_fighter)
+	
+	var level_ups: int = Data.get_state("lvl") - 1
+	new_fighter.stats.strength += new_fighter.strength_grow * level_ups
+	new_fighter.stats.magic += new_fighter.magic_grow * level_ups
+	new_fighter.stats.defence += new_fighter.defence_grow * level_ups
+	new_fighter.stats.luck += new_fighter.luck_grow * level_ups
+	new_fighter.stats.max_hp += new_fighter.max_hp_grow * level_ups
+	new_fighter.stats.max_tp += new_fighter.max_tp_grow * level_ups
+	
 	Data.set_state("party_order", get_party_order_names())
 
 func save_party_members() -> void:

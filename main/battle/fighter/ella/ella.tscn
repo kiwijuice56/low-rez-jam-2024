@@ -13,28 +13,32 @@
 
 [sub_resource type="Resource" id="Resource_glup2"]
 script = ExtResource("2_6eory")
-max_hp = 99
-max_tp = 99
-strength = 12
-magic = 9
-defence = 12
-luck = 99
-unlocked_skills = Array[int]([0, 1, 2, 3, 4])
+max_hp = 15
+max_tp = 10
+strength = 3
+magic = 3
+defence = 3
+luck = 3
+unlocked_skills = Array[int]([0, 1, 2])
 
 [node name="Ella" instance=ExtResource("1_h8m6s")]
 stats = SubResource("Resource_glup2")
+strength_grow = 2
+magic_grow = 2
+max_hp_grow = 3
+max_tp_grow = 3
 
 [node name="Stomp" parent="Actions/Skills" index="0" instance=ExtResource("3_7el6r")]
 icon = ExtResource("4_sggcg")
 description = "many hits to one foe"
 use_text = "%s wrecks them!"
 verb = "stomp"
-tp_cost = 4
-power = 1.0
-accuracy = 0.96
+tp_cost = 3
+power = 0.6
+accuracy = 0.95
 critical = 0.15
-hit_amount_min = 4
-hit_amount_max = 8
+hit_amount_min = 3
+hit_amount_max = 6
 is_phys = true
 animations = Array[PackedScene]([ExtResource("6_bkskl")])
 per_target_delay = 0.2
@@ -54,11 +58,11 @@ icon = ExtResource("5_waisw")
 description = "elec hit to one foe"
 use_text = "%s shocks them!"
 verb = "shock"
-tp_cost = 8
-power = 1.0
+tp_cost = 7
+power = 2.25
 attack_stat = "magic"
 hit_amount_max = 1
-status_chance = 0.3
+status_chance = 0.25
 status_effects = Array[String](["Charged"])
 is_elec = true
 animations = Array[PackedScene]([ExtResource("7_7ennw"), ExtResource("8_0ggly")])
@@ -66,19 +70,20 @@ per_target_delay = 0.2
 
 [node name="Explode" parent="Actions/Skills" index="3" instance=ExtResource("3_7el6r")]
 icon = ExtResource("4_sggcg")
-description = "hits to random foes"
+description = "big hits to random foes"
 use_text = "%s splashes them!"
 verb = "explode"
 tp_cost = 12
-power = 0.75
+power = 0.85
 accuracy = 0.97
 critical = 0.1
 target_amount = "Random"
 hit_amount_min = 6
 hit_amount_max = 9
+status_chance = 0.0
 is_phys = true
 animations = Array[PackedScene]([ExtResource("9_35mk5"), ExtResource("6_bkskl")])
-per_target_delay = 0.05
+per_target_delay = 0.15
 soul_cost = 7
 
 [node name="Nova" parent="Actions/Skills" index="4" instance=ExtResource("3_7el6r")]
@@ -87,16 +92,16 @@ description = "big elec hit to all foes, stuns"
 use_text = "%s summons thor!"
 verb = "shock"
 tp_cost = 18
-power = 1.5
+power = 4.0
 attack_stat = "magic"
 target_amount = "All"
 hit_amount_max = 1
-status_chance = 0.2
+status_chance = 0.3
 status_effects = Array[String](["Stun"])
 is_elec = true
 animations = Array[PackedScene]([ExtResource("7_7ennw"), ExtResource("8_0ggly")])
 per_target_delay = 0.2
-soul_cost = 15
+soul_cost = 12
 
 [node name="Sprite2D" parent="SpriteHolder" index="0"]
 texture = ExtResource("3_lpqai")

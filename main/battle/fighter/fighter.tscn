@@ -96,6 +96,21 @@ _data = {
 "burn": SubResource("Animation_1bl7v")
 }
 
+[sub_resource type="Animation" id="Animation_456iq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="Animation" id="Animation_k0pmb"]
 resource_name = "shimmer"
 length = 0.1333
@@ -111,21 +126,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3]
-}
-
-[sub_resource type="Animation" id="Animation_456iq"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_51pl1"]
@@ -172,6 +172,21 @@ _data = {
 "shine": SubResource("Animation_te6j8")
 }
 
+[sub_resource type="Animation" id="Animation_pegrv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="Animation" id="Animation_o1r1v"]
 resource_name = "shine"
 length = 0.3
@@ -187,21 +202,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
-}
-
-[sub_resource type="Animation" id="Animation_pegrv"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fi60e"]
@@ -228,6 +228,21 @@ interpolation_mode = 1
 offsets = PackedFloat32Array(0, 0.247664, 0.53271, 0.775701)
 colors = PackedColorArray(0.207843, 0.258824, 0.352941, 1, 0.101961, 0.231373, 0.345098, 1, 0.0431373, 0.176471, 0.278431, 1, 0.0196078, 0.0784314, 0.133333, 1)
 
+[sub_resource type="Animation" id="Animation_tiopm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Sprite2D:material:shader_parameter/flash2")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [null]
+}
+
 [sub_resource type="Animation" id="Animation_3y5tg"]
 resource_name = "charged"
 length = 0.4
@@ -243,21 +258,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [null, Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_tiopm"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("%Sprite2D:material:shader_parameter/flash2")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [null]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_d1mey"]
@@ -837,6 +837,7 @@ gradient = SubResource("GradientTexture1D_2pknv")
 rotation_speed = 5.0
 radius = Vector2(8, 2)
 height = 2.0
+length_multiplier = 0.75
 
 [node name="Sprite2D" type="Sprite2D" parent="SpriteHolder/Effects/Stun"]
 texture = ExtResource("20_rwres")
