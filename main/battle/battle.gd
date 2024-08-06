@@ -127,6 +127,7 @@ func battle(encounter: Encounter) -> bool:
 	stop_music()
 	%Text.display_text("   ", TEXT_SPEED)
 	await get_tree().create_timer(1.0).timeout
+	await %PressTurnWidget.waste_turns(16)
 	
 	var lose: bool = len(get_alive_fighters(player_party)) == 0
 	if lose:

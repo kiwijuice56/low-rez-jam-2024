@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=3 uid="uid://bnbb4opeecksl"]
+[gd_scene load_steps=80 format=3 uid="uid://bnbb4opeecksl"]
 
 [ext_resource type="Script" path="res://main/battle/fighter/fighter.gd" id="1_7gdsa"]
 [ext_resource type="PackedScene" uid="uid://cuko56w08yuso" path="res://main/battle/action/action.tscn" id="2_42vt3"]
@@ -37,6 +37,7 @@
 [ext_resource type="Script" path="res://main/battle/fighter/follow_floor.gd" id="25_ngxfg"]
 [ext_resource type="AudioStream" uid="uid://b127odfeormih" path="res://main/battle/fighter/hit_sound.tres" id="33_10x80"]
 [ext_resource type="AudioStream" uid="uid://bcipan3xccunn" path="res://main/battle/fighter/maraca.ogg" id="34_nra32"]
+[ext_resource type="AudioStream" uid="uid://ckde3i0jxoh52" path="res://main/battle/fighter/dodge.ogg" id="37_w4wel"]
 [ext_resource type="AudioStream" uid="uid://bqxyinsf4k51w" path="res://main/battle/fighter/death.wav" id="38_ax06f"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u031k"]
@@ -403,6 +404,18 @@ tracks/8/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("DodgeSound:playing")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_ko82r"]
 resource_name = "death"
@@ -547,6 +560,18 @@ tracks/0/keys = {
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 8, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 0.333333, 1)
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DodgeSound:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_xmgxv"]
 resource_name = "revive"
@@ -613,6 +638,11 @@ _data = {
 "revive": SubResource("Animation_xmgxv"),
 "start": SubResource("Animation_7kxjp")
 }
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_7esvg"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("37_w4wel")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_8misl"]
 random_pitch = 1.05
@@ -908,6 +938,12 @@ speed_scale = 2.5
 [node name="HitSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("33_10x80")
 volume_db = -1.0
+bus = &"Sound Effect"
+
+[node name="DodgeSound" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_7esvg")
+volume_db = -12.0
+pitch_scale = 1.25
 bus = &"Sound Effect"
 
 [node name="StartSound" type="AudioStreamPlayer" parent="."]

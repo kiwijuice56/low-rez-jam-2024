@@ -20,7 +20,7 @@ func initialize(full_turns: int, player: bool) -> void:
 		new_turn.initialize(player)
 
 func waste_turns(amount: int) -> void:
-	for i in range(amount):
+	for i in range(min(get_child_count(), amount)):
 		if i == amount - 1:
 			await get_child(turn_count - 1 - i).waste()
 		else:
