@@ -14,8 +14,8 @@ script = ExtResource("2_u5xmk")
 unlocked = true
 max_hp = 15
 max_tp = 15
-strength = 1
-magic = 1
+strength = 0
+magic = 0
 defence = 3
 luck = 3
 unlocked_skills = Array[int]([])
@@ -97,8 +97,11 @@ position = Vector2(-3, -8)
 texture = ExtResource("8_6wy1v")
 hframes = 3
 
+[node name="Effects" parent="SpriteHolder" index="1"]
+position = Vector2(1, -5)
+
 [node name="Center" parent="SpriteHolder" index="2"]
-position = Vector2(-1, -6)
+position = Vector2(1, -6)
 
 [node name="PointInfo" parent="." index="3"]
 visible = false

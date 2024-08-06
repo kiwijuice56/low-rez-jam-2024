@@ -15,7 +15,7 @@ const DELAY: float = 0.4
 @export var proportion_damage: float = 0
 @export var constant_damage: int = 0
 @export var change_tp: bool = false
-@export_enum("magic", "strength") var attack_stat: String = "strength" 
+@export_enum("magic", "strength", "luck") var attack_stat: String = "strength" 
 @export_enum("Other", "Own", "All") var target_group: String = "Other"
 @export_enum("Single", "All", "Random") var target_amount: String = "Single"
 @export var hit_amount_min: int = 1
@@ -51,12 +51,12 @@ func hit_calculation(user: Fighter, target: Fighter) -> Dictionary:
 	var data: Dictionary = {}
 	
 	if constant_damage == 0:
-		data.damage = power * randf_range(0.8, 1.1) * (Data.get_state("lvl") + user.stats.get(attack_stat))
+		data.damage = power * randf_range(0.8, 1.1) * (6 + user.stats.get(attack_stat))
 		if not piece:
-			data.damage *= 24.0 / (24.0 + user.stats.defence)
+			data.damage *= 22.0 / (28.0 + target.stats.defence)
 	else:
 		data.damage = constant_damage
-	
+	print(data.damage)
 	data.damage *= user.damage_out_multiplier * target.damage_in_multiplier
 	
 	if is_fire and (target.added_fire_weakness or target.innate_fire_weakness):
@@ -94,7 +94,7 @@ func hit_calculation(user: Fighter, target: Fighter) -> Dictionary:
 	if not is_zero_approx(proportion_damage):
 		data.damage = round(proportion_damage * (target.stats.max_tp if change_tp else target.stats.max_hp))
 	
-	if data.damage == 0 and not (is_zero_approx(proportion_damage) or is_zero_approx(power) or not is_zero_approx(constant_damage)):
+	if int(data.damage) == 0 and not (is_zero_approx(proportion_damage) and is_zero_approx(power) and is_zero_approx(constant_damage)):
 		var heal: int = proportion_damage < 0 or power < 0 or constant_damage < 0
 		data.damage = -1 if heal else 1
 	

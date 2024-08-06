@@ -2,9 +2,10 @@ extends Node
 
 var save_path: String = "user://"
 var state: Dictionary
+var overload_save: bool = false
 
 func _ready() -> void:
-	if true: # not ResourceLoader.exists(save_path + str(0) + "_save.tres"):
+	if overload_save or not ResourceLoader.exists(save_path + str(0) + "_save.tres"):
 		initialize()
 		Ref.player_party.load_party_members()
 		save_state(0)

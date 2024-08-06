@@ -1,10 +1,10 @@
 [gd_scene load_steps=11 format=3 uid="uid://dpdv3nq03k8nu"]
 
-[ext_resource type="Texture2D" uid="uid://bgsbq87nkcsv2" path="res://main/world/ui/text_box/speakers/default/default_portrait.png" id="1_5grlb"]
 [ext_resource type="Script" path="res://main/world/ui/text_box/text_box.gd" id="1_cm34o"]
 [ext_resource type="Theme" uid="uid://evv5alve252b" path="res://main/theme/theme.tres" id="1_ohfux"]
 [ext_resource type="Script" path="res://main/world/ui/text_box/animated_text_label/animated_text_label.gd" id="2_611fg"]
 [ext_resource type="PackedScene" uid="uid://dcq4seg83acba" path="res://main/world/ui/text_box/choice_label.tscn" id="3_qr7j0"]
+[ext_resource type="Texture2D" uid="uid://c1fjt6xr44o32" path="res://main/world/ui/text_box/speakers/bubblebear/bubblebear.png" id="5_cgrqq"]
 [ext_resource type="PackedScene" uid="uid://bdir8ibmp15l2" path="res://main/world/ui/flicker/flicker.tscn" id="5_j34ag"]
 [ext_resource type="AudioStream" uid="uid://c4md8ks1818q6" path="res://main/theme/sound/accept.tres" id="6_en1kw"]
 [ext_resource type="AudioStream" uid="uid://dup5a0fn08co1" path="res://main/theme/sound/continue.tres" id="7_53u4n"]
@@ -32,14 +32,22 @@ select_color = Color(1, 1, 1, 1)
 layout_mode = 2
 theme_override_constants/margin_left = 4
 
-[node name="SpeakerPortrait" type="TextureRect" parent="PortraitContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PortraitContainer"]
+layout_mode = 2
+theme_override_constants/separation = -1
+
+[node name="SpeakerPortrait" type="TextureRect" parent="PortraitContainer/VBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(20, 40)
 layout_mode = 2
 size_flags_horizontal = 0
-size_flags_vertical = 8
-texture = ExtResource("1_5grlb")
+size_flags_vertical = 10
+texture = ExtResource("5_cgrqq")
 stretch_mode = 2
+
+[node name="Control" type="Control" parent="PortraitContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+size_flags_vertical = 8
 
 [node name="ChoiceContainer" type="Node2D" parent="."]
 unique_name_in_owner = true

@@ -27,7 +27,8 @@ func start_battle() -> void:
 		return
 	
 	Ref.world.is_paused = true
-	await Ref.world_textbox.display_conversation(conversation)
+	if conversation:
+		await Ref.world_textbox.display_conversation(conversation)
 	%EncounterSound.play()
 	
 	if await Ref.battle.battle(encounter):

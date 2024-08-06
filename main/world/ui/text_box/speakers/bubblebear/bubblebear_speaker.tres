@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Speaker" load_steps=4 format=3 uid="uid://g1ggpsdd0uo0"]
+
+[ext_resource type="Script" path="res://main/world/ui/text_box/speakers/speaker.gd" id="1_d3d4s"]
+[ext_resource type="Texture2D" uid="uid://c1fjt6xr44o32" path="res://main/world/ui/text_box/speakers/bubblebear/bubblebear.png" id="1_rc8kg"]
+[ext_resource type="AudioStream" uid="uid://dxkpw6lnkcj07" path="res://main/world/ui/text_box/speakers/bubblebear/talk_dog.wav" id="3_l75pc"]
+
+[resource]
+script = ExtResource("1_d3d4s")
+portrait = ExtResource("1_rc8kg")
+voice = ExtResource("3_l75pc")
+chars_per_second = 38

@@ -138,7 +138,8 @@ func battle(encounter: Encounter) -> bool:
 		var levels: int = await %LevelSubmenu.battle_end_sequence(encounter.xp_drop)
 		await %LevelSubmenu.exit()
 		
-		await %StatusSubmenu.display_level_ups(levels)
+		if levels > 0:
+			await %StatusSubmenu.display_level_ups(levels)
 		# await %StatusSubmenu.exit()
 		
 		await Ref.transition.trans_in()
@@ -146,6 +147,9 @@ func battle(encounter: Encounter) -> bool:
 	# cleanup stuffs
 	for fighter in player_party:
 		fighter.visible = false
+	
+	for fighter in enemy_party:
+		fighter.queue_free()
 	%UI.visible = false
 	%FighterLayer.visible = false
 	Ref.world.loaded_room.resume_music()
@@ -153,6 +157,7 @@ func battle(encounter: Encounter) -> bool:
 	if lose:
 		Ref.world.load_room("hell_fall", "Default", false)
 	else:
+		Data.set_state("souls", Data.get_state("souls", 0) + len(encounter.fighters))
 		await Ref.transition.trans_out()
 	
 	return not lose

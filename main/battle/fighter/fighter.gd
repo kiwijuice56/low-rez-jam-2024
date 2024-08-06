@@ -126,7 +126,8 @@ func hurt(damage: int, is_crit: bool, is_miss: bool, is_weak: bool, is_revival: 
 		widget = normal_damage_widget.instantiate()
 		text = " " + str(damage)
 	
-	hp -= damage
+	if not is_miss:
+		hp -= damage
 	
 	if not damage == 0 or is_miss:
 		widget.damage(text)

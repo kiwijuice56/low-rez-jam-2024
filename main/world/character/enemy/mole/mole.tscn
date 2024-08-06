@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://de1ffxsa88gnu"]
+
+[ext_resource type="PackedScene" uid="uid://bnkxy1qwre0oj" path="res://main/world/character/enemy/enemy.tscn" id="1_lmh7y"]
+[ext_resource type="Texture2D" uid="uid://ccxpd5oved4gu" path="res://main/world/character/enemy/mole/mole.png" id="2_sfv4n"]
+
+[sub_resource type="Animation" id="Animation_kxegw"]
+resource_name = "heha"
+length = 0.1
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_edaq1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gdls1"]
+_data = {
+"RESET": SubResource("Animation_edaq1"),
+"heha": SubResource("Animation_kxegw")
+}
+
+[node name="Mole" instance=ExtResource("1_lmh7y")]
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_sfv4n")
+hframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5"]
+libraries = {
+"": SubResource("AnimationLibrary_gdls1")
+}
+autoplay = "heha"
+speed_scale = 0.5
