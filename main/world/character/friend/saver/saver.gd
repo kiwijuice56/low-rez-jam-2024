@@ -10,6 +10,8 @@ func _ready() -> void:
 	%Interactable.interacted.connect(_on_interacted)
 
 func _on_interacted(_interact_initiator: Character) -> void:
+	if Ref.world.is_paused:
+		return
 	Ref.world.is_paused = true
 	await Ref.world_textbox.display_conversation(conversation)
 	var choice: String = await Ref.world_textbox.get_choice(["yes", "no"] as Array[String])

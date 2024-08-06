@@ -27,8 +27,6 @@ func initialize() -> void:
 	set_state("inventory/vitamin", 1)
 	set_state("inventory/spider", 0)
 	set_state("inventory/tnt", 0)
-	
-	
 
 func set_state(property_path: String, val: Variant) -> void:
 	var node: Dictionary = state

@@ -121,7 +121,7 @@ func hurt(damage: int, is_crit: bool, is_miss: bool, is_weak: bool, is_revival: 
 		%AnimationPlayer.play("heal")
 		widget = heal_damage_widget.instantiate()
 		text = " +" + str(abs(damage))
-	else:
+	elif damage > 0:
 		%AnimationPlayer.play("hurt" if hp - damage > 0 else "death")
 		widget = normal_damage_widget.instantiate()
 		text = " " + str(damage)

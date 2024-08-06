@@ -553,7 +553,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_7kxjp"]
 resource_name = "start"
-length = 1.5
+length = 1.8
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true

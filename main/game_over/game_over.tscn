@@ -82,7 +82,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_o11i3"]
 resource_name = "game_over"
-length = 2.5
+length = 2.233
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -90,7 +90,7 @@ tracks/0/path = NodePath("Head:material:shader_parameter/progress")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.433333, 2.5),
+"times": PackedFloat32Array(0.433333, 2.26667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 1.0]
@@ -114,7 +114,7 @@ tracks/2/path = NodePath("MusicPlayer:volume_db")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 2.33333, 2.5),
+"times": PackedFloat32Array(0, 2.06667, 2.23334),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [14.0, 14.0, -60.0]
@@ -141,6 +141,7 @@ _data = {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h64xd"]
 shader = ExtResource("6_8o462")
 shader_parameter/flash = null
+shader_parameter/flash2 = null
 shader_parameter/progress = 0.0
 shader_parameter/meltiness = 2.054
 shader_parameter/broken = false

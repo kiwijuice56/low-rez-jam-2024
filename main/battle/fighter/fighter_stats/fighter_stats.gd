@@ -1,11 +1,18 @@
 class_name FighterStats extends Resource
 
+@export var unlocked: bool = false
 @export var max_hp: int:
 	set(val):
-		max_hp = clamp(val, 0, 99)
+		if unlocked:
+			max_hp = val
+		else:
+			max_hp = clamp(val, 0, 99)
 @export var max_tp: int:
 	set(val):
-		max_tp = clamp(val, 0, 99)
+		if unlocked:
+			max_tp = val
+		else:
+			max_tp = clamp(val, 0, 99)
 @export var strength: int:
 	set(val):
 		strength = clamp(val, 0, 99)

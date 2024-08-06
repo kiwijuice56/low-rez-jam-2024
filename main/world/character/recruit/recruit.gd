@@ -12,6 +12,8 @@ func _ready() -> void:
 		%Interactable.interacted.connect(_on_interacted)
 
 func _on_interacted(_interact_initiator: Character) -> void:
+	if Ref.world.is_paused:
+		return
 	Ref.world.is_paused = true
 	Data.set_state(Ref.world.loaded_room_name + "/" + name, true)
 	Ref.player_party.add_member(fighter_scene)

@@ -11,12 +11,13 @@
 
 [sub_resource type="Resource" id="Resource_0mx5o"]
 script = ExtResource("2_wtt4c")
+unlocked = true
 max_hp = 999
 max_tp = 15
-strength = 10
-magic = 10
-defence = 36
-luck = 1
+strength = 25
+magic = 25
+defence = 3
+luck = 3
 unlocked_skills = Array[int]([])
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cemna"]
@@ -70,7 +71,6 @@ _data = {
 
 [node name="Slime" instance=ExtResource("1_mylgi")]
 stats = SubResource("Resource_0mx5o")
-innate_water_weakness = true
 
 [node name="Bam" parent="Actions/Skills" index="0" instance=ExtResource("3_vwhtk")]
 description = "a killa move"

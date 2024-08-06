@@ -151,7 +151,7 @@ func battle(encounter: Encounter) -> bool:
 	Ref.world.loaded_room.resume_music()
 	
 	if lose:
-		Ref.world.load_room("hell", "Default", false)
+		Ref.world.load_room("hell_fall", "Default", false)
 	else:
 		await Ref.transition.trans_out()
 	
@@ -301,15 +301,15 @@ func party_view(fighter: Fighter, player_party: Array[Fighter]) -> void:
 	tween.tween_property(%ChoiceMenu, "position:y", 25, TRANS_TIME)
 	
 	fighter.global_position = %MenuFighterPosition.global_position 
-	tween.tween_property(fighter, "global_position:y", %MenuFighterPosition.global_position.y + 25, TRANS_TIME)
+	tween.tween_property(fighter, "global_position:y", %MenuFighterPosition.global_position.y + 30, TRANS_TIME)
 	
 	await tween.finished
 	
 	tween = get_tree().create_tween().set_parallel(true)
 	
-	position_players(player_party, Vector2(0, 25))
+	position_players(player_party, Vector2(0, 30))
 	for member in player_party:
-		tween.tween_property(member, "global_position:y", member.global_position.y - 25, TRANS_TIME)
+		tween.tween_property(member, "global_position:y", member.global_position.y - 30, TRANS_TIME)
 	
 	await tween.finished
 	
@@ -319,7 +319,7 @@ func menu_view(fighter: Fighter, player_party: Array[Fighter]) -> void:
 	var tween: Tween = get_tree().create_tween().set_parallel(true)
 	position_players(player_party, Vector2())
 	for member in player_party:
-		tween.tween_property(member, "global_position:y", member.global_position.y + 25, TRANS_TIME)
+		tween.tween_property(member, "global_position:y", member.global_position.y + 30, TRANS_TIME)
 	
 	await tween.finished
 	
@@ -328,7 +328,7 @@ func menu_view(fighter: Fighter, player_party: Array[Fighter]) -> void:
 	%ChoiceMenu.position.y = 25
 	tween.tween_property(%ChoiceMenu, "position:y", 0, TRANS_TIME)
 	
-	fighter.global_position = %MenuFighterPosition.global_position + Vector2(0, 25)
+	fighter.global_position = %MenuFighterPosition.global_position + Vector2(0, 30)
 	tween.tween_property(fighter, "global_position:y", %MenuFighterPosition.global_position.y, TRANS_TIME)
 	
 	await tween.finished

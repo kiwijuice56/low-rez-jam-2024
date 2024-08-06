@@ -13,6 +13,7 @@
 
 [sub_resource type="Resource" id="Resource_glup2"]
 script = ExtResource("2_6eory")
+unlocked = false
 max_hp = 15
 max_tp = 10
 strength = 3
