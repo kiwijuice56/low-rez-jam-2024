@@ -15,6 +15,7 @@ func _on_interacted(_interact_initiator: Character) -> void:
 	Ref.world.is_paused = true
 	Data.set_state(Ref.world.loaded_room_name + "/" + name, true)
 	Ref.player_party.add_member(fighter_scene)
+	Ref.player_party.add_member(preload("res://main/battle/fighter/dawa/dawa.tscn"))
 	await Ref.world_textbox.display_conversation(conversation)
 	await Ref.world_textbox.exit()
 	Ref.world.set_deferred("is_paused", false)

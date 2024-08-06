@@ -43,11 +43,15 @@ func swap(i1: int, i2: int) -> void:
 	remove_child(fighter1)
 	remove_child(fighter2)
 	if i1 < i2:
-		add_child(fighter2, i1)
-		add_child(fighter1, i2)
+		add_child(fighter2)
+		move_child(fighter2, i1)
+		add_child(fighter1)
+		move_child(fighter1, i2)
 	else:
-		add_child(fighter1, i2)
-		add_child(fighter2, i1)
+		add_child(fighter1)
+		move_child(fighter1, i2)
+		add_child(fighter2)
+		move_child(fighter2, i1)
 
 func get_active_fighters() -> Array[Fighter]:
 	var fighters: Array[Fighter] = []

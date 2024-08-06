@@ -113,3 +113,9 @@ amount = 4
 position = Vector2(72, 18)
 room = "debug_room"
 anchor = "Default"
+
+[node name="TopLeft" parent="." index="9"]
+position = Vector2(-36, -36)
+
+[node name="BottomRight" parent="." index="10"]
+position = Vector2(162, 99)

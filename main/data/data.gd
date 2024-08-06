@@ -17,16 +17,16 @@ func initialize() -> void:
 	
 	set_state("souls", 0)
 	set_state("lvl", 1)
-	set_state("xp", 15)
-	set_state("xp_goal", 30)
+	set_state("xp", 0)
+	set_state("xp_goal", 15)
 	
 	set_state("party_order", ["ella"])
 	
-	set_state("inventory/tofu", 2)
-	set_state("inventory/stirfry", 2)
-	set_state("inventory/vitamin", 2)
-	set_state("inventory/spider", 2)
-	set_state("inventory/tnt", 2)
+	set_state("inventory/tofu", 3)
+	set_state("inventory/stirfry", 0)
+	set_state("inventory/vitamin", 1)
+	set_state("inventory/spider", 0)
+	set_state("inventory/tnt", 0)
 	
 	
 
