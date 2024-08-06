@@ -236,6 +236,7 @@ shape = SubResource("RectangleShape2D_xp0hr")
 position = Vector2(5, 4)
 
 [node name="Camera2D" type="Camera2D" parent="." index="3"]
+unique_name_in_owner = true
 position = Vector2(5, 4)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]

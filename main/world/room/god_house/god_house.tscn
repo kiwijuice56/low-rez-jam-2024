@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://d365bj58vjl5a"]
+
+[ext_resource type="PackedScene" uid="uid://l1nxgrfgq8nb" path="res://main/world/room/room.tscn" id="1_3mnx3"]
+[ext_resource type="Texture2D" uid="uid://ueqdowl4u6x8" path="res://main/world/room/god_house/god_house_hallway.png" id="2_aire2"]
+[ext_resource type="AudioStream" uid="uid://bevxvq8twf3lq" path="res://main/music/outside_demon_club.ogg" id="2_lfhmb"]
+[ext_resource type="PackedScene" uid="uid://dluf4cko6obhr" path="res://main/world/door/door.tscn" id="3_sp67y"]
+
+[node name="GodHouse" instance=ExtResource("1_3mnx3")]
+
+[node name="MusicPlayer" parent="." index="0"]
+stream = ExtResource("2_lfhmb")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="1"]
+z_index = -1
+texture = ExtResource("2_aire2")
+centered = false
+
+[node name="CollisionLayer" parent="." index="3"]
+modulate = Color(1, 0.529412, 1, 0.235294)
+position = Vector2(0, 9)
+layer_0/tile_data = PackedInt32Array(196607, 0, 0, 262143, 0, 0, 327679, 0, 0, 131072, 0, 0, 131073, 0, 0, 131074, 0, 0, 131075, 0, 0, 131076, 0, 0, 131077, 0, 0, 131078, 0, 0, 131079, 0, 0, 131080, 0, 0, 131081, 0, 0, 131082, 0, 0, 131083, 0, 0, 131084, 0, 0, 131085, 0, 0, 327680, 0, 0, 327681, 0, 0, 327682, 0, 0, 327683, 0, 0, 327684, 0, 0, 327685, 0, 0, 327686, 0, 0, 327687, 0, 0, 327688, 0, 0, 327689, 0, 0, 327690, 0, 0, 327691, 0, 0, 327692, 0, 0, 327693, 0, 0, 327694, 0, 0, 327695, 0, 0, 131086, 0, 0, 131087, 0, 0, 131088, 0, 0, 131089, 0, 0, 131090, 0, 0, 131091, 0, 0, 131092, 0, 0, 131093, 0, 0, 131094, 0, 0, 131095, 0, 0, 327696, 0, 0, 327697, 0, 0, 327698, 0, 0, 327699, 0, 0, 327700, 0, 0, 327701, 0, 0, 327702, 0, 0, 327703, 0, 0, 327704, 0, 0, 327705, 0, 0, 327706, 0, 0, 327707, 0, 0, 131096, 0, 0, 131097, 0, 0, 131098, 0, 0, 131099, 0, 0, 131100, 0, 0, 196636, 0, 0, 262172, 0, 0, 327708, 0, 0)
+
+[node name="Door" type="Marker2D" parent="Anchors" index="1"]
+position = Vector2(18, 36)
+
+[node name="Door2" type="Marker2D" parent="Anchors" index="2"]
+position = Vector2(216, 36)
+
+[node name="Door" parent="Doors" index="0" instance=ExtResource("3_sp67y")]
+position = Vector2(18, 27)
+target_room = "hell_fall"
+target_anchor = "Door"
+out_direction = "down"
+
+[node name="Door2" parent="Doors" index="1" instance=ExtResource("3_sp67y")]
+position = Vector2(216, 27)
+target_room = "demon_club"
+target_anchor = "Door"
+out_direction = "down"
+
+[node name="BottomRight" parent="." index="10"]
+position = Vector2(252, 63)

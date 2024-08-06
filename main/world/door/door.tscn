@@ -1,19 +1,90 @@
-[gd_scene load_steps=5 format=3 uid="uid://dluf4cko6obhr"]
+[gd_scene load_steps=11 format=3 uid="uid://dluf4cko6obhr"]
 
 [ext_resource type="Script" path="res://main/world/door/door.gd" id="1_ai0jm"]
+[ext_resource type="Texture2D" uid="uid://dfhvbokyc3fhe" path="res://main/world/door/door.png" id="2_bd1s7"]
 [ext_resource type="PackedScene" uid="uid://dqjhry378atdi" path="res://main/world/interactable/interactable.tscn" id="2_rdanh"]
-[ext_resource type="Texture2D" uid="uid://emchhlwgswks" path="res://main/battle/ui/battle_background/textures/square.png" id="2_t3gmw"]
+[ext_resource type="AudioStream" uid="uid://bwjj2x06pwxh1" path="res://main/world/door/door1.ogg" id="4_1a0wa"]
+[ext_resource type="AudioStream" uid="uid://m3wkw5vxt7tx" path="res://main/world/door/door2.ogg" id="5_vjyfi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c73tt"]
 size = Vector2(9, 9)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6m2s0"]
+random_pitch = 1.1
+streams_count = 2
+stream_0/stream = ExtResource("4_1a0wa")
+stream_1/stream = ExtResource("5_vjyfi")
+
+[sub_resource type="Animation" id="Animation_fs6em"]
+resource_name = "open"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_15ddw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wgipr"]
+_data = {
+"RESET": SubResource("Animation_15ddw"),
+"open": SubResource("Animation_fs6em")
+}
 
 [node name="Door" type="Area2D"]
 collision_mask = 0
 script = ExtResource("1_ai0jm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_t3gmw")
+position = Vector2(-1, 0)
+texture = ExtResource("2_bd1s7")
 centered = false
+hframes = 4
 
 [node name="Interactable" parent="." instance=ExtResource("2_rdanh")]
 unique_name_in_owner = true
@@ -23,3 +94,15 @@ requires_facing = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(4.5, 4.5)
 shape = SubResource("RectangleShape2D_c73tt")
+
+[node name="Player" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_6m2s0")
+bus = &"Sound Effect"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_wgipr")
+}
+speed_scale = 0.75

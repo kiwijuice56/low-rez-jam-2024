@@ -33,3 +33,9 @@ func play_look_animation() -> void:
 func step() -> void:
 	%StepPlayer.stop()
 	%StepPlayer.play()
+
+func set_limit(rect: Rect2) -> void:
+	%Camera2D.limit_left = rect.position.x
+	%Camera2D.limit_right = rect.position.x + rect.size.x
+	%Camera2D.limit_top = rect.position.y
+	%Camera2D.limit_bottom = rect.position.y + rect.size.y

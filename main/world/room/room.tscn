@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://l1nxgrfgq8nb"]
+[gd_scene load_steps=5 format=3 uid="uid://l1nxgrfgq8nb"]
 
 [ext_resource type="Script" path="res://main/world/room/room.gd" id="1_r1nmq"]
 [ext_resource type="TileSet" uid="uid://c1diaqt5v56hc" path="res://main/world/room/default_tileset.tres" id="1_s5xhh"]
+[ext_resource type="TileSet" uid="uid://dkd1gqwbx0ary" path="res://main/world/room/collision_tileset.tres" id="3_djo6d"]
+[ext_resource type="Script" path="res://main/world/room/collision_layer.gd" id="4_elgek"]
 
 [node name="Room" type="Node2D"]
 y_sort_enabled = true
@@ -18,6 +20,13 @@ z_index = -1
 tile_set = ExtResource("1_s5xhh")
 rendering_quadrant_size = 9
 format = 2
+
+[node name="CollisionLayer" type="TileMap" parent="."]
+modulate = Color(1, 0.529412, 1, 0.235294)
+tile_set = ExtResource("3_djo6d")
+rendering_quadrant_size = 9
+format = 2
+script = ExtResource("4_elgek")
 
 [node name="Anchors" type="Node2D" parent="."]
 
@@ -41,3 +50,10 @@ y_sort_enabled = true
 
 [node name="Decoration" type="Node2D" parent="."]
 y_sort_enabled = true
+
+[node name="TopLeft" type="Marker2D" parent="."]
+unique_name_in_owner = true
+
+[node name="BottomRight" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(64, 64)

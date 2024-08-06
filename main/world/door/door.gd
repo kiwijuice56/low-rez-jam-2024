@@ -3,6 +3,7 @@ class_name Door extends Area2D
 @export var target_room: String
 @export var target_anchor: String = "Default"
 @export var requires_interact: bool = true
+@export_enum("up", "down", "left", "right") var out_direction: String = "up"
 
 func _ready() -> void:
 	if requires_interact:
@@ -13,7 +14,13 @@ func _ready() -> void:
 func _on_area_entered(_area: Area2D) -> void:
 	if Ref.world.is_paused:
 		return
-	Ref.world.load_room(target_room, target_anchor)
+	open()
 
 func _on_interacted(_interact_initiator: Character) -> void:
-	Ref.world.load_room(target_room, target_anchor)
+	open()
+
+func open() -> void:
+	Ref.world.is_paused = true
+	%AnimationPlayer.play("open")
+	await %AnimationPlayer.animation_finished
+	Ref.world.load_room(target_room, target_anchor, true, out_direction)

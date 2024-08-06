@@ -21,3 +21,6 @@ func pause_music() -> void:
 func resume_music() -> void:
 	await load_in()
 	%MusicPlayer.play()
+
+func get_bounds() -> Rect2:
+	return Rect2(%TopLeft.global_position, %BottomRight.global_position - %TopLeft.global_position)

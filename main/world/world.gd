@@ -6,7 +6,7 @@ var is_paused: bool = false
 var loaded_room: Room
 var loaded_room_name: String
 
-func load_room(room_name: String, anchor: String = "Default", trans_in: bool = true) -> void:
+func load_room(room_name: String, anchor: String = "Default", trans_in: bool = true, out_direction: String = "down") -> void:
 	is_paused = true
 	
 	if is_instance_valid(loaded_room) and trans_in:
@@ -33,6 +33,10 @@ func load_room(room_name: String, anchor: String = "Default", trans_in: bool = t
 	loaded_room = new_room
 	loaded_room_name = room_name
 	
+	Ref.player.latest_input = out_direction
+	Ref.player.play_look_animation()
+	Ref.player.set_limit(loaded_room.get_bounds())
+	Ref.player.facing_dir = Ref.player.DIR_MAP[out_direction]
 	Ref.player.global_position = loaded_room.get_node("Anchors/" + anchor).global_position
 	
 	await Ref.transition.trans_out()
