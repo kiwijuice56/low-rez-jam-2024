@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dqexef62bofal" path="res://main/battle/fighter/dawa/dawa.png" id="4_rdjgl"]
 [ext_resource type="PackedScene" uid="uid://f41op1oyfhgd" path="res://main/battle/action/battle_animation/status/debuff.tscn" id="5_w76nj"]
 [ext_resource type="Texture2D" uid="uid://ujj2nvu7pc07" path="res://main/battle/action/icons/icon_cool.png" id="6_jqmyi"]
-[ext_resource type="PackedScene" uid="uid://dc6ohosdlf774" path="res://main/battle/action/battle_animation/status/buff.tscn" id="7_3nxli"]
+[ext_resource type="PackedScene" uid="uid://0xh42kb86k8s" path="res://main/battle/action/battle_animation/status/buff.tscn" id="7_3nxli"]
 [ext_resource type="PackedScene" uid="uid://28chlk8w3lmf" path="res://main/battle/action/battle_animation/heal/heal.tscn" id="7_yfo1i"]
 [ext_resource type="Texture2D" uid="uid://bsogfupalaabr" path="res://main/battle/action/icons/icon_heal.png" id="8_ajpkc"]
 [ext_resource type="Texture2D" uid="uid://cfbkcaj5pqfp3" path="res://main/battle/action/icons/icon_water.png" id="9_l83to"]
@@ -21,7 +21,7 @@ max_hp = 10
 max_tp = 15
 strength = 1
 magic = 2
-defence = 1
+defence = 99
 luck = 4
 unlocked_skills = Array[int]([0, 1, 2])
 

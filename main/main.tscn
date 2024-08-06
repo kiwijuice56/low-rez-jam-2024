@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://dl3ps7eki0b7b"]
+[gd_scene load_steps=39 format=3 uid="uid://dl3ps7eki0b7b"]
 
 [ext_resource type="PackedScene" uid="uid://txvddbv8pfiv" path="res://main/world/character/player/player.tscn" id="1_84yfs"]
 [ext_resource type="Script" path="res://main/main.gd" id="1_q20fr"]
@@ -28,9 +28,10 @@
 [ext_resource type="PackedScene" uid="uid://c28vf4m6j63l1" path="res://main/battle/ui/target_selecter/target_selecter.tscn" id="16_ytdqf"]
 [ext_resource type="PackedScene" uid="uid://cuko56w08yuso" path="res://main/battle/action/action.tscn" id="17_7qsbk"]
 [ext_resource type="Texture2D" uid="uid://bsogfupalaabr" path="res://main/battle/action/icons/icon_heal.png" id="18_s6qc8"]
-[ext_resource type="PackedScene" uid="uid://dagp5qivcpmn3" path="res://main/battle/action/battle_animation/explosion/explosion.tscn" id="19_1o4l7"]
-[ext_resource type="Texture2D" uid="uid://dwm2gd3f6v21p" path="res://main/battle/action/icons/icon_magic.png" id="19_e4607"]
 [ext_resource type="PackedScene" uid="uid://28chlk8w3lmf" path="res://main/battle/action/battle_animation/heal/heal.tscn" id="19_nv760"]
+[ext_resource type="Texture2D" uid="uid://5yahrbq4q7ev" path="res://main/battle/action/icons/icon_fire.png" id="20_13b8k"]
+[ext_resource type="PackedScene" uid="uid://ba1ms3n6hoq78" path="res://main/battle/action/battle_animation/fire/fire_flash.tscn" id="21_voemc"]
+[ext_resource type="PackedScene" uid="uid://d2n822iw1iha7" path="res://main/battle/action/battle_animation/fire/fire.tscn" id="22_deuxr"]
 [ext_resource type="PackedScene" uid="uid://cvh8igwahj8wg" path="res://main/loading/loading_layer.tscn" id="24_gb8q0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1nlqh"]
@@ -315,6 +316,7 @@ unique_name_in_owner = true
 [node name="Tofu" parent="Battle/ItemActions" instance=ExtResource("17_7qsbk")]
 icon = ExtResource("18_s6qc8")
 description = "heal one friend"
+use_text = "%s shares tofu!"
 verb = "feed to"
 constant_damage = -20
 target_group = "Own"
@@ -325,6 +327,7 @@ is_item = true
 [node name="Stirfry" parent="Battle/ItemActions" instance=ExtResource("17_7qsbk")]
 icon = ExtResource("18_s6qc8")
 description = "heal all friends"
+use_text = "%s shares stirfry!"
 verb = "feed to"
 constant_damage = -20
 target_group = "Own"
@@ -336,6 +339,7 @@ is_item = true
 [node name="Vitamin" parent="Battle/ItemActions" instance=ExtResource("17_7qsbk")]
 icon = ExtResource("18_s6qc8")
 description = "heal all TP of a friend"
+use_text = "%s throws a gummy!"
 verb = "feed to"
 constant_damage = -99
 change_tp = true
@@ -347,6 +351,7 @@ is_item = true
 [node name="Spider" parent="Battle/ItemActions" instance=ExtResource("17_7qsbk")]
 icon = ExtResource("18_s6qc8")
 description = "scares a friend back to life"
+use_text = "%s revives!"
 verb = "revive"
 target_group = "Own"
 hit_amount_max = 1
@@ -355,14 +360,17 @@ is_item = true
 revival = true
 
 [node name="Tnt" parent="Battle/ItemActions" instance=ExtResource("17_7qsbk")]
-icon = ExtResource("19_e4607")
+icon = ExtResource("20_13b8k")
 description = "a big fire bomb"
+use_text = "%s hurls tnt!"
 verb = "hurl at"
+power = 4.0
 piece = true
+attack_stat = "magic"
 target_amount = "All"
 hit_amount_max = 1
 is_fire = true
-animations = Array[PackedScene]([ExtResource("19_1o4l7")])
+animations = Array[PackedScene]([ExtResource("21_voemc"), ExtResource("22_deuxr")])
 is_item = true
 
 [node name="World" type="Node2D" parent="."]

@@ -73,7 +73,7 @@ per_target_delay = 0.2
 [node name="Explode" parent="Actions/Skills" index="3" instance=ExtResource("3_7el6r")]
 icon = ExtResource("4_sggcg")
 description = "big hits to random foes"
-use_text = "%s splashes them!"
+use_text = "%s explodes them!"
 verb = "explode"
 tp_cost = 12
 power = 0.85
@@ -85,7 +85,7 @@ hit_amount_max = 9
 status_chance = 0.0
 is_phys = true
 animations = Array[PackedScene]([ExtResource("9_35mk5"), ExtResource("6_bkskl")])
-per_target_delay = 0.15
+per_target_delay = 0.08
 soul_cost = 7
 
 [node name="Nova" parent="Actions/Skills" index="4" instance=ExtResource("3_7el6r")]

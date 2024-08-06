@@ -94,6 +94,10 @@ func hit_calculation(user: Fighter, target: Fighter) -> Dictionary:
 	if not is_zero_approx(proportion_damage):
 		data.damage = round(proportion_damage * (target.stats.max_tp if change_tp else target.stats.max_hp))
 	
+	if data.damage == 0 and not (is_zero_approx(proportion_damage) or is_zero_approx(power) or not is_zero_approx(constant_damage)):
+		var heal: int = proportion_damage < 0 or power < 0 or constant_damage < 0
+		data.damage = -1 if heal else 1
+	
 	return data
 
 func per_target_act(user: Fighter, target: Fighter, animation: BattleAnimation) -> void:

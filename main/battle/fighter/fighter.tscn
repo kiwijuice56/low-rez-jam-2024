@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=3 uid="uid://bnbb4opeecksl"]
+[gd_scene load_steps=78 format=3 uid="uid://bnbb4opeecksl"]
 
 [ext_resource type="Script" path="res://main/battle/fighter/fighter.gd" id="1_7gdsa"]
 [ext_resource type="PackedScene" uid="uid://cuko56w08yuso" path="res://main/battle/action/action.tscn" id="2_42vt3"]
@@ -37,6 +37,7 @@
 [ext_resource type="Script" path="res://main/battle/fighter/follow_floor.gd" id="25_ngxfg"]
 [ext_resource type="AudioStream" uid="uid://b127odfeormih" path="res://main/battle/fighter/hit_sound.tres" id="33_10x80"]
 [ext_resource type="AudioStream" uid="uid://bcipan3xccunn" path="res://main/battle/fighter/maraca.ogg" id="34_nra32"]
+[ext_resource type="AudioStream" uid="uid://bqxyinsf4k51w" path="res://main/battle/fighter/death.wav" id="38_ax06f"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u031k"]
 shader = ExtResource("6_ipv7e")
@@ -390,6 +391,18 @@ tracks/7/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("DeathSound:playing")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_ko82r"]
 resource_name = "death"
@@ -453,6 +466,18 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("DeathSound:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_cku3n"]
@@ -593,6 +618,11 @@ _data = {
 random_pitch = 1.05
 streams_count = 1
 stream_0/stream = ExtResource("34_nra32")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_s43xu"]
+random_pitch = 1.05
+streams_count = 1
+stream_0/stream = ExtResource("38_ax06f")
 
 [node name="Fighter" type="Node2D" node_paths=PackedStringArray("base_attack", "base_pass")]
 script = ExtResource("1_7gdsa")
@@ -877,10 +907,15 @@ speed_scale = 2.5
 
 [node name="HitSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("33_10x80")
-volume_db = -7.0
+volume_db = -1.0
 bus = &"Sound Effect"
 
 [node name="StartSound" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_8misl")
+volume_db = -12.0
+bus = &"Sound Effect"
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_s43xu")
 volume_db = -12.0
 bus = &"Sound Effect"

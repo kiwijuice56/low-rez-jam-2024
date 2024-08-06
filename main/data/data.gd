@@ -4,15 +4,14 @@ var save_path: String = "user://"
 var state: Dictionary
 
 func _ready() -> void:
-	# temporary code before we hook this up to a save file menu of some sort
-	if not ResourceLoader.exists(save_path + str(0) + "_save.tres"):
+	if true: # not ResourceLoader.exists(save_path + str(0) + "_save.tres"):
 		initialize()
 		Ref.player_party.load_party_members()
 		save_state(0)
 	load_state(0)
 
 func initialize() -> void:
-	set_state("room", "debug_room")
+	set_state("room", "dust")
 	set_state("anchor", "Default")
 	
 	set_state("souls", 0)
