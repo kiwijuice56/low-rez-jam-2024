@@ -5,14 +5,14 @@
 [ext_resource type="PackedScene" uid="uid://cuko56w08yuso" path="res://main/battle/action/action.tscn" id="3_yp4ep"]
 [ext_resource type="Texture2D" uid="uid://ce6qni3nbs81c" path="res://main/battle/action/icons/icon_charm.png" id="4_mnk4s"]
 [ext_resource type="Texture2D" uid="uid://dqexef62bofal" path="res://main/battle/fighter/dawa/dawa.png" id="4_rdjgl"]
-[ext_resource type="PackedScene" uid="uid://dagp5qivcpmn3" path="res://main/battle/action/battle_animation/explosion/explosion.tscn" id="5_iosml"]
+[ext_resource type="PackedScene" uid="uid://f41op1oyfhgd" path="res://main/battle/action/battle_animation/status/debuff.tscn" id="5_w76nj"]
 [ext_resource type="Texture2D" uid="uid://ujj2nvu7pc07" path="res://main/battle/action/icons/icon_cool.png" id="6_jqmyi"]
+[ext_resource type="PackedScene" uid="uid://dc6ohosdlf774" path="res://main/battle/action/battle_animation/status/buff.tscn" id="7_3nxli"]
 [ext_resource type="PackedScene" uid="uid://28chlk8w3lmf" path="res://main/battle/action/battle_animation/heal/heal.tscn" id="7_yfo1i"]
 [ext_resource type="Texture2D" uid="uid://bsogfupalaabr" path="res://main/battle/action/icons/icon_heal.png" id="8_ajpkc"]
 [ext_resource type="Texture2D" uid="uid://cfbkcaj5pqfp3" path="res://main/battle/action/icons/icon_water.png" id="9_l83to"]
 [ext_resource type="PackedScene" uid="uid://bp7v78t1p5vil" path="res://main/battle/action/battle_animation/water/water.tscn" id="9_u4ugb"]
 [ext_resource type="Texture2D" uid="uid://by443douhckhw" path="res://main/battle/action/icons/icon_oil.png" id="10_1pcml"]
-[ext_resource type="PackedScene" uid="uid://d2n822iw1iha7" path="res://main/battle/action/battle_animation/fire/fire.tscn" id="11_4eyqg"]
 
 [sub_resource type="Resource" id="Resource_qfyhu"]
 script = ExtResource("2_8cafn")
@@ -38,7 +38,7 @@ verb = "charm"
 tp_cost = 5
 hit_amount_max = 1
 status_effects = Array[String](["Charm"])
-animations = Array[PackedScene]([ExtResource("5_iosml")])
+animations = Array[PackedScene]([ExtResource("5_w76nj")])
 
 [node name="Cheer" parent="Actions/Skills" index="1" instance=ExtResource("3_yp4ep")]
 icon = ExtResource("6_jqmyi")
@@ -49,7 +49,7 @@ tp_cost = 10
 target_group = "Own"
 hit_amount_max = 1
 status_effects = Array[String](["Cool"])
-animations = Array[PackedScene]([ExtResource("7_yfo1i")])
+animations = Array[PackedScene]([ExtResource("7_3nxli")])
 
 [node name="Gift" parent="Actions/Skills" index="2" instance=ExtResource("3_yp4ep")]
 icon = ExtResource("8_ajpkc")
@@ -86,7 +86,7 @@ verb = "oil"
 tp_cost = 15
 hit_amount_max = 1
 status_effects = Array[String](["Oily"])
-animations = Array[PackedScene]([ExtResource("11_4eyqg")])
+animations = Array[PackedScene]([ExtResource("5_w76nj")])
 soul_cost = 10
 
 [node name="Sprite2D" parent="SpriteHolder" index="0"]

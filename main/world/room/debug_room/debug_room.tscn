@@ -12,12 +12,12 @@
 [ext_resource type="PackedScene" uid="uid://cmyfrh6j55ulb" path="res://main/world/item_pickup/item_pickup.tscn" id="7_q7lai"]
 [ext_resource type="PackedScene" uid="uid://bnkxy1qwre0oj" path="res://main/world/character/enemy/enemy.tscn" id="9_t400i"]
 [ext_resource type="Script" path="res://main/world/character/enemy/encounter.gd" id="10_26ev5"]
-[ext_resource type="PackedScene" uid="uid://ingpp247yeyh" path="res://main/battle/ui/battle_background/watermelon/watermelon_battle_background.tscn" id="10_vjepj"]
+[ext_resource type="PackedScene" uid="uid://c132k6dt5n70e" path="res://main/battle/ui/battle_background/berry/berry_battle_background.tscn" id="10_bbe81"]
 [ext_resource type="PackedScene" uid="uid://cji0l1gqvgiig" path="res://main/battle/fighter/fishy/fishy.tscn" id="11_0lg31"]
-[ext_resource type="AudioStream" uid="uid://bjju4gb81vhty" path="res://main/music/mindful_killing.ogg" id="12_ap8p3"]
 [ext_resource type="PackedScene" uid="uid://boqbh73x2haen" path="res://main/battle/fighter/kevin/kevin.tscn" id="12_mtpl8"]
 [ext_resource type="PackedScene" uid="uid://22vjtu3tgufg" path="res://main/battle/fighter/vyrm/vyrm.tscn" id="13_qhvft"]
 [ext_resource type="PackedScene" uid="uid://dfjd13fkiyly0" path="res://main/world/character/friend/shopkeep/shopkeep.tscn" id="14_s2123"]
+[ext_resource type="AudioStream" uid="uid://uxqbro8puosv" path="res://main/music/salad_slaughter.ogg" id="15_kai15"]
 [ext_resource type="PackedScene" uid="uid://mtfyi36dglst" path="res://main/battle/fighter/mole/mole.tscn" id="15_pglp1"]
 [ext_resource type="PackedScene" uid="uid://dd7jtwvmbffbg" path="res://main/world/character/friend/saver/saver.tscn" id="17_6d275"]
 
@@ -36,8 +36,8 @@ speed = "Normal"
 [sub_resource type="Resource" id="Resource_duvqj"]
 script = ExtResource("10_26ev5")
 fighters = Array[PackedScene]([ExtResource("11_0lg31"), ExtResource("12_mtpl8"), ExtResource("13_qhvft"), ExtResource("15_pglp1")])
-background = ExtResource("10_vjepj")
-music = ExtResource("12_ap8p3")
+background = ExtResource("10_bbe81")
+music = ExtResource("15_kai15")
 xp_drop = 256
 
 [sub_resource type="Resource" id="Resource_ftoqs"]

@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://b0mc1xvjyod6d"]
+[gd_scene load_steps=13 format=3 uid="uid://b0mc1xvjyod6d"]
 
 [ext_resource type="PackedScene" uid="uid://bnbb4opeecksl" path="res://main/battle/fighter/fighter.tscn" id="1_h8m6s"]
 [ext_resource type="Script" path="res://main/battle/fighter/fighter_stats/fighter_stats.gd" id="2_6eory"]
 [ext_resource type="PackedScene" uid="uid://cuko56w08yuso" path="res://main/battle/action/action.tscn" id="3_7el6r"]
 [ext_resource type="Texture2D" uid="uid://1bbhd85mjdb6" path="res://main/battle/fighter/ella/ella.png" id="3_lpqai"]
 [ext_resource type="Texture2D" uid="uid://dbbr4mrfjf3ir" path="res://main/battle/action/icons/icon_attack.png" id="4_sggcg"]
+[ext_resource type="PackedScene" uid="uid://f41op1oyfhgd" path="res://main/battle/action/battle_animation/status/debuff.tscn" id="6_5w8lg"]
 [ext_resource type="PackedScene" uid="uid://dagp5qivcpmn3" path="res://main/battle/action/battle_animation/explosion/explosion.tscn" id="6_bkskl"]
 [ext_resource type="Texture2D" uid="uid://btcv4ndqcq4pr" path="res://main/battle/action/icons/icon_elec.png" id="6_u313c"]
 [ext_resource type="PackedScene" uid="uid://cp1oupuymf0u8" path="res://main/battle/action/battle_animation/elec/elec_flash.tscn" id="7_7ennw"]
@@ -52,7 +53,7 @@ verb = "mangle"
 tp_cost = 7
 hit_amount_max = 1
 status_effects = Array[String](["Broken"])
-animations = Array[PackedScene]([ExtResource("6_bkskl")])
+animations = Array[PackedScene]([ExtResource("6_5w8lg")])
 
 [node name="Thunder" parent="Actions/Skills" index="2" instance=ExtResource("3_7el6r")]
 icon = ExtResource("6_u313c")
