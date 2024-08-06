@@ -1,18 +1,18 @@
-[gd_scene load_steps=14 format=3 uid="uid://c7cfirjgacf35"]
+[gd_scene load_steps=14 format=3 uid="uid://cji0l1gqvgiig"]
 
-[ext_resource type="PackedScene" uid="uid://bnbb4opeecksl" path="res://main/battle/fighter/fighter.tscn" id="1_mylgi"]
-[ext_resource type="Script" path="res://main/battle/fighter/fighter_stats/fighter_stats.gd" id="2_wtt4c"]
-[ext_resource type="Shader" path="res://main/battle/fighter/flash.gdshader" id="3_4m07w"]
-[ext_resource type="Texture2D" uid="uid://bd65dsv7n3o4r" path="res://main/battle/fighter/slime/slime.png" id="3_bhu5l"]
-[ext_resource type="PackedScene" uid="uid://cuko56w08yuso" path="res://main/battle/action/action.tscn" id="3_vwhtk"]
-[ext_resource type="Texture2D" uid="uid://dqkasghqp64we" path="res://main/battle/fighter/slime/shadow.png" id="5_bfxls"]
-[ext_resource type="PackedScene" uid="uid://cp1oupuymf0u8" path="res://main/battle/action/battle_animation/elec/elec_flash.tscn" id="5_kulbe"]
-[ext_resource type="PackedScene" uid="uid://bt0t88dexj4lo" path="res://main/battle/action/battle_animation/elec/elec.tscn" id="6_o3vxp"]
+[ext_resource type="PackedScene" uid="uid://bnbb4opeecksl" path="res://main/battle/fighter/fighter.tscn" id="1_1k3j1"]
+[ext_resource type="Script" path="res://main/battle/fighter/fighter_stats/fighter_stats.gd" id="2_13uhk"]
+[ext_resource type="PackedScene" uid="uid://cuko56w08yuso" path="res://main/battle/action/action.tscn" id="3_4xcpq"]
+[ext_resource type="PackedScene" uid="uid://cp1oupuymf0u8" path="res://main/battle/action/battle_animation/elec/elec_flash.tscn" id="4_acx58"]
+[ext_resource type="PackedScene" uid="uid://bt0t88dexj4lo" path="res://main/battle/action/battle_animation/elec/elec.tscn" id="5_pj3fl"]
+[ext_resource type="Texture2D" uid="uid://dj6ugv4e8f11b" path="res://main/battle/fighter/fishy/shadow.png" id="6_idjuh"]
+[ext_resource type="Shader" path="res://main/battle/fighter/flash.gdshader" id="7_6ryrs"]
+[ext_resource type="Texture2D" uid="uid://beqdmleaykbtr" path="res://main/battle/fighter/fishy/fishy.png" id="8_0r4k4"]
 
 [sub_resource type="Resource" id="Resource_0mx5o"]
-script = ExtResource("2_wtt4c")
+script = ExtResource("2_13uhk")
 unlocked = true
-max_hp = 1
+max_hp = 15
 max_tp = 15
 strength = 1
 magic = 1
@@ -21,7 +21,7 @@ luck = 3
 unlocked_skills = Array[int]([])
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cemna"]
-shader = ExtResource("3_4m07w")
+shader = ExtResource("7_6ryrs")
 shader_parameter/flash = null
 shader_parameter/flash2 = null
 shader_parameter/progress = 0.0
@@ -69,17 +69,17 @@ _data = {
 "dance": SubResource("Animation_t366u")
 }
 
-[node name="Slime" instance=ExtResource("1_mylgi")]
+[node name="Fishy" instance=ExtResource("1_1k3j1")]
 stats = SubResource("Resource_0mx5o")
 
-[node name="Bam" parent="Actions/Skills" index="0" instance=ExtResource("3_vwhtk")]
+[node name="Bam" parent="Actions/Skills" index="0" instance=ExtResource("3_4xcpq")]
 description = "a killa move"
 use_text = "%s shocks you!"
 power = 1.0
 attack_stat = "magic"
 target_amount = "All"
 hit_amount_max = 1
-animations = Array[PackedScene]([ExtResource("5_kulbe"), ExtResource("6_o3vxp")])
+animations = Array[PackedScene]([ExtResource("4_acx58"), ExtResource("5_pj3fl")])
 
 [node name="Attack" parent="Actions" index="1"]
 use_text = "%s cuts you!"
@@ -88,16 +88,13 @@ status_chance = 1.0
 status_effects = Array[String](["Bleed"])
 
 [node name="ShadowSprite2D" parent="." index="1"]
-texture = ExtResource("5_bfxls")
+texture = ExtResource("6_idjuh")
 
 [node name="Sprite2D" parent="SpriteHolder" index="0"]
 material = SubResource("ShaderMaterial_cemna")
-position = Vector2(-6, -12)
-texture = ExtResource("3_bhu5l")
+position = Vector2(-5, -9)
+texture = ExtResource("8_0r4k4")
 hframes = 3
-
-[node name="Center" parent="SpriteHolder" index="2"]
-position = Vector2(1, -8)
 
 [node name="PointInfo" parent="." index="3"]
 visible = false

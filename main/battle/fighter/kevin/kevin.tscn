@@ -1,0 +1,154 @@
+[gd_scene load_steps=17 format=3 uid="uid://boqbh73x2haen"]
+
+[ext_resource type="PackedScene" uid="uid://bnbb4opeecksl" path="res://main/battle/fighter/fighter.tscn" id="1_u8xql"]
+[ext_resource type="Script" path="res://main/battle/fighter/fighter_stats/fighter_stats.gd" id="2_axfal"]
+[ext_resource type="PackedScene" uid="uid://cuko56w08yuso" path="res://main/battle/action/action.tscn" id="3_jexjk"]
+[ext_resource type="PackedScene" uid="uid://cp1oupuymf0u8" path="res://main/battle/action/battle_animation/elec/elec_flash.tscn" id="4_g1c0h"]
+[ext_resource type="PackedScene" uid="uid://bt0t88dexj4lo" path="res://main/battle/action/battle_animation/elec/elec.tscn" id="5_vmtrs"]
+[ext_resource type="Texture2D" uid="uid://dp3vyp0ibpmva" path="res://main/battle/fighter/kevin/shadow.png" id="6_ruebk"]
+[ext_resource type="Shader" path="res://main/battle/fighter/flash.gdshader" id="7_86pqy"]
+[ext_resource type="Texture2D" uid="uid://bjavpshf5t0ga" path="res://main/battle/fighter/kevin/kevin.png" id="8_hhbh6"]
+
+[sub_resource type="Resource" id="Resource_0mx5o"]
+script = ExtResource("2_axfal")
+unlocked = true
+max_hp = 20
+max_tp = 15
+strength = 1
+magic = 1
+defence = 3
+luck = 3
+unlocked_skills = Array[int]([])
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cemna"]
+shader = ExtResource("7_86pqy")
+shader_parameter/flash = null
+shader_parameter/flash2 = null
+shader_parameter/progress = 0.0
+shader_parameter/meltiness = 1.0
+shader_parameter/broken = false
+shader_parameter/h_frames = 3
+shader_parameter/broken_dist = 0.1
+shader_parameter/random_seed = 0.2
+
+[sub_resource type="Animation" id="Animation_4hv7f"]
+resource_name = "float"
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Sprite2D:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-18, -0.25, 0, 0.25, 0, -14, -0.25, 0, 0.25, 0, -18, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.466667, 1)
+}
+
+[sub_resource type="Animation" id="Animation_kl71e"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Sprite2D:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-18, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yl4x1"]
+_data = {
+"RESET": SubResource("Animation_kl71e"),
+"float": SubResource("Animation_4hv7f")
+}
+
+[sub_resource type="Animation" id="Animation_wjpip"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteHolder/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_t366u"]
+resource_name = "dance"
+length = 0.1
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteHolder/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gtoga"]
+_data = {
+"RESET": SubResource("Animation_wjpip"),
+"dance": SubResource("Animation_t366u")
+}
+
+[node name="Kevin" instance=ExtResource("1_u8xql")]
+stats = SubResource("Resource_0mx5o")
+
+[node name="Bam" parent="Actions/Skills" index="0" instance=ExtResource("3_jexjk")]
+description = "a killa move"
+use_text = "%s shocks you!"
+power = 1.0
+attack_stat = "magic"
+target_amount = "All"
+hit_amount_max = 1
+animations = Array[PackedScene]([ExtResource("4_g1c0h"), ExtResource("5_vmtrs")])
+
+[node name="Attack" parent="Actions" index="1"]
+use_text = "%s cuts you!"
+accuracy = 0.7
+status_chance = 1.0
+status_effects = Array[String](["Bleed"])
+
+[node name="ShadowSprite2D" parent="." index="1"]
+texture = ExtResource("6_ruebk")
+centered = false
+offset = Vector2(-3, -1)
+
+[node name="Sprite2D" parent="SpriteHolder" index="0"]
+material = SubResource("ShaderMaterial_cemna")
+position = Vector2(-3, -18)
+texture = ExtResource("8_hhbh6")
+hframes = 3
+
+[node name="Center" parent="SpriteHolder" index="2"]
+position = Vector2(0, -14)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SpriteHolder" index="3"]
+libraries = {
+"": SubResource("AnimationLibrary_yl4x1")
+}
+autoplay = "float"
+speed_scale = 0.5
+
+[node name="PointInfo" parent="." index="3"]
+visible = false
+
+[node name="SpriteAnimationPlayer" type="AnimationPlayer" parent="." index="4"]
+libraries = {
+"": SubResource("AnimationLibrary_gtoga")
+}
+autoplay = "dance"
+speed_scale = 0.4

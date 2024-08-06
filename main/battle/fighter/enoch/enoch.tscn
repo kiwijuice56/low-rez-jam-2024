@@ -1,14 +1,16 @@
-[gd_scene load_steps=11 format=3 uid="uid://bwgqs6twouujh"]
+[gd_scene load_steps=13 format=3 uid="uid://bwgqs6twouujh"]
 
 [ext_resource type="PackedScene" uid="uid://bnbb4opeecksl" path="res://main/battle/fighter/fighter.tscn" id="1_0srf7"]
 [ext_resource type="Script" path="res://main/battle/fighter/fighter_stats/fighter_stats.gd" id="2_3mnsv"]
 [ext_resource type="PackedScene" uid="uid://cuko56w08yuso" path="res://main/battle/action/action.tscn" id="3_7vfs5"]
-[ext_resource type="Texture2D" uid="uid://dwm2gd3f6v21p" path="res://main/battle/action/icons/icon_magic.png" id="4_rvg7l"]
+[ext_resource type="Texture2D" uid="uid://5yahrbq4q7ev" path="res://main/battle/action/icons/icon_fire.png" id="4_glad8"]
 [ext_resource type="PackedScene" uid="uid://ba1ms3n6hoq78" path="res://main/battle/action/battle_animation/fire/fire_flash.tscn" id="5_8yfxs"]
 [ext_resource type="PackedScene" uid="uid://d2n822iw1iha7" path="res://main/battle/action/battle_animation/fire/fire.tscn" id="6_f41n6"]
 [ext_resource type="PackedScene" uid="uid://cp1oupuymf0u8" path="res://main/battle/action/battle_animation/elec/elec_flash.tscn" id="7_3p5qg"]
+[ext_resource type="Texture2D" uid="uid://btcv4ndqcq4pr" path="res://main/battle/action/icons/icon_elec.png" id="7_vn2av"]
 [ext_resource type="PackedScene" uid="uid://bt0t88dexj4lo" path="res://main/battle/action/battle_animation/elec/elec.tscn" id="8_uum42"]
 [ext_resource type="PackedScene" uid="uid://bp7v78t1p5vil" path="res://main/battle/action/battle_animation/water/water.tscn" id="9_toet6"]
+[ext_resource type="Texture2D" uid="uid://cfbkcaj5pqfp3" path="res://main/battle/action/icons/icon_water.png" id="10_ab8vr"]
 
 [sub_resource type="Resource" id="Resource_5x17d"]
 script = ExtResource("2_3mnsv")
@@ -27,7 +29,7 @@ magic_grow = 3
 max_tp_grow = 4
 
 [node name="Ember" parent="Actions/Skills" index="0" instance=ExtResource("3_7vfs5")]
-icon = ExtResource("4_rvg7l")
+icon = ExtResource("4_glad8")
 description = "fire hit to one foe"
 use_text = "%s burns them!"
 tp_cost = 7
@@ -40,7 +42,7 @@ is_fire = true
 animations = Array[PackedScene]([ExtResource("5_8yfxs"), ExtResource("6_f41n6")])
 
 [node name="Thunder" parent="Actions/Skills" index="1" instance=ExtResource("3_7vfs5")]
-icon = ExtResource("4_rvg7l")
+icon = ExtResource("7_vn2av")
 description = "elec hit to one foe"
 use_text = "%s shocks them!"
 tp_cost = 7
@@ -53,7 +55,7 @@ is_elec = true
 animations = Array[PackedScene]([ExtResource("7_3p5qg"), ExtResource("8_uum42")])
 
 [node name="Bubble" parent="Actions/Skills" index="2" instance=ExtResource("3_7vfs5")]
-icon = ExtResource("4_rvg7l")
+icon = ExtResource("10_ab8vr")
 description = "water hit to one foe"
 use_text = "%s splashes them!"
 verb = "splash"
@@ -67,7 +69,7 @@ is_water = true
 animations = Array[PackedScene]([ExtResource("9_toet6")])
 
 [node name="Elohim" parent="Actions/Skills" index="3" instance=ExtResource("3_7vfs5")]
-icon = ExtResource("4_rvg7l")
+icon = ExtResource("4_glad8")
 description = "big fire hit to random foes"
 use_text = "%s summons elohim!"
 verb = "burn"

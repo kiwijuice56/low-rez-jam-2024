@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://ujj2nvu7pc07" path="res://main/battle/action/icons/icon_cool.png" id="6_jqmyi"]
 [ext_resource type="PackedScene" uid="uid://28chlk8w3lmf" path="res://main/battle/action/battle_animation/heal/heal.tscn" id="7_yfo1i"]
 [ext_resource type="Texture2D" uid="uid://bsogfupalaabr" path="res://main/battle/action/icons/icon_heal.png" id="8_ajpkc"]
-[ext_resource type="Texture2D" uid="uid://dwm2gd3f6v21p" path="res://main/battle/action/icons/icon_magic.png" id="8_tp2tn"]
+[ext_resource type="Texture2D" uid="uid://cfbkcaj5pqfp3" path="res://main/battle/action/icons/icon_water.png" id="9_l83to"]
 [ext_resource type="PackedScene" uid="uid://bp7v78t1p5vil" path="res://main/battle/action/battle_animation/water/water.tscn" id="9_u4ugb"]
 [ext_resource type="Texture2D" uid="uid://by443douhckhw" path="res://main/battle/action/icons/icon_oil.png" id="10_1pcml"]
 [ext_resource type="PackedScene" uid="uid://d2n822iw1iha7" path="res://main/battle/action/battle_animation/fire/fire.tscn" id="11_4eyqg"]
@@ -64,7 +64,7 @@ status_chance = 0.0
 animations = Array[PackedScene]([ExtResource("7_yfo1i")])
 
 [node name="Bubble" parent="Actions/Skills" index="3" instance=ExtResource("3_yp4ep")]
-icon = ExtResource("8_tp2tn")
+icon = ExtResource("9_l83to")
 description = "water hit to one foe"
 use_text = "%s splashes them!"
 verb = "splash"
