@@ -11,7 +11,6 @@ script = ExtResource("1_r1nmq")
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
-volume_db = -60.0
 autoplay = true
 bus = &"Music"
 

@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/siren_curse.ogg-c14063fb5c9338f51f83c09d3ffd8
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

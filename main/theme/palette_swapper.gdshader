@@ -11,13 +11,16 @@ void fragment() {
 	vec4 color = texture(screen_tex, SCREEN_UV);
 	float width = 1.0 / float(palette_size);
 	
-	color *= COLOR.a;
-	COLOR = vec4(0.0);
+	float closest = 1.0;
 	for (int i = 0; i < palette_size; i++) {
 		vec4 comparison = texture(palette_1, vec2(width * float(i) + width / 2.0, 0.5));
 		if (length(comparison - color) < 0.01) {
 			COLOR = texture(palette_2, vec2(width * float(i) + width / 2.0, 0.5));
 			break;
+		}
+		if (length(comparison - color) < closest) {
+			COLOR = texture(palette_2, vec2(width * float(i) + width / 2.0, 0.5));
+			closest = length(comparison - color);
 		}
 	}
 }

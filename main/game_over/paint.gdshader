@@ -76,7 +76,7 @@ void fragment() {
 	vec4 original_color = color;
 	color *= COLOR.a;
 	
-	float index = max(1.0, round(color.r * 255.0 / 19.0));
+	float index = max(1.0, round(color.r * 255.0 / float(palette_size)));
 	float width = 1.0 / float(palette_size);
 	
 	COLOR = texture(palette, vec2(width * index + width / 2.0, 0.5));

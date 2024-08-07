@@ -122,7 +122,7 @@ void fragment() {
 	else {
 		COLOR = vec4((col) * colour_muiltiplier.rgb, 1.0) * colour_muiltiplier2;
 	}
-	float index = max(1.0, round(COLOR.r * 255.0 / 19.0));
+	float index = max(1.0, round(COLOR.r * 255.0 / float(palette_size)));
 	float p_width = 1.0 / float(palette_size);
 	COLOR = texture(palette, vec2(p_width * index + p_width / 2.0, 0.5));
 	COLOR.a = a;
