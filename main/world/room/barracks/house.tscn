@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmgdnq5ycclmt"]
+
+[ext_resource type="Texture2D" uid="uid://bdb3fg2kvwq1j" path="res://main/world/room/barracks/house.png" id="1_r0qhx"]
+
+[node name="House" type="Sprite2D"]
+texture = ExtResource("1_r0qhx")
+centered = false
+hframes = 3

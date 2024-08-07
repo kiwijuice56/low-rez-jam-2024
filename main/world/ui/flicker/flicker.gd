@@ -5,7 +5,7 @@ func _ready() -> void:
 
 func flicker() -> void:
 	%AnimationPlayer.play("flicker")
-	modulate.a = 1
+	%AnimationPlayer.seek(0.4)
 
 func stop() -> void:
 	%AnimationPlayer.stop()

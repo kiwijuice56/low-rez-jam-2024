@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://de1ffxsa88gnu"]
+[gd_scene load_steps=6 format=3 uid="uid://bnuhfywvc2vnw"]
 
-[ext_resource type="PackedScene" uid="uid://bnkxy1qwre0oj" path="res://main/world/character/enemy/enemy.tscn" id="1_lmh7y"]
-[ext_resource type="Texture2D" uid="uid://ccxpd5oved4gu" path="res://main/world/character/enemy/mole/mole.png" id="2_sfv4n"]
+[ext_resource type="PackedScene" uid="uid://bnkxy1qwre0oj" path="res://main/world/character/enemy/enemy.tscn" id="1_fv2g7"]
+[ext_resource type="Texture2D" uid="uid://cixc8o6rnku0e" path="res://main/world/character/enemy/pirori/pirori.png" id="2_6wv1k"]
 
 [sub_resource type="Animation" id="Animation_edaq1"]
 length = 0.001
@@ -20,7 +20,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_kxegw"]
 resource_name = "heha"
-length = 0.1
+length = 0.067
 loop_mode = 2
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -41,10 +41,11 @@ _data = {
 "heha": SubResource("Animation_kxegw")
 }
 
-[node name="Mole" instance=ExtResource("1_lmh7y")]
+[node name="Pirori" instance=ExtResource("1_fv2g7")]
 
 [node name="Sprite2D" parent="." index="0"]
-texture = ExtResource("2_sfv4n")
+position = Vector2(0, -10)
+texture = ExtResource("2_6wv1k")
 hframes = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5"]
@@ -52,4 +53,4 @@ libraries = {
 "": SubResource("AnimationLibrary_gdls1")
 }
 autoplay = "heha"
-speed_scale = 0.5
+speed_scale = 0.25

@@ -1,0 +1,52 @@
+[gd_scene load_steps=11 format=3 uid="uid://dn6a8c4rygljg"]
+
+[ext_resource type="PackedScene" uid="uid://b288lnsycyf2m" path="res://main/battle/ui/battle_background/battle_background.tscn" id="1_sljxf"]
+[ext_resource type="Shader" path="res://main/battle/ui/battle_background/background_image_wave.gdshader" id="2_7ty6l"]
+[ext_resource type="Texture2D" uid="uid://duig11rt8jtcp" path="res://main/theme/palette_dark.png" id="3_rg5jr"]
+[ext_resource type="Texture2D" uid="uid://c48tcolegbpd4" path="res://main/battle/ui/battle_background/textures/shirt.png" id="4_50vhv"]
+[ext_resource type="Texture2D" uid="uid://d1u4mbnfmrseq" path="res://main/battle/ui/battle_background/textures/grid_diagonal.png" id="4_ldwnv"]
+[ext_resource type="Texture2D" uid="uid://bkun1agq8ikk2" path="res://main/battle/ui/battle_background/textures/big_dots.png" id="5_icfbn"]
+[ext_resource type="Texture2D" uid="uid://emchhlwgswks" path="res://main/battle/ui/battle_background/textures/square.png" id="6_s2bm3"]
+[ext_resource type="Texture2D" uid="uid://bp0b1w7fjr3v7" path="res://main/battle/ui/battle_background/textures/star.png" id="7_o83p4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f4e8g"]
+shader = ExtResource("2_7ty6l")
+shader_parameter/palette_size = 11
+shader_parameter/idx_1 = 2
+shader_parameter/idx_2 = 3
+shader_parameter/idx_3 = 4
+shader_parameter/idx_4 = 5
+shader_parameter/speed_a = 0.03
+shader_parameter/speed_b = 0.05
+shader_parameter/speed_c = 0.08
+shader_parameter/wave_a = -0.02
+shader_parameter/wave_b = -0.32
+shader_parameter/palette = ExtResource("3_rg5jr")
+shader_parameter/tex_a = ExtResource("4_50vhv")
+shader_parameter/tex_b = ExtResource("5_icfbn")
+shader_parameter/tex_c = ExtResource("4_ldwnv")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b2n3e"]
+shader = ExtResource("2_7ty6l")
+shader_parameter/palette_size = 11
+shader_parameter/idx_1 = 4
+shader_parameter/idx_2 = 5
+shader_parameter/idx_3 = 6
+shader_parameter/idx_4 = 7
+shader_parameter/speed_a = 0.1
+shader_parameter/speed_b = 0.05
+shader_parameter/speed_c = 0.2
+shader_parameter/wave_a = 0.3
+shader_parameter/wave_b = -0.025
+shader_parameter/palette = ExtResource("3_rg5jr")
+shader_parameter/tex_a = ExtResource("4_50vhv")
+shader_parameter/tex_b = ExtResource("7_o83p4")
+shader_parameter/tex_c = ExtResource("6_s2bm3")
+
+[node name="SadnessBattleBackground" instance=ExtResource("1_sljxf")]
+
+[node name="Top" parent="." index="0"]
+material = SubResource("ShaderMaterial_f4e8g")
+
+[node name="Bottom" parent="." index="1"]
+material = SubResource("ShaderMaterial_b2n3e")
