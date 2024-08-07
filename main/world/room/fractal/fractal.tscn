@@ -1,0 +1,127 @@
+[gd_scene load_steps=11 format=3 uid="uid://balklybs7qbfd"]
+
+[ext_resource type="PackedScene" uid="uid://l1nxgrfgq8nb" path="res://main/world/room/room.tscn" id="1_llg3k"]
+[ext_resource type="Shader" path="res://main/world/room/fractal/fractal.gdshader" id="2_01n8d"]
+[ext_resource type="Texture2D" uid="uid://duig11rt8jtcp" path="res://main/theme/palette_dark.png" id="3_s3t6i"]
+[ext_resource type="Script" path="res://main/world/room/fractal/fractal.gd" id="4_30nny"]
+[ext_resource type="Texture2D" uid="uid://cjyqs5xaqp1g2" path="res://main/world/room/fractal/background.png" id="4_rbpkh"]
+[ext_resource type="AudioStream" uid="uid://df4sh2rxqiinj" path="res://main/world/room/fractal/heartbeat.ogg" id="6_jpalp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ckmbb"]
+shader = ExtResource("2_01n8d")
+shader_parameter/palette_size = 12
+shader_parameter/x_min = -1.0
+shader_parameter/x_max = 1.0
+shader_parameter/y_min = -1.0
+shader_parameter/y_max = 1.0
+shader_parameter/width = 1024.0
+shader_parameter/height = 1024.0
+shader_parameter/angle = 0.675
+shader_parameter/mouse_pos = Vector2(0.41, 0.28)
+shader_parameter/shimmer_speed = 0.03
+shader_parameter/palette = ExtResource("3_s3t6i")
+
+[sub_resource type="Animation" id="Animation_01la1"]
+resource_name = "ebb"
+length = 1.8
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/mouse_pos:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0.41, -0.25, 0, 0.666667, -0.0018099, 0.62224, -0.25, 0, 0.25, 0, 0.41, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.766667, 1.8)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/mouse_pos:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.28, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../AudioStreamPlayer:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_jiad6"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/mouse_pos:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.41, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/mouse_pos:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.28, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../AudioStreamPlayer:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yqs1d"]
+_data = {
+"RESET": SubResource("Animation_jiad6"),
+"ebb": SubResource("Animation_01la1")
+}
+
+[node name="Fractal" instance=ExtResource("1_llg3k")]
+
+[node name="Fractal" type="Sprite2D" parent="." index="3"]
+material = SubResource("ShaderMaterial_ckmbb")
+texture = ExtResource("4_rbpkh")
+centered = false
+script = ExtResource("4_30nny")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Fractal" index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_yqs1d")
+}
+autoplay = "ebb"
+
+[node name="Default" parent="Anchors" index="0"]
+position = Vector2(8, 8)
+
+[node name="BottomRight" parent="." index="10"]
+position = Vector2(144, 144)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="11"]
+stream = ExtResource("6_jpalp")

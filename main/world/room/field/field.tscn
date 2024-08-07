@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://caspx85xx0vkc"]
 
 [ext_resource type="PackedScene" uid="uid://l1nxgrfgq8nb" path="res://main/world/room/room.tscn" id="1_ilp8g"]
-[ext_resource type="AudioStream" uid="uid://pm6g58vqmcax" path="res://main/music/happy_trees.ogg" id="2_3ujnm"]
+[ext_resource type="AudioStream" uid="uid://bqtj2yd851tmd" path="res://main/music/sappy_trees.ogg" id="2_mmscs"]
 [ext_resource type="Texture2D" uid="uid://bvkws1icv2wcl" path="res://main/world/room/field/grass.png" id="3_kmmsj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h80sj"]
@@ -51,7 +51,7 @@ sources/0 = SubResource("TileSetAtlasSource_h80sj")
 [node name="Field" instance=ExtResource("1_ilp8g")]
 
 [node name="MusicPlayer" parent="." index="0"]
-stream = ExtResource("2_3ujnm")
+stream = ExtResource("2_mmscs")
 
 [node name="DefaultTileMap" parent="." index="1"]
 tile_set = SubResource("TileSet_fplkw")
