@@ -141,12 +141,20 @@ func act(user: Fighter, targets: Array[Fighter]) -> TurnUsage:
 		# the "finisher" animation must always be a follow_target type
 		if animation.follows_target:
 			for _hit in range(randi_range(hit_amount_min, hit_amount_max)):
+				var pool: Array[Fighter] = []
 				var actual_targets: Array[Fighter] = []
 				
+				for target in targets:
+					if can_target(target):
+						pool.append(target)
+				
+				if len(pool) == 0:
+					break
+				
 				if target_amount == "Random":
-					actual_targets.append(targets.pick_random())
+					actual_targets.append(pool.pick_random())
 				else:
-					actual_targets = targets
+					actual_targets = pool
 				
 				for i in range(len(actual_targets) - 1):
 					per_target_act(user, actual_targets[i], animation)

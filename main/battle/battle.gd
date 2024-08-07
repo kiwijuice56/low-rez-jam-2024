@@ -342,7 +342,7 @@ func menu_view(fighter: Fighter, player_party: Array[Fighter]) -> void:
 	in_party_view = false
 	
 
-func get_alive_fighters(pool: Array[Fighter]) -> Array[Fighter]:
+static func get_alive_fighters(pool: Array[Fighter]) -> Array[Fighter]:
 	var alive: Array[Fighter] = []
 	for fighter in pool:
 		if not fighter.dead:
