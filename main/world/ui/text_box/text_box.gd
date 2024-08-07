@@ -61,6 +61,11 @@ func display_conversation(dialogues: Array[Dialogue], trans_in: bool = true) -> 
 			tween.tween_property(get_parent().material, "shader_parameter/fade", 0, TRANS_TIME)
 			await tween.finished
 		
+		if dialogue.sfx:
+			%SoundEffectPlayer.stream = dialogue.sfx
+			%SoundEffectPlayer.volume_db = dialogue.volume_db
+			%SoundEffectPlayer.play()
+		
 		passed_first_dialogue = true
 		
 		var chars_per_second: int = int(SPEED_MAP[dialogue.speed] * dialogue.speaker.chars_per_second)

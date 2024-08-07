@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cmyfrh6j55ulb"]
+[gd_scene load_steps=15 format=3 uid="uid://cmyfrh6j55ulb"]
 
 [ext_resource type="Script" path="res://main/world/item_pickup/item_pickup.gd" id="1_undrc"]
 [ext_resource type="PackedScene" uid="uid://dqjhry378atdi" path="res://main/world/interactable/interactable.tscn" id="2_ktln7"]
@@ -13,12 +13,15 @@ script = ExtResource("2_tsyg8")
 speaker = ExtResource("3_b6756")
 text = "the hologram vent spat out an item."
 speed = "Normal"
+sfx = ExtResource("7_1akg4")
+volume_db = 7.0
 
 [sub_resource type="Resource" id="Resource_1ymu2"]
 script = ExtResource("2_tsyg8")
 speaker = ExtResource("3_b6756")
 text = "..."
 speed = "Normal"
+volume_db = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dygla"]
 size = Vector2(6, 6)
@@ -86,10 +89,6 @@ _data = {
 "bob": SubResource("Animation_84tut")
 }
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4gfee"]
-streams_count = 1
-stream_0/stream = ExtResource("7_1akg4")
-
 [node name="ItemPickup" type="Area2D"]
 script = ExtResource("1_undrc")
 item = "bread"
@@ -135,9 +134,3 @@ libraries = {
 }
 autoplay = "bob"
 speed_scale = 0.5
-
-[node name="PickupSound" type="AudioStreamPlayer" parent="."]
-unique_name_in_owner = true
-stream = SubResource("AudioStreamRandomizer_4gfee")
-volume_db = 7.0
-bus = &"Sound Effect"

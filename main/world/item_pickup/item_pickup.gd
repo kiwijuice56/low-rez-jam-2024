@@ -31,7 +31,6 @@ func _on_interacted(_interact_initiator: Character) -> void:
 
 func set_collected() -> void:
 	collected = true
-	%PickupSound.play()
 	%Interactable.can_interact = false
 	%ItemSmoke.emitting = false
 	%ItemSprite.visible = false

@@ -1,0 +1,44 @@
+[gd_scene load_steps=14 format=3 uid="uid://8lnsnijisnd"]
+
+[ext_resource type="PackedScene" uid="uid://bnkxy1qwre0oj" path="res://main/world/character/enemy/enemy.tscn" id="1_h76nx"]
+[ext_resource type="Texture2D" uid="uid://by7isafh2l738" path="res://main/world/character/enemy/madotsuki/madotsuki.png" id="2_twipa"]
+[ext_resource type="PackedScene" uid="uid://cxyp14fdli5pl" path="res://main/battle/fighter/mado/mado.tscn" id="2_y3kdn"]
+[ext_resource type="PackedScene" uid="uid://dn6a8c4rygljg" path="res://main/battle/ui/battle_background/sadness/sadness.tscn" id="3_hsyce"]
+[ext_resource type="PackedScene" uid="uid://bhxxvkx5uduwq" path="res://main/battle/fighter/mado_boss/mado_boss.tscn" id="4_0g1g8"]
+[ext_resource type="AudioStream" uid="uid://ca7e6qxjcg40j" path="res://main/music/dream_fight.ogg" id="5_q37ir"]
+[ext_resource type="Script" path="res://main/world/character/enemy/encounter.gd" id="6_o8ti5"]
+[ext_resource type="Script" path="res://main/world/ui/text_box/dialogue/dialogue.gd" id="7_5nn6d"]
+[ext_resource type="Resource" uid="uid://be2fbcpo5gd7a" path="res://main/world/ui/text_box/speakers/system/system_speaker.tres" id="8_xotnu"]
+[ext_resource type="AudioStream" uid="uid://cosn8u4iv2m10" path="res://main/world/character/recruit/party_join.ogg" id="9_315m4"]
+
+[sub_resource type="Resource" id="Resource_8drf7"]
+script = ExtResource("6_o8ti5")
+fighters = Array[PackedScene]([ExtResource("4_0g1g8")])
+background = ExtResource("3_hsyce")
+music = ExtResource("5_q37ir")
+xp_drop = 50
+
+[sub_resource type="Resource" id="Resource_lfjui"]
+script = ExtResource("7_5nn6d")
+speaker = ExtResource("8_xotnu")
+text = "._._._"
+speed = "Normal"
+volume_db = 0.0
+
+[sub_resource type="Resource" id="Resource_0q50n"]
+script = ExtResource("7_5nn6d")
+speaker = ExtResource("8_xotnu")
+text = "mado joined your party..?"
+speed = "Normal"
+sfx = ExtResource("9_315m4")
+volume_db = -6.0
+
+[node name="Madotsuki" instance=ExtResource("1_h76nx")]
+recruit_scene = ExtResource("2_y3kdn")
+encounter = SubResource("Resource_8drf7")
+requires_interact = true
+conversation = Array[ExtResource("7_5nn6d")]([SubResource("Resource_lfjui")])
+death_conversation = Array[ExtResource("7_5nn6d")]([SubResource("Resource_lfjui"), SubResource("Resource_0q50n")])
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_twipa")

@@ -138,3 +138,6 @@ bus = &"UI Sound Effect"
 unique_name_in_owner = true
 stream = ExtResource("8_oepsa")
 bus = &"UI Sound Effect"
+
+[node name="SoundEffectPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true

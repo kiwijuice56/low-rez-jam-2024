@@ -1,5 +1,6 @@
 class_name Enemy extends Character
 
+@export var recruit_scene: PackedScene
 @export var encounter: Encounter
 @export var requires_interact: bool
 @export var conversation: Array[Dialogue]
@@ -36,6 +37,8 @@ func start_battle() -> void:
 
 func die() -> void:
 	if death_conversation:
+		if recruit_scene:
+			Ref.player_party.add_member(recruit_scene)
 		await Ref.world_textbox.display_conversation(death_conversation)
 		await Ref.world_textbox.exit()
 	Data.set_state(Ref.world.loaded_room_name + "/" + name, true)

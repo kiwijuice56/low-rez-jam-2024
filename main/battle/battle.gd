@@ -124,7 +124,7 @@ func battle(encounter: Encounter) -> bool:
 
 	### BATTLE LOOP END ###
 	
-	stop_music()
+	await stop_music()
 	%Text.display_text("   ", TEXT_SPEED)
 	await get_tree().create_timer(1.0).timeout
 	await %PressTurnWidget.waste_turns(16)
@@ -133,6 +133,7 @@ func battle(encounter: Encounter) -> bool:
 	if lose:
 		await Ref.game_over.game_over()
 	else:
+		await start_music(preload("res://main/music/battle_win.ogg"))
 		# level up stuffs
 		%LevelSubmenu.mode = "level up"
 		await %LevelSubmenu.enter()
@@ -142,7 +143,7 @@ func battle(encounter: Encounter) -> bool:
 		if levels > 0:
 			await %StatusSubmenu.display_level_ups(levels)
 		# await %StatusSubmenu.exit()
-		
+		stop_music()
 		await Ref.transition.trans_in()
 	
 	# cleanup stuffs
@@ -361,7 +362,7 @@ func position_fighters(player_party: Array[Fighter], enemy_party: Array[Fighter]
 func stop_music() -> void:
 	%BattleMusicPlayer.volume_db = 0
 	var tween: Tween = get_tree().create_tween()
-	tween.tween_property(%BattleMusicPlayer, "volume_db", -60, MUSIC_TRANS_TIME * 8)
+	tween.tween_property(%BattleMusicPlayer, "volume_db", -60, MUSIC_TRANS_TIME * 2)
 	await tween.finished
 
 func start_music(stream: AudioStream) -> void:
