@@ -1,0 +1,36 @@
+<details>
+	<summary>controls</summary>
+	<ul>
+		<li><strong>z:</strong> accept</li>
+		<li><strong>x:</strong> back/cancel</li>
+		<li><strong>c:</strong> menu</li>
+		<li><strong>arrow keys:</strong> movement</li>
+	</ul>
+</details>
+<details>
+	<summary>strategy tips, tricks, and details</summary>
+	<ul>
+		<li>status effects are very useful! these include: <ul>
+		  <li>bleeding (HP loss)</li>
+		  <li>burning (HP loss)</li>
+		  <li>blessed (HP gain)</li>
+		  <li>broken (lower defense)</li>
+		  <li>charmed (lower attack)</li>
+		  <li>hyped (higher critical hit rate)</li>
+		  <li>aura (higher accuracy/dodge rate)</li>
+		  <li>oily (weak to fire, but higher dodge rate)</li>
+		  <li>wet (weak to electricity, but resistant to physical)</li>
+		  <li>charged (weak to water, but higher attack)</li>
+		  <li>stunned (can't act)</li>
+		 </ul></li>
+		<li>combat runs on the "press-turn" system, which rewards you with extra actions for hitting critical hits/weaknesses while removing some if you miss an attack</li>
+		<li>you can trade souls (acquired from killing enemies) for new skills by talking to someone at a bar close to the respawn area</li>        
+		<li>your whole party shares the same level and XP points, including friends you haven't found yet</li>
+	</ul>
+</details>
+<details>
+	<summary>credits</summary>
+	<p>the majority of art/sound/code was created by myself during the jam period, although i used CC0 resources like <a href="https://freesound.org/">Freesound</a> and <a href="https://godotshaders.com/">Godot shaders</a>. some assets were created before the jam period (by myself).</p>
+	<p>this game was heavily inspired by yume nikki (the source of the character "mado"), hylics, and lisa: the painful, so check those out too!</p>
+	<p>you can find the game's source code and assets on its open-source <a href="https://github.com/kiwijuice56/low-rez-jam-2024">repository</a>. thank you for playing!</p>
+</details>

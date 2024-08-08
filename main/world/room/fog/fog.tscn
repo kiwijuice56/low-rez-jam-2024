@@ -1,0 +1,67 @@
+[gd_scene load_steps=12 format=4 uid="uid://clllf748m0mk8"]
+
+[ext_resource type="PackedScene" uid="uid://l1nxgrfgq8nb" path="res://main/world/room/room.tscn" id="1_1qyb5"]
+[ext_resource type="Texture2D" uid="uid://cfp1jxkknqfrd" path="res://main/world/room/fog/fog.png" id="2_82yx1"]
+[ext_resource type="Texture2D" uid="uid://be0se47pgvbrp" path="res://main/world/room/yard/background.png" id="2_m0ub4"]
+[ext_resource type="AudioStream" uid="uid://y6881vvlkkn7" path="res://main/music/dry_wind.ogg" id="2_np0mx"]
+[ext_resource type="Shader" path="res://main/world/room/desert/fog.gdshader" id="3_ooy3p"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kgpsd"]
+texture = ExtResource("2_82yx1")
+texture_region_size = Vector2i(9, 9)
+0:0/0 = 0
+0:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_7ben4"]
+tile_size = Vector2i(9, 9)
+sources/0 = SubResource("TileSetAtlasSource_kgpsd")
+
+[sub_resource type="Gradient" id="Gradient_yrhrm"]
+colors = PackedColorArray(0.101241, 0.101241, 0.101241, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_qfudv"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_56lf5"]
+seamless = true
+color_ramp = SubResource("Gradient_yrhrm")
+noise = SubResource("FastNoiseLite_qfudv")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gp1us"]
+shader = ExtResource("3_ooy3p")
+shader_parameter/octaves = 5
+shader_parameter/starting_amplitude = 0.5
+shader_parameter/starting_frequency = 0.41
+shader_parameter/shift = -0.2
+shader_parameter/velocity = Vector2(-0.8, 0.4)
+shader_parameter/position = Vector2(1, 1)
+shader_parameter/fog_color = Color(1, 1, 1, 1)
+shader_parameter/noise = SubResource("NoiseTexture2D_56lf5")
+
+[node name="Fog" instance=ExtResource("1_1qyb5")]
+
+[node name="MusicPlayer" parent="." index="0"]
+stream = ExtResource("2_np0mx")
+volume_db = -12.0
+pitch_scale = 0.7
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." index="2"]
+tile_map_data = PackedByteArray("AAABAAAAAAAAAAAAAAABAAEAAAAAAAAAAAABAAIAAAAAAAAAAAABAAMAAAAAAAAAAAABAAQAAAAAAAAAAFABAAUAAAAAAAAAAAABAAYAAAAAAAAAAAABAAcAAAAAAAAAAAABAAgAAAAAAAAAAFABAAkAAAAAAAAAAAACAAQAAAAAAAAAAFADAAQAAAAAAAAAAFAEAAQAAAAAAAAAAFAFAAQAAAAAAAAAAAAGAAQAAAAAAAAAAFAHAAQAAAAAAAAAAFAFAAAAAAAAAAAAAAAFAAEAAAAAAAAAAAAFAAIAAAAAAAAAAAAFAAMAAAAAAAAAAAAFAAUAAAAAAAAAAAAFAAYAAAAAAAAAAAAFAAcAAAAAAAAAAAAFAAgAAAAAAAAAAFACAAgAAAAAAAAAAFADAAgAAAAAAAAAAFAEAAgAAAAAAAAAAFAGAAgAAAAAAAAAAFAHAAgAAAAAAAAAAFAIAAgAAAAAAAAAAFAJAAgAAAAAAAAAADAKAAgAAAAAAAAAAFALAAgAAAAAAAAAAFAIAAQAAAAAAAAAAFAJAAQAAAAAAAAAAFAKAAQAAAAAAAAAAFALAAQAAAAAAAAAAFAMAAgAAAAAAAAAAFANAAgAAAAAAAAAAFAMAAQAAAAAAAAAAFANAAQAAAAAAAAAAFAOAAQAAAAAAAAAAFAOAAgAAAAAAAAAAFABAAwAAAAAAAAAAFACAAwAAAAAAAAAAFADAAwAAAAAAAAAAFAEAAwAAAAAAAAAAFAFAAwAAAAAAAAAADAGAAwAAAAAAAAAAFAHAAwAAAAAAAAAAFAMAAwAAAAAAAAAAFANAAwAAAAAAAAAAFAOAAwAAAAAAAAAAFALAAwAAAAAAAAAAFAKAAwAAAAAAAAAAFAJAAwAAAAAAAAAAFAIAAwAAAAAAAAAAFAPAAgAAAAAAAAAAFAQAAgAAAAAAAAAAFARAAgAAAAAAAAAAFASAAgAAAAAAAAAAFATAAgAAAAAAAAAAFAUAAgAAAAAAAAAAFABAAoAAAAAAAAAADABAAsAAAAAAAAAADAFAAkAAAAAAAAAADAFAAoAAAAAAAAAADAFAAsAAAAAAAAAADAJAAsAAAAAAAAAADAJAAoAAAAAAAAAADAJAAkAAAAAAAAAADAJAAcAAAAAAAAAADAJAAYAAAAAAAAAADAJAAUAAAAAAAAAADAJAAMAAAAAAAAAADAJAAIAAAAAAAAAADAJAAEAAAAAAAAAADAJAAAAAAAAAAAAADA=")
+tile_set = SubResource("TileSet_7ben4")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="4"]
+modulate = Color(0.125911, 0.125911, 0.125911, 1)
+z_index = -1
+texture = ExtResource("2_m0ub4")
+centered = false
+
+[node name="Fog" type="Sprite2D" parent="." index="5"]
+z_index = 1
+material = SubResource("ShaderMaterial_gp1us")
+texture = ExtResource("2_m0ub4")
+centered = false
+
+[node name="Default" parent="Anchors" index="0"]
+position = Vector2(9, 9)
+
+[node name="BottomRight" parent="." index="12"]
+position = Vector2(189, 117)

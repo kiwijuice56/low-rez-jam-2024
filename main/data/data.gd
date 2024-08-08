@@ -2,7 +2,7 @@ extends Node
 
 var save_path: String = "user://"
 var state: Dictionary
-var overload_save: bool = false
+var overload_save: bool = true
 
 func _ready() -> void:
 	if overload_save or not ResourceLoader.exists(save_path + str(0) + "_save.tres"):
@@ -12,7 +12,7 @@ func _ready() -> void:
 	load_state(0)
 
 func initialize() -> void:
-	set_state("room", "dust")
+	set_state("room", "Field")
 	set_state("anchor", "Default")
 	
 	set_state("souls", 0)

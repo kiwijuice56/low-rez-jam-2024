@@ -36,8 +36,6 @@ sources/1 = SubResource("TileSetAtlasSource_2yc2c")
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_inh74"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_govr4"]
-width = 128
-height = 128
 generate_mipmaps = false
 seamless = true
 noise = SubResource("FastNoiseLite_inh74")
@@ -50,7 +48,7 @@ shader_parameter/starting_frequency = 0.35
 shader_parameter/shift = -0.2
 shader_parameter/velocity = Vector2(1, 1)
 shader_parameter/position = Vector2(1, 1)
-shader_parameter/fog_color = Color(0, 0, 0, 0.898039)
+shader_parameter/fog_color = Color(0, 0, 0, 0.388235)
 shader_parameter/noise = SubResource("NoiseTexture2D_govr4")
 
 [node name="Desert" instance=ExtResource("1_7wyiw")]
