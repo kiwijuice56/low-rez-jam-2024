@@ -4,6 +4,11 @@ class_name Loader extends CanvasLayer
 
 func _ready() -> void:
 	load_materials.call_deferred("res://main")
+	# not sure of another way to ensure shader/particles are cached;
+	# maybe will not work for larger projects
+	await get_tree().create_timer(1.0).timeout
+	for child in get_children():
+		child.queue_free()
 
 func load_materials(path: String) -> void:
 	var dir: DirAccess = DirAccess.open(path)

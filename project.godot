@@ -17,6 +17,10 @@ boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/channel_disable_threshold_db=-80.0
+
 [autoload]
 
 Ref="*res://main/ref.gd"

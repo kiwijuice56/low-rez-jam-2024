@@ -11,7 +11,7 @@
 [ext_resource type="Script" path="res://main/world/ui/text_box/dialogue/dialogue.gd" id="5_t3t31"]
 [ext_resource type="PackedScene" uid="uid://mtfyi36dglst" path="res://main/battle/fighter/mole/mole.tscn" id="6_muu8s"]
 [ext_resource type="Resource" uid="uid://g1ggpsdd0uo0" path="res://main/world/ui/text_box/speakers/bubblebear/bubblebear_speaker.tres" id="6_yknji"]
-[ext_resource type="AudioStream" uid="uid://bjju4gb81vhty" path="res://main/music/mindful_killing.ogg" id="7_1hjsu"]
+[ext_resource type="AudioStream" uid="uid://dvbbxrlwrwbfl" path="res://main/music/mindful_killing.ogg" id="7_1hjsu"]
 [ext_resource type="Texture2D" uid="uid://c1fjt6xr44o32" path="res://main/world/ui/text_box/speakers/bubblebear/bubblebear.png" id="7_8imdp"]
 [ext_resource type="Script" path="res://main/world/character/enemy/encounter.gd" id="8_28h3h"]
 [ext_resource type="Script" path="res://main/world/ui/text_box/speakers/speaker.gd" id="8_jm4xm"]

@@ -4,7 +4,7 @@ const TEXT_SPEED: int = 64
 const PREBATTLE_DELAY: float = 1.1
 const TURN_SWAP_DELAY: float = 1.0
 const POST_ACTION_DELAY: float = 0.8
-const MUSIC_TRANS_TIME: float = 0.2
+const MUSIC_TRANS_TIME: float = 0.25
 const TRANS_TIME: float = 0.08
 
 var in_party_view: bool = true
@@ -125,6 +125,7 @@ func battle(encounter: Encounter) -> bool:
 	### BATTLE LOOP END ###
 	
 	await stop_music()
+	
 	%Text.display_text("   ", TEXT_SPEED)
 	await get_tree().create_timer(1.0).timeout
 	await %PressTurnWidget.waste_turns(16)
@@ -143,7 +144,7 @@ func battle(encounter: Encounter) -> bool:
 		if levels > 0:
 			await %StatusSubmenu.display_level_ups(levels)
 		# await %StatusSubmenu.exit()
-		stop_music()
+		await stop_music()
 		await Ref.transition.trans_in()
 	
 	# cleanup stuffs
@@ -154,12 +155,13 @@ func battle(encounter: Encounter) -> bool:
 		fighter.queue_free()
 	%UI.visible = false
 	%FighterLayer.visible = false
-	Ref.world.loaded_room.resume_music()
+	
 	
 	if lose:
 		Ref.world.load_room("hell_fall", "Default", false)
 	else:
 		Data.set_state("souls", Data.get_state("souls", 0) + len(encounter.fighters))
+		await Ref.world.loaded_room.resume_music()
 		await Ref.transition.trans_out()
 	
 	return not lose
@@ -362,13 +364,14 @@ func position_fighters(player_party: Array[Fighter], enemy_party: Array[Fighter]
 func stop_music() -> void:
 	%BattleMusicPlayer.volume_db = 0
 	var tween: Tween = get_tree().create_tween()
-	tween.tween_property(%BattleMusicPlayer, "volume_db", -60, MUSIC_TRANS_TIME * 2)
+	tween.tween_property(%BattleMusicPlayer, "volume_db", -60, MUSIC_TRANS_TIME)
 	await tween.finished
+	%BattleMusicPlayer.stop()
 
 func start_music(stream: AudioStream) -> void:
 	%BattleMusicPlayer.stream = stream
 	%BattleMusicPlayer.volume_db = -60
-	%BattleMusicPlayer.playing = true
+	%BattleMusicPlayer.play()
 	var tween: Tween = get_tree().create_tween()
 	tween.tween_property(%BattleMusicPlayer, "volume_db", 0.0, MUSIC_TRANS_TIME)
 	await tween.finished
