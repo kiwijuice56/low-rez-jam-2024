@@ -2,7 +2,7 @@
 
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
-uid="uid://uxqbro8puosv"
+uid="uid://0psrk4ddju2r"
 path="res://.godot/imported/salad_slaughter.ogg-1657214bfa4f395460554aa73263eddb.oggvorbisstr"
 
 [deps]
@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/salad_slaughter.ogg-1657214bfa4f395460554aa73
 [params]
 
 loop=true
-loop_offset=0.0
-bpm=0.0
+loop_offset=0
+bpm=0
 beat_count=0
 bar_beats=4

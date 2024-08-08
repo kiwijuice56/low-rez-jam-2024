@@ -65,6 +65,9 @@ position = Vector2(45, 54)
 [node name="Door" type="Marker2D" parent="Anchors" index="1"]
 position = Vector2(9, 45)
 
+[node name="Door2" type="Marker2D" parent="Anchors" index="2"]
+position = Vector2(99, 45)
+
 [node name="Door" parent="Doors" index="0" instance=ExtResource("3_1b2sj")]
 position = Vector2(9, 36)
 target_room = "god_house"
@@ -73,6 +76,8 @@ out_direction = "down"
 
 [node name="Door2" parent="Doors" index="1" instance=ExtResource("3_1b2sj")]
 position = Vector2(99, 36)
+target_room = "desert"
+out_direction = "down"
 
 [node name="Saver" parent="Characters/Friends" index="0" instance=ExtResource("5_lyq27")]
 position = Vector2(36, 36)

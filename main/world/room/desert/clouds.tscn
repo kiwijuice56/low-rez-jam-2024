@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://2v5pamdilluu"]
+
+[ext_resource type="Shader" path="res://main/world/room/desert/fog.gdshader" id="1_n5mnw"]
+[ext_resource type="Texture2D" uid="uid://be0se47pgvbrp" path="res://main/world/room/yard/background.png" id="2_g341j"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_inh74"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_govr4"]
+generate_mipmaps = false
+seamless = true
+noise = SubResource("FastNoiseLite_inh74")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_88sbb"]
+shader = ExtResource("1_n5mnw")
+shader_parameter/octaves = 4
+shader_parameter/starting_amplitude = 0.5
+shader_parameter/starting_frequency = 0.35
+shader_parameter/shift = -0.2
+shader_parameter/velocity = Vector2(1, 1)
+shader_parameter/position = Vector2(1, 1)
+shader_parameter/fog_color = Color(0, 0, 0, 0.388235)
+shader_parameter/noise = SubResource("NoiseTexture2D_govr4")
+
+[node name="Cloud" type="Sprite2D"]
+material = SubResource("ShaderMaterial_88sbb")
+texture = ExtResource("2_g341j")
+centered = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://bsbwm0oq7f06q"]
+[gd_scene load_steps=15 format=4 uid="uid://bsbwm0oq7f06q"]
 
 [ext_resource type="PackedScene" uid="uid://l1nxgrfgq8nb" path="res://main/world/room/room.tscn" id="1_25spg"]
 [ext_resource type="Texture2D" uid="uid://dcg8ixkiet3rv" path="res://main/world/room/barracks/barracks_dirt.png" id="2_akdvy"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dn6a8c4rygljg" path="res://main/battle/ui/battle_background/sadness/sadness.tscn" id="4_60wse"]
 [ext_resource type="PackedScene" uid="uid://s8d6gjc7m0m7" path="res://main/battle/fighter/pirori/pirori.tscn" id="4_78o28"]
 [ext_resource type="Script" path="res://main/world/character/enemy/encounter.gd" id="4_mdga6"]
+[ext_resource type="PackedScene" uid="uid://dluf4cko6obhr" path="res://main/world/door/door.tscn" id="4_xxulm"]
 [ext_resource type="AudioStream" uid="uid://ca7e6qxjcg40j" path="res://main/music/dream_fight.ogg" id="6_w4hsx"]
 [ext_resource type="PackedScene" uid="uid://8lnsnijisnd" path="res://main/world/character/enemy/madotsuki/madotsuki.tscn" id="9_0rfia"]
 
@@ -56,6 +57,12 @@ layer_0/tile_data = PackedInt32Array(1441795, 0, 0, 1507331, 0, 0, 1507332, 0, 0
 [node name="Default" parent="Anchors" index="0"]
 position = Vector2(54, 36)
 
+[node name="Door" parent="Doors" index="0" instance=ExtResource("4_xxulm")]
+position = Vector2(54, 27)
+target_room = "field"
+target_anchor = "Door"
+out_direction = "down"
+
 [node name="Pirori" parent="Characters/Enemies" index="0" instance=ExtResource("3_j6o44")]
 position = Vector2(81, 90)
 encounter = SubResource("Resource_v8t31")
@@ -72,8 +79,12 @@ encounter = SubResource("Resource_v8t31")
 position = Vector2(369, 54)
 encounter = SubResource("Resource_v8t31")
 
-[node name="Madotsuki" parent="Characters/Enemies" index="4" instance=ExtResource("9_0rfia")]
-position = Vector2(324, 117)
+[node name="Pirori5" parent="Characters/Enemies" index="4" instance=ExtResource("3_j6o44")]
+position = Vector2(504, 117)
+encounter = SubResource("Resource_v8t31")
+
+[node name="Madotsuki" parent="Characters/Enemies" index="5" instance=ExtResource("9_0rfia")]
+position = Vector2(333, 117)
 
 [node name="Decoration" parent="." index="8"]
 position = Vector2(-27, -18)

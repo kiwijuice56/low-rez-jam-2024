@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=4 uid="uid://devkxyylu0vj5"]
+[gd_scene load_steps=9 format=4 uid="uid://devkxyylu0vj5"]
 
 [ext_resource type="PackedScene" uid="uid://l1nxgrfgq8nb" path="res://main/world/room/room.tscn" id="1_05y2i"]
 [ext_resource type="Texture2D" uid="uid://cq3ux5oyduwxm" path="res://main/world/room/library/library.png" id="2_6qvna"]
 [ext_resource type="AudioStream" uid="uid://b1praohh13akw" path="res://main/music/siren_curse.ogg" id="2_tq3tm"]
 [ext_resource type="Texture2D" uid="uid://dhw65e4i88g5d" path="res://main/world/room/library/light.webp" id="3_pl4nn"]
+[ext_resource type="PackedScene" uid="uid://dluf4cko6obhr" path="res://main/world/door/door.tscn" id="4_eujgv"]
 [ext_resource type="Script" path="res://main/world/room/library/follow_light.gd" id="4_n0wyy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nvde0"]
@@ -80,7 +81,13 @@ tile_map_data = PackedByteArray("AAAAAAAAAAADAAMAAAAAAAEAAAAFAAMAAAAAAAIAAAACAAI
 tile_set = SubResource("TileSet_7jf3u")
 
 [node name="Default" parent="Anchors" index="0"]
-position = Vector2(9, 45)
+position = Vector2(135, 36)
+
+[node name="Door" parent="Doors" index="0" instance=ExtResource("4_eujgv")]
+position = Vector2(135, 27)
+target_room = "yard"
+target_anchor = "Door"
+out_direction = "down"
 
 [node name="BottomRight" parent="." index="10"]
 position = Vector2(288, 81)

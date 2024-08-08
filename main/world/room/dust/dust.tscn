@@ -68,6 +68,7 @@ colors = PackedColorArray(0.588235, 0.588235, 0.588235, 1, 0.588235, 0.576471, 0
 
 [node name="MusicPlayer" parent="." index="0"]
 stream = ExtResource("2_0gf34")
+volume_db = 7.0
 
 [node name="DefaultTileMap" parent="." index="1"]
 tile_set = ExtResource("3_alc5d")
@@ -78,15 +79,18 @@ layer_1/tile_data = PackedInt32Array(393218, 131072, 1, 262149, 196608, 0, 13107
 [node name="Default" parent="Anchors" index="0"]
 position = Vector2(27, 36)
 
-[node name="Right" type="Marker2D" parent="Anchors" index="1"]
+[node name="Door" type="Marker2D" parent="Anchors" index="1"]
 position = Vector2(387, 117)
 
 [node name="Door" parent="Doors" index="0" instance=ExtResource("4_5l1s7")]
 position = Vector2(27, 27)
+target_room = "desert"
+target_anchor = "Door2"
 out_direction = "down"
 
 [node name="Door2" parent="Doors" index="1" instance=ExtResource("4_5l1s7")]
 position = Vector2(387, 108)
+target_room = "fog"
 out_direction = "down"
 
 [node name="Mole" parent="Characters/Enemies" index="0" instance=ExtResource("4_eyqeb")]

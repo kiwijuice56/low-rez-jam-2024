@@ -37,5 +37,5 @@ float rand(vec2 uv) {
 
 void fragment() {
 	vec2 motion = vec2(rand(4.0*UV + 0.07*TIME * starting_frequency * velocity));
-	COLOR = mix(vec4(0.0), fog_color, rand(UV + motion));
+	COLOR *= mix(vec4(0.0), fog_color, rand(UV + motion));
 }

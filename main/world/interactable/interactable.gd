@@ -2,6 +2,7 @@ class_name Interactable extends Area2D
 
 signal interacted
 
+@export var face_limit: Vector2 = Vector2()
 @export var requires_facing: bool = false
 var interact_initiator: Character
 var can_interact: bool = true
@@ -36,5 +37,7 @@ func _input(event: InputEvent) -> void:
 	var displacement: Vector2 = interact_initiator.global_position.direction_to(get_parent().global_position).snapped(Vector2(1, 1))
 	if requires_facing and not displacement.is_equal_approx(interact_initiator.facing_dir):
 		return 
+	if face_limit.length() > 0 and not interact_initiator.facing_dir.is_equal_approx(face_limit):
+		return
 	if event.is_action_pressed("accept", false):
 		interacted.emit(interact_initiator)

@@ -4,6 +4,9 @@ const MUSIC_TRANS: float = 0.2
 
 @onready var old_db: float = %MusicPlayer.volume_db
 
+func _ready() -> void:
+	%MusicPlayer.volume_db = -60
+
 func load_in() -> void:
 	%MusicPlayer.volume_db = -60
 	var tween: Tween = get_tree().create_tween()

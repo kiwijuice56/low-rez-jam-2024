@@ -15,7 +15,7 @@ func load_room(room_name: String, anchor: String = "Default", trans_in: bool = t
 	var old_name: String = loaded_room_name 
 	loaded_room_name = room_name # items need the loaded room name
 	
-	var path: String = ROOM_PATH + "%s/%s.tscn" % [room_name, room_name]
+	var path: String = ROOM_PATH + "%s/%s.tscn" % [room_name.to_lower(), room_name.to_lower()]
 	var new_room: Room = load(path).instantiate()
 	add_child(new_room)
 	move_child(new_room, 0)

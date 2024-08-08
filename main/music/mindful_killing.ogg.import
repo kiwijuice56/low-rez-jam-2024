@@ -2,7 +2,7 @@
 
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
-uid="uid://bjju4gb81vhty"
+uid="uid://dvbbxrlwrwbfl"
 path="res://.godot/imported/mindful_killing.ogg-e1d96af365e7294f85f6ecbf1e82a6ac.oggvorbisstr"
 
 [deps]
@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/mindful_killing.ogg-e1d96af365e7294f85f6ecbf1
 [params]
 
 loop=true
-loop_offset=0.0
-bpm=0.0
+loop_offset=0
+bpm=0
 beat_count=0
 bar_beats=4
