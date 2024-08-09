@@ -239,6 +239,7 @@ out_direction = "down"
 
 [node name="Door2" parent="Doors" index="1" instance=ExtResource("8_ryvu1")]
 position = Vector2(324, 144)
+door_sprite = ExtResource("9_uwncm")
 target_room = "library"
 out_direction = "down"
 

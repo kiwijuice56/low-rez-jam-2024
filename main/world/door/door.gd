@@ -25,4 +25,6 @@ func open() -> void:
 	Ref.world.is_paused = true
 	%AnimationPlayer.play("open")
 	await %AnimationPlayer.animation_finished
-	Ref.world.load_room(target_room, target_anchor, true, out_direction)
+	await Ref.world.load_room(target_room, target_anchor, true, out_direction)
+	if is_instance_valid(self):
+		%AnimationPlayer.play("RESET")

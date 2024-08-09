@@ -23,7 +23,8 @@ func load_room(room_name: String, anchor: String = "Default", trans_in: bool = t
 	if not is_instance_valid(loaded_room):
 		await new_room.load_in()
 	elif is_instance_valid(loaded_room) and old_name == room_name:
-		pass
+		new_room.queue_free()
+		new_room = loaded_room
 	else:
 		await loaded_room.load_out()
 		await new_room.load_in()

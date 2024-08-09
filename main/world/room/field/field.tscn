@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://caspx85xx0vkc"]
+[gd_scene load_steps=9 format=3 uid="uid://caspx85xx0vkc"]
 
 [ext_resource type="PackedScene" uid="uid://l1nxgrfgq8nb" path="res://main/world/room/room.tscn" id="1_ilp8g"]
 [ext_resource type="AudioStream" uid="uid://bqtj2yd851tmd" path="res://main/music/sappy_trees.ogg" id="2_mmscs"]
 [ext_resource type="Texture2D" uid="uid://bvkws1icv2wcl" path="res://main/world/room/field/grass.png" id="3_kmmsj"]
 [ext_resource type="PackedScene" uid="uid://dluf4cko6obhr" path="res://main/world/door/door.tscn" id="4_wjybt"]
+[ext_resource type="Texture2D" uid="uid://wlv2lathgymm" path="res://main/world/door/door3.png" id="5_jmrjb"]
 [ext_resource type="PackedScene" uid="uid://2v5pamdilluu" path="res://main/world/room/desert/clouds.tscn" id="5_x38nj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h80sj"]
@@ -68,6 +69,9 @@ position = Vector2(180, 153)
 [node name="Door" type="Marker2D" parent="Anchors" index="1"]
 position = Vector2(18, 27)
 
+[node name="Library" type="Marker2D" parent="Anchors" index="2"]
+position = Vector2(297, 54)
+
 [node name="Door" parent="Doors" index="0" instance=ExtResource("4_wjybt")]
 position = Vector2(180, 144)
 target_room = "yard"
@@ -77,6 +81,13 @@ out_direction = "down"
 [node name="Door2" parent="Doors" index="1" instance=ExtResource("4_wjybt")]
 position = Vector2(18, 18)
 target_room = "barracks"
+out_direction = "down"
+
+[node name="Door3" parent="Doors" index="2" instance=ExtResource("4_wjybt")]
+position = Vector2(297, 45)
+door_sprite = ExtResource("5_jmrjb")
+target_room = "library"
+target_anchor = "B2"
 out_direction = "down"
 
 [node name="TopLeft" parent="." index="8"]
