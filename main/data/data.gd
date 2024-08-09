@@ -12,7 +12,7 @@ func _ready() -> void:
 	load_state(0)
 
 func initialize() -> void:
-	set_state("room", "demon_club")
+	set_state("room", "yard")
 	set_state("anchor", "Default")
 	
 	set_state("souls", 0)
