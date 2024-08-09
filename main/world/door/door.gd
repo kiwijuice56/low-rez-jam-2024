@@ -1,11 +1,13 @@
 class_name Door extends Area2D
 
+@export var door_sprite: Texture = preload("res://main/world/door/door.png")
 @export var target_room: String
 @export var target_anchor: String = "Default"
 @export var requires_interact: bool = true
 @export_enum("up", "down", "left", "right") var out_direction: String = "up"
 
 func _ready() -> void:
+	%Sprite2D.texture = door_sprite
 	if requires_interact:
 		%Interactable.interacted.connect(_on_interacted)
 	else:

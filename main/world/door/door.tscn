@@ -81,6 +81,7 @@ collision_mask = 0
 script = ExtResource("1_ai0jm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(-1, 0)
 texture = ExtResource("2_bd1s7")
 centered = false

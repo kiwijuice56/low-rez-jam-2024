@@ -9,23 +9,16 @@ func _ready() -> void:
 	%MusicPlayer.volume_db = -60
 
 func load_in() -> void:
-	%MusicPlayer.playing = true
-	
 	var tween: Tween = get_tree().create_tween()
 	tween.tween_property(%MusicPlayer, "volume_db", old_db, MUSIC_TRANS)
 	await tween.finished
-	
-	%MusicPlayer.playing = true
 	%MusicPlayer.volume_db = old_db
 
 func load_out() -> void:
-	%MusicPlayer.playing = true
-	
 	var tween: Tween = get_tree().create_tween()
 	tween.tween_property(%MusicPlayer, "volume_db", -60, MUSIC_TRANS)
 	await tween.finished
-	
-	%MusicPlayer.playing = true
+	%MusicPlayer.volume_db = -60
 
 func pause_music() -> void:
 	await load_out()
