@@ -88,6 +88,9 @@ position = Vector2(225, 405)
 [node name="Door3" type="Marker2D" parent="Anchors" index="2"]
 position = Vector2(279, 405)
 
+[node name="Library" type="Marker2D" parent="Anchors" index="3"]
+position = Vector2(0, 144)
+
 [node name="Door" parent="Doors" index="0" instance=ExtResource("5_13yau")]
 position = Vector2(252, 360)
 target_room = "demon_club"
@@ -104,6 +107,13 @@ out_direction = "down"
 position = Vector2(279, 396)
 door_sprite = ExtResource("8_n7fdm")
 target_room = "yard"
+out_direction = "down"
+
+[node name="Door4" parent="Doors" index="3" instance=ExtResource("5_13yau")]
+position = Vector2(0, 135)
+door_sprite = ExtResource("8_n7fdm")
+target_room = "library"
+target_anchor = "J0"
 out_direction = "down"
 
 [node name="ItemPickup" parent="Items" index="0" instance=ExtResource("7_ardn0")]

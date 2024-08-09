@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bku45g74gvc1a"]
+[gd_scene load_steps=27 format=3 uid="uid://bku45g74gvc1a"]
 
 [ext_resource type="PackedScene" uid="uid://l1nxgrfgq8nb" path="res://main/world/room/room.tscn" id="1_oyqxr"]
 [ext_resource type="AudioStream" uid="uid://x8jo6eb3kf4m" path="res://main/music/idiotic_frogs.ogg" id="2_0gf34"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://de1ffxsa88gnu" path="res://main/world/character/enemy/mole/mole.tscn" id="4_eyqeb"]
 [ext_resource type="PackedScene" uid="uid://ingpp247yeyh" path="res://main/battle/ui/battle_background/watermelon/watermelon_battle_background.tscn" id="5_svuq6"]
 [ext_resource type="Script" path="res://main/world/ui/text_box/dialogue/dialogue.gd" id="5_t3t31"]
+[ext_resource type="Texture2D" uid="uid://dqf5p8oyev3ar" path="res://main/world/door/door2.png" id="6_7p71p"]
 [ext_resource type="PackedScene" uid="uid://mtfyi36dglst" path="res://main/battle/fighter/mole/mole.tscn" id="6_muu8s"]
 [ext_resource type="Resource" uid="uid://g1ggpsdd0uo0" path="res://main/world/ui/text_box/speakers/bubblebear/bubblebear_speaker.tres" id="6_yknji"]
 [ext_resource type="AudioStream" uid="uid://dvbbxrlwrwbfl" path="res://main/music/mindful_killing.ogg" id="7_1hjsu"]
@@ -87,6 +88,7 @@ position = Vector2(387, 117)
 
 [node name="Door" parent="Doors" index="0" instance=ExtResource("4_5l1s7")]
 position = Vector2(27, 27)
+door_sprite = ExtResource("6_7p71p")
 target_room = "desert"
 target_anchor = "Door2"
 out_direction = "down"
