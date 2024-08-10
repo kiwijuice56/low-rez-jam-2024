@@ -1,4 +1,4 @@
-[gd_scene load_steps=80 format=3 uid="uid://bnbb4opeecksl"]
+[gd_scene load_steps=81 format=3 uid="uid://bnbb4opeecksl"]
 
 [ext_resource type="Script" path="res://main/battle/fighter/fighter.gd" id="1_7gdsa"]
 [ext_resource type="PackedScene" uid="uid://cuko56w08yuso" path="res://main/battle/action/action.tscn" id="2_42vt3"]
@@ -28,6 +28,7 @@
 [ext_resource type="Script" path="res://main/battle/fighter/effect/charged.gd" id="14_1nsvt"]
 [ext_resource type="Texture2D" uid="uid://b2j3uq7sfgb4c" path="res://main/battle/fighter/effect/burning.png" id="14_wg7il"]
 [ext_resource type="Script" path="res://main/battle/fighter/effect/damage_effect.gd" id="15_mmlcr"]
+[ext_resource type="PackedScene" uid="uid://d2n822iw1iha7" path="res://main/battle/action/battle_animation/fire/fire.tscn" id="17_5ocgp"]
 [ext_resource type="PackedScene" uid="uid://28chlk8w3lmf" path="res://main/battle/action/battle_animation/heal/heal.tscn" id="18_hxygw"]
 [ext_resource type="Texture2D" uid="uid://ccrtbhwcjirw7" path="res://main/battle/fighter/effect/wet.png" id="18_rck3c"]
 [ext_resource type="Script" path="res://main/battle/fighter/effect/stun.gd" id="19_2ltam"]
@@ -749,7 +750,7 @@ use_text = "%s is ablaze!"
 proportion_damage = 0.07
 hit_amount_max = 1
 status_chance = 0.0
-animations = Array[PackedScene]([ExtResource("7_5ut8c")])
+animations = Array[PackedScene]([ExtResource("17_5ocgp")])
 
 [node name="Sprite2D" type="Sprite2D" parent="SpriteHolder/Effects/Ablaze"]
 position = Vector2(0, 5)
@@ -776,7 +777,7 @@ unique_name_in_owner = true
 position = Vector2(3, 7)
 icon = ExtResource("6_ju4h5")
 use_text = "%s is holy!"
-proportion_damage = -0.07
+proportion_damage = -0.1
 hit_amount_max = 1
 status_chance = 0.0
 animations = Array[PackedScene]([ExtResource("18_hxygw")])
@@ -785,12 +786,14 @@ animations = Array[PackedScene]([ExtResource("18_hxygw")])
 position = Vector2(-2, -10)
 texture = ExtResource("19_nkajc")
 centered = false
+offset = Vector2(0, 4)
 hframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SpriteHolder/Effects/Bless/Sprite2D"]
 libraries = {
 "": SubResource("AnimationLibrary_51pl1")
 }
+autoplay = "shimmer"
 speed_scale = 0.5
 
 [node name="Broken" type="Node2D" parent="SpriteHolder/Effects"]

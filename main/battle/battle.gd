@@ -67,6 +67,10 @@ func battle(encounter: Encounter) -> bool:
 		var idx: int = 0
 		var full_turns: int = len(get_alive_fighters(current_party))
 		var half_turns: int = 0
+		
+		if not player_turn and encounter.boss:
+			full_turns *= 2
+		
 		%PressTurnWidget.initialize(full_turns, player_turn)
 		await get_tree().create_timer(TURN_SWAP_DELAY).timeout
 		while full_turns + half_turns > 0:

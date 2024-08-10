@@ -85,7 +85,7 @@ status_chance = 0.0
 is_phys = true
 animations = Array[PackedScene]([ExtResource("9_35mk5"), ExtResource("6_bkskl")])
 per_target_delay = 0.08
-soul_cost = 7
+soul_cost = 4
 
 [node name="Nova" parent="Actions/Skills" index="4" instance=ExtResource("3_7el6r")]
 icon = ExtResource("6_u313c")
@@ -102,7 +102,7 @@ status_effects = Array[String](["Stun"])
 is_elec = true
 animations = Array[PackedScene]([ExtResource("7_7ennw"), ExtResource("8_0ggly")])
 per_target_delay = 0.2
-soul_cost = 12
+soul_cost = 7
 
 [node name="Sprite2D" parent="SpriteHolder" index="0"]
 texture = ExtResource("3_lpqai")

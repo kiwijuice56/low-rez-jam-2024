@@ -86,6 +86,7 @@ sources/0 = SubResource("TileSetAtlasSource_nvde0")
 
 [sub_resource type="Resource" id="Resource_vraiy"]
 script = ExtResource("9_hdat2")
+boss = false
 fighters = Array[PackedScene]([ExtResource("8_jka78"), ExtResource("8_axv8i")])
 background = ExtResource("7_xi1sb")
 music = ExtResource("8_baj5u")
@@ -93,6 +94,7 @@ xp_drop = 25
 
 [sub_resource type="Resource" id="Resource_o35kw"]
 script = ExtResource("9_hdat2")
+boss = false
 fighters = Array[PackedScene]([ExtResource("8_jka78"), ExtResource("8_axv8i"), ExtResource("8_jka78")])
 background = ExtResource("7_xi1sb")
 music = ExtResource("8_baj5u")
@@ -100,6 +102,7 @@ xp_drop = 35
 
 [sub_resource type="Resource" id="Resource_jcofl"]
 script = ExtResource("9_hdat2")
+boss = false
 fighters = Array[PackedScene]([ExtResource("8_jka78"), ExtResource("8_axv8i"), ExtResource("8_jka78"), ExtResource("8_axv8i")])
 background = ExtResource("7_xi1sb")
 music = ExtResource("8_baj5u")
@@ -548,7 +551,6 @@ item = "tofu"
 position = Vector2(1152, 513)
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="." index="11"]
-visible = false
 energy = 0.8
 blend_mode = 1
 

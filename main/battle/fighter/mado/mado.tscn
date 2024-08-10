@@ -1,22 +1,87 @@
-[gd_scene load_steps=5 format=3 uid="uid://cxyp14fdli5pl"]
+[gd_scene load_steps=15 format=3 uid="uid://cxyp14fdli5pl"]
 
 [ext_resource type="PackedScene" uid="uid://bnbb4opeecksl" path="res://main/battle/fighter/fighter.tscn" id="1_v77r4"]
 [ext_resource type="Script" path="res://main/battle/fighter/fighter_stats/fighter_stats.gd" id="2_w0iiy"]
+[ext_resource type="PackedScene" uid="uid://cuko56w08yuso" path="res://main/battle/action/action.tscn" id="3_5poqx"]
 [ext_resource type="Texture2D" uid="uid://u63xw34ldem6" path="res://main/battle/fighter/mado/mado.png" id="3_87d71"]
+[ext_resource type="Texture2D" uid="uid://dbbr4mrfjf3ir" path="res://main/battle/action/icons/icon_attack.png" id="4_6mh7b"]
+[ext_resource type="PackedScene" uid="uid://dagp5qivcpmn3" path="res://main/battle/action/battle_animation/explosion/explosion.tscn" id="5_7ah6x"]
+[ext_resource type="Texture2D" uid="uid://bsogfupalaabr" path="res://main/battle/action/icons/icon_heal.png" id="6_073ro"]
+[ext_resource type="PackedScene" uid="uid://0xh42kb86k8s" path="res://main/battle/action/battle_animation/status/buff.tscn" id="7_x1686"]
+[ext_resource type="Texture2D" uid="uid://5yahrbq4q7ev" path="res://main/battle/action/icons/icon_fire.png" id="8_5ws5f"]
+[ext_resource type="PackedScene" uid="uid://ba1ms3n6hoq78" path="res://main/battle/action/battle_animation/fire/fire_flash.tscn" id="8_irpvw"]
+[ext_resource type="PackedScene" uid="uid://f41op1oyfhgd" path="res://main/battle/action/battle_animation/status/debuff.tscn" id="9_ws4qa"]
+[ext_resource type="PackedScene" uid="uid://bp7v78t1p5vil" path="res://main/battle/action/battle_animation/water/water.tscn" id="10_2psk2"]
+[ext_resource type="Texture2D" uid="uid://cfbkcaj5pqfp3" path="res://main/battle/action/icons/icon_water.png" id="11_xi5lq"]
 
-[sub_resource type="Resource" id="Resource_lcnml"]
+[sub_resource type="Resource" id="Resource_sc0u5"]
 script = ExtResource("2_w0iiy")
 unlocked = false
-max_hp = 10
-max_tp = 10
-strength = 1
-magic = 2
-defence = 3
-luck = 4
-unlocked_skills = Array[int]([])
+max_hp = 8
+max_tp = 20
+strength = 2
+magic = 1
+defence = 1
+luck = 3
+unlocked_skills = Array[int]([0, 1, 2])
 
 [node name="Mado" instance=ExtResource("1_v77r4")]
-stats = SubResource("Resource_lcnml")
+stats = SubResource("Resource_sc0u5")
+strength_grow = 2
+luck_grow = 2
+max_tp_grow = 4
+
+[node name="Knife" parent="Actions/Skills" index="0" instance=ExtResource("3_5poqx")]
+icon = ExtResource("4_6mh7b")
+description = "stab one foe"
+use_text = "%s stabs them!"
+verb = "stab"
+tp_cost = 4
+power = 0.6
+accuracy = 0.9
+critical = 0.3
+hit_amount_max = 2
+status_chance = 0.5
+status_effects = Array[String](["Bleed"])
+is_phys = true
+animations = Array[PackedScene]([ExtResource("5_7ah6x")])
+
+[node name="Flute" parent="Actions/Skills" index="1" instance=ExtResource("3_5poqx")]
+icon = ExtResource("6_073ro")
+description = "bless all friends"
+use_text = "%s uses a flute!"
+verb = "bless"
+tp_cost = 6
+target_group = "Own"
+target_amount = "All"
+hit_amount_max = 1
+status_effects = Array[String](["Bless"])
+animations = Array[PackedScene]([ExtResource("7_x1686")])
+
+[node name="Oni" parent="Actions/Skills" index="2" instance=ExtResource("3_5poqx")]
+icon = ExtResource("8_5ws5f")
+description = "burn and break all foes"
+use_text = "%s turns into an oni!"
+verb = "curse"
+tp_cost = 10
+target_amount = "All"
+hit_amount_max = 1
+status_effects = Array[String](["Ablaze", "Broken"])
+is_fire = true
+animations = Array[PackedScene]([ExtResource("8_irpvw"), ExtResource("9_ws4qa")])
+
+[node name="Umbrella" parent="Actions/Skills" index="3" instance=ExtResource("3_5poqx")]
+icon = ExtResource("11_xi5lq")
+description = "wet and charm all foes"
+use_text = "%s summons rain!"
+verb = "curse"
+tp_cost = 10
+target_amount = "All"
+hit_amount_max = 1
+status_effects = Array[String](["Wet", "Charm"])
+is_water = true
+animations = Array[PackedScene]([ExtResource("10_2psk2")])
+soul_cost = 7
 
 [node name="Sprite2D" parent="SpriteHolder" index="0"]
 texture = ExtResource("3_87d71")

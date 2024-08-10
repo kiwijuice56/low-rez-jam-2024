@@ -20,7 +20,7 @@ func initialize() -> void:
 	set_state("xp", 0)
 	set_state("xp_goal", 15)
 	
-	set_state("party_order", ["ella"])
+	set_state("party_order", ["ella", "mado", "enoch", "dawa"])
 	
 	set_state("inventory/tofu", 3)
 	set_state("inventory/stirfry", 0)
