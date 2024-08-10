@@ -5,6 +5,9 @@ class_name BubblebearFriend extends Friend
 
 func _ready() -> void:
 	super._ready()
+	if not has_node("%Button"):
+		return
+	
 	conversation = conversation_sick
 	await get_parent().ready
 	%Button.pressed.connect(_on_pressed)

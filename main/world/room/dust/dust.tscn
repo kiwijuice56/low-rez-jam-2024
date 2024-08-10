@@ -211,9 +211,6 @@ position = Vector2(396, 108)
 target_room = "fog"
 out_direction = "down"
 
-[node name="Enemies" parent="Characters" index="0"]
-position = Vector2(0, 500)
-
 [node name="Mole" parent="Characters/Enemies" index="0" instance=ExtResource("4_eyqeb")]
 position = Vector2(45, 117)
 encounter = SubResource("Resource_wfokb")

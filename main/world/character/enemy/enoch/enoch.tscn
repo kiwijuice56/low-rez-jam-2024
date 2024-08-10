@@ -1,0 +1,32 @@
+[gd_scene load_steps=9 format=3 uid="uid://bew441bbshke7"]
+
+[ext_resource type="PackedScene" uid="uid://bnkxy1qwre0oj" path="res://main/world/character/enemy/enemy.tscn" id="1_6e5lp"]
+[ext_resource type="PackedScene" uid="uid://bwgqs6twouujh" path="res://main/battle/fighter/enoch/enoch.tscn" id="2_pgb36"]
+[ext_resource type="PackedScene" uid="uid://ingpp247yeyh" path="res://main/battle/ui/battle_background/watermelon/watermelon_battle_background.tscn" id="3_aq857"]
+[ext_resource type="PackedScene" uid="uid://crwv3fhsair2r" path="res://main/battle/fighter/enoch_boss/enoch_boss.tscn" id="4_ewcav"]
+[ext_resource type="AudioStream" uid="uid://dmymlnhw7iy25" path="res://main/music/acrylic_adversity.ogg" id="5_45san"]
+[ext_resource type="Script" path="res://main/world/character/enemy/encounter.gd" id="6_yk47o"]
+
+[sub_resource type="Resource" id="Resource_luit0"]
+script = ExtResource("6_yk47o")
+boss = true
+fighters = Array[PackedScene]([ExtResource("4_ewcav")])
+background = ExtResource("3_aq857")
+music = ExtResource("5_45san")
+xp_drop = 40
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4c8sg"]
+radius = 7.0
+
+[node name="EnochBoss" instance=ExtResource("1_6e5lp")]
+recruit_scene = ExtResource("2_pgb36")
+encounter = SubResource("Resource_luit0")
+requires_interact = true
+
+[node name="CollisionShape2D" parent="." index="1"]
+disabled = false
+
+[node name="CollisionShape2D" parent="Interactable" index="0"]
+shape = SubResource("CircleShape2D_4c8sg")
+
+[editable path="Interactable"]

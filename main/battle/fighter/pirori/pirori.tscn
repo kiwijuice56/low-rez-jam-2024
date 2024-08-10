@@ -1,20 +1,23 @@
-[gd_scene load_steps=11 format=3 uid="uid://s8d6gjc7m0m7"]
+[gd_scene load_steps=14 format=3 uid="uid://s8d6gjc7m0m7"]
 
 [ext_resource type="PackedScene" uid="uid://bnbb4opeecksl" path="res://main/battle/fighter/fighter.tscn" id="1_74fsh"]
 [ext_resource type="Script" path="res://main/battle/fighter/fighter_stats/fighter_stats.gd" id="2_apcye"]
+[ext_resource type="Script" path="res://main/battle/action/action.gd" id="3_6ahyh"]
 [ext_resource type="Texture2D" uid="uid://dqkasghqp64we" path="res://main/battle/fighter/slime/shadow.png" id="3_lycxb"]
 [ext_resource type="Shader" path="res://main/battle/fighter/flash.gdshader" id="4_37kg6"]
+[ext_resource type="PackedScene" uid="uid://ba1ms3n6hoq78" path="res://main/battle/action/battle_animation/fire/fire_flash.tscn" id="4_ugg82"]
+[ext_resource type="PackedScene" uid="uid://dagp5qivcpmn3" path="res://main/battle/action/battle_animation/explosion/explosion.tscn" id="5_il8m0"]
 [ext_resource type="Texture2D" uid="uid://qql4o3e7is3b" path="res://main/battle/fighter/pirori/pirori.png" id="5_osh75"]
 
-[sub_resource type="Resource" id="Resource_d3pyg"]
+[sub_resource type="Resource" id="Resource_3ceur"]
 script = ExtResource("2_apcye")
 unlocked = true
-max_hp = 1
+max_hp = 90
 max_tp = 15
-strength = 1
-magic = 1
-defence = 3
-luck = 3
+strength = 6
+magic = 2
+defence = 6
+luck = 12
 unlocked_skills = Array[int]([])
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cemna"]
@@ -67,11 +70,27 @@ _data = {
 }
 
 [node name="Pirori" instance=ExtResource("1_74fsh")]
-stats = SubResource("Resource_d3pyg")
+stats = SubResource("Resource_3ceur")
+
+[node name="Rampage" type="Node2D" parent="Actions/Skills" index="0"]
+script = ExtResource("3_6ahyh")
+use_text = "%s rampages!"
+power = 0.5
+accuracy = 0.95
+critical = 0.25
+target_amount = "Random"
+hit_amount_min = 4
+hit_amount_max = 12
+status_chance = 0.3
+status_effects = Array[String](["Broken"])
+is_phys = true
+animations = Array[PackedScene]([ExtResource("4_ugg82"), ExtResource("5_il8m0")])
+per_target_delay = 0.125
 
 [node name="Attack" parent="Actions" index="1"]
-accuracy = 0.85
-critical = 0.07
+power = 0.5
+accuracy = 0.9
+critical = 0.3
 
 [node name="ShadowSprite2D" parent="." index="1"]
 texture = ExtResource("3_lycxb")

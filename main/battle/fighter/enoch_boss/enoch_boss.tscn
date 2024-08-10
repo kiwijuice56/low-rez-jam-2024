@@ -1,0 +1,138 @@
+[gd_scene load_steps=18 format=3 uid="uid://crwv3fhsair2r"]
+
+[ext_resource type="PackedScene" uid="uid://bnbb4opeecksl" path="res://main/battle/fighter/fighter.tscn" id="1_101y8"]
+[ext_resource type="Script" path="res://main/battle/fighter/fighter_stats/fighter_stats.gd" id="2_bjxr8"]
+[ext_resource type="PackedScene" uid="uid://cuko56w08yuso" path="res://main/battle/action/action.tscn" id="3_bnaxh"]
+[ext_resource type="Texture2D" uid="uid://5yahrbq4q7ev" path="res://main/battle/action/icons/icon_fire.png" id="4_l7hpl"]
+[ext_resource type="PackedScene" uid="uid://ba1ms3n6hoq78" path="res://main/battle/action/battle_animation/fire/fire_flash.tscn" id="6_c6ur3"]
+[ext_resource type="PackedScene" uid="uid://d2n822iw1iha7" path="res://main/battle/action/battle_animation/fire/fire.tscn" id="7_48cr8"]
+[ext_resource type="Texture2D" uid="uid://cfbkcaj5pqfp3" path="res://main/battle/action/icons/icon_water.png" id="8_6ttwx"]
+[ext_resource type="PackedScene" uid="uid://bp7v78t1p5vil" path="res://main/battle/action/battle_animation/water/water.tscn" id="9_ns0rx"]
+[ext_resource type="Texture2D" uid="uid://btcv4ndqcq4pr" path="res://main/battle/action/icons/icon_elec.png" id="10_eit6m"]
+[ext_resource type="PackedScene" uid="uid://cp1oupuymf0u8" path="res://main/battle/action/battle_animation/elec/elec_flash.tscn" id="11_k0k62"]
+[ext_resource type="Texture2D" uid="uid://ynl6ho1m5f5j" path="res://main/battle/fighter/chi/shadow.png" id="12_wj5dr"]
+[ext_resource type="PackedScene" uid="uid://bt0t88dexj4lo" path="res://main/battle/action/battle_animation/elec/elec.tscn" id="12_x5f6x"]
+[ext_resource type="Texture2D" uid="uid://d1ur1fwf4gncb" path="res://main/battle/fighter/enoch_boss/enoch_boss.png" id="13_ggv2h"]
+
+[sub_resource type="Resource" id="Resource_5s5c7"]
+script = ExtResource("2_bjxr8")
+unlocked = false
+max_hp = 60
+max_tp = 15
+strength = 1
+magic = 4
+defence = 4
+luck = 4
+unlocked_skills = Array[int]([0, 1, 2])
+
+[sub_resource type="Animation" id="Animation_5s1i4"]
+resource_name = "dance"
+length = 0.068
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteHolder/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-3.72529e-09, 0.0333333, 0.0666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_571c1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteHolder/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1l2gk"]
+_data = {
+"RESET": SubResource("Animation_571c1"),
+"dance": SubResource("Animation_5s1i4")
+}
+
+[node name="Enoch" instance=ExtResource("1_101y8")]
+stats = SubResource("Resource_5s5c7")
+magic_grow = 3
+max_tp_grow = 4
+
+[node name="Ember" parent="Actions/Skills" index="0" instance=ExtResource("3_bnaxh")]
+icon = ExtResource("4_l7hpl")
+description = "fire hit to one foe"
+use_text = "%s burns them!"
+tp_cost = 6
+power = 1.0
+attack_stat = "magic"
+hit_amount_max = 1
+status_chance = 0.25
+status_effects = Array[String](["Ablaze"])
+is_fire = true
+animations = Array[PackedScene]([ExtResource("6_c6ur3"), ExtResource("7_48cr8")])
+
+[node name="Bubble" parent="Actions/Skills" index="1" instance=ExtResource("3_bnaxh")]
+icon = ExtResource("8_6ttwx")
+description = "water hit to one foe"
+use_text = "%s splashes them!"
+verb = "splash"
+tp_cost = 6
+power = 1.0
+attack_stat = "magic"
+hit_amount_max = 1
+status_chance = 0.25
+status_effects = Array[String](["Wet"])
+is_water = true
+animations = Array[PackedScene]([ExtResource("9_ns0rx")])
+
+[node name="Thunder" parent="Actions/Skills" index="2" instance=ExtResource("3_bnaxh")]
+icon = ExtResource("10_eit6m")
+description = "elec hit to one foe"
+use_text = "%s shocks them!"
+tp_cost = 6
+power = 1.0
+attack_stat = "magic"
+hit_amount_max = 1
+status_chance = 0.25
+status_effects = Array[String](["Charged"])
+is_elec = true
+animations = Array[PackedScene]([ExtResource("11_k0k62"), ExtResource("12_x5f6x")])
+soul_cost = 3
+
+[node name="Attack" parent="Actions" index="1"]
+power = 0.5
+accuracy = 0.8
+
+[node name="ShadowSprite2D" parent="." index="1"]
+texture = ExtResource("12_wj5dr")
+centered = false
+offset = Vector2(-4, 0)
+
+[node name="Sprite2D" parent="SpriteHolder" index="0"]
+texture = ExtResource("13_ggv2h")
+offset = Vector2(-1, -5)
+hframes = 3
+frame = 1
+
+[node name="Center" parent="SpriteHolder" index="2"]
+position = Vector2(0, -7)
+
+[node name="PointInfo" parent="." index="3"]
+visible = false
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="." index="9"]
+libraries = {
+"": SubResource("AnimationLibrary_1l2gk")
+}
+autoplay = "dance"
+speed_scale = 0.2

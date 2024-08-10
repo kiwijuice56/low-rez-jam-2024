@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=3 uid="uid://7k1i4rf2pht3"]
+
+[ext_resource type="PackedScene" uid="uid://dei0x5en37mu2" path="res://main/world/character/friend/friend.tscn" id="1_f7y5d"]
+[ext_resource type="Script" path="res://main/world/character/friend/glaggler/glaggler.gd" id="2_4uv8x"]
+[ext_resource type="Script" path="res://main/world/ui/text_box/dialogue/dialogue.gd" id="3_6yyq0"]
+
+[node name="Glaggler" instance=ExtResource("1_f7y5d")]
+script = ExtResource("2_4uv8x")
+conversation_none = Array[ExtResource("3_6yyq0")]([])
+conversation_enoch = Array[ExtResource("3_6yyq0")]([])

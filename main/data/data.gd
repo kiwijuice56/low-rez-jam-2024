@@ -12,8 +12,8 @@ func _ready() -> void:
 	load_state(0)
 
 func initialize() -> void:
-	set_state("room", "dust")
-	set_state("anchor", "Door")
+	set_state("room", "yard")
+	set_state("anchor", "Default")
 	
 	set_state("souls", 0)
 	set_state("lvl", 1)

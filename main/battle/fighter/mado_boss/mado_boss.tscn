@@ -19,12 +19,12 @@
 [sub_resource type="Resource" id="Resource_1gmy5"]
 script = ExtResource("2_xff77")
 unlocked = true
-max_hp = 50
+max_hp = 200
 max_tp = 15
-strength = 1
-magic = 1
-defence = 3
-luck = 3
+strength = 6
+magic = 6
+defence = 7
+luck = 9
 unlocked_skills = Array[int]([])
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cemna"]
