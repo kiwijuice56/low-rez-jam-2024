@@ -408,7 +408,8 @@ out_direction = "down"
 [node name="DoorI2" parent="Doors" index="28" instance=ExtResource("4_eujgv")]
 position = Vector2(1089, 315)
 door_sprite = ExtResource("5_b8id0")
-target_room = "hell_fall"
+target_room = "bubbles"
+target_anchor = "Library"
 out_direction = "down"
 
 [node name="DoorB2" parent="Doors" index="29" instance=ExtResource("4_eujgv")]

@@ -1,0 +1,125 @@
+[gd_scene load_steps=16 format=3 uid="uid://cf2kw0h6lyteq"]
+
+[ext_resource type="PackedScene" uid="uid://bnbb4opeecksl" path="res://main/battle/fighter/fighter.tscn" id="1_x1vrl"]
+[ext_resource type="Script" path="res://main/battle/fighter/fighter_stats/fighter_stats.gd" id="2_h6iqu"]
+[ext_resource type="Script" path="res://main/battle/action/action.gd" id="3_dkrid"]
+[ext_resource type="PackedScene" uid="uid://cuko56w08yuso" path="res://main/battle/action/action.tscn" id="3_ljrce"]
+[ext_resource type="PackedScene" uid="uid://cp1oupuymf0u8" path="res://main/battle/action/battle_animation/elec/elec_flash.tscn" id="4_d73ex"]
+[ext_resource type="PackedScene" uid="uid://f41op1oyfhgd" path="res://main/battle/action/battle_animation/status/debuff.tscn" id="4_qw0ja"]
+[ext_resource type="PackedScene" uid="uid://dagp5qivcpmn3" path="res://main/battle/action/battle_animation/explosion/explosion.tscn" id="5_1sn2w"]
+[ext_resource type="Texture2D" uid="uid://dqkasghqp64we" path="res://main/battle/fighter/slime/shadow.png" id="5_5cw43"]
+[ext_resource type="Shader" path="res://main/battle/fighter/flash.gdshader" id="6_ip5sr"]
+[ext_resource type="Texture2D" uid="uid://dsai56phadxsj" path="res://main/battle/fighter/bull/bull.png" id="7_hfd00"]
+
+[sub_resource type="Resource" id="Resource_exrxn"]
+script = ExtResource("2_h6iqu")
+unlocked = true
+max_hp = 180
+max_tp = 15
+strength = 8
+magic = 4
+defence = 8
+luck = 4
+unlocked_skills = Array[int]([])
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cemna"]
+shader = ExtResource("6_ip5sr")
+shader_parameter/flash = null
+shader_parameter/flash2 = null
+shader_parameter/progress = 0.0
+shader_parameter/meltiness = 1.0
+shader_parameter/broken = false
+shader_parameter/h_frames = 3
+shader_parameter/broken_dist = 0.1
+shader_parameter/random_seed = 0.2
+
+[sub_resource type="Animation" id="Animation_wjpip"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteHolder/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_t366u"]
+resource_name = "dance"
+length = 0.1
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteHolder/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gtoga"]
+_data = {
+"RESET": SubResource("Animation_wjpip"),
+"dance": SubResource("Animation_t366u")
+}
+
+[node name="Bull" instance=ExtResource("1_x1vrl")]
+stats = SubResource("Resource_exrxn")
+
+[node name="ElecFang" parent="Actions/Skills" index="0" instance=ExtResource("3_ljrce")]
+use_text = "%s bared elec fangs!"
+power = 1.5
+target_amount = "Random"
+hit_amount_max = 2
+status_effects = Array[String](["Charged"])
+is_elec = true
+animations = Array[PackedScene]([ExtResource("4_d73ex"), ExtResource("5_1sn2w")])
+
+[node name="TpSteal" type="Node2D" parent="Actions/Skills" index="1"]
+script = ExtResource("3_dkrid")
+use_text = "%s drank tp!"
+verb = "hype"
+constant_damage = 5
+change_tp = true
+target_amount = "Random"
+hit_amount_min = 3
+hit_amount_max = 6
+animations = Array[PackedScene]([ExtResource("4_qw0ja")])
+per_target_delay = 0.15
+
+[node name="Attack" parent="Actions" index="1"]
+use_text = "%s slammed!"
+power = 1.25
+accuracy = 0.85
+critical = 0.15
+
+[node name="ShadowSprite2D" parent="." index="1"]
+texture = ExtResource("5_5cw43")
+
+[node name="Sprite2D" parent="SpriteHolder" index="0"]
+material = SubResource("ShaderMaterial_cemna")
+position = Vector2(-6, -12)
+texture = ExtResource("7_hfd00")
+offset = Vector2(-1, 0)
+hframes = 3
+
+[node name="Center" parent="SpriteHolder" index="2"]
+position = Vector2(0, -6)
+
+[node name="PointInfo" parent="." index="3"]
+visible = false
+
+[node name="SpriteAnimationPlayer" type="AnimationPlayer" parent="." index="4"]
+libraries = {
+"": SubResource("AnimationLibrary_gtoga")
+}
+autoplay = "dance"
+speed_scale = 0.4

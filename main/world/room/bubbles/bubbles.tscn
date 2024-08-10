@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://jwdebfkbma4w"]
+[gd_scene load_steps=23 format=4 uid="uid://jwdebfkbma4w"]
 
 [ext_resource type="PackedScene" uid="uid://l1nxgrfgq8nb" path="res://main/world/room/room.tscn" id="1_p4q8s"]
 [ext_resource type="Shader" path="res://main/world/room/bubbles/bubbles.gdshader" id="2_3a7ha"]
@@ -6,6 +6,15 @@
 [ext_resource type="Texture2D" uid="uid://be0se47pgvbrp" path="res://main/world/room/yard/background.png" id="3_btnyj"]
 [ext_resource type="PackedScene" uid="uid://dluf4cko6obhr" path="res://main/world/door/door.tscn" id="5_2k4sd"]
 [ext_resource type="Texture2D" uid="uid://dqf5p8oyev3ar" path="res://main/world/door/door2.png" id="6_jhtf5"]
+[ext_resource type="PackedScene" uid="uid://ctahsmjqta2d6" path="res://main/world/character/enemy/gel/gel.tscn" id="7_2urx0"]
+[ext_resource type="Texture2D" uid="uid://wlv2lathgymm" path="res://main/world/door/door3.png" id="7_apetl"]
+[ext_resource type="Texture2D" uid="uid://jrcjwbe7mxde" path="res://main/world/room/bubbles/circles.png" id="8_luv15"]
+[ext_resource type="PackedScene" uid="uid://c132k6dt5n70e" path="res://main/battle/ui/battle_background/berry/berry_battle_background.tscn" id="9_4i34l"]
+[ext_resource type="PackedScene" uid="uid://b4otegkuebipw" path="res://main/battle/fighter/ena/ena.tscn" id="10_b1rrv"]
+[ext_resource type="AudioStream" uid="uid://dvbbxrlwrwbfl" path="res://main/music/mindful_killing.ogg" id="10_eop8n"]
+[ext_resource type="Script" path="res://main/world/character/enemy/encounter.gd" id="11_1qjf6"]
+[ext_resource type="PackedScene" uid="uid://bjcnk7fdvtwg3" path="res://main/battle/fighter/sharky/sharky.tscn" id="11_ljteb"]
+[ext_resource type="PackedScene" uid="uid://cf2kw0h6lyteq" path="res://main/battle/fighter/bull/bull.tscn" id="12_7u4h6"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_2b8fy"]
 
@@ -26,6 +35,34 @@ shader_parameter/color1 = Color(0.329412, 0.301961, 0.415686, 1)
 shader_parameter/color2 = Color(0.207843, 0.258824, 0.352941, 1)
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_bwhlg")
 
+[sub_resource type="Resource" id="Resource_q428p"]
+script = ExtResource("11_1qjf6")
+boss = false
+fighters = Array[PackedScene]([ExtResource("10_b1rrv"), ExtResource("11_ljteb"), ExtResource("12_7u4h6")])
+background = ExtResource("9_4i34l")
+music = ExtResource("10_eop8n")
+xp_drop = 130
+
+[sub_resource type="Resource" id="Resource_eelcl"]
+script = ExtResource("11_1qjf6")
+boss = false
+fighters = Array[PackedScene]([ExtResource("10_b1rrv"), ExtResource("11_ljteb"), ExtResource("11_ljteb"), ExtResource("10_b1rrv")])
+background = ExtResource("9_4i34l")
+music = ExtResource("10_eop8n")
+xp_drop = 160
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fv3cb"]
+texture = ExtResource("8_luv15")
+texture_region_size = Vector2i(9, 9)
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_bunbd"]
+tile_size = Vector2i(9, 9)
+sources/0 = SubResource("TileSetAtlasSource_fv3cb")
+
 [node name="Bubbles" instance=ExtResource("1_p4q8s")]
 
 [node name="MusicPlayer" parent="." index="0"]
@@ -43,11 +80,91 @@ position = Vector2(9, 9)
 [node name="Desert" type="Marker2D" parent="Anchors" index="1"]
 position = Vector2(99, 126)
 
+[node name="Library" type="Marker2D" parent="Anchors" index="2"]
+position = Vector2(216, 396)
+
+[node name="Hell" type="Marker2D" parent="Anchors" index="3"]
+position = Vector2(396, 216)
+
 [node name="Door" parent="Doors" index="0" instance=ExtResource("5_2k4sd")]
 position = Vector2(99, 117)
 door_sprite = ExtResource("6_jhtf5")
 target_room = "desert"
 target_anchor = "Bubbles"
 
+[node name="Door2" parent="Doors" index="1" instance=ExtResource("5_2k4sd")]
+position = Vector2(216, 387)
+door_sprite = ExtResource("7_apetl")
+target_room = "library"
+target_anchor = "I2"
+
+[node name="Door3" parent="Doors" index="2" instance=ExtResource("5_2k4sd")]
+position = Vector2(396, 207)
+target_room = "hell"
+
+[node name="Gel" parent="Characters/Enemies" index="0" instance=ExtResource("7_2urx0")]
+position = Vector2(243, 324)
+movement = true
+encounter = SubResource("Resource_q428p")
+move_time = 0.8
+
+[node name="Gel2" parent="Characters/Enemies" index="1" instance=ExtResource("7_2urx0")]
+position = Vector2(198, 252)
+movement = true
+encounter = SubResource("Resource_q428p")
+move_time = 0.8
+
+[node name="Gel3" parent="Characters/Enemies" index="2" instance=ExtResource("7_2urx0")]
+position = Vector2(261, 207)
+movement = true
+encounter = SubResource("Resource_q428p")
+move_time = 0.8
+
+[node name="Gel4" parent="Characters/Enemies" index="3" instance=ExtResource("7_2urx0")]
+position = Vector2(207, 198)
+movement = true
+encounter = SubResource("Resource_eelcl")
+move_time = 0.8
+
+[node name="Gel5" parent="Characters/Enemies" index="4" instance=ExtResource("7_2urx0")]
+position = Vector2(252, 261)
+movement = true
+encounter = SubResource("Resource_eelcl")
+move_time = 0.8
+
+[node name="Gel6" parent="Characters/Enemies" index="5" instance=ExtResource("7_2urx0")]
+position = Vector2(297, 414)
+movement = true
+encounter = SubResource("Resource_eelcl")
+move_time = 0.8
+
+[node name="Gel7" parent="Characters/Enemies" index="6" instance=ExtResource("7_2urx0")]
+position = Vector2(117, 189)
+movement = true
+encounter = SubResource("Resource_eelcl")
+move_time = 0.8
+
+[node name="Gel8" parent="Characters/Enemies" index="7" instance=ExtResource("7_2urx0")]
+position = Vector2(306, 144)
+movement = true
+encounter = SubResource("Resource_eelcl")
+move_time = 0.8
+
+[node name="Gel9" parent="Characters/Enemies" index="8" instance=ExtResource("7_2urx0")]
+position = Vector2(360, 207)
+movement = true
+encounter = SubResource("Resource_eelcl")
+move_time = 0.8
+
+[node name="Gel10" parent="Characters/Enemies" index="9" instance=ExtResource("7_2urx0")]
+position = Vector2(333, 72)
+movement = true
+encounter = SubResource("Resource_eelcl")
+move_time = 0.8
+
 [node name="BottomRight" parent="." index="10"]
-position = Vector2(360, 360)
+position = Vector2(513, 513)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." index="11"]
+tile_map_data = PackedByteArray("AAAYAC0AAAAAAAAAAAAaACwAAAAAAAAAAAAbACkAAAAAAAAAAAAZACcAAAAAAAAAAAAbACQAAAAAAAAAAAAYACIAAAAAAAAAAAAaAB8AAAAAAAAAAAAXABwAAAAAAAAAAAAZABkAAAAAAAAAAAAZACoAAAABAAAAAAAbACcAAAABAAAAAAAcACIAAAABAAAAAAAZACMAAAABAAAAAAAZAB0AAAABAAAAAAAYABcAAAABAAAAAAAcACsAAAAAAAEAAAAYACUAAAAAAAEAAAAXAB8AAAAAAAEAAAAaABsAAAAAAAEAAAAdABkAAAAAAAEAAAAgABoAAAAAAAEAAAAjABgAAAAAAAEAAAAmABoAAAAAAAEAAAAcABsAAAABAAAAAAAgABgAAAABAAAAAAAjABsAAAABAAAAAAAnABgAAAABAAAAAAAWABcAAAABAAAAAAATABQAAAABAAAAAAAPABQAAAABAAAAAAAMABIAAAABAAAAAAANAA8AAAABAAAAAAAKAA8AAAAAAAAAAAAOABIAAAAAAAAAAAAQABIAAAAAAAAAAAATABYAAAAAAAAAAAAQABYAAAAAAAAAAAAWABkAAAAAAAAAAAAbABcAAAAAAAAAAAAgABwAAAAAAAAAAAAqABoAAAAAAAAAAAApABYAAAAAAAAAAAAUABwAAAAAAAAAAAATABoAAAAAAAAAAAAWABUAAAAAAAAAAAAaABQAAAAAAAAAAAAcABUAAAAAAAAAAAAcAB4AAAAAAAAAAAAfABYAAAAAAAAAAAATABgAAAABAAAAAAAVABsAAAABAAAAAAAdABwAAAABAAAAAAAYABoAAAAAAAEAAAAMABAAAAABAAEAAAARABUAAAABAAEAAAAaABkAAAABAAEAAAAXACkAAAABAAEAAAAWACwAAAABAAAAAAAaAC4AAAAAAAEAAAAfAB8AAAABAAEAAAAdABMAAAABAAEAAAAlABwAAAABAAEAAAAtABkAAAABAAEAAAANABcAAAABAAEAAAASABAAAAABAAEAAAATACAAAAABAAEAAAAhACMAAAABAAEAAAAXABIAAAABAAEAAAAiABQAAAABAAEAAAAdAC0AAAAAAAAAAAAfAC8AAAAAAAAAAAAjAC4AAAAAAAAAAAAlADEAAAAAAAAAAAAqADAAAAAAAAAAAAAsAC0AAAAAAAEAAAAwAC8AAAAAAAAAAAAxACsAAAAAAAAAAAAeADEAAAABAAAAAAAhADAAAAABAAAAAAAcAC4AAAABAAAAAAAjACwAAAABAAAAAAAlAC8AAAABAAAAAAAjADEAAAABAAAAAAAhAC4AAAABAAAAAAAnAC4AAAABAAAAAAAoADMAAAABAAAAAAAsADEAAAABAAAAAAApAC4AAAABAAAAAAAuAC4AAAABAAAAAAAcADIAAAAAAAEAAAAeACwAAAAAAAEAAAAiADIAAAAAAAEAAAAmAC0AAAAAAAEAAAAnADAAAAAAAAEAAAApADIAAAABAAEAAAAbADAAAAABAAEAAAArAC8AAAABAAEAAAAuACoAAAABAAEAAAAfABMAAAAAAAAAAAAkABEAAAAAAAAAAAAmAA4AAAAAAAAAAAAhABEAAAAAAAAAAAAkAA4AAAAAAAAAAAAnAAoAAAAAAAAAAAApAAYAAAAAAAAAAAApAA0AAAAAAAAAAAAhAAoAAAAAAAAAAAAlAAkAAAAAAAAAAAAjAAYAAAAAAAAAAAAjAAoAAAAAAAAAAAAlAAcAAAAAAAAAAAAhABMAAAABAAAAAAAiABAAAAABAAAAAAAhAA4AAAABAAAAAAAlAAwAAAABAAAAAAAmAAMAAAABAAAAAAAgAAcAAAABAAAAAAAoAAgAAAABAAAAAAAjABIAAAAAAAEAAAAkABAAAAAAAAEAAAAkAAsAAAAAAAEAAAAkAAYAAAAAAAEAAAAhAAQAAAAAAAEAAAAiAAcAAAAAAAEAAAAjAA8AAAABAAEAAAAnAAwAAAABAAEAAAAkAAIAAAABAAEAAAAnAAUAAAABAAEAAAA=")
+tile_set = SubResource("TileSet_bunbd")

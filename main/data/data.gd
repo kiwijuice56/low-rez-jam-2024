@@ -13,7 +13,7 @@ func _ready() -> void:
 
 func initialize() -> void:
 	set_state("room", "bubbles")
-	set_state("anchor", "Default")
+	set_state("anchor", "Library")
 	
 	set_state("souls", 0)
 	set_state("lvl", 1)

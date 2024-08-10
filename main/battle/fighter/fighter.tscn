@@ -768,6 +768,7 @@ autoplay = "burn"
 speed_scale = 0.6
 
 [node name="Bless" type="Node2D" parent="SpriteHolder/Effects" node_paths=PackedStringArray("action")]
+visible = false
 script = ExtResource("15_mmlcr")
 action = NodePath("BlessAction")
 

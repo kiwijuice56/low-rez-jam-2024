@@ -1,0 +1,139 @@
+[gd_scene load_steps=16 format=3 uid="uid://b4otegkuebipw"]
+
+[ext_resource type="PackedScene" uid="uid://bnbb4opeecksl" path="res://main/battle/fighter/fighter.tscn" id="1_fyp3j"]
+[ext_resource type="Script" path="res://main/battle/fighter/fighter_stats/fighter_stats.gd" id="2_ln6wq"]
+[ext_resource type="Script" path="res://main/battle/action/action.gd" id="3_s2ny5"]
+[ext_resource type="PackedScene" uid="uid://0xh42kb86k8s" path="res://main/battle/action/battle_animation/status/buff.tscn" id="4_4g13k"]
+[ext_resource type="PackedScene" uid="uid://f41op1oyfhgd" path="res://main/battle/action/battle_animation/status/debuff.tscn" id="5_5ef8e"]
+[ext_resource type="PackedScene" uid="uid://ba1ms3n6hoq78" path="res://main/battle/action/battle_animation/fire/fire_flash.tscn" id="5_musgk"]
+[ext_resource type="Texture2D" uid="uid://dqkasghqp64we" path="res://main/battle/fighter/slime/shadow.png" id="5_qvkrs"]
+[ext_resource type="Shader" path="res://main/battle/fighter/flash.gdshader" id="6_6dafn"]
+[ext_resource type="PackedScene" uid="uid://dagp5qivcpmn3" path="res://main/battle/action/battle_animation/explosion/explosion.tscn" id="6_y7cac"]
+[ext_resource type="Texture2D" uid="uid://dvwg8bf44oorx" path="res://main/battle/fighter/ena/ena.png" id="7_3ufu0"]
+
+[sub_resource type="Resource" id="Resource_dhg06"]
+script = ExtResource("2_ln6wq")
+unlocked = true
+max_hp = 100
+max_tp = 15
+strength = 6
+magic = 2
+defence = 6
+luck = 10
+unlocked_skills = Array[int]([])
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cemna"]
+shader = ExtResource("6_6dafn")
+shader_parameter/flash = null
+shader_parameter/flash2 = null
+shader_parameter/progress = 0.0
+shader_parameter/meltiness = 1.0
+shader_parameter/broken = false
+shader_parameter/h_frames = 3
+shader_parameter/broken_dist = 0.1
+shader_parameter/random_seed = 0.2
+
+[sub_resource type="Animation" id="Animation_wjpip"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteHolder/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_t366u"]
+resource_name = "dance"
+length = 0.1
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteHolder/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gtoga"]
+_data = {
+"RESET": SubResource("Animation_wjpip"),
+"dance": SubResource("Animation_t366u")
+}
+
+[node name="Ena" instance=ExtResource("1_fyp3j")]
+stats = SubResource("Resource_dhg06")
+
+[node name="Hype" type="Node2D" parent="Actions/Skills" index="0"]
+script = ExtResource("3_s2ny5")
+use_text = "%s hyped them!"
+verb = "hype"
+target_group = "Own"
+target_amount = "All"
+hit_amount_max = 1
+status_effects = Array[String](["Cool"])
+animations = Array[PackedScene]([ExtResource("4_4g13k")])
+
+[node name="Rain" type="Node2D" parent="Actions/Skills" index="1"]
+script = ExtResource("3_s2ny5")
+use_text = "%s created light!"
+verb = "hype"
+target_group = "Own"
+target_amount = "All"
+hit_amount_max = 1
+status_effects = Array[String](["Charged"])
+animations = Array[PackedScene]([ExtResource("4_4g13k")])
+
+[node name="Charm" type="Node2D" parent="Actions/Skills" index="2"]
+script = ExtResource("3_s2ny5")
+use_text = "%s just sat there!"
+verb = "hype"
+target_amount = "Random"
+hit_amount_max = 3
+status_effects = Array[String](["Charm"])
+animations = Array[PackedScene]([ExtResource("5_5ef8e")])
+per_target_delay = 0.15
+
+[node name="Attack" parent="Actions" index="1"]
+use_text = "%s exploded!"
+critical = 0.07
+target_amount = "Random"
+hit_amount_min = 2
+hit_amount_max = 4
+status_chance = 0.25
+status_effects = Array[String](["Ablaze"])
+is_phys = false
+is_fire = true
+animations = Array[PackedScene]([ExtResource("5_musgk"), ExtResource("6_y7cac")])
+
+[node name="ShadowSprite2D" parent="." index="1"]
+texture = ExtResource("5_qvkrs")
+
+[node name="Sprite2D" parent="SpriteHolder" index="0"]
+material = SubResource("ShaderMaterial_cemna")
+position = Vector2(-8, -15)
+texture = ExtResource("7_3ufu0")
+hframes = 3
+
+[node name="Center" parent="SpriteHolder" index="2"]
+position = Vector2(-1, -8)
+
+[node name="PointInfo" parent="." index="3"]
+visible = false
+
+[node name="SpriteAnimationPlayer" type="AnimationPlayer" parent="." index="4"]
+libraries = {
+"": SubResource("AnimationLibrary_gtoga")
+}
+autoplay = "dance"
+speed_scale = 0.4

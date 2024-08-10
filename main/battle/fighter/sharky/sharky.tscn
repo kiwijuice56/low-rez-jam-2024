@@ -1,26 +1,26 @@
-[gd_scene load_steps=13 format=3 uid="uid://cji0l1gqvgiig"]
+[gd_scene load_steps=13 format=3 uid="uid://bjcnk7fdvtwg3"]
 
-[ext_resource type="PackedScene" uid="uid://bnbb4opeecksl" path="res://main/battle/fighter/fighter.tscn" id="1_1k3j1"]
-[ext_resource type="Script" path="res://main/battle/fighter/fighter_stats/fighter_stats.gd" id="2_13uhk"]
-[ext_resource type="PackedScene" uid="uid://cuko56w08yuso" path="res://main/battle/action/action.tscn" id="3_4xcpq"]
-[ext_resource type="PackedScene" uid="uid://bp7v78t1p5vil" path="res://main/battle/action/battle_animation/water/water.tscn" id="4_1lm7n"]
-[ext_resource type="Texture2D" uid="uid://dj6ugv4e8f11b" path="res://main/battle/fighter/fishy/shadow.png" id="6_idjuh"]
-[ext_resource type="Shader" path="res://main/battle/fighter/flash.gdshader" id="7_6ryrs"]
-[ext_resource type="Texture2D" uid="uid://beqdmleaykbtr" path="res://main/battle/fighter/fishy/fishy.png" id="8_0r4k4"]
+[ext_resource type="PackedScene" uid="uid://bnbb4opeecksl" path="res://main/battle/fighter/fighter.tscn" id="1_s4uy6"]
+[ext_resource type="Script" path="res://main/battle/fighter/fighter_stats/fighter_stats.gd" id="2_u1crb"]
+[ext_resource type="PackedScene" uid="uid://cuko56w08yuso" path="res://main/battle/action/action.tscn" id="3_6gax7"]
+[ext_resource type="PackedScene" uid="uid://bp7v78t1p5vil" path="res://main/battle/action/battle_animation/water/water.tscn" id="4_r1oex"]
+[ext_resource type="Texture2D" uid="uid://dj6ugv4e8f11b" path="res://main/battle/fighter/fishy/shadow.png" id="5_liayv"]
+[ext_resource type="Shader" path="res://main/battle/fighter/flash.gdshader" id="6_abdhx"]
+[ext_resource type="Texture2D" uid="uid://bi7ifc6ap8c2s" path="res://main/battle/fighter/sharky/sharky.png" id="7_8myee"]
 
-[sub_resource type="Resource" id="Resource_1pijg"]
-script = ExtResource("2_13uhk")
+[sub_resource type="Resource" id="Resource_d45li"]
+script = ExtResource("2_u1crb")
 unlocked = true
-max_hp = 25
+max_hp = 120
 max_tp = 15
-strength = 1
-magic = 2
-defence = 4
-luck = 1
+strength = 3
+magic = 7
+defence = 7
+luck = 5
 unlocked_skills = Array[int]([])
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cemna"]
-shader = ExtResource("7_6ryrs")
+shader = ExtResource("6_abdhx")
 shader_parameter/flash = null
 shader_parameter/flash2 = null
 shader_parameter/progress = 0.0
@@ -68,34 +68,35 @@ _data = {
 "dance": SubResource("Animation_t366u")
 }
 
-[node name="Fishy" instance=ExtResource("1_1k3j1")]
-stats = SubResource("Resource_1pijg")
+[node name="Sharky" instance=ExtResource("1_s4uy6")]
+stats = SubResource("Resource_d45li")
 innate_elec_weakness = true
 
-[node name="Bubble" parent="Actions/Skills" index="0" instance=ExtResource("3_4xcpq")]
+[node name="Bubble" parent="Actions/Skills" index="0" instance=ExtResource("3_6gax7")]
 description = "a killa move"
 use_text = "%s splashed you!"
 power = 1.5
 attack_stat = "magic"
+target_amount = "All"
 hit_amount_max = 1
 status_chance = 0.25
 status_effects = Array[String](["Wet"])
 is_water = true
-animations = Array[PackedScene]([ExtResource("4_1lm7n")])
+animations = Array[PackedScene]([ExtResource("4_r1oex")])
 
 [node name="Attack" parent="Actions" index="1"]
-use_text = "%s cuts you!"
-accuracy = 0.7
+use_text = "%s bites you!"
+accuracy = 0.85
 status_chance = 1.0
 status_effects = Array[String](["Bleed"])
 
 [node name="ShadowSprite2D" parent="." index="1"]
-texture = ExtResource("6_idjuh")
+texture = ExtResource("5_liayv")
 
 [node name="Sprite2D" parent="SpriteHolder" index="0"]
 material = SubResource("ShaderMaterial_cemna")
 position = Vector2(-5, -9)
-texture = ExtResource("8_0r4k4")
+texture = ExtResource("7_8myee")
 hframes = 3
 
 [node name="PointInfo" parent="." index="3"]

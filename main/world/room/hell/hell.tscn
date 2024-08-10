@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dfmase512o75r"]
+[gd_scene load_steps=7 format=3 uid="uid://dfmase512o75r"]
 
 [ext_resource type="PackedScene" uid="uid://l1nxgrfgq8nb" path="res://main/world/room/room.tscn" id="1_xub8t"]
 [ext_resource type="Shader" path="res://main/game_over/paint.gdshader" id="2_0bpm0"]
 [ext_resource type="AudioStream" uid="uid://emk5st23i08g" path="res://main/music/jazzy_hell.ogg" id="2_d7coy"]
 [ext_resource type="Texture2D" uid="uid://dejao1qkcdvoq" path="res://main/game_over/gameover_palette.png" id="3_6i0po"]
+[ext_resource type="PackedScene" uid="uid://dluf4cko6obhr" path="res://main/world/door/door.tscn" id="5_qa143"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3perb"]
 shader = ExtResource("2_0bpm0")
@@ -47,7 +48,12 @@ offset_right = 512.0
 offset_bottom = 512.0
 
 [node name="Default" parent="Anchors" index="0"]
-position = Vector2(18, 18)
+position = Vector2(27, 36)
+
+[node name="Door" parent="Doors" index="0" instance=ExtResource("5_qa143")]
+position = Vector2(27, 27)
+target_room = "bubbles"
+target_anchor = "Hell"
 
 [node name="BottomRight" parent="." index="10"]
 position = Vector2(512, 512)
