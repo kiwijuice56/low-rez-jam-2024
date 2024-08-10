@@ -105,6 +105,7 @@ centered = false
 [node name="Interactable" parent="." instance=ExtResource("2_ktln7")]
 unique_name_in_owner = true
 position = Vector2(5, 4)
+collision_mask = 8
 requires_facing = true
 
 [node name="ItemSmoke" type="CPUParticles2D" parent="."]

@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://fmmimc767kek" path="res://main/game_over/head.png" id="6_2eiic"]
 [ext_resource type="Shader" path="res://main/battle/fighter/flash.gdshader" id="6_8o462"]
 [ext_resource type="Texture2D" uid="uid://fhh2wnj3ex24" path="res://main/game_over/bow.png" id="7_vp10l"]
-[ext_resource type="AudioStream" uid="uid://b1praohh13akw" path="res://main/music/siren_curse.ogg" id="9_kkfog"]
+[ext_resource type="AudioStream" uid="uid://0j6swm0pc1w6" path="res://main/music/game_over.ogg" id="9_ax26h"]
 [ext_resource type="AudioStream" uid="uid://dcaxhqu7fpcw6" path="res://main/game_over/die.ogg" id="10_1e6tl"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ipfmd"]
@@ -24,9 +24,9 @@ shader_parameter/colour_1 = Color(0.304462, 0.304462, 0.304462, 1)
 shader_parameter/colour_2 = Color(0, 0, 0, 1)
 shader_parameter/colour_3 = Color(1, 1, 1, 1)
 shader_parameter/contrast = 0.17
-shader_parameter/spin_amount = 0.36
-shader_parameter/pixel_filter = 1024.0
-shader_parameter/palette_size = 7
+shader_parameter/spin_amount = 0.71
+shader_parameter/pixel_filter = 512.0
+shader_parameter/palette_size = 9
 shader_parameter/palette = ExtResource("2_ujmc1")
 
 [sub_resource type="Animation" id="Animation_nc3tq"]
@@ -82,7 +82,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_o11i3"]
 resource_name = "game_over"
-length = 2.233
+length = 2.26
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -114,7 +114,7 @@ tracks/2/path = NodePath("MusicPlayer:volume_db")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 2.06667, 2.23334),
+"times": PackedFloat32Array(0, 1.9, 2.23334),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [14.0, 14.0, -60.0]
@@ -186,7 +186,7 @@ texture = ExtResource("7_vp10l")
 centered = false
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("9_kkfog")
+stream = ExtResource("9_ax26h")
 bus = &"Music"
 
 [node name="DiePlayer" type="AudioStreamPlayer" parent="."]

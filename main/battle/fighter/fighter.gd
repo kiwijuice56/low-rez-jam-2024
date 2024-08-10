@@ -75,6 +75,8 @@ func battle_reset() -> void:
 	added_water_weakness = false
 	added_elec_weakness = false
 	added_phys_resistance = false
+	dead = false
+	%AnimationPlayer.play("RESET")
 
 func kill() -> void:
 	dead = true

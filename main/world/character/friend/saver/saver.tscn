@@ -11,18 +11,21 @@ script = ExtResource("2_ddtfc")
 speaker = ExtResource("3_kw1c3")
 text = "ok._ hope your power goes out._ lets see how that goes."
 speed = "Normal"
+volume_db = 0.0
 
 [sub_resource type="Resource" id="Resource_c3jbg"]
 script = ExtResource("2_ddtfc")
 speaker = ExtResource("3_kw1c3")
 text = "ok._ i just wrote it down._ you can go now."
 speed = "Normal"
+volume_db = 0.0
 
 [sub_resource type="Resource" id="Resource_b5oc1"]
 script = ExtResource("2_ddtfc")
 speaker = ExtResource("3_kw1c3")
 text = "wanna save your game?"
 speed = "Normal"
+volume_db = 0.0
 
 [sub_resource type="Animation" id="Animation_mv3f4"]
 length = 0.001

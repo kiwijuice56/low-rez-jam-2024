@@ -11,18 +11,21 @@ script = ExtResource("3_kuu5a")
 speaker = ExtResource("4_ee3p1")
 text = "you're going to need me._"
 speed = "Normal"
+volume_db = 0.0
 
 [sub_resource type="Resource" id="Resource_f20ts"]
 script = ExtResource("3_kuu5a")
 speaker = ExtResource("4_ee3p1")
 text = "that all?_ fizz off then."
 speed = "Normal"
+volume_db = 0.0
 
 [sub_resource type="Resource" id="Resource_7py44"]
 script = ExtResource("3_kuu5a")
 speaker = ExtResource("4_ee3p1")
 text = "hey._ i'll trade souls for skills._ interested?"
 speed = "Normal"
+volume_db = 0.0
 
 [sub_resource type="Animation" id="Animation_i5ijc"]
 length = 0.001

@@ -221,7 +221,7 @@ _data = {
 }
 
 [node name="Player" instance=ExtResource("1_knbax")]
-collision_layer = 10
+collision_layer = 8
 script = ExtResource("2_yial6")
 
 [node name="Sprite2D" parent="." index="0"]

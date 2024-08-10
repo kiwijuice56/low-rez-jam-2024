@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://drlekbtdwxhhv"]
+[gd_scene load_steps=30 format=3 uid="uid://drlekbtdwxhhv"]
 
 [ext_resource type="PackedScene" uid="uid://l1nxgrfgq8nb" path="res://main/world/room/room.tscn" id="1_m8l7j"]
 [ext_resource type="Texture2D" uid="uid://dmto86uky6mhu" path="res://main/world/room/yard/yard.png" id="2_khvov"]
@@ -12,9 +12,14 @@
 [ext_resource type="Texture2D" uid="uid://wlv2lathgymm" path="res://main/world/door/door3.png" id="9_uwncm"]
 [ext_resource type="PackedScene" uid="uid://dpgt3r7cuu5ti" path="res://main/world/room/yard/worm.tscn" id="10_8gibe"]
 [ext_resource type="PackedScene" uid="uid://ctahsmjqta2d6" path="res://main/world/character/enemy/gel/gel.tscn" id="10_o8kc7"]
+[ext_resource type="PackedScene" uid="uid://c132k6dt5n70e" path="res://main/battle/ui/battle_background/berry/berry_battle_background.tscn" id="11_cd6yv"]
 [ext_resource type="Texture2D" uid="uid://dmuelpvcuumo1" path="res://main/world/room/yard/worm2.png" id="11_cufi0"]
 [ext_resource type="Texture2D" uid="uid://eho4q6vg1t01" path="res://main/world/room/yard/worm3.png" id="11_ta1ps"]
+[ext_resource type="PackedScene" uid="uid://2jqssskou7ha" path="res://main/battle/fighter/chi/chi.tscn" id="12_3a1ty"]
 [ext_resource type="Texture2D" uid="uid://qfos2phoqtfa" path="res://main/world/room/yard/worm4.png" id="12_aq0f8"]
+[ext_resource type="AudioStream" uid="uid://0psrk4ddju2r" path="res://main/music/salad_slaughter.ogg" id="12_rxohe"]
+[ext_resource type="Script" path="res://main/world/character/enemy/encounter.gd" id="13_jhem2"]
+[ext_resource type="PackedScene" uid="uid://boqbh73x2haen" path="res://main/battle/fighter/kevin/kevin.tscn" id="13_u0lwa"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_pe161"]
 
@@ -52,7 +57,7 @@ noise = SubResource("FastNoiseLite_3c806")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6rd7a"]
 shader = ExtResource("2_xxx2m")
 shader_parameter/palette_size = 9
-shader_parameter/stars_on = true
+shader_parameter/stars_on = false
 shader_parameter/timeScaleFactor = 0.01
 shader_parameter/colour_muiltiplier = Color(0.409603, 0.409603, 0.409603, 1)
 shader_parameter/colour_muiltiplier2 = Color(1, 1, 1, 1)
@@ -68,6 +73,27 @@ shader_parameter/blur = 1.4
 shader_parameter/blur2 = 0.01
 shader_parameter/palette = ExtResource("5_2h3c2")
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_geqhe")
+
+[sub_resource type="Resource" id="Resource_meoql"]
+script = ExtResource("13_jhem2")
+fighters = Array[PackedScene]([ExtResource("12_3a1ty"), ExtResource("13_u0lwa"), ExtResource("12_3a1ty")])
+background = ExtResource("11_cd6yv")
+music = ExtResource("12_rxohe")
+xp_drop = 20
+
+[sub_resource type="Resource" id="Resource_5d5mn"]
+script = ExtResource("13_jhem2")
+fighters = Array[PackedScene]([ExtResource("12_3a1ty"), ExtResource("13_u0lwa")])
+background = ExtResource("11_cd6yv")
+music = ExtResource("12_rxohe")
+xp_drop = 15
+
+[sub_resource type="Resource" id="Resource_5jc6g"]
+script = ExtResource("13_jhem2")
+fighters = Array[PackedScene]([ExtResource("13_u0lwa")])
+background = ExtResource("11_cd6yv")
+music = ExtResource("12_rxohe")
+xp_drop = 10
 
 [node name="Yard" instance=ExtResource("1_m8l7j")]
 
@@ -121,8 +147,39 @@ target_room = "field"
 out_direction = "down"
 
 [node name="Gel" parent="Characters/Enemies" index="0" instance=ExtResource("10_o8kc7")]
-position = Vector2(261, 432)
+position = Vector2(234, 279)
 movement = true
+encounter = SubResource("Resource_meoql")
+
+[node name="Gel2" parent="Characters/Enemies" index="1" instance=ExtResource("10_o8kc7")]
+position = Vector2(396, 252)
+movement = true
+encounter = SubResource("Resource_meoql")
+
+[node name="Gel3" parent="Characters/Enemies" index="2" instance=ExtResource("10_o8kc7")]
+position = Vector2(261, 126)
+movement = true
+encounter = SubResource("Resource_meoql")
+
+[node name="Gel4" parent="Characters/Enemies" index="3" instance=ExtResource("10_o8kc7")]
+position = Vector2(108, 333)
+movement = true
+encounter = SubResource("Resource_5d5mn")
+
+[node name="Gel5" parent="Characters/Enemies" index="4" instance=ExtResource("10_o8kc7")]
+position = Vector2(423, 360)
+movement = true
+encounter = SubResource("Resource_5d5mn")
+
+[node name="Gel6" parent="Characters/Enemies" index="5" instance=ExtResource("10_o8kc7")]
+position = Vector2(162, 306)
+movement = true
+encounter = SubResource("Resource_5d5mn")
+
+[node name="Gel7" parent="Characters/Enemies" index="6" instance=ExtResource("10_o8kc7")]
+position = Vector2(243, 432)
+movement = true
+encounter = SubResource("Resource_5jc6g")
 
 [node name="ItemPickup" parent="Items" index="0" instance=ExtResource("8_bgvnq")]
 position = Vector2(81, 360)

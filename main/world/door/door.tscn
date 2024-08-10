@@ -90,6 +90,7 @@ hframes = 4
 [node name="Interactable" parent="." instance=ExtResource("2_rdanh")]
 unique_name_in_owner = true
 position = Vector2(4.5, 4.5)
+collision_mask = 8
 face_limit = Vector2(0, -1)
 requires_facing = true
 
