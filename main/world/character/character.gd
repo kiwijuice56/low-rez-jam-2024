@@ -29,7 +29,6 @@ func move(dir: Vector2) -> void:
 	tween.tween_property(self, "position", position + dir * TILE_SIZE, movement_time)
 	await tween.finished
 	
-	
 	in_movement = false
 
 func lock_area() -> void:

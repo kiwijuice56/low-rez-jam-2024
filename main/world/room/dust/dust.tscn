@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bku45g74gvc1a"]
+[gd_scene load_steps=30 format=3 uid="uid://bku45g74gvc1a"]
 
 [ext_resource type="PackedScene" uid="uid://l1nxgrfgq8nb" path="res://main/world/room/room.tscn" id="1_oyqxr"]
 [ext_resource type="AudioStream" uid="uid://x8jo6eb3kf4m" path="res://main/music/idiotic_frogs.ogg" id="2_0gf34"]
@@ -18,6 +18,7 @@
 [ext_resource type="Script" path="res://main/world/character/enemy/encounter.gd" id="8_28h3h"]
 [ext_resource type="Script" path="res://main/world/ui/text_box/speakers/speaker.gd" id="8_jm4xm"]
 [ext_resource type="AudioStream" uid="uid://dxkpw6lnkcj07" path="res://main/world/ui/text_box/speakers/bubblebear/talk_dog.wav" id="9_04neu"]
+[ext_resource type="PackedScene" uid="uid://cji0l1gqvgiig" path="res://main/battle/fighter/fishy/fishy.tscn" id="12_vtdpq"]
 [ext_resource type="PackedScene" uid="uid://cmyfrh6j55ulb" path="res://main/world/item_pickup/item_pickup.tscn" id="15_o6j55"]
 
 [sub_resource type="Resource" id="Resource_wfokb"]
@@ -25,14 +26,28 @@ script = ExtResource("8_28h3h")
 fighters = Array[PackedScene]([ExtResource("6_muu8s")])
 background = ExtResource("5_svuq6")
 music = ExtResource("7_1hjsu")
-xp_drop = 15
+xp_drop = 5
 
 [sub_resource type="Resource" id="Resource_1tup6"]
 script = ExtResource("8_28h3h")
 fighters = Array[PackedScene]([ExtResource("6_muu8s"), ExtResource("6_muu8s")])
 background = ExtResource("5_svuq6")
 music = ExtResource("7_1hjsu")
-xp_drop = 25
+xp_drop = 10
+
+[sub_resource type="Resource" id="Resource_werbo"]
+script = ExtResource("8_28h3h")
+fighters = Array[PackedScene]([ExtResource("6_muu8s"), ExtResource("6_muu8s")])
+background = ExtResource("5_svuq6")
+music = ExtResource("7_1hjsu")
+xp_drop = 10
+
+[sub_resource type="Resource" id="Resource_x1o4o"]
+script = ExtResource("8_28h3h")
+fighters = Array[PackedScene]([ExtResource("6_muu8s"), ExtResource("12_vtdpq"), ExtResource("6_muu8s")])
+background = ExtResource("5_svuq6")
+music = ExtResource("7_1hjsu")
+xp_drop = 20
 
 [sub_resource type="Resource" id="Resource_be8qk"]
 script = ExtResource("5_t3t31")
@@ -108,11 +123,11 @@ encounter = SubResource("Resource_1tup6")
 
 [node name="Mole3" parent="Characters/Enemies" index="2" instance=ExtResource("4_eyqeb")]
 position = Vector2(108, 72)
-encounter = SubResource("Resource_wfokb")
+encounter = SubResource("Resource_werbo")
 
 [node name="Mole4" parent="Characters/Enemies" index="3" instance=ExtResource("4_eyqeb")]
 position = Vector2(243, 63)
-encounter = SubResource("Resource_wfokb")
+encounter = SubResource("Resource_x1o4o")
 
 [node name="BubblebearFriend" parent="Characters/Friends" index="0" instance=ExtResource("4_88t8m")]
 position = Vector2(162, 99)

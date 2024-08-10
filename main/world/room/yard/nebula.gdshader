@@ -113,11 +113,11 @@ void fragment() {
 	if (rand(UV.xy / 20.0) > 0.995) //0.996
 	{
 		float r = rand(UV.xy);
-		stars = r * (0.5 * sin(TIME * (r * 2.0) + 1000.0 * r) + 0.5);
+		stars = (0.5 * sin(TIME * (2.0) + 1000.0) + 0.5);
 	}
 	
 	if (stars_on) {
-		COLOR = vec4((col + stars) * colour_muiltiplier.rgb, 1.0) * colour_muiltiplier2;
+		COLOR = vec4((col + stars*0.1) * colour_muiltiplier.rgb, 1.0) * colour_muiltiplier2;
 	}
 	else {
 		COLOR = vec4((col) * colour_muiltiplier.rgb, 1.0) * colour_muiltiplier2;

@@ -28,7 +28,6 @@ stats = SubResource("Resource_glup2")
 strength_grow = 2
 magic_grow = 2
 max_hp_grow = 3
-max_tp_grow = 3
 
 [node name="Stomp" parent="Actions/Skills" index="0" instance=ExtResource("3_7el6r")]
 icon = ExtResource("4_sggcg")
@@ -61,7 +60,7 @@ description = "elec hit to one foe"
 use_text = "%s shocks them!"
 verb = "shock"
 tp_cost = 7
-power = 2.25
+power = 1.5
 attack_stat = "magic"
 hit_amount_max = 1
 status_chance = 0.25

@@ -1,10 +1,13 @@
 class_name Enemy extends Character
 
+@export var movement: bool = false
 @export var recruit_scene: PackedScene
 @export var encounter: Encounter
 @export var requires_interact: bool
 @export var conversation: Array[Dialogue]
 @export var death_conversation: Array[Dialogue]
+
+@onready var move_time: float = 1.2
 
 func _ready() -> void:
 	if Data.get_state(Ref.world.loaded_room_name + "/" + name, false):
@@ -16,6 +19,14 @@ func _ready() -> void:
 		# slightly differeng - using the interactable area here
 		# just resuing nodes :/
 		%Interactable.area_entered.connect(_on_area_entered)
+	%MoveTimer.timeout.connect(_on_movement_timer)
+	%MoveTimer.start(move_time)
+
+func _on_movement_timer() -> void:
+	%MoveTimer.start(move_time)
+	if Ref.world.is_paused or not movement:
+		return
+	await move(DIR_MAP.values().pick_random())
 
 func _on_area_entered(_area: Area2D) -> void:
 	start_battle()

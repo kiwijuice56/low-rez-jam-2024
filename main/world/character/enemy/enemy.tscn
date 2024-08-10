@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bnkxy1qwre0oj"]
+[gd_scene load_steps=10 format=3 uid="uid://bnkxy1qwre0oj"]
 
 [ext_resource type="PackedScene" uid="uid://df7dk7qqm8ylw" path="res://main/world/character/character.tscn" id="1_xm2al"]
 [ext_resource type="Script" path="res://main/world/character/enemy/enemy.gd" id="2_rs1g8"]
@@ -10,6 +10,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_75737"]
 size = Vector2(6, 6)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_pnhw2"]
+radius = 4.0
+
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_7y7m8"]
 random_pitch = 1.1
 streams_count = 1
@@ -17,6 +20,7 @@ stream_0/stream = ExtResource("6_o04og")
 
 [node name="Enemy" instance=ExtResource("1_xm2al")]
 script = ExtResource("2_rs1g8")
+movement = false
 recruit_scene = null
 encounter = null
 requires_interact = false
@@ -29,12 +33,17 @@ texture = ExtResource("3_ns7hg")
 [node name="CollisionShape2D" parent="." index="1"]
 position = Vector2(5, 4)
 shape = SubResource("RectangleShape2D_75737")
+disabled = true
 
 [node name="Interactable" parent="." index="2" instance=ExtResource("4_5f501")]
 unique_name_in_owner = true
 position = Vector2(5, 3)
 collision_mask = 8
 requires_facing = true
+
+[node name="CollisionShape2D" parent="Interactable" index="0"]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_pnhw2")
 
 [node name="CollisionRays" parent="." index="3"]
 position = Vector2(5, 3)
@@ -44,3 +53,9 @@ unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_7y7m8")
 volume_db = -3.0
 bus = &"Sound Effect"
+
+[node name="MoveTimer" type="Timer" parent="." index="5"]
+unique_name_in_owner = true
+one_shot = true
+
+[editable path="Interactable"]
