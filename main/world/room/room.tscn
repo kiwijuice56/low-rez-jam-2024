@@ -48,6 +48,7 @@ y_sort_enabled = true
 y_sort_enabled = true
 
 [node name="Decoration" type="Node2D" parent="."]
+unique_name_in_owner = true
 y_sort_enabled = true
 
 [node name="TopLeft" type="Marker2D" parent="."]

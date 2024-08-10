@@ -141,6 +141,7 @@ func battle(encounter: Encounter) -> bool:
 		await start_music(preload("res://main/music/battle_win.ogg"))
 		
 		Data.set_state("souls", Data.get_state("souls", 0) + len(encounter.fighters))
+		Data.set_state("kills", Data.get_state("kills", 0) + len(encounter.fighters))
 		await %StatusSubmenu.display_drops(len(encounter.fighters))
 		
 		# level up stuffs

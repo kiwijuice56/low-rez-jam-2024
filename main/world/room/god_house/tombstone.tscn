@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2xq3cmtmx35m"]
+
+[ext_resource type="Texture2D" uid="uid://bq8fblkqinve1" path="res://main/world/room/god_house/tombstone.png" id="1_mu2dx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_414dt"]
+size = Vector2(6, 6)
+
+[node name="Tombstone" type="Sprite2D"]
+position = Vector2(0, 45)
+texture = ExtResource("1_mu2dx")
+centered = false
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(4.5, 4.5)
+shape = SubResource("RectangleShape2D_414dt")

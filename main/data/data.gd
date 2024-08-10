@@ -12,13 +12,14 @@ func _ready() -> void:
 	load_state(0)
 
 func initialize() -> void:
-	set_state("room", "bubbles")
-	set_state("anchor", "Library")
+	set_state("room", "hell_fall")
+	set_state("anchor", "Default")
 	
 	set_state("souls", 0)
 	set_state("lvl", 1)
 	set_state("xp", 0)
 	set_state("xp_goal", 15)
+	set_state("kills", 0)
 	
 	set_state("party_order", ["ella", "dawa"])
 	

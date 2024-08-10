@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://d365bj58vjl5a"]
+[gd_scene load_steps=7 format=3 uid="uid://d365bj58vjl5a"]
 
 [ext_resource type="PackedScene" uid="uid://l1nxgrfgq8nb" path="res://main/world/room/room.tscn" id="1_3mnx3"]
 [ext_resource type="Texture2D" uid="uid://ueqdowl4u6x8" path="res://main/world/room/god_house/god_house_hallway.png" id="2_aire2"]
 [ext_resource type="AudioStream" uid="uid://bevxvq8twf3lq" path="res://main/music/outside_demon_club.ogg" id="2_lfhmb"]
 [ext_resource type="PackedScene" uid="uid://dluf4cko6obhr" path="res://main/world/door/door.tscn" id="3_sp67y"]
+[ext_resource type="PackedScene" uid="uid://b2xq3cmtmx35m" path="res://main/world/room/god_house/tombstone.tscn" id="5_3aixr"]
+[ext_resource type="Script" path="res://main/world/room/god_house/tombstone_handler.gd" id="5_y7tdh"]
 
 [node name="GodHouse" instance=ExtResource("1_3mnx3")]
 
@@ -37,5 +39,14 @@ target_room = "demon_club"
 target_anchor = "Door"
 out_direction = "down"
 
-[node name="BottomRight" parent="." index="10"]
+[node name="Start" type="Marker2D" parent="." index="8"]
+unique_name_in_owner = true
+position = Vector2(0, 45)
+
+[node name="Decoration" parent="." index="9"]
+script = ExtResource("5_y7tdh")
+
+[node name="Tombstone" parent="Decoration" index="0" instance=ExtResource("5_3aixr")]
+
+[node name="BottomRight" parent="." index="11"]
 position = Vector2(252, 63)
