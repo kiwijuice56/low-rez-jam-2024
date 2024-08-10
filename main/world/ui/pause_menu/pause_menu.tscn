@@ -148,10 +148,10 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.588235, 0.588235, 0.588235, 1)
 text = "stuff"
 
-[node name="Config" type="Label" parent="MarginContainer/VBoxContainer/MainPanel/HBoxContainer/ChoiceContainer"]
+[node name="Die" type="Label" parent="MarginContainer/VBoxContainer/MainPanel/HBoxContainer/ChoiceContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.588235, 0.588235, 0.588235, 1)
-text = "config"
+text = "die"
 
 [node name="SoulContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

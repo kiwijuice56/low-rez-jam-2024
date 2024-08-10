@@ -75,17 +75,23 @@ func accept() -> void:
 				%TipContainer.show_tip()
 				update_top_tip()
 		4: 
+			
+			set_process_input(false)
+			%SoulText.visible = false
+			get_parent().material.set_shader_parameter("fade", 0.0)
+			visible = true
+			
 			%TipContainer.hide_tip()
 			
+			var tween: Tween = get_tree().create_tween()
+			tween.tween_property(get_parent().material, "shader_parameter/fade", 1.0, TRANS_TIME)
+			await tween.finished
+			
+			Ref.world.loaded_room.pause_music()
 			%AcceptPlayer.play()
-			%SettingsSubmenu.enter()
-			var full_exit: bool = await %SettingsSubmenu.exited
-			if full_exit:
-				exit(true)
-			else:
-				set_process_input(true)
-				%TipContainer.show_tip()
-				update_top_tip()
+			await Ref.game_over.game_over()
+			Ref.world.load_room("hell_fall", "Default", false)
+			await exit(true)
 	
 	update_selection(-1)
 
@@ -119,7 +125,7 @@ func update_top_tip() -> void:
 		3:
 			%TipLabel.text = "see your items"
 		4:
-			%TipLabel.text = "change settings"
+			%TipLabel.text = "just die"
 
 func revoke_highlight() -> void:
 	%ChoiceContainer.get_child(choice_idx).add_theme_color_override("font_color", default_color)
