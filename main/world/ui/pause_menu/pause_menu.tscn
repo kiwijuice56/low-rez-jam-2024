@@ -193,8 +193,10 @@ custom_minimum_size = Vector2(15, 6)
 layout_mode = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(0, 56)
 layout_mode = 2
 size_flags_horizontal = 8
+size_flags_vertical = 0
 follow_focus = true
 horizontal_scroll_mode = 0
 

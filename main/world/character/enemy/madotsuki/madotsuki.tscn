@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://8lnsnijisnd"]
+[gd_scene load_steps=15 format=3 uid="uid://8lnsnijisnd"]
 
 [ext_resource type="PackedScene" uid="uid://bnkxy1qwre0oj" path="res://main/world/character/enemy/enemy.tscn" id="1_h76nx"]
 [ext_resource type="Texture2D" uid="uid://by7isafh2l738" path="res://main/world/character/enemy/madotsuki/madotsuki.png" id="2_twipa"]
@@ -13,6 +13,7 @@
 
 [sub_resource type="Resource" id="Resource_8drf7"]
 script = ExtResource("6_o8ti5")
+boss = true
 fighters = Array[PackedScene]([ExtResource("4_0g1g8")])
 background = ExtResource("3_hsyce")
 music = ExtResource("5_q37ir")
@@ -33,6 +34,9 @@ speed = "Normal"
 sfx = ExtResource("9_315m4")
 volume_db = -6.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_fix5m"]
+radius = 7.0
+
 [node name="Madotsuki" instance=ExtResource("1_h76nx")]
 recruit_scene = ExtResource("2_y3kdn")
 encounter = SubResource("Resource_8drf7")
@@ -42,3 +46,11 @@ death_conversation = Array[ExtResource("7_5nn6d")]([SubResource("Resource_lfjui"
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_twipa")
+
+[node name="CollisionShape2D" parent="." index="1"]
+disabled = false
+
+[node name="CollisionShape2D" parent="Interactable" index="0"]
+shape = SubResource("CircleShape2D_fix5m")
+
+[editable path="Interactable"]

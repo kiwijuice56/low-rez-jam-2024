@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://clllf748m0mk8"]
+[gd_scene load_steps=24 format=4 uid="uid://clllf748m0mk8"]
 
 [ext_resource type="PackedScene" uid="uid://l1nxgrfgq8nb" path="res://main/world/room/room.tscn" id="1_1qyb5"]
 [ext_resource type="Texture2D" uid="uid://cfp1jxkknqfrd" path="res://main/world/room/fog/fog.png" id="2_82yx1"]
@@ -6,6 +6,14 @@
 [ext_resource type="AudioStream" uid="uid://y6881vvlkkn7" path="res://main/music/dry_wind.ogg" id="2_np0mx"]
 [ext_resource type="Shader" path="res://main/world/room/desert/fog.gdshader" id="3_ooy3p"]
 [ext_resource type="PackedScene" uid="uid://dluf4cko6obhr" path="res://main/world/door/door.tscn" id="6_172t0"]
+[ext_resource type="PackedScene" uid="uid://ctahsmjqta2d6" path="res://main/world/character/enemy/gel/gel.tscn" id="7_1cq8j"]
+[ext_resource type="PackedScene" uid="uid://c7cfirjgacf35" path="res://main/battle/fighter/slime/slime.tscn" id="8_lhbnb"]
+[ext_resource type="PackedScene" uid="uid://c132k6dt5n70e" path="res://main/battle/ui/battle_background/berry/berry_battle_background.tscn" id="8_uth20"]
+[ext_resource type="PackedScene" uid="uid://cji0l1gqvgiig" path="res://main/battle/fighter/fishy/fishy.tscn" id="9_t6uka"]
+[ext_resource type="Script" path="res://main/world/character/enemy/encounter.gd" id="10_fx4tp"]
+[ext_resource type="AudioStream" uid="uid://0psrk4ddju2r" path="res://main/music/salad_slaughter.ogg" id="11_tk5q0"]
+[ext_resource type="PackedScene" uid="uid://2jqssskou7ha" path="res://main/battle/fighter/chi/chi.tscn" id="13_cmgcv"]
+[ext_resource type="PackedScene" uid="uid://cmyfrh6j55ulb" path="res://main/world/item_pickup/item_pickup.tscn" id="13_jhhpn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kgpsd"]
 texture = ExtResource("2_82yx1")
@@ -37,6 +45,30 @@ shader_parameter/velocity = Vector2(-0.8, 0.4)
 shader_parameter/position = Vector2(1, 1)
 shader_parameter/fog_color = Color(1, 1, 1, 1)
 shader_parameter/noise = SubResource("NoiseTexture2D_56lf5")
+
+[sub_resource type="Resource" id="Resource_o6dui"]
+script = ExtResource("10_fx4tp")
+boss = false
+fighters = Array[PackedScene]([ExtResource("8_lhbnb"), ExtResource("9_t6uka"), ExtResource("8_lhbnb"), ExtResource("9_t6uka")])
+background = ExtResource("8_uth20")
+music = ExtResource("11_tk5q0")
+xp_drop = 50
+
+[sub_resource type="Resource" id="Resource_2mdr5"]
+script = ExtResource("10_fx4tp")
+boss = false
+fighters = Array[PackedScene]([ExtResource("8_lhbnb"), ExtResource("9_t6uka"), ExtResource("8_lhbnb"), ExtResource("9_t6uka"), ExtResource("13_cmgcv")])
+background = ExtResource("8_uth20")
+music = ExtResource("11_tk5q0")
+xp_drop = 50
+
+[sub_resource type="Resource" id="Resource_1w2oo"]
+script = ExtResource("10_fx4tp")
+boss = false
+fighters = Array[PackedScene]([ExtResource("8_lhbnb"), ExtResource("9_t6uka"), ExtResource("8_lhbnb"), ExtResource("9_t6uka"), ExtResource("8_lhbnb")])
+background = ExtResource("8_uth20")
+music = ExtResource("11_tk5q0")
+xp_drop = 65
 
 [node name="Fog" instance=ExtResource("1_1qyb5")]
 
@@ -77,6 +109,133 @@ out_direction = "down"
 position = Vector2(288, 432)
 target_room = "library"
 out_direction = "down"
+
+[node name="Gel" parent="Characters/Enemies" index="0" instance=ExtResource("7_1cq8j")]
+position = Vector2(108, 90)
+movement = true
+encounter = SubResource("Resource_o6dui")
+move_time = 0.8
+
+[node name="Gel2" parent="Characters/Enemies" index="1" instance=ExtResource("7_1cq8j")]
+position = Vector2(72, 126)
+movement = true
+encounter = SubResource("Resource_o6dui")
+move_time = 0.8
+
+[node name="Gel3" parent="Characters/Enemies" index="2" instance=ExtResource("7_1cq8j")]
+position = Vector2(252, 126)
+movement = true
+encounter = SubResource("Resource_o6dui")
+move_time = 0.8
+
+[node name="Gel4" parent="Characters/Enemies" index="3" instance=ExtResource("7_1cq8j")]
+position = Vector2(198, 90)
+movement = true
+encounter = SubResource("Resource_o6dui")
+move_time = 0.8
+
+[node name="Gel5" parent="Characters/Enemies" index="4" instance=ExtResource("7_1cq8j")]
+position = Vector2(342, 126)
+movement = true
+encounter = SubResource("Resource_o6dui")
+move_time = 0.8
+
+[node name="Gel6" parent="Characters/Enemies" index="5" instance=ExtResource("7_1cq8j")]
+position = Vector2(189, 198)
+movement = true
+encounter = SubResource("Resource_2mdr5")
+move_time = 0.8
+
+[node name="Gel15" parent="Characters/Enemies" index="6" instance=ExtResource("7_1cq8j")]
+position = Vector2(252, 216)
+movement = true
+encounter = SubResource("Resource_o6dui")
+move_time = 0.8
+
+[node name="Gel16" parent="Characters/Enemies" index="7" instance=ExtResource("7_1cq8j")]
+position = Vector2(117, 216)
+movement = true
+encounter = SubResource("Resource_o6dui")
+move_time = 0.8
+
+[node name="Gel7" parent="Characters/Enemies" index="8" instance=ExtResource("7_1cq8j")]
+position = Vector2(441, 234)
+movement = true
+encounter = SubResource("Resource_1w2oo")
+move_time = 0.8
+
+[node name="Gel8" parent="Characters/Enemies" index="9" instance=ExtResource("7_1cq8j")]
+position = Vector2(414, 207)
+movement = true
+encounter = SubResource("Resource_1w2oo")
+move_time = 0.8
+
+[node name="Gel9" parent="Characters/Enemies" index="10" instance=ExtResource("7_1cq8j")]
+position = Vector2(315, 297)
+movement = true
+encounter = SubResource("Resource_1w2oo")
+move_time = 0.8
+
+[node name="Gel10" parent="Characters/Enemies" index="11" instance=ExtResource("7_1cq8j")]
+position = Vector2(153, 288)
+movement = true
+encounter = SubResource("Resource_1w2oo")
+move_time = 0.8
+
+[node name="Gel11" parent="Characters/Enemies" index="12" instance=ExtResource("7_1cq8j")]
+position = Vector2(198, 396)
+movement = true
+encounter = SubResource("Resource_1w2oo")
+move_time = 0.8
+
+[node name="Gel12" parent="Characters/Enemies" index="13" instance=ExtResource("7_1cq8j")]
+position = Vector2(261, 450)
+movement = true
+encounter = SubResource("Resource_1w2oo")
+move_time = 0.8
+
+[node name="Gel13" parent="Characters/Enemies" index="14" instance=ExtResource("7_1cq8j")]
+position = Vector2(333, 423)
+movement = true
+encounter = SubResource("Resource_1w2oo")
+move_time = 0.8
+
+[node name="Gel14" parent="Characters/Enemies" index="15" instance=ExtResource("7_1cq8j")]
+position = Vector2(261, 360)
+movement = true
+encounter = SubResource("Resource_1w2oo")
+move_time = 0.8
+
+[node name="ItemPickup" parent="Items" index="0" instance=ExtResource("13_jhhpn")]
+position = Vector2(162, 261)
+item = "spider"
+
+[node name="ItemPickup2" parent="Items" index="1" instance=ExtResource("13_jhhpn")]
+position = Vector2(126, 360)
+item = "vitamin"
+
+[node name="ItemPickup3" parent="Items" index="2" instance=ExtResource("13_jhhpn")]
+position = Vector2(234, 342)
+item = "tofu"
+amount = 2
+
+[node name="ItemPickup4" parent="Items" index="3" instance=ExtResource("13_jhhpn")]
+position = Vector2(396, 414)
+item = "tofu"
+amount = 2
+
+[node name="ItemPickup5" parent="Items" index="4" instance=ExtResource("13_jhhpn")]
+position = Vector2(72, 171)
+item = "tofu"
+amount = 2
+
+[node name="ItemPickup6" parent="Items" index="5" instance=ExtResource("13_jhhpn")]
+position = Vector2(432, 126)
+item = "tnt"
+
+[node name="ItemPickup7" parent="Items" index="6" instance=ExtResource("13_jhhpn")]
+position = Vector2(225, 180)
+item = "spider"
 
 [node name="BottomRight" parent="." index="12"]
 position = Vector2(513, 513)

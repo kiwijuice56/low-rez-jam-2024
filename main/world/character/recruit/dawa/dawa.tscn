@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://b18wie31jber8"]
+
+[ext_resource type="PackedScene" uid="uid://dcrkublm74vlh" path="res://main/world/character/recruit/recruit.tscn" id="1_ip32k"]
+[ext_resource type="Texture2D" uid="uid://b05s7b27bbipm" path="res://main/world/character/friend/bubblebear/bubblebear.png" id="2_mnq7q"]
+
+[sub_resource type="Animation" id="Animation_grjes"]
+resource_name = "spin"
+length = 0.1333
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_w4n0r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gxfmx"]
+_data = {
+"RESET": SubResource("Animation_w4n0r"),
+"spin": SubResource("Animation_grjes")
+}
+
+[node name="Dawa" instance=ExtResource("1_ip32k")]
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(1, -2)
+texture = ExtResource("2_mnq7q")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
+libraries = {
+"": SubResource("AnimationLibrary_gxfmx")
+}
+autoplay = "spin"
+speed_scale = 0.3

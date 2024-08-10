@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b02k5l063cuww"]
+[gd_scene load_steps=24 format=3 uid="uid://b02k5l063cuww"]
 
 [ext_resource type="PackedScene" uid="uid://l1nxgrfgq8nb" path="res://main/world/room/room.tscn" id="1_77e2e"]
 [ext_resource type="AudioStream" uid="uid://7u7sl4bob8lh" path="res://main/music/demon_club.ogg" id="2_6von6"]
@@ -6,7 +6,63 @@
 [ext_resource type="PackedScene" uid="uid://dluf4cko6obhr" path="res://main/world/door/door.tscn" id="3_1b2sj"]
 [ext_resource type="PackedScene" uid="uid://dd7jtwvmbffbg" path="res://main/world/character/friend/saver/saver.tscn" id="5_lyq27"]
 [ext_resource type="PackedScene" uid="uid://dfjd13fkiyly0" path="res://main/world/character/friend/shopkeep/shopkeep.tscn" id="6_s13mb"]
+[ext_resource type="PackedScene" uid="uid://b18wie31jber8" path="res://main/world/character/recruit/dawa/dawa.tscn" id="7_m5do6"]
 [ext_resource type="Texture2D" uid="uid://bavi3kbx5ot0q" path="res://main/world/room/demon_club/eye.png" id="7_qa3pg"]
+[ext_resource type="PackedScene" uid="uid://2dvesvmwkgiu" path="res://main/battle/fighter/dawa/dawa.tscn" id="8_iq2wf"]
+[ext_resource type="Script" path="res://main/world/ui/text_box/dialogue/dialogue.gd" id="9_k0wjs"]
+[ext_resource type="Resource" uid="uid://g1ggpsdd0uo0" path="res://main/world/ui/text_box/speakers/bubblebear/bubblebear_speaker.tres" id="10_ck1i1"]
+[ext_resource type="AudioStream" uid="uid://cosn8u4iv2m10" path="res://main/world/character/recruit/party_join.ogg" id="11_1144n"]
+[ext_resource type="Resource" uid="uid://be2fbcpo5gd7a" path="res://main/world/ui/text_box/speakers/system/system_speaker.tres" id="12_x082j"]
+
+[sub_resource type="Resource" id="Resource_kajv5"]
+script = ExtResource("9_k0wjs")
+speaker = ExtResource("10_ck1i1")
+text = "hai ella!_ died again?"
+speed = "Normal"
+volume_db = 0.0
+
+[sub_resource type="Resource" id="Resource_up2ph"]
+script = ExtResource("9_k0wjs")
+speaker = ExtResource("10_ck1i1")
+text = "i can help!_ pwomise!_ :3"
+speed = "Normal"
+volume_db = 0.0
+
+[sub_resource type="Resource" id="Resource_pxdwq"]
+script = ExtResource("9_k0wjs")
+speaker = ExtResource("10_ck1i1")
+text = "ehh?!_ you don't believe me?!"
+speed = "Normal"
+volume_db = 0.0
+
+[sub_resource type="Resource" id="Resource_funvg"]
+script = ExtResource("9_k0wjs")
+speaker = ExtResource("10_ck1i1")
+text = "psh..._ just you wait >:3_ i'll show you the power of..._"
+speed = "Normal"
+volume_db = 0.0
+
+[sub_resource type="Resource" id="Resource_r7ltg"]
+script = ExtResource("9_k0wjs")
+speaker = ExtResource("10_ck1i1")
+text = "STATUS EFFECTS!!!"
+speed = "Normal"
+volume_db = 0.0
+
+[sub_resource type="Resource" id="Resource_epg1x"]
+script = ExtResource("9_k0wjs")
+speaker = ExtResource("10_ck1i1")
+text = "just pwotect me pwetty pwease :("
+speed = "Normal"
+volume_db = 0.0
+
+[sub_resource type="Resource" id="Resource_8o4lg"]
+script = ExtResource("9_k0wjs")
+speaker = ExtResource("12_x082j")
+text = "dawa joined your party."
+speed = "Normal"
+sfx = ExtResource("11_1144n")
+volume_db = -6.0
 
 [sub_resource type="Animation" id="Animation_1ba7h"]
 length = 0.001
@@ -86,6 +142,11 @@ anchor = "Default"
 
 [node name="Shopkeep" parent="Characters/Friends" index="1" instance=ExtResource("6_s13mb")]
 position = Vector2(63, 45)
+
+[node name="Dawa" parent="Characters/Friends" index="2" instance=ExtResource("7_m5do6")]
+position = Vector2(81, 54)
+fighter_scene = ExtResource("8_iq2wf")
+conversation = Array[ExtResource("9_k0wjs")]([SubResource("Resource_kajv5"), SubResource("Resource_up2ph"), SubResource("Resource_pxdwq"), SubResource("Resource_funvg"), SubResource("Resource_r7ltg"), SubResource("Resource_epg1x"), SubResource("Resource_8o4lg")])
 
 [node name="Sprite2D" type="Sprite2D" parent="Decoration" index="0"]
 position = Vector2(64, 25)

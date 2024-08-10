@@ -34,6 +34,7 @@ sources/0 = SubResource("TileSetAtlasSource_tqbut")
 
 [sub_resource type="Resource" id="Resource_v8t31"]
 script = ExtResource("4_mdga6")
+boss = false
 fighters = Array[PackedScene]([ExtResource("4_78o28"), ExtResource("4_78o28"), ExtResource("4_78o28")])
 background = ExtResource("4_60wse")
 music = ExtResource("6_w4hsx")
@@ -83,7 +84,19 @@ encounter = SubResource("Resource_v8t31")
 position = Vector2(504, 117)
 encounter = SubResource("Resource_v8t31")
 
-[node name="Madotsuki" parent="Characters/Enemies" index="5" instance=ExtResource("9_0rfia")]
+[node name="Pirori6" parent="Characters/Enemies" index="5" instance=ExtResource("3_j6o44")]
+position = Vector2(288, 171)
+encounter = SubResource("Resource_v8t31")
+
+[node name="Pirori7" parent="Characters/Enemies" index="6" instance=ExtResource("3_j6o44")]
+position = Vector2(45, 144)
+encounter = SubResource("Resource_v8t31")
+
+[node name="Pirori8" parent="Characters/Enemies" index="7" instance=ExtResource("3_j6o44")]
+position = Vector2(450, 180)
+encounter = SubResource("Resource_v8t31")
+
+[node name="Madotsuki" parent="Characters/Enemies" index="8" instance=ExtResource("9_0rfia")]
 position = Vector2(333, 117)
 
 [node name="Decoration" parent="." index="8"]

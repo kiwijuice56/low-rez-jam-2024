@@ -900,7 +900,7 @@ gradient = SubResource("GradientTexture1D_2pknv")
 rotation_speed = 5.0
 radius = Vector2(8, 2)
 height = 2.0
-length_multiplier = 0.75
+length_multiplier = 0.6
 
 [node name="Sprite2D" type="Sprite2D" parent="SpriteHolder/Effects/Stun"]
 texture = ExtResource("20_rwres")

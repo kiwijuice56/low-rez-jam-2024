@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://c7cfirjgacf35"]
+[gd_scene load_steps=13 format=3 uid="uid://c7cfirjgacf35"]
 
 [ext_resource type="PackedScene" uid="uid://bnbb4opeecksl" path="res://main/battle/fighter/fighter.tscn" id="1_mylgi"]
 [ext_resource type="Script" path="res://main/battle/fighter/fighter_stats/fighter_stats.gd" id="2_wtt4c"]
 [ext_resource type="Shader" path="res://main/battle/fighter/flash.gdshader" id="3_4m07w"]
 [ext_resource type="Texture2D" uid="uid://bd65dsv7n3o4r" path="res://main/battle/fighter/slime/slime.png" id="3_bhu5l"]
+[ext_resource type="Script" path="res://main/battle/action/action.gd" id="3_sm52p"]
+[ext_resource type="PackedScene" uid="uid://0xh42kb86k8s" path="res://main/battle/action/battle_animation/status/buff.tscn" id="4_0mlia"]
 [ext_resource type="Texture2D" uid="uid://dqkasghqp64we" path="res://main/battle/fighter/slime/shadow.png" id="5_bfxls"]
 
 [sub_resource type="Resource" id="Resource_0mx5o"]
@@ -69,9 +71,21 @@ _data = {
 [node name="Slime" instance=ExtResource("1_mylgi")]
 stats = SubResource("Resource_0mx5o")
 
+[node name="Hype" type="Node2D" parent="Actions/Skills" index="0"]
+script = ExtResource("3_sm52p")
+use_text = "%s hyped them!"
+verb = "hype"
+target_amount = "All"
+hit_amount_max = 1
+status_effects = Array[String](["Cool"])
+animations = Array[PackedScene]([ExtResource("4_0mlia")])
+
 [node name="Attack" parent="Actions" index="1"]
+use_text = "%s slapped!"
 accuracy = 0.85
 critical = 0.07
+hit_amount_min = 2
+hit_amount_max = 2
 
 [node name="ShadowSprite2D" parent="." index="1"]
 texture = ExtResource("5_bfxls")

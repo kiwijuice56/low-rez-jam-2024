@@ -21,7 +21,7 @@ max_hp = 10
 max_tp = 15
 strength = 1
 magic = 2
-defence = 99
+defence = 1
 luck = 4
 unlocked_skills = Array[int]([0, 1, 2])
 

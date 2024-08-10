@@ -1,0 +1,87 @@
+[gd_scene load_steps=11 format=3 uid="uid://b8qnf80b116j3"]
+
+[ext_resource type="PackedScene" uid="uid://bnbb4opeecksl" path="res://main/battle/fighter/fighter.tscn" id="1_vc6pc"]
+[ext_resource type="Texture2D" uid="uid://ckwm1px8hcub" path="res://main/battle/fighter/saki/saki.png" id="2_hr56h"]
+[ext_resource type="Script" path="res://main/battle/fighter/fighter_stats/fighter_stats.gd" id="2_lmbm7"]
+[ext_resource type="PackedScene" uid="uid://cuko56w08yuso" path="res://main/battle/action/action.tscn" id="3_4mtqp"]
+[ext_resource type="Texture2D" uid="uid://dbbr4mrfjf3ir" path="res://main/battle/action/icons/icon_attack.png" id="4_4ffh5"]
+[ext_resource type="PackedScene" uid="uid://dagp5qivcpmn3" path="res://main/battle/action/battle_animation/explosion/explosion.tscn" id="5_hvsun"]
+[ext_resource type="Texture2D" uid="uid://d3r2lbnau25iv" path="res://main/battle/action/icons/icon_buff.png" id="6_vwjbd"]
+[ext_resource type="PackedScene" uid="uid://0xh42kb86k8s" path="res://main/battle/action/battle_animation/status/buff.tscn" id="7_63cyr"]
+[ext_resource type="PackedScene" uid="uid://cp1oupuymf0u8" path="res://main/battle/action/battle_animation/elec/elec_flash.tscn" id="8_qdp0r"]
+
+[sub_resource type="Resource" id="Resource_fthj2"]
+script = ExtResource("2_lmbm7")
+unlocked = false
+max_hp = 20
+max_tp = 10
+strength = 4
+magic = 1
+defence = 5
+luck = 2
+unlocked_skills = Array[int]([0, 1, 2])
+
+[node name="Saki" instance=ExtResource("1_vc6pc")]
+stats = SubResource("Resource_fthj2")
+strength_grow = 2
+defence_grow = 2
+max_hp_grow = 4
+
+[node name="Crush" parent="Actions/Skills" index="0" instance=ExtResource("3_4mtqp")]
+icon = ExtResource("4_4ffh5")
+description = "crush all foes"
+use_text = "%s crushes them!"
+verb = "crush"
+tp_cost = 3
+power = 0.5
+accuracy = 0.95
+critical = 0.25
+target_amount = "All"
+hit_amount_max = 1
+is_phys = true
+animations = Array[PackedScene]([ExtResource("5_hvsun")])
+
+[node name="Flex" parent="Actions/Skills" index="1" instance=ExtResource("3_4mtqp")]
+icon = ExtResource("6_vwjbd")
+description = "summon an aura"
+use_text = "%s flexes!"
+verb = "flex"
+tp_cost = 4
+target_group = "Own"
+hit_amount_max = 1
+status_effects = Array[String](["Aura"])
+animations = Array[PackedScene]([ExtResource("7_63cyr")])
+
+[node name="Gun" parent="Actions/Skills" index="2" instance=ExtResource("3_4mtqp")]
+icon = ExtResource("4_4ffh5")
+description = "bullet punches!"
+use_text = "%s shoots them!"
+verb = "shoot"
+tp_cost = 4
+accuracy = 0.99
+critical = 0.2
+constant_damage = 1
+hit_amount_min = 12
+hit_amount_max = 12
+is_phys = true
+animations = Array[PackedScene]([ExtResource("5_hvsun")])
+soul_cost = 4
+
+[node name="Lunge" parent="Actions/Skills" index="3" instance=ExtResource("3_4mtqp")]
+icon = ExtResource("4_4ffh5")
+description = "stuns one foe"
+use_text = "%s lunges them!"
+verb = "lunge at"
+tp_cost = 7
+power = 1.5
+accuracy = 0.93
+critical = 0.25
+hit_amount_max = 1
+status_effects = Array[String](["Stun"])
+is_phys = true
+animations = Array[PackedScene]([ExtResource("8_qdp0r"), ExtResource("5_hvsun")])
+soul_cost = 6
+
+[node name="Sprite2D" parent="SpriteHolder" index="0"]
+texture = ExtResource("2_hr56h")
+offset = Vector2(-1, 0)

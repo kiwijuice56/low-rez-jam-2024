@@ -1,0 +1,77 @@
+[gd_scene load_steps=18 format=3 uid="uid://mrxl8yybcgrj"]
+
+[ext_resource type="PackedScene" uid="uid://bnkxy1qwre0oj" path="res://main/world/character/enemy/enemy.tscn" id="1_tiauf"]
+[ext_resource type="Texture2D" uid="uid://bry1gx2okmmpv" path="res://main/world/character/enemy/saki/saki.png" id="2_5d5kj"]
+[ext_resource type="Script" path="res://main/world/ui/text_box/dialogue/dialogue.gd" id="2_16rqc"]
+[ext_resource type="PackedScene" uid="uid://b8qnf80b116j3" path="res://main/battle/fighter/saki/saki.tscn" id="2_yn0j2"]
+[ext_resource type="PackedScene" uid="uid://dcvk57i431d4a" path="res://main/battle/fighter/saki_boss/saki_boss.tscn" id="3_60h5w"]
+[ext_resource type="PackedScene" uid="uid://c132k6dt5n70e" path="res://main/battle/ui/battle_background/berry/berry_battle_background.tscn" id="3_t6eka"]
+[ext_resource type="Script" path="res://main/world/character/enemy/encounter.gd" id="4_u8ujp"]
+[ext_resource type="AudioStream" uid="uid://dmymlnhw7iy25" path="res://main/music/acrylic_adversity.ogg" id="5_2l6mw"]
+[ext_resource type="Resource" uid="uid://be2fbcpo5gd7a" path="res://main/world/ui/text_box/speakers/system/system_speaker.tres" id="8_1tiqr"]
+[ext_resource type="AudioStream" uid="uid://cosn8u4iv2m10" path="res://main/world/character/recruit/party_join.ogg" id="9_pbyp6"]
+
+[sub_resource type="Resource" id="Resource_bor3k"]
+script = ExtResource("4_u8ujp")
+boss = true
+fighters = Array[PackedScene]([ExtResource("3_60h5w")])
+background = ExtResource("3_t6eka")
+music = ExtResource("5_2l6mw")
+xp_drop = 40
+
+[sub_resource type="Resource" id="Resource_jtjml"]
+script = ExtResource("2_16rqc")
+speaker = ExtResource("8_1tiqr")
+text = "..."
+speed = "Normal"
+volume_db = 0.0
+
+[sub_resource type="Resource" id="Resource_p43hi"]
+script = ExtResource("2_16rqc")
+speaker = ExtResource("8_1tiqr")
+text = "the rock's lips are moving, but it makes no noise."
+speed = "Normal"
+volume_db = 0.0
+
+[sub_resource type="Resource" id="Resource_cjomg"]
+script = ExtResource("2_16rqc")
+speaker = ExtResource("8_1tiqr")
+text = "...!!!"
+speed = "Normal"
+volume_db = 0.0
+
+[sub_resource type="Resource" id="Resource_asfap"]
+script = ExtResource("2_16rqc")
+speaker = ExtResource("8_1tiqr")
+text = "..._ the rock smiled."
+speed = "Normal"
+volume_db = 0.0
+
+[sub_resource type="Resource" id="Resource_vmqlj"]
+script = ExtResource("2_16rqc")
+speaker = ExtResource("8_1tiqr")
+text = "saki joined your party!"
+speed = "Normal"
+sfx = ExtResource("9_pbyp6")
+volume_db = -6.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n7e6c"]
+radius = 7.0
+
+[node name="Saki" instance=ExtResource("1_tiauf")]
+recruit_scene = ExtResource("2_yn0j2")
+encounter = SubResource("Resource_bor3k")
+requires_interact = true
+conversation = Array[ExtResource("2_16rqc")]([SubResource("Resource_jtjml"), SubResource("Resource_p43hi"), SubResource("Resource_cjomg")])
+death_conversation = Array[ExtResource("2_16rqc")]([SubResource("Resource_asfap"), SubResource("Resource_vmqlj")])
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_5d5kj")
+
+[node name="CollisionShape2D" parent="." index="1"]
+disabled = false
+
+[node name="CollisionShape2D" parent="Interactable" index="0"]
+shape = SubResource("CircleShape2D_n7e6c")
+
+[editable path="Interactable"]

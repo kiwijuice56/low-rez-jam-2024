@@ -1,0 +1,160 @@
+[gd_scene load_steps=17 format=3 uid="uid://dcvk57i431d4a"]
+
+[ext_resource type="PackedScene" uid="uid://bnbb4opeecksl" path="res://main/battle/fighter/fighter.tscn" id="1_kdqro"]
+[ext_resource type="Script" path="res://main/battle/fighter/fighter_stats/fighter_stats.gd" id="2_kn6vj"]
+[ext_resource type="PackedScene" uid="uid://cuko56w08yuso" path="res://main/battle/action/action.tscn" id="3_36fql"]
+[ext_resource type="PackedScene" uid="uid://0xh42kb86k8s" path="res://main/battle/action/battle_animation/status/buff.tscn" id="4_be5ke"]
+[ext_resource type="Texture2D" uid="uid://dbbr4mrfjf3ir" path="res://main/battle/action/icons/icon_attack.png" id="4_y8kl2"]
+[ext_resource type="PackedScene" uid="uid://dagp5qivcpmn3" path="res://main/battle/action/battle_animation/explosion/explosion.tscn" id="5_qg0jr"]
+[ext_resource type="Texture2D" uid="uid://dp3vyp0ibpmva" path="res://main/battle/fighter/kevin/shadow.png" id="5_x5ttj"]
+[ext_resource type="Texture2D" uid="uid://d3r2lbnau25iv" path="res://main/battle/action/icons/icon_buff.png" id="6_mvn5u"]
+[ext_resource type="Shader" path="res://main/battle/fighter/flash.gdshader" id="6_un15a"]
+[ext_resource type="Texture2D" uid="uid://bimqk1o8s7ree" path="res://main/battle/fighter/saki_boss/saki_boss.png" id="7_73sni"]
+[ext_resource type="PackedScene" uid="uid://cp1oupuymf0u8" path="res://main/battle/action/battle_animation/elec/elec_flash.tscn" id="8_a2tyy"]
+
+[sub_resource type="Resource" id="Resource_cv1yh"]
+script = ExtResource("2_kn6vj")
+unlocked = true
+max_hp = 50
+max_tp = 15
+strength = 3
+magic = 1
+defence = 5
+luck = 3
+unlocked_skills = Array[int]([])
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cemna"]
+shader = ExtResource("6_un15a")
+shader_parameter/flash = null
+shader_parameter/flash2 = null
+shader_parameter/progress = 0.0
+shader_parameter/meltiness = 1.0
+shader_parameter/broken = false
+shader_parameter/h_frames = 3
+shader_parameter/broken_dist = 0.1
+shader_parameter/random_seed = 0.2
+
+[sub_resource type="Animation" id="Animation_wjpip"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteHolder/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_t366u"]
+resource_name = "dance"
+length = 0.1
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteHolder/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gtoga"]
+_data = {
+"RESET": SubResource("Animation_wjpip"),
+"dance": SubResource("Animation_t366u")
+}
+
+[node name="Saki" instance=ExtResource("1_kdqro")]
+stats = SubResource("Resource_cv1yh")
+
+[node name="Crush" parent="Actions/Skills" index="0" instance=ExtResource("3_36fql")]
+icon = ExtResource("4_y8kl2")
+description = "crush all foes"
+use_text = "%s crushes them!"
+verb = "crush"
+tp_cost = 3
+power = 0.5
+accuracy = 0.8
+critical = 0.25
+target_amount = "All"
+hit_amount_max = 1
+is_phys = true
+animations = Array[PackedScene]([ExtResource("5_qg0jr")])
+
+[node name="Flex" parent="Actions/Skills" index="1" instance=ExtResource("3_36fql")]
+icon = ExtResource("6_mvn5u")
+description = "summon an aura"
+use_text = "%s flexes!"
+verb = "flex"
+tp_cost = 4
+target_group = "Own"
+hit_amount_max = 1
+status_effects = Array[String](["Aura"])
+animations = Array[PackedScene]([ExtResource("4_be5ke")])
+
+[node name="Gun" parent="Actions/Skills" index="2" instance=ExtResource("3_36fql")]
+icon = ExtResource("4_y8kl2")
+description = "bullet punches!"
+use_text = "%s shoots them!"
+verb = "shoot"
+tp_cost = 4
+accuracy = 0.89
+critical = 0.2
+constant_damage = 1
+hit_amount_min = 7
+hit_amount_max = 7
+is_phys = true
+animations = Array[PackedScene]([ExtResource("5_qg0jr")])
+soul_cost = 4
+
+[node name="Lunge" parent="Actions/Skills" index="3" instance=ExtResource("3_36fql")]
+icon = ExtResource("4_y8kl2")
+description = "stuns one foe"
+use_text = "%s lunges them!"
+verb = "lunge at"
+tp_cost = 7
+power = 1.5
+accuracy = 0.93
+critical = 0.25
+hit_amount_max = 1
+status_effects = Array[String](["Stun"])
+is_phys = true
+animations = Array[PackedScene]([ExtResource("8_a2tyy"), ExtResource("5_qg0jr")])
+soul_cost = 6
+
+[node name="Attack" parent="Actions" index="1"]
+use_text = "%s slapped!"
+accuracy = 0.7
+critical = 0.07
+
+[node name="ShadowSprite2D" parent="." index="1"]
+texture = ExtResource("5_x5ttj")
+centered = false
+offset = Vector2(-3, -1)
+
+[node name="Sprite2D" parent="SpriteHolder" index="0"]
+material = SubResource("ShaderMaterial_cemna")
+position = Vector2(-6, -12)
+texture = ExtResource("7_73sni")
+hframes = 3
+
+[node name="Center" parent="SpriteHolder" index="2"]
+position = Vector2(1, -8)
+
+[node name="PointInfo" parent="." index="3"]
+visible = false
+
+[node name="SpriteAnimationPlayer" type="AnimationPlayer" parent="." index="4"]
+libraries = {
+"": SubResource("AnimationLibrary_gtoga")
+}
+autoplay = "dance"
+speed_scale = 0.4

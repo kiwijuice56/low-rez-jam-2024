@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bku45g74gvc1a"]
+[gd_scene load_steps=31 format=3 uid="uid://bku45g74gvc1a"]
 
 [ext_resource type="PackedScene" uid="uid://l1nxgrfgq8nb" path="res://main/world/room/room.tscn" id="1_oyqxr"]
 [ext_resource type="AudioStream" uid="uid://x8jo6eb3kf4m" path="res://main/music/idiotic_frogs.ogg" id="2_0gf34"]
@@ -20,9 +20,11 @@
 [ext_resource type="AudioStream" uid="uid://dxkpw6lnkcj07" path="res://main/world/ui/text_box/speakers/bubblebear/talk_dog.wav" id="9_04neu"]
 [ext_resource type="PackedScene" uid="uid://cji0l1gqvgiig" path="res://main/battle/fighter/fishy/fishy.tscn" id="12_vtdpq"]
 [ext_resource type="PackedScene" uid="uid://cmyfrh6j55ulb" path="res://main/world/item_pickup/item_pickup.tscn" id="15_o6j55"]
+[ext_resource type="PackedScene" uid="uid://mrxl8yybcgrj" path="res://main/world/character/enemy/saki/saki.tscn" id="19_hwnte"]
 
 [sub_resource type="Resource" id="Resource_wfokb"]
 script = ExtResource("8_28h3h")
+boss = false
 fighters = Array[PackedScene]([ExtResource("6_muu8s")])
 background = ExtResource("5_svuq6")
 music = ExtResource("7_1hjsu")
@@ -30,6 +32,7 @@ xp_drop = 5
 
 [sub_resource type="Resource" id="Resource_1tup6"]
 script = ExtResource("8_28h3h")
+boss = false
 fighters = Array[PackedScene]([ExtResource("6_muu8s"), ExtResource("6_muu8s")])
 background = ExtResource("5_svuq6")
 music = ExtResource("7_1hjsu")
@@ -37,6 +40,7 @@ xp_drop = 10
 
 [sub_resource type="Resource" id="Resource_werbo"]
 script = ExtResource("8_28h3h")
+boss = false
 fighters = Array[PackedScene]([ExtResource("6_muu8s"), ExtResource("6_muu8s")])
 background = ExtResource("5_svuq6")
 music = ExtResource("7_1hjsu")
@@ -44,6 +48,7 @@ xp_drop = 10
 
 [sub_resource type="Resource" id="Resource_x1o4o"]
 script = ExtResource("8_28h3h")
+boss = false
 fighters = Array[PackedScene]([ExtResource("6_muu8s"), ExtResource("12_vtdpq"), ExtResource("6_muu8s")])
 background = ExtResource("5_svuq6")
 music = ExtResource("7_1hjsu")
@@ -134,12 +139,15 @@ position = Vector2(162, 99)
 conversation = Array[ExtResource("5_t3t31")]([SubResource("Resource_be8qk")])
 
 [node name="BubblebearFriend3" parent="Characters/Friends" index="1" instance=ExtResource("4_88t8m")]
-position = Vector2(342, 153)
+position = Vector2(324, 153)
 conversation = Array[ExtResource("5_t3t31")]([SubResource("Resource_ix2c7")])
 
 [node name="BubblebearFriend2" parent="Characters/Friends" index="2" instance=ExtResource("4_88t8m")]
 position = Vector2(9, 162)
 conversation = Array[ExtResource("5_t3t31")]([SubResource("Resource_hk0m4")])
+
+[node name="Saki" parent="Characters/Friends" index="3" instance=ExtResource("19_hwnte")]
+position = Vector2(351, 108)
 
 [node name="ItemPickup" parent="Items" index="0" instance=ExtResource("15_o6j55")]
 position = Vector2(207, 171)
