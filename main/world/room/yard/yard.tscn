@@ -24,7 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://dcrkublm74vlh" path="res://main/world/character/recruit/recruit.tscn" id="17_if1ed"]
 [ext_resource type="PackedScene" uid="uid://bwgqs6twouujh" path="res://main/battle/fighter/enoch/enoch.tscn" id="18_ysfr3"]
 [ext_resource type="Script" path="res://main/world/ui/text_box/dialogue/dialogue.gd" id="19_titik"]
-[ext_resource type="Resource" uid="uid://chjfh685p4h6g" path="res://main/world/ui/text_box/speakers/default/default_speaker.tres" id="20_fvbmt"]
+[ext_resource type="Resource" uid="uid://chjfh685p4h6g" path="res://main/world/ui/text_box/speakers/glaggler/glaggler_speaker.tres" id="20_fvbmt"]
 [ext_resource type="AudioStream" uid="uid://cosn8u4iv2m10" path="res://main/world/character/recruit/party_join.ogg" id="21_bq1sd"]
 [ext_resource type="Resource" uid="uid://be2fbcpo5gd7a" path="res://main/world/ui/text_box/speakers/system/system_speaker.tres" id="22_bnd40"]
 

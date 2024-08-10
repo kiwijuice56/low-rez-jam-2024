@@ -1,0 +1,32 @@
+[gd_scene load_steps=9 format=3 uid="uid://ii3y50fet7oc"]
+
+[ext_resource type="PackedScene" uid="uid://dei0x5en37mu2" path="res://main/world/character/friend/friend.tscn" id="1_ywnkk"]
+[ext_resource type="Script" path="res://main/world/character/friend/button/button.gd" id="2_aqnag"]
+[ext_resource type="Texture2D" uid="uid://6qqx18go6brc" path="res://main/world/room/dust/button.png" id="2_b3nhg"]
+[ext_resource type="Script" path="res://main/world/ui/text_box/dialogue/dialogue.gd" id="3_ejlj1"]
+[ext_resource type="AudioStream" uid="uid://b3s3y3g66s33v" path="res://main/world/character/friend/button/push_button.ogg" id="4_cksv6"]
+[ext_resource type="Resource" uid="uid://be2fbcpo5gd7a" path="res://main/world/ui/text_box/speakers/system/system_speaker.tres" id="4_vuq0f"]
+
+[sub_resource type="Resource" id="Resource_t2kte"]
+script = ExtResource("3_ejlj1")
+speaker = ExtResource("4_vuq0f")
+text = "you pressed it!"
+speed = "Normal"
+sfx = ExtResource("4_cksv6")
+volume_db = -5.0
+
+[sub_resource type="Resource" id="Resource_fvxk6"]
+script = ExtResource("3_ejlj1")
+speaker = ExtResource("4_vuq0f")
+text = "wanna press the button?"
+speed = "Normal"
+volume_db = 0.0
+
+[node name="Button" instance=ExtResource("1_ywnkk")]
+script = ExtResource("2_aqnag")
+press_conversation = Array[ExtResource("3_ejlj1")]([SubResource("Resource_t2kte")])
+conversation = Array[ExtResource("3_ejlj1")]([SubResource("Resource_fvxk6")])
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_b3nhg")
+hframes = 2

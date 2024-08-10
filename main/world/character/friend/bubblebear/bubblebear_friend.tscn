@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cvp6myaerl4io"]
+[gd_scene load_steps=8 format=3 uid="uid://cvp6myaerl4io"]
 
 [ext_resource type="PackedScene" uid="uid://dei0x5en37mu2" path="res://main/world/character/friend/friend.tscn" id="1_jxvp1"]
 [ext_resource type="Texture2D" uid="uid://b05s7b27bbipm" path="res://main/world/character/friend/bubblebear/bubblebear.png" id="2_pdhmr"]
+[ext_resource type="Script" path="res://main/world/character/friend/bubblebear/bubblebear_friend.gd" id="2_vaeoj"]
+[ext_resource type="Script" path="res://main/world/ui/text_box/dialogue/dialogue.gd" id="3_kf3qy"]
 
 [sub_resource type="Animation" id="Animation_en7e4"]
 length = 0.001
@@ -42,6 +44,9 @@ _data = {
 }
 
 [node name="BubblebearFriend" instance=ExtResource("1_jxvp1")]
+script = ExtResource("2_vaeoj")
+conversation_sick = Array[ExtResource("3_kf3qy")]([])
+conversation_happy = Array[ExtResource("3_kf3qy")]([])
 
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(1, -2)

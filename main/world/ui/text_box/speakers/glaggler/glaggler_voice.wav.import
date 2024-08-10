@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://daigg0kln3lvj"
-path="res://.godot/imported/default_voice.wav-720204dfa42e52926fe33a1728e39a07.sample"
+path="res://.godot/imported/glaggler_voice.wav-a236b00502cfc98214ff97a19eaa80f9.sample"
 
 [deps]
 
-source_file="res://main/world/ui/text_box/speakers/default/default_voice.wav"
-dest_files=["res://.godot/imported/default_voice.wav-720204dfa42e52926fe33a1728e39a07.sample"]
+source_file="res://main/world/ui/text_box/speakers/glaggler/glaggler_voice.wav"
+dest_files=["res://.godot/imported/glaggler_voice.wav-a236b00502cfc98214ff97a19eaa80f9.sample"]
 
 [params]
 

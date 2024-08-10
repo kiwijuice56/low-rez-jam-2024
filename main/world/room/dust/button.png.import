@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgsbq87nkcsv2"
-path="res://.godot/imported/default_portrait.png-e8047c8de1df4c7516e7f3168bd03cf9.ctex"
+uid="uid://6qqx18go6brc"
+path="res://.godot/imported/button.png-c816dc2265063dd194b410c4804bb400.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://main/world/ui/text_box/speakers/default/default_portrait.png"
-dest_files=["res://.godot/imported/default_portrait.png-e8047c8de1df4c7516e7f3168bd03cf9.ctex"]
+source_file="res://main/world/room/dust/button.png"
+dest_files=["res://.godot/imported/button.png-c816dc2265063dd194b410c4804bb400.ctex"]
 
 [params]
 
