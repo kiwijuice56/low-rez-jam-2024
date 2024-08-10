@@ -73,5 +73,10 @@ target_room = "dust"
 target_anchor = "Door"
 out_direction = "down"
 
+[node name="Door2" parent="Doors" index="1" instance=ExtResource("6_172t0")]
+position = Vector2(288, 432)
+target_room = "library"
+out_direction = "down"
+
 [node name="BottomRight" parent="." index="12"]
 position = Vector2(513, 513)

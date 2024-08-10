@@ -7,7 +7,7 @@ class_name Enemy extends Character
 @export var conversation: Array[Dialogue]
 @export var death_conversation: Array[Dialogue]
 
-@onready var move_time: float = 1.2
+@export var move_time: float = 1.2
 
 func _ready() -> void:
 	if Data.get_state(Ref.world.loaded_room_name + "/" + name, false):

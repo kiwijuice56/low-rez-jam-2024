@@ -1,0 +1,73 @@
+[gd_scene load_steps=11 format=3 uid="uid://7earauqwa6xa"]
+
+[ext_resource type="PackedScene" uid="uid://bnbb4opeecksl" path="res://main/battle/fighter/fighter.tscn" id="1_vwn7w"]
+[ext_resource type="Texture2D" uid="uid://dhe6byhqp1l3q" path="res://main/battle/fighter/pooka/pooka.png" id="2_e357i"]
+[ext_resource type="Texture2D" uid="uid://ynl6ho1m5f5j" path="res://main/battle/fighter/chi/shadow.png" id="2_i5vrv"]
+[ext_resource type="Script" path="res://main/battle/fighter/fighter_stats/fighter_stats.gd" id="2_iq5v6"]
+[ext_resource type="PackedScene" uid="uid://cuko56w08yuso" path="res://main/battle/action/action.tscn" id="3_45y21"]
+[ext_resource type="PackedScene" uid="uid://ba1ms3n6hoq78" path="res://main/battle/action/battle_animation/fire/fire_flash.tscn" id="4_uco3b"]
+[ext_resource type="Texture2D" uid="uid://5jmg4gnlundy" path="res://main/battle/fighter/pooka/eye.png" id="4_x5yw2"]
+[ext_resource type="PackedScene" uid="uid://d2n822iw1iha7" path="res://main/battle/action/battle_animation/fire/fire.tscn" id="5_3mgxy"]
+[ext_resource type="Script" path="res://main/battle/fighter/pooka/eye.gd" id="5_84q3v"]
+
+[sub_resource type="Resource" id="Resource_ovh6n"]
+script = ExtResource("2_iq5v6")
+unlocked = false
+max_hp = 55
+max_tp = 0
+strength = 3
+magic = 6
+defence = 7
+luck = 3
+unlocked_skills = Array[int]([])
+
+[node name="Pooka" instance=ExtResource("1_vwn7w")]
+stats = SubResource("Resource_ovh6n")
+
+[node name="Blast" parent="Actions/Skills" index="0" instance=ExtResource("3_45y21")]
+use_text = "%s blasted you!"
+power = 1.5
+attack_stat = "magic"
+hit_amount_max = 1
+status_chance = 0.5
+status_effects = Array[String](["Ablaze"])
+is_fire = true
+animations = Array[PackedScene]([ExtResource("4_uco3b"), ExtResource("5_3mgxy")])
+
+[node name="Attack" parent="Actions" index="1"]
+use_text = "%s whacked!"
+power = 0.6
+critical = 0.07
+target_amount = "Random"
+hit_amount_min = 3
+hit_amount_max = 5
+per_target_delay = 0.12
+
+[node name="ShadowSprite2D" parent="." index="1"]
+texture = ExtResource("2_i5vrv")
+centered = false
+offset = Vector2(-5, 0)
+
+[node name="Sprite2D" parent="SpriteHolder" index="0"]
+position = Vector2(0, 0)
+texture = ExtResource("2_e357i")
+offset = Vector2(-9, -18)
+
+[node name="Eye" type="Sprite2D" parent="SpriteHolder/Sprite2D" index="0"]
+use_parent_material = true
+texture = ExtResource("4_x5yw2")
+centered = false
+offset = Vector2(-3, -13)
+script = ExtResource("5_84q3v")
+radius = 3.0
+
+[node name="Timer" type="Timer" parent="SpriteHolder/Sprite2D/Eye" index="0"]
+unique_name_in_owner = true
+wait_time = 0.6
+one_shot = true
+
+[node name="Center" parent="SpriteHolder" index="2"]
+position = Vector2(0, -10)
+
+[node name="PointInfo" parent="." index="3"]
+visible = false

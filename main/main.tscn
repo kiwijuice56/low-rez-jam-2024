@@ -294,17 +294,19 @@ position = Vector2(43, 38)
 [node name="4" type="Marker2D" parent="Battle/FighterLayer/EnemyPositions/4"]
 position = Vector2(54, 38)
 
-[node name="PlayerParty" type="Node2D" parent="Battle/FighterLayer"]
-script = ExtResource("7_we58l")
-
 [node name="EnemyParty" type="Node2D" parent="Battle/FighterLayer"]
 unique_name_in_owner = true
+
+[node name="PlayerParty" type="Node2D" parent="Battle/FighterLayer"]
+z_index = 1
+script = ExtResource("7_we58l")
 
 [node name="TargetSelecter" parent="Battle/FighterLayer" instance=ExtResource("16_ytdqf")]
 unique_name_in_owner = true
 
 [node name="ForegroundAnimationHolder" type="Node2D" parent="Battle/FighterLayer"]
 unique_name_in_owner = true
+z_index = 2
 
 [node name="BattleMusicPlayer" type="AudioStreamPlayer" parent="Battle"]
 unique_name_in_owner = true

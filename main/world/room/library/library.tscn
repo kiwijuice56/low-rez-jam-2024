@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://devkxyylu0vj5"]
+[gd_scene load_steps=20 format=4 uid="uid://devkxyylu0vj5"]
 
 [ext_resource type="PackedScene" uid="uid://l1nxgrfgq8nb" path="res://main/world/room/room.tscn" id="1_05y2i"]
 [ext_resource type="Texture2D" uid="uid://cq3ux5oyduwxm" path="res://main/world/room/library/library.png" id="2_6qvna"]
@@ -7,6 +7,13 @@
 [ext_resource type="PackedScene" uid="uid://dluf4cko6obhr" path="res://main/world/door/door.tscn" id="4_eujgv"]
 [ext_resource type="Script" path="res://main/world/room/library/follow_light.gd" id="4_n0wyy"]
 [ext_resource type="Texture2D" uid="uid://wlv2lathgymm" path="res://main/world/door/door3.png" id="5_b8id0"]
+[ext_resource type="PackedScene" uid="uid://cg3g3jc2fvwf2" path="res://main/world/character/enemy/glitch/glitch.tscn" id="6_4tpqx"]
+[ext_resource type="PackedScene" uid="uid://cqafcuvue16mc" path="res://main/battle/ui/battle_background/darkness/darkness.tscn" id="7_xi1sb"]
+[ext_resource type="PackedScene" uid="uid://22vjtu3tgufg" path="res://main/battle/fighter/vyrm/vyrm.tscn" id="8_axv8i"]
+[ext_resource type="AudioStream" uid="uid://ca7e6qxjcg40j" path="res://main/music/dream_fight.ogg" id="8_baj5u"]
+[ext_resource type="PackedScene" uid="uid://7earauqwa6xa" path="res://main/battle/fighter/pooka/pooka.tscn" id="8_jka78"]
+[ext_resource type="Script" path="res://main/world/character/enemy/encounter.gd" id="9_hdat2"]
+[ext_resource type="PackedScene" uid="uid://cmyfrh6j55ulb" path="res://main/world/item_pickup/item_pickup.tscn" id="12_gj715"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nvde0"]
 texture = ExtResource("2_6qvna")
@@ -76,6 +83,27 @@ tile_size = Vector2i(9, 9)
 physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_nvde0")
+
+[sub_resource type="Resource" id="Resource_vraiy"]
+script = ExtResource("9_hdat2")
+fighters = Array[PackedScene]([ExtResource("8_jka78"), ExtResource("8_axv8i")])
+background = ExtResource("7_xi1sb")
+music = ExtResource("8_baj5u")
+xp_drop = 25
+
+[sub_resource type="Resource" id="Resource_o35kw"]
+script = ExtResource("9_hdat2")
+fighters = Array[PackedScene]([ExtResource("8_jka78"), ExtResource("8_axv8i"), ExtResource("8_jka78")])
+background = ExtResource("7_xi1sb")
+music = ExtResource("8_baj5u")
+xp_drop = 35
+
+[sub_resource type="Resource" id="Resource_jcofl"]
+script = ExtResource("9_hdat2")
+fighters = Array[PackedScene]([ExtResource("8_jka78"), ExtResource("8_axv8i"), ExtResource("8_jka78"), ExtResource("8_axv8i")])
+background = ExtResource("7_xi1sb")
+music = ExtResource("8_baj5u")
+xp_drop = 60
 
 [node name="Library" instance=ExtResource("1_05y2i")]
 
@@ -399,10 +427,128 @@ target_room = "library"
 target_anchor = "G2"
 out_direction = "down"
 
+[node name="Glitch" parent="Characters/Enemies" index="0" instance=ExtResource("6_4tpqx")]
+position = Vector2(90, 54)
+encounter = SubResource("Resource_vraiy")
+move_time = 0.23
+
+[node name="Glitch2" parent="Characters/Enemies" index="1" instance=ExtResource("6_4tpqx")]
+position = Vector2(90, 198)
+encounter = SubResource("Resource_o35kw")
+move_time = 0.23
+
+[node name="Glitch9" parent="Characters/Enemies" index="2" instance=ExtResource("6_4tpqx")]
+position = Vector2(522, 342)
+encounter = SubResource("Resource_o35kw")
+move_time = 0.23
+
+[node name="Glitch10" parent="Characters/Enemies" index="3" instance=ExtResource("6_4tpqx")]
+position = Vector2(918, 63)
+encounter = SubResource("Resource_o35kw")
+move_time = 0.23
+
+[node name="Glitch5" parent="Characters/Enemies" index="4" instance=ExtResource("6_4tpqx")]
+position = Vector2(540, 486)
+encounter = SubResource("Resource_o35kw")
+move_time = 0.23
+
+[node name="Glitch6" parent="Characters/Enemies" index="5" instance=ExtResource("6_4tpqx")]
+position = Vector2(594, 63)
+encounter = SubResource("Resource_o35kw")
+move_time = 0.23
+
+[node name="Glitch7" parent="Characters/Enemies" index="6" instance=ExtResource("6_4tpqx")]
+position = Vector2(963, 495)
+encounter = SubResource("Resource_jcofl")
+move_time = 0.23
+
+[node name="Glitch8" parent="Characters/Enemies" index="7" instance=ExtResource("6_4tpqx")]
+position = Vector2(954, 342)
+encounter = SubResource("Resource_jcofl")
+move_time = 0.23
+
+[node name="Glitch3" parent="Characters/Enemies" index="8" instance=ExtResource("6_4tpqx")]
+position = Vector2(198, 342)
+encounter = SubResource("Resource_vraiy")
+move_time = 0.23
+
+[node name="Glitch4" parent="Characters/Enemies" index="9" instance=ExtResource("6_4tpqx")]
+position = Vector2(981, 198)
+encounter = SubResource("Resource_vraiy")
+move_time = 0.23
+
+[node name="Glitch11" parent="Characters/Enemies" index="10" instance=ExtResource("6_4tpqx")]
+position = Vector2(612, 207)
+encounter = SubResource("Resource_vraiy")
+move_time = 0.23
+
+[node name="Glitch12" parent="Characters/Enemies" index="11" instance=ExtResource("6_4tpqx")]
+position = Vector2(639, 342)
+encounter = SubResource("Resource_vraiy")
+move_time = 0.23
+
+[node name="Glitch13" parent="Characters/Enemies" index="12" instance=ExtResource("6_4tpqx")]
+position = Vector2(144, 360)
+encounter = SubResource("Resource_vraiy")
+move_time = 0.23
+
+[node name="Glitch14" parent="Characters/Enemies" index="13" instance=ExtResource("6_4tpqx")]
+position = Vector2(1044, 63)
+encounter = SubResource("Resource_vraiy")
+move_time = 0.23
+
+[node name="Glitch15" parent="Characters/Enemies" index="14" instance=ExtResource("6_4tpqx")]
+position = Vector2(1053, 342)
+encounter = SubResource("Resource_vraiy")
+move_time = 0.23
+
+[node name="Glitch16" parent="Characters/Enemies" index="15" instance=ExtResource("6_4tpqx")]
+position = Vector2(513, 54)
+encounter = SubResource("Resource_vraiy")
+move_time = 0.23
+
+[node name="Glitch17" parent="Characters/Enemies" index="16" instance=ExtResource("6_4tpqx")]
+position = Vector2(621, 486)
+encounter = SubResource("Resource_vraiy")
+move_time = 0.23
+
+[node name="ItemPickup" parent="Items" index="0" instance=ExtResource("12_gj715")]
+position = Vector2(216, 198)
+item = "vitamin"
+
+[node name="ItemPickup2" parent="Items" index="1" instance=ExtResource("12_gj715")]
+position = Vector2(243, 198)
+item = "tofu"
+
+[node name="ItemPickup3" parent="Items" index="2" instance=ExtResource("12_gj715")]
+position = Vector2(891, 342)
+item = "spider"
+
+[node name="ItemPickup4" parent="Items" index="3" instance=ExtResource("12_gj715")]
+position = Vector2(918, 342)
+item = "tnt"
+
+[node name="ItemPickup5" parent="Items" index="4" instance=ExtResource("12_gj715")]
+position = Vector2(1062, 198)
+item = "tofu"
+
+[node name="ItemPickup6" parent="Items" index="5" instance=ExtResource("12_gj715")]
+position = Vector2(1089, 198)
+item = "tofu"
+
+[node name="ItemPickup7" parent="Items" index="6" instance=ExtResource("12_gj715")]
+position = Vector2(459, 342)
+item = "tofu"
+
+[node name="ItemPickup8" parent="Items" index="7" instance=ExtResource("12_gj715")]
+position = Vector2(486, 342)
+item = "tofu"
+
 [node name="BottomRight" parent="." index="10"]
 position = Vector2(1152, 513)
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="." index="11"]
+visible = false
 energy = 0.8
 blend_mode = 1
 

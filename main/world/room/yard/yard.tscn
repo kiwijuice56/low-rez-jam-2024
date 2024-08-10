@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://drlekbtdwxhhv"]
+[gd_scene load_steps=31 format=3 uid="uid://drlekbtdwxhhv"]
 
 [ext_resource type="PackedScene" uid="uid://l1nxgrfgq8nb" path="res://main/world/room/room.tscn" id="1_m8l7j"]
 [ext_resource type="Texture2D" uid="uid://dmto86uky6mhu" path="res://main/world/room/yard/yard.png" id="2_khvov"]
@@ -20,6 +20,7 @@
 [ext_resource type="AudioStream" uid="uid://0psrk4ddju2r" path="res://main/music/salad_slaughter.ogg" id="12_rxohe"]
 [ext_resource type="Script" path="res://main/world/character/enemy/encounter.gd" id="13_jhem2"]
 [ext_resource type="PackedScene" uid="uid://boqbh73x2haen" path="res://main/battle/fighter/kevin/kevin.tscn" id="13_u0lwa"]
+[ext_resource type="AudioStream" uid="uid://dvbbxrlwrwbfl" path="res://main/music/mindful_killing.ogg" id="16_026ae"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_pe161"]
 
@@ -41,7 +42,7 @@ shader_parameter/waveyness = 8.14
 shader_parameter/fragmentation = 9.0
 shader_parameter/distortion = 0.37
 shader_parameter/clouds_alpha = 0.5
-shader_parameter/movement = 1.0
+shader_parameter/movement = 1.2
 shader_parameter/blur = 1.4
 shader_parameter/blur2 = 0.01
 shader_parameter/palette = ExtResource("3_lkidn")
@@ -92,7 +93,7 @@ xp_drop = 15
 script = ExtResource("13_jhem2")
 fighters = Array[PackedScene]([ExtResource("13_u0lwa")])
 background = ExtResource("11_cd6yv")
-music = ExtResource("12_rxohe")
+music = ExtResource("16_026ae")
 xp_drop = 10
 
 [node name="Yard" instance=ExtResource("1_m8l7j")]
@@ -178,6 +179,31 @@ encounter = SubResource("Resource_5d5mn")
 
 [node name="Gel7" parent="Characters/Enemies" index="6" instance=ExtResource("10_o8kc7")]
 position = Vector2(243, 432)
+movement = true
+encounter = SubResource("Resource_5jc6g")
+
+[node name="Gel8" parent="Characters/Enemies" index="7" instance=ExtResource("10_o8kc7")]
+position = Vector2(243, 324)
+movement = true
+encounter = SubResource("Resource_5jc6g")
+
+[node name="Gel9" parent="Characters/Enemies" index="8" instance=ExtResource("10_o8kc7")]
+position = Vector2(18, 459)
+movement = true
+encounter = SubResource("Resource_5jc6g")
+
+[node name="Gel10" parent="Characters/Enemies" index="9" instance=ExtResource("10_o8kc7")]
+position = Vector2(369, 306)
+movement = true
+encounter = SubResource("Resource_5jc6g")
+
+[node name="Gel11" parent="Characters/Enemies" index="10" instance=ExtResource("10_o8kc7")]
+position = Vector2(261, 180)
+movement = true
+encounter = SubResource("Resource_5jc6g")
+
+[node name="Gel12" parent="Characters/Enemies" index="11" instance=ExtResource("10_o8kc7")]
+position = Vector2(396, 180)
 movement = true
 encounter = SubResource("Resource_5jc6g")
 

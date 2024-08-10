@@ -26,6 +26,7 @@ encounter = null
 requires_interact = false
 conversation = Array[ExtResource("3_1qsro")]([])
 death_conversation = Array[ExtResource("3_1qsro")]([])
+move_time = 1.2
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("3_ns7hg")

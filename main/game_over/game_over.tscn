@@ -18,15 +18,15 @@ shader_parameter/polar_center = Vector2(0.5, 0.5)
 shader_parameter/polar_zoom = 1.0
 shader_parameter/polar_repeat = 1.0
 shader_parameter/spin_rotation = null
-shader_parameter/spin_speed = 16.0
+shader_parameter/spin_speed = 10.26
 shader_parameter/offset = Vector2(0, 0)
-shader_parameter/colour_1 = Color(0.304462, 0.304462, 0.304462, 1)
+shader_parameter/colour_1 = Color(0.277528, 0.277528, 0.277528, 1)
 shader_parameter/colour_2 = Color(0, 0, 0, 1)
 shader_parameter/colour_3 = Color(1, 1, 1, 1)
 shader_parameter/contrast = 0.17
-shader_parameter/spin_amount = 0.71
-shader_parameter/pixel_filter = 512.0
-shader_parameter/palette_size = 9
+shader_parameter/spin_amount = 0.51
+shader_parameter/pixel_filter = 1024.0
+shader_parameter/palette_size = 7
 shader_parameter/palette = ExtResource("2_ujmc1")
 
 [sub_resource type="Animation" id="Animation_nc3tq"]

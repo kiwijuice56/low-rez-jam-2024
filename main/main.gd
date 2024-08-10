@@ -1,6 +1,7 @@
 class_name Main extends Node
 
 func _ready() -> void:
+	randomize()
 	Ref.world.is_paused = true
 	start()
 

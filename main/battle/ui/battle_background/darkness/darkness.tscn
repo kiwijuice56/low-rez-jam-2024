@@ -1,0 +1,50 @@
+[gd_scene load_steps=9 format=3 uid="uid://cqafcuvue16mc"]
+
+[ext_resource type="PackedScene" uid="uid://b288lnsycyf2m" path="res://main/battle/ui/battle_background/battle_background.tscn" id="1_xalt7"]
+[ext_resource type="Shader" path="res://main/battle/ui/battle_background/background_image_wave.gdshader" id="2_w4yv2"]
+[ext_resource type="Texture2D" uid="uid://duig11rt8jtcp" path="res://main/theme/palette_dark.png" id="3_dhbuf"]
+[ext_resource type="Texture2D" uid="uid://d1u4mbnfmrseq" path="res://main/battle/ui/battle_background/textures/grid_diagonal.png" id="4_qjnw2"]
+[ext_resource type="Texture2D" uid="uid://bkun1agq8ikk2" path="res://main/battle/ui/battle_background/textures/big_dots.png" id="5_u6654"]
+[ext_resource type="Texture2D" uid="uid://emchhlwgswks" path="res://main/battle/ui/battle_background/textures/square.png" id="6_yck3m"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_305yy"]
+shader = ExtResource("2_w4yv2")
+shader_parameter/palette_size = 11
+shader_parameter/idx_1 = 0
+shader_parameter/idx_2 = 1
+shader_parameter/idx_3 = 2
+shader_parameter/idx_4 = 3
+shader_parameter/speed_a = -0.07
+shader_parameter/speed_b = 0.05
+shader_parameter/speed_c = 0.2
+shader_parameter/wave_a = -0.485
+shader_parameter/wave_b = -0.32
+shader_parameter/palette = ExtResource("3_dhbuf")
+shader_parameter/tex_a = ExtResource("5_u6654")
+shader_parameter/tex_b = ExtResource("5_u6654")
+shader_parameter/tex_c = ExtResource("5_u6654")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lmvpm"]
+shader = ExtResource("2_w4yv2")
+shader_parameter/palette_size = 11
+shader_parameter/idx_1 = 3
+shader_parameter/idx_2 = 4
+shader_parameter/idx_3 = 5
+shader_parameter/idx_4 = 6
+shader_parameter/speed_a = -0.1
+shader_parameter/speed_b = 0.05
+shader_parameter/speed_c = 0.2
+shader_parameter/wave_a = 0.6
+shader_parameter/wave_b = -0.025
+shader_parameter/palette = ExtResource("3_dhbuf")
+shader_parameter/tex_a = ExtResource("5_u6654")
+shader_parameter/tex_b = ExtResource("4_qjnw2")
+shader_parameter/tex_c = ExtResource("6_yck3m")
+
+[node name="DarknessBattleBackground" instance=ExtResource("1_xalt7")]
+
+[node name="Top" parent="." index="0"]
+material = SubResource("ShaderMaterial_305yy")
+
+[node name="Bottom" parent="." index="1"]
+material = SubResource("ShaderMaterial_lmvpm")

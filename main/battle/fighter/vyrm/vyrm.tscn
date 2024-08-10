@@ -1,23 +1,22 @@
-[gd_scene load_steps=14 format=3 uid="uid://22vjtu3tgufg"]
+[gd_scene load_steps=13 format=3 uid="uid://22vjtu3tgufg"]
 
 [ext_resource type="PackedScene" uid="uid://bnbb4opeecksl" path="res://main/battle/fighter/fighter.tscn" id="1_jp2h0"]
 [ext_resource type="Script" path="res://main/battle/fighter/fighter_stats/fighter_stats.gd" id="2_kuo2x"]
 [ext_resource type="PackedScene" uid="uid://cuko56w08yuso" path="res://main/battle/action/action.tscn" id="3_kfbo0"]
-[ext_resource type="PackedScene" uid="uid://cp1oupuymf0u8" path="res://main/battle/action/battle_animation/elec/elec_flash.tscn" id="4_ai7q6"]
-[ext_resource type="PackedScene" uid="uid://bt0t88dexj4lo" path="res://main/battle/action/battle_animation/elec/elec.tscn" id="5_ysmkr"]
+[ext_resource type="PackedScene" uid="uid://f41op1oyfhgd" path="res://main/battle/action/battle_animation/status/debuff.tscn" id="4_6ludj"]
 [ext_resource type="Texture2D" uid="uid://hp3ee2qo1ppq" path="res://main/battle/fighter/vyrm/shadow.png" id="6_hn2sb"]
 [ext_resource type="Shader" path="res://main/battle/fighter/flash.gdshader" id="7_jn7lu"]
 [ext_resource type="Texture2D" uid="uid://d2vkxbotddi2k" path="res://main/battle/fighter/vyrm/vyrm.png" id="8_3yye0"]
 
-[sub_resource type="Resource" id="Resource_0mx5o"]
+[sub_resource type="Resource" id="Resource_3edel"]
 script = ExtResource("2_kuo2x")
 unlocked = true
-max_hp = 20
+max_hp = 30
 max_tp = 15
 strength = 1
 magic = 1
-defence = 3
-luck = 3
+defence = 5
+luck = 9
 unlocked_skills = Array[int]([])
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cemna"]
@@ -70,16 +69,21 @@ _data = {
 }
 
 [node name="Vyrm" instance=ExtResource("1_jp2h0")]
-stats = SubResource("Resource_0mx5o")
+stats = SubResource("Resource_3edel")
 
-[node name="Bam" parent="Actions/Skills" index="0" instance=ExtResource("3_kfbo0")]
+[node name="Stunna" parent="Actions/Skills" index="0" instance=ExtResource("3_kfbo0")]
 description = "a killa move"
-use_text = "%s shocks you!"
-power = 1.0
-attack_stat = "magic"
-target_amount = "All"
+use_text = "%s stuns you!"
 hit_amount_max = 1
-animations = Array[PackedScene]([ExtResource("4_ai7q6"), ExtResource("5_ysmkr")])
+status_effects = Array[String](["Stun"])
+animations = Array[PackedScene]([ExtResource("4_6ludj")])
+
+[node name="Oila" parent="Actions/Skills" index="1" instance=ExtResource("3_kfbo0")]
+description = "a killa move"
+use_text = "%s spits oil!"
+hit_amount_max = 1
+status_effects = Array[String](["Oily"])
+animations = Array[PackedScene]([ExtResource("4_6ludj")])
 
 [node name="Attack" parent="Actions" index="1"]
 use_text = "%s cuts you!"
