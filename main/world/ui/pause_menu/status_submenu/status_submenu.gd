@@ -9,6 +9,7 @@ signal advanced
 
 func _ready() -> void:
 	visible = false
+	%SoulText.visible = false
 	set_process_input(false)
 
 func _input(event: InputEvent) -> void:
@@ -25,6 +26,8 @@ func _input(event: InputEvent) -> void:
 			advanced.emit()
 
 func display_fighter_status(fighter: Fighter) -> void:
+	%PanelContainer.visible = true
+	%PanelContainer2.visible = false
 	%FighterNameLabel.text = fighter.name
 	%InfoLabel.text = "stats"
 	%FighterIcon.texture = fighter.get_node("%Sprite2D").texture
@@ -35,7 +38,26 @@ func display_fighter_status(fighter: Fighter) -> void:
 	%DefValLabel.text = str(fighter.stats.defence)
 	%LucValLabel.text = str(fighter.stats.luck)
 
+func display_drops(soul_count: int) -> void:
+	%PanelContainer.visible = false
+	%PanelContainer2.visible = true
+	
+	%DropLabel.text = "the %s\ndropped:" % ["hooligans", "ruffians", "vandals", "foes", "wise guys"].pick_random()
+	%SoulText.get_node("%Label").text = str(soul_count)
+	
+	await enter()
+	%SoulText.visible = true
+	can_advance = true
+	%Flicker.flicker()
+	await advanced
+	can_advance = false
+	%Flicker.stop() 
+	%SoulText.visible = false
+	await exit()
+
 func display_level_ups(level_up_amount: int) -> void:
+	%PanelContainer.visible = true
+	%PanelContainer2.visible = false
 	for i in range(Ref.player_party.get_child_count()):
 		var fighter: Fighter = Ref.player_party.get_child(i)
 		

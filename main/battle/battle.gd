@@ -135,6 +135,10 @@ func battle(encounter: Encounter) -> bool:
 		await Ref.game_over.game_over()
 	else:
 		await start_music(preload("res://main/music/battle_win.ogg"))
+		
+		Data.set_state("souls", Data.get_state("souls", 0) + len(encounter.fighters))
+		await %StatusSubmenu.display_drops(len(encounter.fighters))
+		
 		# level up stuffs
 		%LevelSubmenu.mode = "level up"
 		await %LevelSubmenu.enter()
@@ -160,7 +164,7 @@ func battle(encounter: Encounter) -> bool:
 	if lose:
 		Ref.world.load_room("hell_fall", "Default", false)
 	else:
-		Data.set_state("souls", Data.get_state("souls", 0) + len(encounter.fighters))
+		
 		await Ref.world.loaded_room.resume_music()
 		await Ref.transition.trans_out()
 	
