@@ -134,6 +134,14 @@ encounter = SubResource("Resource_werbo")
 position = Vector2(243, 63)
 encounter = SubResource("Resource_x1o4o")
 
+[node name="Mole5" parent="Characters/Enemies" index="4" instance=ExtResource("4_eyqeb")]
+position = Vector2(171, 27)
+encounter = SubResource("Resource_x1o4o")
+
+[node name="Mole6" parent="Characters/Enemies" index="5" instance=ExtResource("4_eyqeb")]
+position = Vector2(225, 180)
+encounter = SubResource("Resource_x1o4o")
+
 [node name="BubblebearFriend" parent="Characters/Friends" index="0" instance=ExtResource("4_88t8m")]
 position = Vector2(162, 99)
 conversation = Array[ExtResource("5_t3t31")]([SubResource("Resource_be8qk")])

@@ -67,7 +67,7 @@ func level_up() -> void:
 	fake_xp_f = 0
 
 func get_xp_goal(level: int) -> int:
-	return int(15 + pow(level / 99.0, 1.1) * 985)
+	return int(pow((level + 5) / 30.0, 2) * 985) - 15
 
 func battle_end_sequence(xp_gained: int) -> int:
 	var level_ups: int = 0

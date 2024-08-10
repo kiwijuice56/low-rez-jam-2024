@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://clllf748m0mk8"]
+[gd_scene load_steps=26 format=4 uid="uid://clllf748m0mk8"]
 
 [ext_resource type="PackedScene" uid="uid://l1nxgrfgq8nb" path="res://main/world/room/room.tscn" id="1_1qyb5"]
 [ext_resource type="Texture2D" uid="uid://cfp1jxkknqfrd" path="res://main/world/room/fog/fog.png" id="2_82yx1"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cji0l1gqvgiig" path="res://main/battle/fighter/fishy/fishy.tscn" id="9_t6uka"]
 [ext_resource type="Script" path="res://main/world/character/enemy/encounter.gd" id="10_fx4tp"]
 [ext_resource type="AudioStream" uid="uid://0psrk4ddju2r" path="res://main/music/salad_slaughter.ogg" id="11_tk5q0"]
+[ext_resource type="PackedScene" uid="uid://boqbh73x2haen" path="res://main/battle/fighter/kevin/kevin.tscn" id="13_apq7g"]
 [ext_resource type="PackedScene" uid="uid://2jqssskou7ha" path="res://main/battle/fighter/chi/chi.tscn" id="13_cmgcv"]
 [ext_resource type="PackedScene" uid="uid://cmyfrh6j55ulb" path="res://main/world/item_pickup/item_pickup.tscn" id="13_jhhpn"]
 
@@ -50,6 +51,14 @@ shader_parameter/noise = SubResource("NoiseTexture2D_56lf5")
 script = ExtResource("10_fx4tp")
 boss = false
 fighters = Array[PackedScene]([ExtResource("8_lhbnb"), ExtResource("9_t6uka"), ExtResource("8_lhbnb"), ExtResource("9_t6uka")])
+background = ExtResource("8_uth20")
+music = ExtResource("11_tk5q0")
+xp_drop = 50
+
+[sub_resource type="Resource" id="Resource_phfde"]
+script = ExtResource("10_fx4tp")
+boss = false
+fighters = Array[PackedScene]([ExtResource("8_lhbnb"), ExtResource("9_t6uka"), ExtResource("13_apq7g"), ExtResource("9_t6uka")])
 background = ExtResource("8_uth20")
 music = ExtResource("11_tk5q0")
 xp_drop = 50
@@ -125,7 +134,7 @@ move_time = 0.8
 [node name="Gel3" parent="Characters/Enemies" index="2" instance=ExtResource("7_1cq8j")]
 position = Vector2(252, 126)
 movement = true
-encounter = SubResource("Resource_o6dui")
+encounter = SubResource("Resource_phfde")
 move_time = 0.8
 
 [node name="Gel4" parent="Characters/Enemies" index="3" instance=ExtResource("7_1cq8j")]

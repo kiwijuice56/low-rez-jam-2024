@@ -1,0 +1,53 @@
+[gd_scene load_steps=10 format=3 uid="uid://jwdebfkbma4w"]
+
+[ext_resource type="PackedScene" uid="uid://l1nxgrfgq8nb" path="res://main/world/room/room.tscn" id="1_p4q8s"]
+[ext_resource type="Shader" path="res://main/world/room/bubbles/bubbles.gdshader" id="2_3a7ha"]
+[ext_resource type="AudioStream" uid="uid://5groh412ocx5" path="res://main/music/bubbles.ogg" id="2_luq3m"]
+[ext_resource type="Texture2D" uid="uid://be0se47pgvbrp" path="res://main/world/room/yard/background.png" id="3_btnyj"]
+[ext_resource type="PackedScene" uid="uid://dluf4cko6obhr" path="res://main/world/door/door.tscn" id="5_2k4sd"]
+[ext_resource type="Texture2D" uid="uid://dqf5p8oyev3ar" path="res://main/world/door/door2.png" id="6_jhtf5"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_2b8fy"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bwhlg"]
+width = 1024
+height = 1024
+noise = SubResource("FastNoiseLite_2b8fy")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i14vy"]
+shader = ExtResource("2_3a7ha")
+shader_parameter/separation = 0.05
+shader_parameter/radius = 0.02
+shader_parameter/min_thick = 0.205
+shader_parameter/speed = 0.01
+shader_parameter/tilt_45 = true
+shader_parameter/direction = -45.0
+shader_parameter/color1 = Color(0.329412, 0.301961, 0.415686, 1)
+shader_parameter/color2 = Color(0.207843, 0.258824, 0.352941, 1)
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_bwhlg")
+
+[node name="Bubbles" instance=ExtResource("1_p4q8s")]
+
+[node name="MusicPlayer" parent="." index="0"]
+stream = ExtResource("2_luq3m")
+volume_db = -9.0
+
+[node name="Background" type="Sprite2D" parent="." index="3"]
+material = SubResource("ShaderMaterial_i14vy")
+texture = ExtResource("3_btnyj")
+centered = false
+
+[node name="Default" parent="Anchors" index="0"]
+position = Vector2(9, 9)
+
+[node name="Desert" type="Marker2D" parent="Anchors" index="1"]
+position = Vector2(99, 126)
+
+[node name="Door" parent="Doors" index="0" instance=ExtResource("5_2k4sd")]
+position = Vector2(99, 117)
+door_sprite = ExtResource("6_jhtf5")
+target_room = "desert"
+target_anchor = "Bubbles"
+
+[node name="BottomRight" parent="." index="10"]
+position = Vector2(360, 360)

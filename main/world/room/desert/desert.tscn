@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://co27gf7bu6oov"]
+[gd_scene load_steps=38 format=4 uid="uid://co27gf7bu6oov"]
 
 [ext_resource type="PackedScene" uid="uid://l1nxgrfgq8nb" path="res://main/world/room/room.tscn" id="1_7wyiw"]
 [ext_resource type="TileSet" uid="uid://csjvfnwqldtbt" path="res://main/world/room/dust/dust_tiles.tres" id="2_e2uiu"]
@@ -10,6 +10,21 @@
 [ext_resource type="PackedScene" uid="uid://cmyfrh6j55ulb" path="res://main/world/item_pickup/item_pickup.tscn" id="7_ardn0"]
 [ext_resource type="PackedScene" uid="uid://2v5pamdilluu" path="res://main/world/room/desert/clouds.tscn" id="7_e160b"]
 [ext_resource type="Texture2D" uid="uid://wlv2lathgymm" path="res://main/world/door/door3.png" id="8_n7fdm"]
+[ext_resource type="PackedScene" uid="uid://cvp6myaerl4io" path="res://main/world/character/friend/bubblebear/bubblebear_friend.tscn" id="9_orvem"]
+[ext_resource type="PackedScene" uid="uid://de1ffxsa88gnu" path="res://main/world/character/enemy/mole/mole.tscn" id="9_q6d8b"]
+[ext_resource type="PackedScene" uid="uid://ingpp247yeyh" path="res://main/battle/ui/battle_background/watermelon/watermelon_battle_background.tscn" id="10_57m84"]
+[ext_resource type="AudioStream" uid="uid://0psrk4ddju2r" path="res://main/music/salad_slaughter.ogg" id="10_ff5mq"]
+[ext_resource type="Script" path="res://main/world/ui/text_box/dialogue/dialogue.gd" id="10_xa656"]
+[ext_resource type="PackedScene" uid="uid://mtfyi36dglst" path="res://main/battle/fighter/mole/mole.tscn" id="10_ywd0k"]
+[ext_resource type="Script" path="res://main/world/character/enemy/encounter.gd" id="11_53fe2"]
+[ext_resource type="Resource" uid="uid://g1ggpsdd0uo0" path="res://main/world/ui/text_box/speakers/bubblebear/bubblebear_speaker.tres" id="11_bj7tx"]
+[ext_resource type="PackedScene" uid="uid://cenob0i1xn0s7" path="res://main/battle/fighter/rat/rat.tscn" id="11_yus1q"]
+[ext_resource type="PackedScene" uid="uid://dss8xllp16ftb" path="res://main/battle/fighter/orb/orb.tscn" id="12_4tjuf"]
+[ext_resource type="PackedScene" uid="uid://ctahsmjqta2d6" path="res://main/world/character/enemy/gel/gel.tscn" id="16_mbioh"]
+[ext_resource type="PackedScene" uid="uid://c7cfirjgacf35" path="res://main/battle/fighter/slime/slime.tscn" id="17_5odxy"]
+[ext_resource type="PackedScene" uid="uid://cji0l1gqvgiig" path="res://main/battle/fighter/fishy/fishy.tscn" id="18_2hbtr"]
+[ext_resource type="PackedScene" uid="uid://7earauqwa6xa" path="res://main/battle/fighter/pooka/pooka.tscn" id="19_52x3f"]
+[ext_resource type="AudioStream" uid="uid://dvbbxrlwrwbfl" path="res://main/music/mindful_killing.ogg" id="20_vog25"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_omkhi"]
 texture = ExtResource("2_rjeeq")
@@ -48,6 +63,65 @@ texture_region_size = Vector2i(9, 9)
 [sub_resource type="TileSet" id="TileSet_ndemx"]
 tile_size = Vector2i(9, 9)
 sources/1 = SubResource("TileSetAtlasSource_2yc2c")
+
+[sub_resource type="Resource" id="Resource_2vohx"]
+script = ExtResource("11_53fe2")
+boss = false
+fighters = Array[PackedScene]([ExtResource("10_ywd0k"), ExtResource("11_yus1q"), ExtResource("12_4tjuf"), ExtResource("11_yus1q")])
+background = ExtResource("10_57m84")
+music = ExtResource("10_ff5mq")
+xp_drop = 100
+
+[sub_resource type="Resource" id="Resource_4xyiq"]
+script = ExtResource("11_53fe2")
+boss = false
+fighters = Array[PackedScene]([ExtResource("10_ywd0k"), ExtResource("11_yus1q"), ExtResource("12_4tjuf"), ExtResource("11_yus1q"), ExtResource("12_4tjuf")])
+background = ExtResource("10_57m84")
+music = ExtResource("10_ff5mq")
+xp_drop = 130
+
+[sub_resource type="Resource" id="Resource_5st5o"]
+script = ExtResource("11_53fe2")
+boss = false
+fighters = Array[PackedScene]([ExtResource("17_5odxy"), ExtResource("12_4tjuf"), ExtResource("18_2hbtr"), ExtResource("19_52x3f")])
+background = ExtResource("10_57m84")
+music = ExtResource("20_vog25")
+xp_drop = 70
+
+[sub_resource type="Resource" id="Resource_bdxxb"]
+script = ExtResource("10_xa656")
+speaker = ExtResource("11_bj7tx")
+text = "sigh..._ smells like warm hedge hogs"
+speed = "Normal"
+volume_db = 0.0
+
+[sub_resource type="Resource" id="Resource_t06sx"]
+script = ExtResource("10_xa656")
+speaker = ExtResource("11_bj7tx")
+text = "are you lost?_ me too!"
+speed = "Normal"
+volume_db = 0.0
+
+[sub_resource type="Resource" id="Resource_lt1oo"]
+script = ExtResource("10_xa656")
+speaker = ExtResource("11_bj7tx")
+text = "i am bleeding internally :("
+speed = "Normal"
+volume_db = 0.0
+
+[sub_resource type="Resource" id="Resource_ar1us"]
+script = ExtResource("10_xa656")
+speaker = ExtResource("11_bj7tx")
+text = "you found me!"
+speed = "Normal"
+volume_db = 0.0
+
+[sub_resource type="Resource" id="Resource_6oa18"]
+script = ExtResource("10_xa656")
+speaker = ExtResource("11_bj7tx")
+text = "only 3092 bubble bears to go!"
+speed = "Normal"
+volume_db = 0.0
 
 [node name="Desert" instance=ExtResource("1_7wyiw")]
 
@@ -88,7 +162,10 @@ position = Vector2(225, 405)
 [node name="Door3" type="Marker2D" parent="Anchors" index="2"]
 position = Vector2(279, 405)
 
-[node name="Library" type="Marker2D" parent="Anchors" index="3"]
+[node name="Bubbles" type="Marker2D" parent="Anchors" index="3"]
+position = Vector2(252, 189)
+
+[node name="Library" type="Marker2D" parent="Anchors" index="4"]
 position = Vector2(0, 144)
 
 [node name="Door" parent="Doors" index="0" instance=ExtResource("5_13yau")]
@@ -116,6 +193,80 @@ target_room = "library"
 target_anchor = "J0"
 out_direction = "down"
 
+[node name="Door5" parent="Doors" index="4" instance=ExtResource("5_13yau")]
+position = Vector2(252, 180)
+door_sprite = ExtResource("7_0p7tm")
+target_room = "bubbles"
+target_anchor = "Desert"
+out_direction = "down"
+
+[node name="Mole" parent="Characters/Enemies" index="0" instance=ExtResource("9_q6d8b")]
+position = Vector2(72, 243)
+encounter = SubResource("Resource_2vohx")
+
+[node name="Mole2" parent="Characters/Enemies" index="1" instance=ExtResource("9_q6d8b")]
+position = Vector2(324, 135)
+encounter = SubResource("Resource_2vohx")
+
+[node name="Mole3" parent="Characters/Enemies" index="2" instance=ExtResource("9_q6d8b")]
+position = Vector2(162, 153)
+encounter = SubResource("Resource_4xyiq")
+
+[node name="Mole4" parent="Characters/Enemies" index="3" instance=ExtResource("9_q6d8b")]
+position = Vector2(324, 171)
+encounter = SubResource("Resource_4xyiq")
+
+[node name="Gel" parent="Characters/Enemies" index="4" instance=ExtResource("16_mbioh")]
+position = Vector2(108, 117)
+movement = true
+encounter = SubResource("Resource_5st5o")
+
+[node name="Gel2" parent="Characters/Enemies" index="5" instance=ExtResource("16_mbioh")]
+position = Vector2(198, 90)
+movement = true
+encounter = SubResource("Resource_5st5o")
+
+[node name="Gel3" parent="Characters/Enemies" index="6" instance=ExtResource("16_mbioh")]
+position = Vector2(36, 225)
+movement = true
+encounter = SubResource("Resource_5st5o")
+
+[node name="Gel4" parent="Characters/Enemies" index="7" instance=ExtResource("16_mbioh")]
+position = Vector2(162, 207)
+movement = true
+encounter = SubResource("Resource_5st5o")
+
+[node name="Gel5" parent="Characters/Enemies" index="8" instance=ExtResource("16_mbioh")]
+position = Vector2(288, 81)
+movement = true
+encounter = SubResource("Resource_5st5o")
+
+[node name="Gel6" parent="Characters/Enemies" index="9" instance=ExtResource("16_mbioh")]
+position = Vector2(18, 81)
+movement = true
+encounter = SubResource("Resource_5st5o")
+
+[node name="Gel7" parent="Characters/Enemies" index="10" instance=ExtResource("16_mbioh")]
+position = Vector2(180, 45)
+movement = true
+encounter = SubResource("Resource_5st5o")
+
+[node name="BubblebearFriend" parent="Characters/Friends" index="0" instance=ExtResource("9_orvem")]
+position = Vector2(225, 180)
+conversation = Array[ExtResource("10_xa656")]([SubResource("Resource_bdxxb")])
+
+[node name="BubblebearFriend2" parent="Characters/Friends" index="1" instance=ExtResource("9_orvem")]
+position = Vector2(270, 99)
+conversation = Array[ExtResource("10_xa656")]([SubResource("Resource_t06sx")])
+
+[node name="BubblebearFriend3" parent="Characters/Friends" index="2" instance=ExtResource("9_orvem")]
+position = Vector2(18, 45)
+conversation = Array[ExtResource("10_xa656")]([SubResource("Resource_lt1oo")])
+
+[node name="BubblebearFriend4" parent="Characters/Friends" index="3" instance=ExtResource("9_orvem")]
+position = Vector2(450, 153)
+conversation = Array[ExtResource("10_xa656")]([SubResource("Resource_ar1us"), SubResource("Resource_6oa18")])
+
 [node name="ItemPickup" parent="Items" index="0" instance=ExtResource("7_ardn0")]
 position = Vector2(108, 81)
 item = "tofu"
@@ -135,6 +286,10 @@ item = "tnt"
 [node name="ItemPickup3" parent="Items" index="4" instance=ExtResource("7_ardn0")]
 position = Vector2(36, 207)
 item = "tofu"
+
+[node name="ItemPickup6" parent="Items" index="5" instance=ExtResource("7_ardn0")]
+position = Vector2(54, 135)
+item = "stirfry"
 
 [node name="BottomRight" parent="." index="13"]
 position = Vector2(513, 513)

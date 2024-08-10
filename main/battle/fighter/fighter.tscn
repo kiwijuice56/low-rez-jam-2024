@@ -768,7 +768,6 @@ autoplay = "burn"
 speed_scale = 0.6
 
 [node name="Bless" type="Node2D" parent="SpriteHolder/Effects" node_paths=PackedStringArray("action")]
-visible = false
 script = ExtResource("15_mmlcr")
 action = NodePath("BlessAction")
 
@@ -786,7 +785,7 @@ animations = Array[PackedScene]([ExtResource("18_hxygw")])
 position = Vector2(-2, -10)
 texture = ExtResource("19_nkajc")
 centered = false
-offset = Vector2(0, 4)
+offset = Vector2(-1, 4)
 hframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SpriteHolder/Effects/Bless/Sprite2D"]

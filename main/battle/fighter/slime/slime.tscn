@@ -75,6 +75,7 @@ stats = SubResource("Resource_dtryj")
 script = ExtResource("3_sm52p")
 use_text = "%s hyped them!"
 verb = "hype"
+target_group = "Own"
 target_amount = "All"
 hit_amount_max = 1
 status_effects = Array[String](["Cool"])

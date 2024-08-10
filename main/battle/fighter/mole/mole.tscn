@@ -85,6 +85,7 @@ accuracy = 0.7
 [node name="ShadowSprite2D" parent="." index="1"]
 position = Vector2(-1, 0)
 texture = ExtResource("6_1penx")
+offset = Vector2(1, 0)
 
 [node name="Sprite2D" parent="SpriteHolder" index="0"]
 material = SubResource("ShaderMaterial_cemna")
