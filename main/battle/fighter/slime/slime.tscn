@@ -8,15 +8,15 @@
 [ext_resource type="PackedScene" uid="uid://0xh42kb86k8s" path="res://main/battle/action/battle_animation/status/buff.tscn" id="4_0mlia"]
 [ext_resource type="Texture2D" uid="uid://dqkasghqp64we" path="res://main/battle/fighter/slime/shadow.png" id="5_bfxls"]
 
-[sub_resource type="Resource" id="Resource_0mx5o"]
+[sub_resource type="Resource" id="Resource_dtryj"]
 script = ExtResource("2_wtt4c")
 unlocked = true
-max_hp = 1
+max_hp = 25
 max_tp = 15
 strength = 1
 magic = 1
 defence = 3
-luck = 3
+luck = 5
 unlocked_skills = Array[int]([])
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cemna"]
@@ -69,7 +69,7 @@ _data = {
 }
 
 [node name="Slime" instance=ExtResource("1_mylgi")]
-stats = SubResource("Resource_0mx5o")
+stats = SubResource("Resource_dtryj")
 
 [node name="Hype" type="Node2D" parent="Actions/Skills" index="0"]
 script = ExtResource("3_sm52p")
