@@ -7,7 +7,8 @@ class_name Door extends Area2D
 @export_enum("up", "down", "left", "right") var out_direction: String = "up"
 
 func _ready() -> void:
-	%Sprite2D.texture = door_sprite
+	if door_sprite:
+		%Sprite2D.texture = door_sprite
 	if requires_interact:
 		%Interactable.interacted.connect(_on_interacted)
 	else:

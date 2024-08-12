@@ -1,9 +1,31 @@
-[gd_scene load_steps=5 format=3 uid="uid://l1nxgrfgq8nb"]
+[gd_scene load_steps=8 format=3 uid="uid://l1nxgrfgq8nb"]
 
 [ext_resource type="Script" path="res://main/world/room/room.gd" id="1_r1nmq"]
 [ext_resource type="TileSet" uid="uid://c1diaqt5v56hc" path="res://main/world/room/default_tileset.tres" id="1_s5xhh"]
 [ext_resource type="TileSet" uid="uid://dkd1gqwbx0ary" path="res://main/world/room/collision_tileset.tres" id="3_djo6d"]
 [ext_resource type="Script" path="res://main/world/room/collision_layer.gd" id="4_elgek"]
+[ext_resource type="Texture2D" uid="uid://dqlpasc4fatby" path="res://main/world/room/footstep_tiles.png" id="5_sg4fw"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_00ns8"]
+texture = ExtResource("5_sg4fw")
+texture_region_size = Vector2i(9, 9)
+0:0/0 = 0
+1:0/0 = 0
+1:0/0/custom_data_0 = 1
+2:0/0 = 0
+2:0/0/custom_data_0 = 2
+3:0/0 = 0
+3:0/0/custom_data_0 = 3
+0:1/0 = 0
+0:1/0/custom_data_0 = 4
+1:1/0 = 0
+1:1/0/custom_data_0 = 5
+
+[sub_resource type="TileSet" id="TileSet_5j7tk"]
+tile_size = Vector2i(9, 9)
+custom_data_layer_0/name = "floor_type"
+custom_data_layer_0/type = 2
+sources/0 = SubResource("TileSetAtlasSource_00ns8")
 
 [node name="Room" type="Node2D"]
 y_sort_enabled = true
@@ -26,6 +48,11 @@ tile_set = ExtResource("3_djo6d")
 rendering_quadrant_size = 9
 format = 2
 script = ExtResource("4_elgek")
+
+[node name="FootstepLayer" type="TileMapLayer" parent="."]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.14902)
+tile_set = SubResource("TileSet_5j7tk")
 
 [node name="Anchors" type="Node2D" parent="."]
 

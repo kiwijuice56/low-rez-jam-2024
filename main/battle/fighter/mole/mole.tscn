@@ -21,7 +21,7 @@ unlocked_skills = Array[int]([])
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cemna"]
 shader = ExtResource("7_364ra")
-shader_parameter/flash = null
+shader_parameter/flash = Color(0, 0, 0, 1)
 shader_parameter/flash2 = null
 shader_parameter/progress = 0.0
 shader_parameter/meltiness = 1.0
@@ -83,14 +83,13 @@ use_text = "%s bit you!"
 accuracy = 0.7
 
 [node name="ShadowSprite2D" parent="." index="1"]
-position = Vector2(-1, 0)
 texture = ExtResource("6_1penx")
-offset = Vector2(1, 0)
 
 [node name="Sprite2D" parent="SpriteHolder" index="0"]
 material = SubResource("ShaderMaterial_cemna")
-position = Vector2(-3, -8)
+position = Vector2(0, -8)
 texture = ExtResource("8_6wy1v")
+offset = Vector2(-3, 0)
 hframes = 3
 
 [node name="Effects" parent="SpriteHolder" index="1"]

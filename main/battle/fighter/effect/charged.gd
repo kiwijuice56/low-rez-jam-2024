@@ -8,6 +8,7 @@ func apply() -> void:
 
 func remove() -> void:
 	super.remove()
+	$AnimationPlayer.play("RESET")
 	$AnimationPlayer.stop()
 	fighter.added_water_weakness = false
 	fighter.damage_out_multiplier -= 0.25

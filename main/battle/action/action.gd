@@ -11,7 +11,6 @@ const DELAY: float = 0.4
 @export var power: float
 @export var accuracy: float = 1.0
 @export var critical: float = 0.0
-@export var piece: bool = false
 @export var proportion_damage: float = 0
 @export var constant_damage: int = 0
 @export var change_tp: bool = false
@@ -51,9 +50,8 @@ func hit_calculation(user: Fighter, target: Fighter) -> Dictionary:
 	var data: Dictionary = {}
 	
 	if constant_damage == 0:
-		data.damage = power * randf_range(0.8, 1.1) * (6 + user.stats.get(attack_stat))
-		if not piece:
-			data.damage *= 22.0 / (28.0 + target.stats.defence)
+		data.damage = power * randf_range(0.8, 1.1) * (10 + user.stats.get(attack_stat)) / 2.5
+		data.damage *= 8.0 / (10.0 + target.stats.defence)
 	else:
 		data.damage = constant_damage
 	print(data.damage)

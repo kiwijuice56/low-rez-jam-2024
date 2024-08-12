@@ -13,20 +13,20 @@
 [ext_resource type="PackedScene" uid="uid://bp7v78t1p5vil" path="res://main/battle/action/battle_animation/water/water.tscn" id="9_toet6"]
 [ext_resource type="Texture2D" uid="uid://cfbkcaj5pqfp3" path="res://main/battle/action/icons/icon_water.png" id="10_ab8vr"]
 
-[sub_resource type="Resource" id="Resource_5x17d"]
+[sub_resource type="Resource" id="Resource_a7f6o"]
 script = ExtResource("2_3mnsv")
 unlocked = false
 max_hp = 10
 max_tp = 15
 strength = 1
-magic = 8
+magic = 5
 defence = 1
 luck = 2
 unlocked_skills = Array[int]([0, 1, 2])
 
 [node name="Enoch" instance=ExtResource("1_0srf7")]
-stats = SubResource("Resource_5x17d")
-magic_grow = 3
+stats = SubResource("Resource_a7f6o")
+magic_grow = 2
 max_tp_grow = 4
 
 [node name="Recharge" parent="Actions/Skills" index="0" instance=ExtResource("3_7vfs5")]
@@ -47,7 +47,7 @@ icon = ExtResource("4_glad8")
 description = "fire hit to one foe"
 use_text = "%s burns them!"
 verb = "burn"
-tp_cost = 6
+tp_cost = 4
 power = 1.5
 attack_stat = "magic"
 hit_amount_max = 1
@@ -61,7 +61,7 @@ icon = ExtResource("10_ab8vr")
 description = "water hit to one foe"
 use_text = "%s splashes them!"
 verb = "splash"
-tp_cost = 6
+tp_cost = 4
 power = 1.5
 attack_stat = "magic"
 hit_amount_max = 1
@@ -74,7 +74,7 @@ animations = Array[PackedScene]([ExtResource("9_toet6")])
 icon = ExtResource("7_vn2av")
 description = "elec hit to one foe"
 use_text = "%s shocks them!"
-tp_cost = 6
+tp_cost = 4
 power = 1.5
 attack_stat = "magic"
 hit_amount_max = 1
@@ -89,7 +89,7 @@ icon = ExtResource("4_glad8")
 description = "big fire hit to random foes"
 use_text = "%s summons elohim!"
 verb = "burn"
-tp_cost = 10
+tp_cost = 15
 power = 1.5
 attack_stat = "magic"
 target_amount = "Random"
@@ -100,4 +100,4 @@ status_effects = Array[String](["Ablaze"])
 is_fire = true
 animations = Array[PackedScene]([ExtResource("5_8yfxs"), ExtResource("6_f41n6")])
 per_target_delay = 0.3
-soul_cost = 7
+soul_cost = 9

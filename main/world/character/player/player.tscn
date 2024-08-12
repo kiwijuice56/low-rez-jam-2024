@@ -1,9 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://txvddbv8pfiv"]
+[gd_scene load_steps=21 format=3 uid="uid://txvddbv8pfiv"]
 
 [ext_resource type="PackedScene" uid="uid://df7dk7qqm8ylw" path="res://main/world/character/character.tscn" id="1_knbax"]
 [ext_resource type="Script" path="res://main/world/character/player/player.gd" id="2_yial6"]
 [ext_resource type="Texture2D" uid="uid://deuidmn67hldg" path="res://main/world/character/player/player.png" id="3_rme28"]
+[ext_resource type="AudioStream" uid="uid://c1j0vavbp7osf" path="res://main/world/character/player/step_sounds/carpet_step.tres" id="4_75v8r"]
 [ext_resource type="AudioStream" uid="uid://dchsq1hgo1etx" path="res://main/world/character/player/step_sounds/step_default.tres" id="4_tqu2v"]
+[ext_resource type="AudioStream" uid="uid://vvmxpddoxjla" path="res://main/world/character/player/step_sounds/boing_step.tres" id="5_8yi36"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xp0hr"]
 size = Vector2(6, 6)
@@ -220,21 +222,6 @@ _data = {
 "up": SubResource("Animation_coh57")
 }
 
-[sub_resource type="Animation" id="Animation_yvu6u"]
-resource_name = "trans_in"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera2D:zoom")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(8, 8)]
-}
-
 [sub_resource type="Animation" id="Animation_fw1ka"]
 length = 0.001
 tracks/0/type = "value"
@@ -250,6 +237,21 @@ tracks/0/keys = {
 "values": [Vector2(1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_yvu6u"]
+resource_name = "trans_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(8, 8)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yk6pr"]
 _data = {
 "RESET": SubResource("Animation_fw1ka"),
@@ -259,6 +261,8 @@ _data = {
 [node name="Player" instance=ExtResource("1_knbax")]
 collision_layer = 8
 script = ExtResource("2_yial6")
+footstep_sound_index = Array[AudioStream]([ExtResource("4_tqu2v"), ExtResource("4_75v8r"), ExtResource("5_8yi36")])
+volume_offset = Array[float]([-11.0, -12.0, -13.0])
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("3_rme28")
@@ -285,8 +289,8 @@ speed_scale = 6.667
 [node name="StepPlayer" type="AudioStreamPlayer" parent="." index="5"]
 unique_name_in_owner = true
 stream = ExtResource("4_tqu2v")
-volume_db = -11.0
-pitch_scale = 1.25
+volume_db = -10.0
+pitch_scale = 1.3
 bus = &"Sound Effect"
 
 [node name="CameraAnimationPlayer" type="AnimationPlayer" parent="." index="6"]
@@ -294,4 +298,3 @@ unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_yk6pr")
 }
-speed_scale = 2.0

@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 [audio]
 
+general/default_playback_type.web=0
 buses/channel_disable_threshold_db=-80.0
 
 [autoload]
@@ -28,7 +29,6 @@ Data="*res://main/data/data.gd"
 
 [debug]
 
-settings/stdout/print_fps=true
 gdscript/warnings/redundant_await=0
 
 [display]
@@ -38,6 +38,10 @@ window/size/viewport_height=64
 window/size/window_width_override=512
 window/size/window_height_override=512
 window/stretch/mode="viewport"
+
+[dotnet]
+
+project/assembly_name="fractiwi"
 
 [file_customization]
 

@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://balklybs7qbfd"]
+[gd_scene load_steps=12 format=3 uid="uid://balklybs7qbfd"]
 
 [ext_resource type="PackedScene" uid="uid://l1nxgrfgq8nb" path="res://main/world/room/room.tscn" id="1_llg3k"]
 [ext_resource type="Shader" path="res://main/world/room/fractal/fractal.gdshader" id="2_01n8d"]
 [ext_resource type="Texture2D" uid="uid://duig11rt8jtcp" path="res://main/theme/palette_dark.png" id="3_s3t6i"]
 [ext_resource type="Script" path="res://main/world/room/fractal/fractal.gd" id="4_30nny"]
 [ext_resource type="Texture2D" uid="uid://cjyqs5xaqp1g2" path="res://main/world/room/fractal/background.png" id="4_rbpkh"]
+[ext_resource type="PackedScene" uid="uid://d1v1x4k07oumq" path="res://main/world/door/heart/heart.tscn" id="6_eua54"]
 [ext_resource type="AudioStream" uid="uid://df4sh2rxqiinj" path="res://main/world/room/fractal/heartbeat.ogg" id="6_jpalp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ckmbb"]
@@ -121,7 +122,12 @@ libraries = {
 autoplay = "ebb"
 
 [node name="Default" parent="Anchors" index="0"]
-position = Vector2(8, 8)
+position = Vector2(72, 72)
+
+[node name="Heart" parent="Doors" index="0" instance=ExtResource("6_eua54")]
+position = Vector2(72, 63)
+target_room = "fog"
+target_anchor = "Heart"
 
 [node name="BottomRight" parent="." index="10"]
 position = Vector2(144, 144)

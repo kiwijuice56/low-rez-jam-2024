@@ -6,6 +6,7 @@ var old_db: float
 
 func _ready() -> void:
 	old_db =  %MusicPlayer.volume_db
+	%FootstepLayer.visible = false
 	%MusicPlayer.volume_db = -60
 
 func load_in() -> void:

@@ -291,7 +291,7 @@ item = "tofu"
 position = Vector2(54, 135)
 item = "stirfry"
 
-[node name="BottomRight" parent="." index="13"]
-position = Vector2(513, 513)
-
 [node name="Cloud" parent="." index="14" instance=ExtResource("7_e160b")]
+
+[node name="BottomRight" parent="." index="15"]
+position = Vector2(513, 513)

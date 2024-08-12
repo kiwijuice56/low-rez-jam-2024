@@ -1,5 +1,8 @@
 class_name Player extends Character
 
+@export var footstep_sound_index: Array[AudioStream]
+@export var volume_offset: Array[float] = [-11, -12, -13]
+
 var latest_input: String 
 var queue: Array[String]
 
@@ -31,6 +34,15 @@ func play_look_animation() -> void:
 	%AnimationPlayer.play("look_" + latest_input)
 
 func step() -> void:
+	var tiles: TileMapLayer = Ref.world.loaded_room.get_node("%FootstepLayer")
+	var data: TileData = tiles.get_cell_tile_data(global_position / Vector2(9, 9))
+	var stream: AudioStream = footstep_sound_index[0]
+	var volume: float = volume_offset[0]
+	if data:
+		stream = footstep_sound_index[data.get_custom_data("floor_type")]
+		volume = volume_offset[data.get_custom_data("floor_type")]
+	%StepPlayer.volume_db = volume
+	%StepPlayer.stream = stream
 	%StepPlayer.stop()
 	%StepPlayer.play()
 

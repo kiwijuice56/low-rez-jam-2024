@@ -1,0 +1,108 @@
+[gd_scene load_steps=10 format=3 uid="uid://d1v1x4k07oumq"]
+
+[ext_resource type="Script" path="res://main/world/door/door.gd" id="1_3t1e2"]
+[ext_resource type="Texture2D" uid="uid://87rn0u3bihq3" path="res://main/world/door/heart/heart.png" id="2_hyd3t"]
+[ext_resource type="PackedScene" uid="uid://dqjhry378atdi" path="res://main/world/interactable/interactable.tscn" id="3_khokc"]
+[ext_resource type="AudioStream" uid="uid://q8yu2pn8bpmq" path="res://main/battle/action/battle_animation/water/splash.ogg" id="4_l8x3j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c73tt"]
+size = Vector2(9, 9)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_f5c5u"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("4_l8x3j")
+
+[sub_resource type="Animation" id="Animation_15ddw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_fs6em"]
+resource_name = "open"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wgipr"]
+_data = {
+"RESET": SubResource("Animation_15ddw"),
+"open": SubResource("Animation_fs6em")
+}
+
+[node name="Heart" type="Area2D"]
+collision_mask = 0
+script = ExtResource("1_3t1e2")
+door_sprite = null
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture = ExtResource("2_hyd3t")
+centered = false
+
+[node name="Interactable" parent="." instance=ExtResource("3_khokc")]
+unique_name_in_owner = true
+position = Vector2(4.5, 4.5)
+collision_mask = 8
+requires_facing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4.5, 4.5)
+shape = SubResource("RectangleShape2D_c73tt")
+
+[node name="Player" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_f5c5u")
+volume_db = -8.0
+bus = &"Sound Effect"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_wgipr")
+}
+speed_scale = 0.75

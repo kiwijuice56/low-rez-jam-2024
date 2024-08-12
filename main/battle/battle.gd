@@ -35,7 +35,10 @@ func battle(encounter: Encounter) -> bool:
 		fighter.battle_reset()
 	
 	var enemy_party: Array[Fighter] = []
-	for scene in encounter.fighters:
+	var shuffled_fighters: Array[PackedScene] = encounter.fighters.duplicate()
+	shuffled_fighters.shuffle()
+	
+	for scene in shuffled_fighters:
 		var new_fighter: Fighter = scene.instantiate()
 		var base_name: String = new_fighter.name
 		var copy_count: int = enemies_with_name(enemy_party, base_name)
@@ -58,7 +61,7 @@ func battle(encounter: Encounter) -> bool:
 	
 	### BATTLE LOOP ###
 	
-	var player_turn: bool = true
+	var player_turn: bool = encounter.boss or randf() < 0.5
 	
 	while true:
 		if len(get_alive_fighters(player_party)) == 0 or len(get_alive_fighters(enemy_party)) == 0:

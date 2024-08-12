@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://d365bj58vjl5a"]
+[gd_scene load_steps=7 format=4 uid="uid://d365bj58vjl5a"]
 
 [ext_resource type="PackedScene" uid="uid://l1nxgrfgq8nb" path="res://main/world/room/room.tscn" id="1_3mnx3"]
 [ext_resource type="Texture2D" uid="uid://ueqdowl4u6x8" path="res://main/world/room/god_house/god_house_hallway.png" id="2_aire2"]
@@ -11,6 +11,7 @@
 
 [node name="MusicPlayer" parent="." index="0"]
 stream = ExtResource("2_lfhmb")
+volume_db = -4.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="1"]
 z_index = -1
@@ -20,6 +21,9 @@ centered = false
 [node name="CollisionLayer" parent="." index="3"]
 position = Vector2(0, 9)
 layer_0/tile_data = PackedInt32Array(196607, 0, 0, 262143, 0, 0, 327679, 0, 0, 131072, 0, 0, 131073, 0, 0, 131074, 0, 0, 131075, 0, 0, 131076, 0, 0, 131077, 0, 0, 131078, 0, 0, 131079, 0, 0, 131080, 0, 0, 131081, 0, 0, 131082, 0, 0, 131083, 0, 0, 131084, 0, 0, 131085, 0, 0, 327680, 0, 0, 327681, 0, 0, 327682, 0, 0, 327683, 0, 0, 327684, 0, 0, 327685, 0, 0, 327686, 0, 0, 327687, 0, 0, 327688, 0, 0, 327689, 0, 0, 327690, 0, 0, 327691, 0, 0, 327692, 0, 0, 327693, 0, 0, 327694, 0, 0, 327695, 0, 0, 131086, 0, 0, 131087, 0, 0, 131088, 0, 0, 131089, 0, 0, 131090, 0, 0, 131091, 0, 0, 131092, 0, 0, 131093, 0, 0, 131094, 0, 0, 131095, 0, 0, 327696, 0, 0, 327697, 0, 0, 327698, 0, 0, 327699, 0, 0, 327700, 0, 0, 327701, 0, 0, 327702, 0, 0, 327703, 0, 0, 327704, 0, 0, 327705, 0, 0, 327706, 0, 0, 327707, 0, 0, 131096, 0, 0, 131097, 0, 0, 131098, 0, 0, 131099, 0, 0, 131100, 0, 0, 196636, 0, 0, 262172, 0, 0, 327708, 0, 0)
+
+[node name="FootstepLayer" parent="." index="4"]
+tile_map_data = PackedByteArray("AAAAAAUAAAABAAAAAAABAAUAAAABAAAAAAACAAUAAAABAAAAAAADAAUAAAABAAAAAAAEAAUAAAABAAAAAAAFAAUAAAABAAAAAAAGAAUAAAABAAAAAAAHAAUAAAABAAAAAAAIAAUAAAABAAAAAAAJAAUAAAABAAAAAAAKAAUAAAABAAAAAAALAAUAAAABAAAAAAAMAAUAAAABAAAAAAANAAUAAAABAAAAAAAOAAUAAAABAAAAAAAPAAUAAAABAAAAAAAQAAUAAAABAAAAAAARAAUAAAABAAAAAAASAAUAAAABAAAAAAATAAUAAAABAAAAAAAUAAUAAAABAAAAAAAVAAUAAAABAAAAAAAWAAUAAAABAAAAAAAXAAUAAAABAAAAAAAYAAUAAAABAAAAAAAZAAUAAAABAAAAAAAaAAUAAAABAAAAAAAbAAUAAAABAAAAAAAaAAQAAAABAAAAAAAZAAQAAAABAAAAAAAYAAQAAAABAAAAAAAXAAQAAAABAAAAAAAWAAQAAAABAAAAAAAVAAQAAAABAAAAAAAUAAQAAAABAAAAAAATAAQAAAABAAAAAAASAAQAAAABAAAAAAARAAQAAAABAAAAAAAQAAQAAAABAAAAAAAPAAQAAAABAAAAAAAOAAQAAAABAAAAAAANAAQAAAABAAAAAAAMAAQAAAABAAAAAAALAAQAAAABAAAAAAAKAAQAAAABAAAAAAAJAAQAAAABAAAAAAAIAAQAAAABAAAAAAAHAAQAAAABAAAAAAAGAAQAAAABAAAAAAAFAAQAAAABAAAAAAAEAAQAAAABAAAAAAADAAQAAAABAAAAAAACAAQAAAABAAAAAAABAAQAAAABAAAAAAAAAAQAAAABAAAAAAAbAAQAAAABAAAAAAAcAAUAAAABAAAAAAAcAAQAAAABAAAAAAA=")
 
 [node name="Door" type="Marker2D" parent="Anchors" index="1"]
 position = Vector2(18, 36)
@@ -43,10 +47,10 @@ out_direction = "down"
 unique_name_in_owner = true
 position = Vector2(0, 45)
 
-[node name="Decoration" parent="." index="9"]
+[node name="Decoration" parent="." index="10"]
 script = ExtResource("5_y7tdh")
 
 [node name="Tombstone" parent="Decoration" index="0" instance=ExtResource("5_3aixr")]
 
-[node name="BottomRight" parent="." index="11"]
+[node name="BottomRight" parent="." index="12"]
 position = Vector2(252, 63)

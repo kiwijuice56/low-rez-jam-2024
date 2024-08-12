@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://b02k5l063cuww"]
+[gd_scene load_steps=23 format=4 uid="uid://b02k5l063cuww"]
 
 [ext_resource type="PackedScene" uid="uid://l1nxgrfgq8nb" path="res://main/world/room/room.tscn" id="1_77e2e"]
 [ext_resource type="AudioStream" uid="uid://7u7sl4bob8lh" path="res://main/music/demon_club.ogg" id="2_6von6"]
@@ -46,13 +46,6 @@ volume_db = 0.0
 script = ExtResource("9_k0wjs")
 speaker = ExtResource("10_ck1i1")
 text = "STATUS EFFECTS!!!"
-speed = "Normal"
-volume_db = 0.0
-
-[sub_resource type="Resource" id="Resource_epg1x"]
-script = ExtResource("9_k0wjs")
-speaker = ExtResource("10_ck1i1")
-text = "just pwotect me pwetty pwease :("
 speed = "Normal"
 volume_db = 0.0
 
@@ -106,6 +99,7 @@ _data = {
 
 [node name="MusicPlayer" parent="." index="0"]
 stream = ExtResource("2_6von6")
+volume_db = -4.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="2"]
 z_index = -1
@@ -114,6 +108,9 @@ centered = false
 
 [node name="CollisionLayer" parent="." index="3"]
 layer_0/tile_data = PackedInt32Array(262144, 0, 0, 262145, 0, 0, 262146, 0, 0, 262147, 0, 0, 196611, 0, 0, 196612, 0, 0, 196613, 0, 0, 196614, 0, 0, 196615, 0, 0, 196616, 0, 0, 196617, 0, 0, 262153, 0, 0, 262154, 0, 0, 262155, 0, 0, 262156, 0, 0, 327679, 0, 0, 393215, 0, 0, 458751, 0, 0, 524287, 0, 0, 458752, 0, 0, 458753, 0, 0, 458754, 0, 0, 458755, 0, 0, 458756, 0, 0, 458757, 0, 0, 458758, 0, 0, 458759, 0, 0, 458760, 0, 0, 458761, 0, 0, 458762, 0, 0, 458763, 0, 0, 458764, 0, 0, 458765, 0, 0, 393229, 0, 0, 327693, 0, 0, 262157, 0, 0)
+
+[node name="FootstepLayer" parent="." index="4"]
+tile_map_data = PackedByteArray("AAABAAYAAAABAAAAAAAAAAYAAAABAAAAAAACAAYAAAABAAAAAAADAAYAAAABAAAAAAAEAAYAAAABAAAAAAAFAAYAAAABAAAAAAAGAAYAAAABAAAAAAAHAAYAAAABAAAAAAAIAAYAAAABAAAAAAAJAAYAAAABAAAAAAAKAAYAAAABAAAAAAALAAYAAAABAAAAAAAMAAYAAAABAAAAAAALAAUAAAABAAAAAAAKAAUAAAABAAAAAAAJAAUAAAABAAAAAAAIAAUAAAABAAAAAAAHAAUAAAABAAAAAAAGAAUAAAABAAAAAAAFAAUAAAABAAAAAAAEAAUAAAABAAAAAAADAAUAAAABAAAAAAACAAUAAAABAAAAAAABAAUAAAABAAAAAAAAAAUAAAABAAAAAAAEAAQAAAABAAAAAAAFAAQAAAABAAAAAAAGAAQAAAABAAAAAAAHAAQAAAABAAAAAAAIAAQAAAABAAAAAAAMAAUAAAABAAAAAAA=")
 
 [node name="Default" parent="Anchors" index="0"]
 position = Vector2(45, 54)
@@ -146,7 +143,7 @@ position = Vector2(63, 45)
 [node name="Dawa" parent="Characters/Friends" index="2" instance=ExtResource("7_m5do6")]
 position = Vector2(81, 54)
 fighter_scene = ExtResource("8_iq2wf")
-conversation = Array[ExtResource("9_k0wjs")]([SubResource("Resource_kajv5"), SubResource("Resource_up2ph"), SubResource("Resource_pxdwq"), SubResource("Resource_funvg"), SubResource("Resource_r7ltg"), SubResource("Resource_epg1x"), SubResource("Resource_8o4lg")])
+conversation = Array[ExtResource("9_k0wjs")]([SubResource("Resource_kajv5"), SubResource("Resource_up2ph"), SubResource("Resource_pxdwq"), SubResource("Resource_funvg"), SubResource("Resource_r7ltg"), SubResource("Resource_8o4lg")])
 
 [node name="Sprite2D" type="Sprite2D" parent="Decoration" index="0"]
 position = Vector2(64, 25)
@@ -160,5 +157,5 @@ libraries = {
 autoplay = "sway"
 speed_scale = 0.2
 
-[node name="BottomRight" parent="." index="10"]
+[node name="BottomRight" parent="." index="11"]
 position = Vector2(117, 64)

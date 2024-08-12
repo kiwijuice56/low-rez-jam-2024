@@ -36,6 +36,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_456di"]
 resource_name = "trans_out"
+length = 1.5
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -44,7 +45,7 @@ tracks/0/path = NodePath(".:material:shader_parameter/fade")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0.5, 1.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 1.0]
@@ -71,7 +72,7 @@ root_node = NodePath("../BlockyFade")
 libraries = {
 "": SubResource("AnimationLibrary_blbdb")
 }
-speed_scale = 5.0
+speed_scale = 4.0
 
 [node name="BlockyFade" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_e2bu8")
