@@ -118,5 +118,5 @@ hframes = 10
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="2"]
 stream = ExtResource("3_1wftv")
-volume_db = -5.5
+volume_db = -7.0
 bus = &"Sound Effect"

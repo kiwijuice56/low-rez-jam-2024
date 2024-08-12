@@ -99,7 +99,7 @@ _data = {
 
 [node name="MusicPlayer" parent="." index="0"]
 stream = ExtResource("2_6von6")
-volume_db = -4.0
+volume_db = -3.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="2"]
 z_index = -1

@@ -11,7 +11,7 @@
 [sub_resource type="Resource" id="Resource_dtryj"]
 script = ExtResource("2_wtt4c")
 unlocked = true
-max_hp = 25
+max_hp = 32
 max_tp = 15
 strength = 1
 magic = 1
@@ -21,7 +21,7 @@ unlocked_skills = Array[int]([])
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cemna"]
 shader = ExtResource("3_4m07w")
-shader_parameter/flash = null
+shader_parameter/flash = Color(0, 0, 0, 1)
 shader_parameter/flash2 = null
 shader_parameter/progress = 0.0
 shader_parameter/meltiness = 1.0
@@ -83,7 +83,8 @@ animations = Array[PackedScene]([ExtResource("4_0mlia")])
 
 [node name="Attack" parent="Actions" index="1"]
 use_text = "%s slapped!"
-accuracy = 0.85
+power = 1.25
+accuracy = 0.94
 critical = 0.07
 hit_amount_min = 2
 hit_amount_max = 2

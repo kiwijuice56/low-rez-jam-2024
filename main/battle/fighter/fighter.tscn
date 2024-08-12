@@ -862,7 +862,7 @@ script = ExtResource("11_kal80")
 [node name="Sprite2D" type="Sprite2D" parent="SpriteHolder/Effects/Aura"]
 texture = ExtResource("24_2w7f7")
 centered = false
-offset = Vector2(-5, -18)
+offset = Vector2(-4, -18)
 hframes = 9
 script = ExtResource("25_ngxfg")
 
@@ -984,7 +984,7 @@ libraries = {
 
 [node name="HitSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("33_10x80")
-volume_db = -1.0
+volume_db = -2.5
 bus = &"Sound Effect"
 
 [node name="DodgeSound" type="AudioStreamPlayer" parent="."]

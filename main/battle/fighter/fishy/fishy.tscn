@@ -13,15 +13,15 @@ script = ExtResource("2_13uhk")
 unlocked = true
 max_hp = 25
 max_tp = 15
-strength = 1
-magic = 2
+strength = 2
+magic = 4
 defence = 4
 luck = 1
 unlocked_skills = Array[int]([])
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cemna"]
 shader = ExtResource("7_6ryrs")
-shader_parameter/flash = null
+shader_parameter/flash = Color(0, 0, 0, 1)
 shader_parameter/flash2 = null
 shader_parameter/progress = 0.0
 shader_parameter/meltiness = 1.0
@@ -85,7 +85,7 @@ animations = Array[PackedScene]([ExtResource("4_1lm7n")])
 
 [node name="Attack" parent="Actions" index="1"]
 use_text = "%s cuts you!"
-accuracy = 0.7
+accuracy = 0.85
 status_chance = 1.0
 status_effects = Array[String](["Bleed"])
 
