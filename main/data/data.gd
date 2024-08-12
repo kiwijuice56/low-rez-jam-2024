@@ -4,13 +4,6 @@ var save_path: String = "user://"
 var state: Dictionary
 var overload_save: bool = true
 
-func _ready() -> void:
-	if overload_save or not ResourceLoader.exists(save_path + str(0) + "_save.tres"):
-		initialize()
-		Ref.player_party.load_party_members()
-		save_state(0)
-	load_state(0)
-
 func initialize() -> void:
 	set_state("room", "yard")
 	set_state("anchor", "Default")

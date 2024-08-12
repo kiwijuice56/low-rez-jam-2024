@@ -1,0 +1,77 @@
+[gd_scene load_steps=5 format=3 uid="uid://c22g8wpeq2aty"]
+
+[ext_resource type="Theme" uid="uid://evv5alve252b" path="res://main/theme/theme.tres" id="1_0dcey"]
+[ext_resource type="PackedScene" uid="uid://bdir8ibmp15l2" path="res://main/world/ui/flicker/flicker.tscn" id="2_8naxn"]
+[ext_resource type="Script" path="res://main/title_menu/title_menu.gd" id="2_pm64k"]
+[ext_resource type="AudioStream" uid="uid://dv1ag3s4up115" path="res://main/theme/sound/select.tres" id="4_10in0"]
+
+[node name="TitleMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_0dcey")
+script = ExtResource("2_pm64k")
+default_color = Color(0.588235, 0.588235, 0.588235, 1)
+select_color = Color(1, 1, 1, 1)
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TitleLabel" type="Label" parent="."]
+layout_mode = 2
+offset_left = 17.0
+offset_top = 21.0
+offset_right = 47.0
+offset_bottom = 26.0
+size_flags_horizontal = 4
+size_flags_vertical = 6
+text = "fractiwi"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 13.0
+offset_top = 37.0
+offset_right = 51.0
+offset_bottom = 48.0
+size_flags_horizontal = 4
+size_flags_vertical = 2
+theme_override_constants/separation = 1
+
+[node name="FlickerContainer" type="VBoxContainer" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Flicker" parent="HBoxContainer/FlickerContainer" instance=ExtResource("2_8naxn")]
+layout_mode = 2
+
+[node name="Flicker2" parent="HBoxContainer/FlickerContainer" instance=ExtResource("2_8naxn")]
+layout_mode = 2
+
+[node name="ChoiceContainer" type="VBoxContainer" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 1
+
+[node name="Label" type="Label" parent="HBoxContainer/ChoiceContainer"]
+layout_mode = 2
+text = "new game"
+
+[node name="Label2" type="Label" parent="HBoxContainer/ChoiceContainer"]
+layout_mode = 2
+text = "continue"
+
+[node name="SelectPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_10in0")
+bus = &"UI Sound Effect"

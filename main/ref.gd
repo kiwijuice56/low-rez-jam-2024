@@ -15,3 +15,4 @@ extends Node
 @onready var battle_animation_foreground: Node2D = battle.get_node("%ForegroundAnimationHolder")
 
 @onready var game_over: GameOver = main.get_node("GameOver")
+@onready var title: TitleMenu = main.get_node("%TitleMenu")

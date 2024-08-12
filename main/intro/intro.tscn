@@ -1,11 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://dhvqvk5a7verm"]
+[gd_scene load_steps=16 format=3 uid="uid://dhvqvk5a7verm"]
 
+[ext_resource type="Script" path="res://main/intro/intro.gd" id="1_ht7df"]
 [ext_resource type="Shader" path="res://main/intro/earth.gdshader" id="1_rwjn5"]
 [ext_resource type="Texture2D" uid="uid://dhw65e4i88g5d" path="res://main/world/room/library/light.webp" id="1_ygayo"]
 [ext_resource type="Texture2D" uid="uid://dj0kaib5ini2o" path="res://main/intro/earth.png" id="2_rpyq0"]
 [ext_resource type="Shader" path="res://main/intro/stars.gdshader" id="4_wch83"]
 [ext_resource type="Shader" path="res://main/intro/mandelbulb.gdshader" id="5_767hg"]
 [ext_resource type="Script" path="res://main/intro/mandel_navigation.gd" id="6_ivovp"]
+[ext_resource type="AudioStream" uid="uid://d2fvo2xy55ul4" path="res://main/music/watermelon_factory.ogg" id="8_t0jg4"]
+[ext_resource type="AudioStream" uid="uid://bokpiiqmtb3th" path="res://main/music/static.ogg" id="9_c5n2v"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b77y7"]
 shader = ExtResource("4_wch83")
@@ -107,7 +110,8 @@ shader_parameter/_cam_pos = Vector3(0, 0, 1.6)
 shader_parameter/_cam_mat = Basis(1, 0, 0, 0, 1, 0, 0, 0, 1)
 shader_parameter/_screen_size = Vector2(50, 50)
 
-[node name="Intro" type="Node"]
+[node name="Intro" type="Node2D"]
+script = ExtResource("1_ht7df")
 
 [node name="Background" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -124,7 +128,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.339095, 0.339095, 0.339095, 1)
+color = Color(0.589855, 0.311646, 0.305483, 1)
 
 [node name="Atmosphere" type="Sprite2D" parent="."]
 visible = false
@@ -141,6 +145,7 @@ autoplay = "breathe"
 speed_scale = 0.25
 
 [node name="Earth" type="TextureRect" parent="."]
+unique_name_in_owner = true
 visible = false
 texture_repeat = 2
 material = SubResource("ShaderMaterial_4mtlu")
@@ -162,6 +167,7 @@ texture = ExtResource("2_rpyq0")
 expand_mode = 2
 
 [node name="Fractal" type="TextureRect" parent="." node_paths=PackedStringArray("camera")]
+unique_name_in_owner = true
 texture_repeat = 2
 material = SubResource("ShaderMaterial_jn6js")
 custom_minimum_size = Vector2(50, 50)
@@ -183,3 +189,16 @@ camera = NodePath("Camera3D")
 
 [node name="Camera3D" type="Camera3D" parent="Fractal"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.6)
+current = true
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("8_t0jg4")
+pitch_scale = 0.6
+bus = &"Music"
+
+[node name="StaticPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("9_c5n2v")
+volume_db = 3.0
+bus = &"Music"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://dl3ps7eki0b7b"]
+[gd_scene load_steps=41 format=3 uid="uid://dl3ps7eki0b7b"]
 
 [ext_resource type="PackedScene" uid="uid://txvddbv8pfiv" path="res://main/world/character/player/player.tscn" id="1_84yfs"]
 [ext_resource type="Script" path="res://main/main.gd" id="1_q20fr"]
@@ -34,6 +34,7 @@
 [ext_resource type="PackedScene" uid="uid://d2n822iw1iha7" path="res://main/battle/action/battle_animation/fire/fire.tscn" id="22_deuxr"]
 [ext_resource type="PackedScene" uid="uid://cvh8igwahj8wg" path="res://main/loading/loading_layer.tscn" id="24_gb8q0"]
 [ext_resource type="PackedScene" uid="uid://dhvqvk5a7verm" path="res://main/intro/intro.tscn" id="29_6iy5f"]
+[ext_resource type="PackedScene" uid="uid://c22g8wpeq2aty" path="res://main/title_menu/title_menu.tscn" id="35_b2hc6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1nlqh"]
 shader = ExtResource("5_4102r")
@@ -432,6 +433,8 @@ visible = false
 layer = 15
 
 [node name="Intro" parent="CutsceneLayer" instance=ExtResource("29_6iy5f")]
+unique_name_in_owner = true
+visible = false
 
 [node name="PaletteLayer" type="CanvasLayer" parent="."]
 layer = 20
@@ -443,6 +446,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="TitleLayer" type="CanvasLayer" parent="."]
+layer = 15
+
+[node name="TitleMenu" parent="TitleLayer" instance=ExtResource("35_b2hc6")]
+unique_name_in_owner = true
 
 [node name="Transition" parent="." instance=ExtResource("6_j5aj4")]
 layer = 16

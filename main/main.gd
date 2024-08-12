@@ -3,6 +3,19 @@ class_name Main extends Node
 func _ready() -> void:
 	randomize()
 	Ref.world.is_paused = true
+	
+	%TitleMenu.enter()
+	await %TitleMenu.exited
+	
+	if Data.overload_save or not ResourceLoader.exists(Data.save_path + str(0) + "_save.tres"):
+		Data.initialize()
+		Ref.player_party.load_party_members()
+		Data.save_state(0)
+		
+		%Intro.play()
+		await %Intro.finished
+	Data.load_state(0)
+	
 	start()
 
 func start() -> void:
