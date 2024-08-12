@@ -46,6 +46,7 @@ animations = Array[PackedScene]([ExtResource("7_sj0hh")])
 icon = ExtResource("4_glad8")
 description = "fire hit to one foe"
 use_text = "%s burns them!"
+verb = "burn"
 tp_cost = 6
 power = 1.5
 attack_stat = "magic"

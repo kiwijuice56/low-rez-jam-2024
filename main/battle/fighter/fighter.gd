@@ -78,6 +78,12 @@ func battle_reset() -> void:
 	dead = false
 	%AnimationPlayer.play("RESET")
 
+func flash() -> void:
+	%Sprite2D.material.set_shader_parameter("flash", 1.0)
+
+func unflash() -> void:
+	%Sprite2D.material.set_shader_parameter("flash", 0.0)
+
 func kill() -> void:
 	dead = true
 	cure_all_effects()

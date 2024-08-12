@@ -14,6 +14,7 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if is_instance_valid(single_target):
+		var old_idx: int = idx
 		if event.is_action_pressed("left", false):
 			%SelectPlayer.play()
 			idx -= 1
@@ -21,7 +22,8 @@ func _input(event: InputEvent) -> void:
 			%SelectPlayer.play()
 			idx += 1
 		idx = (idx + len(fighter_pool)) % len(fighter_pool)
-		retarget(single_target, fighter_pool[idx])
+		if idx != old_idx:
+			retarget(single_target, fighter_pool[idx], fighter_pool[old_idx])
 	if event.is_action_pressed("accept", false):
 		%AcceptPlayer.play()
 		advanced.emit(true)
@@ -37,11 +39,15 @@ func select_single_target(pool: Array[Fighter]) -> Array[Fighter]:
 	add_child(new_target)
 	single_target = new_target
 	
-	retarget(new_target, fighter_pool[0])
+	retarget(new_target, fighter_pool[0], null)
 	
 	set_process_input(true)
 	
 	var accepted: bool = await advanced
+	
+	for fighter in fighter_pool:
+		fighter.get_node("%FlashAnimationPlayer").stop()
+		fighter.get_node("%FlashAnimationPlayer").play("RESET")
 	
 	set_process_input(false)
 	
@@ -60,12 +66,16 @@ func select_all_targets(pool: Array[Fighter]) -> Array[Fighter]:
 	for fighter in fighter_pool:
 		var new_target: Sprite2D = target_icon.instantiate()
 		add_child(new_target)
-		retarget(new_target, fighter)
+		retarget(new_target, fighter, null)
 		targets.append(new_target)
 	
 	set_process_input(true)
 	
 	var accepted: bool = await advanced
+	
+	for fighter in fighter_pool:
+		fighter.get_node("%FlashAnimationPlayer").stop()
+		fighter.get_node("%FlashAnimationPlayer").play("RESET")
 	
 	for target in targets:
 		target.queue_free()
@@ -76,7 +86,11 @@ func select_all_targets(pool: Array[Fighter]) -> Array[Fighter]:
 	
 	return pool if accepted else empty
 
-func retarget(target: Sprite2D, fighter: Fighter) -> void:
+func retarget(target: Sprite2D, fighter: Fighter, old_fighter: Fighter) -> void:
+	if is_instance_valid(old_fighter):
+		old_fighter.get_node("%FlashAnimationPlayer").stop()
+		old_fighter.get_node("%FlashAnimationPlayer").play("RESET")
+	fighter.get_node("%FlashAnimationPlayer").play("flash")
 	target.get_node("%AnimationPlayer").stop()
 	target.get_node("%AnimationPlayer").play("flash")
 	target.global_position = fighter.get_node("%Center").global_position + offset

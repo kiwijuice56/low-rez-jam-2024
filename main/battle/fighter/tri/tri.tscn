@@ -149,7 +149,7 @@ texture = ExtResource("9_2kbpb")
 offset = Vector2(-2.72, 0)
 
 [node name="Center" parent="SpriteHolder" index="2"]
-position = Vector2(1, -8)
+position = Vector2(-1, -13)
 
 [node name="PointInfo" parent="." index="3"]
 visible = false

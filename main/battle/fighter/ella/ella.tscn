@@ -63,7 +63,6 @@ tp_cost = 7
 power = 1.5
 attack_stat = "magic"
 hit_amount_max = 1
-status_chance = 0.25
 status_effects = Array[String](["Charged"])
 is_elec = true
 animations = Array[PackedScene]([ExtResource("7_7ennw"), ExtResource("8_0ggly")])

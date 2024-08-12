@@ -16,7 +16,7 @@ func _ready() -> void:
 func battle(encounter: Encounter) -> bool:
 	Ref.world.is_paused = true
 	
-	await Ref.transition.trans_in()
+	await Ref.transition.battle_trans_in()
 	
 	start_music(encounter.music)
 	Ref.world.loaded_room.pause_music()

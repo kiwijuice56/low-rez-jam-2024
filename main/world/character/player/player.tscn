@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://txvddbv8pfiv"]
+[gd_scene load_steps=19 format=3 uid="uid://txvddbv8pfiv"]
 
 [ext_resource type="PackedScene" uid="uid://df7dk7qqm8ylw" path="res://main/world/character/character.tscn" id="1_knbax"]
 [ext_resource type="Script" path="res://main/world/character/player/player.gd" id="2_yial6"]
@@ -220,6 +220,42 @@ _data = {
 "up": SubResource("Animation_coh57")
 }
 
+[sub_resource type="Animation" id="Animation_yvu6u"]
+resource_name = "trans_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(8, 8)]
+}
+
+[sub_resource type="Animation" id="Animation_fw1ka"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yk6pr"]
+_data = {
+"RESET": SubResource("Animation_fw1ka"),
+"trans_in": SubResource("Animation_yvu6u")
+}
+
 [node name="Player" instance=ExtResource("1_knbax")]
 collision_layer = 8
 script = ExtResource("2_yial6")
@@ -252,3 +288,10 @@ stream = ExtResource("4_tqu2v")
 volume_db = -11.0
 pitch_scale = 1.25
 bus = &"Sound Effect"
+
+[node name="CameraAnimationPlayer" type="AnimationPlayer" parent="." index="6"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_yk6pr")
+}
+speed_scale = 2.0

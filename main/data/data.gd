@@ -12,7 +12,7 @@ func _ready() -> void:
 	load_state(0)
 
 func initialize() -> void:
-	set_state("room", "yard")
+	set_state("room", "hell")
 	set_state("anchor", "Default")
 	
 	set_state("souls", 0)
@@ -21,7 +21,7 @@ func initialize() -> void:
 	set_state("xp_goal", 15)
 	set_state("kills", 0)
 	
-	set_state("party_order", ["ella", "dawa"])
+	set_state("party_order", ["ella", "saki", "mado"])
 	
 	set_state("inventory/tofu", 3)
 	set_state("inventory/stirfry", 0)
