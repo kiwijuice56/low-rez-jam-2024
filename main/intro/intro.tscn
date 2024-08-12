@@ -1,0 +1,185 @@
+[gd_scene load_steps=13 format=3 uid="uid://dhvqvk5a7verm"]
+
+[ext_resource type="Shader" path="res://main/intro/earth.gdshader" id="1_rwjn5"]
+[ext_resource type="Texture2D" uid="uid://dhw65e4i88g5d" path="res://main/world/room/library/light.webp" id="1_ygayo"]
+[ext_resource type="Texture2D" uid="uid://dj0kaib5ini2o" path="res://main/intro/earth.png" id="2_rpyq0"]
+[ext_resource type="Shader" path="res://main/intro/stars.gdshader" id="4_wch83"]
+[ext_resource type="Shader" path="res://main/intro/mandelbulb.gdshader" id="5_767hg"]
+[ext_resource type="Script" path="res://main/intro/mandel_navigation.gd" id="6_ivovp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b77y7"]
+shader = ExtResource("4_wch83")
+shader_parameter/anim_speed = 2.375e-07
+shader_parameter/star_brightness = 0.05
+shader_parameter/dust = 0.125
+shader_parameter/dist_fade = 0.35
+shader_parameter/pixelation = 1000.0
+shader_parameter/quantization_levels = 16
+shader_parameter/dust_color = Color(0, 0, 0, 1)
+shader_parameter/saturation = 0.625
+shader_parameter/layers = 7.0
+shader_parameter/iterations = 10
+
+[sub_resource type="Animation" id="Animation_nupfi"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.25, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.25, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_yl3s6"]
+resource_name = "breathe"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0.25, -0.25, 0, 0.25, 0, 0.18, -0.25, 0, 0.25, 0, 0.25, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 1.96667)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0.25, -0.25, 0, 0.25, 0, 0.19, -0.25, 0, 0.25, 0, 0.25, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 1.96667)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_otrdo"]
+_data = {
+"RESET": SubResource("Animation_nupfi"),
+"breathe": SubResource("Animation_yl3s6")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4mtlu"]
+shader = ExtResource("1_rwjn5")
+shader_parameter/aspect_ratio = 2.0
+shader_parameter/rotation_speed = 0.15
+shader_parameter/as_shadow = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jn6js"]
+shader = ExtResource("5_767hg")
+shader_parameter/max_iter = 96
+shader_parameter/max_bounce = 2
+shader_parameter/light_iter = 64
+shader_parameter/collision_threshold = 0.02
+shader_parameter/normal_sample_length = 0.02
+shader_parameter/bulb_iter = 3
+shader_parameter/bulb_power = 7.0
+shader_parameter/bulb_runaway_threshold = 2.0
+shader_parameter/fractal_color1 = Color(0.332828, 0.150858, 0.266583, 1)
+shader_parameter/fractal_color2 = Color(0, 0, 0, 1)
+shader_parameter/color_center_point = Vector3(0, 0.5, -0.5)
+shader_parameter/color_intensity = 0.975
+shader_parameter/rotation_speed = 1.25
+shader_parameter/mirror = false
+shader_parameter/fov = 95.0
+shader_parameter/runaway_threshold = 8.0
+shader_parameter/light_ray = Vector3(1.065, -1.71, -1.33)
+shader_parameter/_cam_pos = Vector3(0, 0, 1.6)
+shader_parameter/_cam_mat = Basis(1, 0, 0, 0, 1, 0, 0, 0, 1)
+shader_parameter/_screen_size = Vector2(50, 50)
+
+[node name="Intro" type="Node"]
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Stars" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_b77y7")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.339095, 0.339095, 0.339095, 1)
+
+[node name="Atmosphere" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.666667)
+position = Vector2(32, 32)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_ygayo")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Atmosphere"]
+libraries = {
+"": SubResource("AnimationLibrary_otrdo")
+}
+autoplay = "breathe"
+speed_scale = 0.25
+
+[node name="Earth" type="TextureRect" parent="."]
+visible = false
+texture_repeat = 2
+material = SubResource("ShaderMaterial_4mtlu")
+custom_minimum_size = Vector2(40, 40)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.274017
+pivot_offset = Vector2(20, 20)
+texture = ExtResource("2_rpyq0")
+expand_mode = 2
+
+[node name="Fractal" type="TextureRect" parent="." node_paths=PackedStringArray("camera")]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_jn6js")
+custom_minimum_size = Vector2(50, 50)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_rpyq0")
+expand_mode = 2
+script = ExtResource("6_ivovp")
+camera = NodePath("Camera3D")
+
+[node name="Camera3D" type="Camera3D" parent="Fractal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.6)

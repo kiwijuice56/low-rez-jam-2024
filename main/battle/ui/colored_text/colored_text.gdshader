@@ -9,5 +9,5 @@ void fragment() {
 	if (length(texture(screen_tex, SCREEN_UV).rgb) < 0.05) {
 		COLOR.rgb = texture(palette, vec2(UV.y, 0.0)).rgb;
 	}
-	
+
 }
