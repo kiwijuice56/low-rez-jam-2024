@@ -5,6 +5,8 @@ class_name TitleMenu extends Menu
 
 var choice_idx: int = 0
 
+signal choice_made(new_game: bool)
+
 func _ready() -> void:
 	update_selection(-1)
 
@@ -31,12 +33,25 @@ func update_selection(old_idx: int) -> void:
 	%FlickerContainer.get_child(choice_idx).flicker()
 
 func accept() -> void:
-	pass
+	if choice_idx == 0:
+		%AcceptPlayer.play()
+		choice_made.emit(true)
+		set_process_input(false)
+	else:
+		if Data.game_exists():
+			%AcceptPlayer.play()
+			choice_made.emit(false)
+			set_process_input(false)
+		else:
+			%ErrorPlayer.play()
 
 func enter() -> void:
 	await Ref.transition.trans_out()
 	set_process_input(true)
 
 func exit(_full_exit: bool = false) -> void:
+	visible = false
 	set_process_input(false)
 	exited.emit()
+	var tween: Tween = get_tree().create_tween()
+	tween.tween_property($MusicPlayer, "volume_db", -60, 2.0)

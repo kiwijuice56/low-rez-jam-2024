@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bx3kup2vyqlma"]
+[gd_scene load_steps=16 format=3 uid="uid://bx3kup2vyqlma"]
 
 [ext_resource type="Theme" uid="uid://evv5alve252b" path="res://main/theme/theme.tres" id="1_4r6vn"]
 [ext_resource type="Script" path="res://main/battle/ui/choice_menu/choice_menu.gd" id="2_wme8r"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dcmjubte1kcli" path="res://main/battle/ui/choice_menu/mini_blocker.png" id="4_8fk3a"]
 [ext_resource type="AudioStream" uid="uid://c4md8ks1818q6" path="res://main/theme/sound/accept.tres" id="4_xe7iq"]
 [ext_resource type="AudioStream" uid="uid://b52h2qinfu6iw" path="res://main/theme/sound/cancel.tres" id="5_21xih"]
+[ext_resource type="AudioStream" uid="uid://buuy3j0mbb4q" path="res://main/theme/sound/error.tres" id="5_tp3ir"]
 [ext_resource type="Shader" path="res://main/battle/ui/colored_text/colored_text.gdshader" id="6_0bggl"]
 [ext_resource type="FontFile" uid="uid://cauc77kjpc67c" path="res://main/theme/mini_kiwi_font.ttf" id="7_bcp54"]
 
@@ -46,6 +47,11 @@ bus = &"UI Sound Effect"
 [node name="AcceptPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("4_xe7iq")
+bus = &"UI Sound Effect"
+
+[node name="ErrorPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("5_tp3ir")
 bus = &"UI Sound Effect"
 
 [node name="CancelPlayer" type="AudioStreamPlayer" parent="."]

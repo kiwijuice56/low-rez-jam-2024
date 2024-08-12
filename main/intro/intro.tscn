@@ -114,6 +114,7 @@ shader_parameter/_screen_size = Vector2(50, 50)
 script = ExtResource("1_ht7df")
 
 [node name="Background" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(64, 64)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -123,6 +124,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="Stars" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_b77y7")
+custom_minimum_size = Vector2(64, 64)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -168,6 +170,7 @@ expand_mode = 2
 
 [node name="Fractal" type="TextureRect" parent="." node_paths=PackedStringArray("camera")]
 unique_name_in_owner = true
+visible = false
 texture_repeat = 2
 material = SubResource("ShaderMaterial_jn6js")
 custom_minimum_size = Vector2(50, 50)
@@ -194,11 +197,12 @@ current = true
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("8_t0jg4")
+volume_db = -60.0
 pitch_scale = 0.6
 bus = &"Music"
 
 [node name="StaticPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("9_c5n2v")
-volume_db = 3.0
+volume_db = -60.0
 bus = &"Music"

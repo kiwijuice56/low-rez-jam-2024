@@ -2,10 +2,24 @@ extends Node
 
 var save_path: String = "user://"
 var state: Dictionary
-var overload_save: bool = true
+
+### functions called by title and main
+
+func continue_game() -> void:
+	load_state(0)
+	Ref.player_party.load_party_members(false)
+
+func new_game() -> void:
+	initialize()
+	Ref.player_party.load_party_members(true)
+
+func game_exists() -> bool:
+	return ResourceLoader.exists(save_path + "0_save.tres")
+
+###
 
 func initialize() -> void:
-	set_state("room", "yard")
+	set_state("room", "hell_fall")
 	set_state("anchor", "Default")
 	
 	set_state("souls", 0)
@@ -52,5 +66,3 @@ func save_state(file_id: int) -> void:
 func load_state(file_id: int) -> void:
 	var save_file: SaveFile = ResourceLoader.load(save_path + str(file_id) + "_save.tres")
 	state = save_file.state
-	
-	Ref.player_party.load_party_members()

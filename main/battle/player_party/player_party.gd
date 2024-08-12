@@ -20,7 +20,7 @@ func save_party_members() -> void:
 	for child in get_children():
 		ResourceSaver.save(child.stats, "user://%s.tres" % child.name.to_lower())
 
-func load_party_members() -> void:
+func load_party_members(keep_default: bool = false) -> void:
 	for child in get_children():
 		remove_child(child)
 		child.queue_free()
@@ -28,7 +28,7 @@ func load_party_members() -> void:
 		var path: String = FIGHTER_PATH + "%s/%s.tscn" % [fighter_name, fighter_name]
 		var new_fighter: Fighter = load(path).instantiate()
 		add_child(new_fighter)
-		if ResourceLoader.exists("user://%s.tres" % fighter_name.to_lower()):
+		if not keep_default and ResourceLoader.exists("user://%s.tres" % fighter_name.to_lower()):
 			new_fighter.stats = ResourceLoader.load("user://%s.tres" % fighter_name.to_lower())
 
 func get_party_order_names() -> Array[String]:

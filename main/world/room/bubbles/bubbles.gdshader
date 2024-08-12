@@ -1,6 +1,6 @@
 shader_type canvas_item;
 
-uniform float separation: hint_range(0.0, 0.2) = 0.05;
+uniform float separation: hint_range(0.0, 0.5) = 0.05;
 uniform float radius: hint_range(0.0, 0.1) = 0.001;
 uniform float min_thick: hint_range(0.0, 1.0) = 0.2;
 uniform float speed: hint_range(0.0, 0.1) = 0.04;

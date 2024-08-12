@@ -90,6 +90,8 @@ func test_accept() -> void:
 	if not %ChoiceContainer.get_child(posmod(idx, choice_count)).is_disabled:
 		%AcceptPlayer.play()
 		advanced.emit(true)
+	else:
+		%ErrorPlayer.play()
 
 func initialize(initial_idx: int, can_cancel: bool, buttons: Array[ChoiceButton]) -> void:
 	choice_count = len(buttons)

@@ -1,9 +1,44 @@
-[gd_scene load_steps=5 format=3 uid="uid://c22g8wpeq2aty"]
+[gd_scene load_steps=15 format=3 uid="uid://c22g8wpeq2aty"]
 
 [ext_resource type="Theme" uid="uid://evv5alve252b" path="res://main/theme/theme.tres" id="1_0dcey"]
 [ext_resource type="PackedScene" uid="uid://bdir8ibmp15l2" path="res://main/world/ui/flicker/flicker.tscn" id="2_8naxn"]
 [ext_resource type="Script" path="res://main/title_menu/title_menu.gd" id="2_pm64k"]
+[ext_resource type="Shader" path="res://main/world/room/bubbles/bubbles.gdshader" id="3_nhsro"]
 [ext_resource type="AudioStream" uid="uid://dv1ag3s4up115" path="res://main/theme/sound/select.tres" id="4_10in0"]
+[ext_resource type="AudioStream" uid="uid://5groh412ocx5" path="res://main/music/bubbles.ogg" id="5_ap84p"]
+[ext_resource type="AudioStream" uid="uid://buuy3j0mbb4q" path="res://main/theme/sound/error.tres" id="6_qhp7l"]
+[ext_resource type="AudioStream" uid="uid://c4md8ks1818q6" path="res://main/theme/sound/accept.tres" id="7_1ug83"]
+[ext_resource type="Texture2D" uid="uid://1cdj76i4gfdy" path="res://main/title_menu/heart.png" id="7_jfrhj"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_knsv7"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_m6hwg"]
+width = 256
+height = 256
+noise = SubResource("FastNoiseLite_knsv7")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2ojcg"]
+shader = ExtResource("3_nhsro")
+shader_parameter/separation = 0.25
+shader_parameter/radius = 0.098
+shader_parameter/min_thick = 0.225
+shader_parameter/speed = 0.036
+shader_parameter/tilt_45 = true
+shader_parameter/direction = -7.75899
+shader_parameter/color1 = Color(0.450648, 0.450648, 0.450648, 1)
+shader_parameter/color2 = Color(0.769432, 0.769432, 0.769432, 1)
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_m6hwg")
+
+[sub_resource type="Gradient" id="Gradient_7l8nm"]
+offsets = PackedFloat32Array(0.522843, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.568973, 0.568973, 0.568973, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_buo36"]
+gradient = SubResource("Gradient_7l8nm")
+width = 128
+height = 128
+fill_from = Vector2(1, 1)
+fill_to = Vector2(1, 0.365188)
 
 [node name="TitleMenu" type="Control"]
 layout_mode = 3
@@ -18,12 +53,57 @@ default_color = Color(0.588235, 0.588235, 0.588235, 1)
 select_color = Color(1, 1, 1, 1)
 
 [node name="Background" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_2ojcg")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0.513233, 0.513233, 0.513233, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.45098)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_buo36")
+expand_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+custom_minimum_size = Vector2(64, 6)
+layout_mode = 0
+offset_top = 20.0
+offset_right = 64.0
+offset_bottom = 26.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(64, 6)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = 4.0
+offset_right = 32.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(64, 6)
+layout_mode = 0
+offset_top = 42.0
+offset_right = 64.0
+offset_bottom = 48.0
 color = Color(0, 0, 0, 1)
 
 [node name="TitleLabel" type="Label" parent="."]
@@ -65,13 +145,41 @@ theme_override_constants/separation = 1
 
 [node name="Label" type="Label" parent="HBoxContainer/ChoiceContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.588235, 0.588235, 0.588235, 1)
 text = "new game"
 
 [node name="Label2" type="Label" parent="HBoxContainer/ChoiceContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.588235, 0.588235, 0.588235, 1)
 text = "continue"
 
 [node name="SelectPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("4_10in0")
 bus = &"UI Sound Effect"
+
+[node name="ErrorPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("6_qhp7l")
+bus = &"UI Sound Effect"
+
+[node name="AcceptPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("7_1ug83")
+bus = &"UI Sound Effect"
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_ap84p")
+volume_db = -4.0
+pitch_scale = 0.8
+autoplay = true
+bus = &"Music"
+
+[node name="Heart" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 16.0
+offset_right = 75.0
+offset_bottom = 56.0
+texture = ExtResource("7_jfrhj")
+stretch_mode = 2

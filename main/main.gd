@@ -5,21 +5,22 @@ func _ready() -> void:
 	Ref.world.is_paused = true
 	
 	%TitleMenu.enter()
-	await %TitleMenu.exited
+	var new_game: bool = await %TitleMenu.choice_made
+	await Ref.transition.trans_in()
+	%TitleMenu.exit()
+	await get_tree().create_timer(1.0).timeout
 	
-	if Data.overload_save or not ResourceLoader.exists(Data.save_path + str(0) + "_save.tres"):
-		Data.initialize()
-		Ref.player_party.load_party_members()
-		Data.save_state(0)
-		
+	if new_game:
+		Data.new_game()
 		%Intro.play()
 		await %Intro.finished
-	Data.load_state(0)
+	else:
+		Data.continue_game()
 	
 	start()
 
 func start() -> void:
-	Ref.world.load_room(Data.get_state("room"), Data.get_state("anchor"))
+	Ref.world.load_room(Data.get_state("room"), Data.get_state("anchor"), false)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("help"):
