@@ -19,7 +19,7 @@ func game_exists() -> bool:
 ###
 
 func initialize() -> void:
-	set_state("room", "hell_fall")
+	set_state("room", "final")
 	set_state("anchor", "Default")
 	
 	set_state("souls", 0)

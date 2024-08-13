@@ -214,7 +214,7 @@ void fragment() {
 		
 		// Ray-traced shadows
 		if (!mirror) {
-			hit_color *= 0.15 + 0.85 * soft_shadow(ray_pos + normal * collision_threshold * 4.0, -normalize(light_ray), surface_material.shadow_sharpness);
+			hit_color *= 0.55 + 0.45 * soft_shadow(ray_pos + normal * collision_threshold * 4.0, -normalize(light_ray), surface_material.shadow_sharpness);
 		}
 		if (i == 0) {
 			pixel_color = hit_color;
@@ -222,7 +222,7 @@ void fragment() {
 		}
 		
 		// Mix reflections
-		pixel_color = mix(pixel_color, hit_color, surface_material.reflectivity);
+		pixel_color = min(1.55, (6.0 / length(origin - ray_pos))) * mix(pixel_color, hit_color, surface_material.reflectivity);
 	}
 	pixel_color = clamp(pixel_color, 0.0, 1.0);
 	COLOR.rgb = pixel_color;

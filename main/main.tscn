@@ -435,7 +435,6 @@ layer = 15
 [node name="Intro" parent="CutsceneLayer" instance=ExtResource("29_6iy5f")]
 unique_name_in_owner = true
 visible = false
-position = Vector2(32, 32)
 
 [node name="PaletteLayer" type="CanvasLayer" parent="."]
 layer = 20
