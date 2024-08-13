@@ -17,13 +17,28 @@
 [sub_resource type="Resource" id="Resource_5s5c7"]
 script = ExtResource("2_bjxr8")
 unlocked = false
-max_hp = 60
+max_hp = 55
 max_tp = 15
 strength = 1
-magic = 4
+magic = 8
 defence = 4
 luck = 4
 unlocked_skills = Array[int]([0, 1, 2])
+
+[sub_resource type="Animation" id="Animation_571c1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteHolder/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
 
 [sub_resource type="Animation" id="Animation_5s1i4"]
 resource_name = "dance"
@@ -40,21 +55,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [0, 1, 2]
-}
-
-[sub_resource type="Animation" id="Animation_571c1"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SpriteHolder/Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1l2gk"]

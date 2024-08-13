@@ -8,20 +8,20 @@
 [ext_resource type="Shader" path="res://main/battle/fighter/flash.gdshader" id="7_86pqy"]
 [ext_resource type="Texture2D" uid="uid://bjavpshf5t0ga" path="res://main/battle/fighter/kevin/kevin.png" id="8_hhbh6"]
 
-[sub_resource type="Resource" id="Resource_0mx5o"]
+[sub_resource type="Resource" id="Resource_0ok1v"]
 script = ExtResource("2_axfal")
 unlocked = true
-max_hp = 25
+max_hp = 15
 max_tp = 15
-strength = 1
-magic = 2
+strength = 3
+magic = 5
 defence = 3
 luck = 1
 unlocked_skills = Array[int]([])
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cemna"]
 shader = ExtResource("7_86pqy")
-shader_parameter/flash = null
+shader_parameter/flash = Color(0, 0, 0, 1)
 shader_parameter/flash2 = null
 shader_parameter/progress = 0.0
 shader_parameter/meltiness = 1.0
@@ -104,7 +104,7 @@ _data = {
 }
 
 [node name="Kevin" instance=ExtResource("1_u8xql")]
-stats = SubResource("Resource_0mx5o")
+stats = SubResource("Resource_0ok1v")
 
 [node name="Attack" parent="Actions" index="1"]
 use_text = "%s zaps you!"

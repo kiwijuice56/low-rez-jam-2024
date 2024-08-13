@@ -15,9 +15,9 @@
 [sub_resource type="Resource" id="Resource_cv1yh"]
 script = ExtResource("2_kn6vj")
 unlocked = true
-max_hp = 60
+max_hp = 50
 max_tp = 15
-strength = 3
+strength = 6
 magic = 1
 defence = 5
 luck = 3
@@ -25,7 +25,7 @@ unlocked_skills = Array[int]([])
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cemna"]
 shader = ExtResource("6_un15a")
-shader_parameter/flash = null
+shader_parameter/flash = Color(0, 0, 0, 1)
 shader_parameter/flash2 = null
 shader_parameter/progress = 0.0
 shader_parameter/meltiness = 1.0
@@ -118,7 +118,7 @@ soul_cost = 4
 [node name="Lunge" parent="Actions/Skills" index="3" instance=ExtResource("3_36fql")]
 icon = ExtResource("4_y8kl2")
 description = "stuns one foe"
-use_text = "%s lunges them!"
+use_text = "%s lunges at them!"
 verb = "lunge at"
 tp_cost = 7
 power = 1.5

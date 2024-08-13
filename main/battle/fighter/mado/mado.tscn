@@ -29,7 +29,8 @@ unlocked_skills = Array[int]([0, 1, 2])
 stats = SubResource("Resource_sc0u5")
 strength_grow = 2
 luck_grow = 2
-max_tp_grow = 4
+max_hp_grow = 1
+max_tp_grow = 3
 
 [node name="Knife" parent="Actions/Skills" index="0" instance=ExtResource("3_5poqx")]
 icon = ExtResource("4_6mh7b")

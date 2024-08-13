@@ -25,7 +25,7 @@ unlocked_skills = Array[int]([0, 1, 2])
 stats = SubResource("Resource_fthj2")
 strength_grow = 2
 defence_grow = 2
-max_hp_grow = 4
+max_hp_grow = 3
 
 [node name="Crush" parent="Actions/Skills" index="0" instance=ExtResource("3_4mtqp")]
 icon = ExtResource("4_4ffh5")
@@ -58,7 +58,7 @@ description = "bullet punches!"
 use_text = "%s shoots them!"
 verb = "shoot"
 tp_cost = 3
-accuracy = 0.99
+accuracy = 0.995
 critical = 0.2
 constant_damage = 1
 hit_amount_min = 12
@@ -70,7 +70,7 @@ soul_cost = 4
 [node name="Lunge" parent="Actions/Skills" index="3" instance=ExtResource("3_4mtqp")]
 icon = ExtResource("4_4ffh5")
 description = "stuns one foe"
-use_text = "%s lunges them!"
+use_text = "%s lunges at them!"
 verb = "lunge at"
 tp_cost = 6
 power = 1.5

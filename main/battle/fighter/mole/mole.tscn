@@ -1,19 +1,21 @@
-[gd_scene load_steps=13 format=3 uid="uid://mtfyi36dglst"]
+[gd_scene load_steps=15 format=3 uid="uid://mtfyi36dglst"]
 
 [ext_resource type="PackedScene" uid="uid://bnbb4opeecksl" path="res://main/battle/fighter/fighter.tscn" id="1_i23xs"]
 [ext_resource type="Script" path="res://main/battle/fighter/fighter_stats/fighter_stats.gd" id="2_u5xmk"]
 [ext_resource type="PackedScene" uid="uid://cuko56w08yuso" path="res://main/battle/action/action.tscn" id="3_huxj5"]
 [ext_resource type="PackedScene" uid="uid://0xh42kb86k8s" path="res://main/battle/action/battle_animation/status/buff.tscn" id="4_ev5oi"]
+[ext_resource type="Script" path="res://main/battle/action/action.gd" id="5_s7tqn"]
 [ext_resource type="Texture2D" uid="uid://byutxb3va6cee" path="res://main/battle/fighter/mole/shadow.png" id="6_1penx"]
+[ext_resource type="PackedScene" uid="uid://dagp5qivcpmn3" path="res://main/battle/action/battle_animation/explosion/explosion.tscn" id="6_2qvfl"]
 [ext_resource type="Shader" path="res://main/battle/fighter/flash.gdshader" id="7_364ra"]
 [ext_resource type="Texture2D" uid="uid://c77v6151pfnas" path="res://main/battle/fighter/mole/mole.png" id="8_6wy1v"]
 
-[sub_resource type="Resource" id="Resource_a7pmy"]
+[sub_resource type="Resource" id="Resource_a4iov"]
 script = ExtResource("2_u5xmk")
 unlocked = true
-max_hp = 15
+max_hp = 10
 max_tp = 0
-strength = 2
+strength = 4
 magic = 2
 defence = 2
 luck = 6
@@ -69,7 +71,7 @@ _data = {
 }
 
 [node name="Mole" instance=ExtResource("1_i23xs")]
-stats = SubResource("Resource_a7pmy")
+stats = SubResource("Resource_a4iov")
 
 [node name="Aura" parent="Actions/Skills" index="0" instance=ExtResource("3_huxj5")]
 use_text = "%s draws an aura!"
@@ -77,6 +79,16 @@ target_group = "Own"
 hit_amount_max = 1
 status_effects = Array[String](["Aura"])
 animations = Array[PackedScene]([ExtResource("4_ev5oi")])
+
+[node name="Tackle" type="Node2D" parent="Actions/Skills" index="1"]
+script = ExtResource("5_s7tqn")
+use_text = "%s tackled!"
+power = 1.2
+accuracy = 0.8
+critical = 0.1
+hit_amount_max = 1
+is_phys = true
+animations = Array[PackedScene]([ExtResource("6_2qvfl")])
 
 [node name="Attack" parent="Actions" index="1"]
 use_text = "%s bit you!"

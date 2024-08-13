@@ -14,9 +14,9 @@
 [sub_resource type="Resource" id="Resource_dhg06"]
 script = ExtResource("2_ln6wq")
 unlocked = true
-max_hp = 100
+max_hp = 38
 max_tp = 15
-strength = 6
+strength = 8
 magic = 2
 defence = 6
 luck = 10

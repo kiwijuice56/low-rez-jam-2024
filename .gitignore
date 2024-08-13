@@ -3,4 +3,5 @@
 /android/
 assets/*
 *.aseprite
-main/mai173F.tmp
+*.tmp
+release/*

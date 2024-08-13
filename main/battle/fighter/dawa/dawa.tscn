@@ -28,7 +28,8 @@ unlocked_skills = Array[int]([0, 1, 2])
 [node name="Dawa" instance=ExtResource("1_m8tob")]
 stats = SubResource("Resource_qfyhu")
 luck_grow = 3
-max_tp_grow = 4
+max_hp_grow = 1
+max_tp_grow = 3
 
 [node name="Cuddle" parent="Actions/Skills" index="0" instance=ExtResource("3_yp4ep")]
 icon = ExtResource("4_mnk4s")
