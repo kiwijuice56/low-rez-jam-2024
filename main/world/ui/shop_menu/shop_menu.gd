@@ -85,7 +85,7 @@ func shop() -> void:
 	%MusicPlayer.volume_db = -60
 	%MusicPlayer.play()
 	var tween: Tween = get_tree().create_tween()
-	tween.tween_property(%MusicPlayer, "volume_db", -4.0, 0.3)
+	tween.tween_property(%MusicPlayer, "volume_db", -8.0, 0.3)
 	await tween.finished
 	
 	while true:

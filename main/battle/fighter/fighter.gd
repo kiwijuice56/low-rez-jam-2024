@@ -49,6 +49,7 @@ var added_elec_weakness: bool = false
 var added_phys_resistance: bool = false
 
 var dead: bool = false
+var last_used_action: Action
 
 func _ready() -> void:
 	visible = false
@@ -171,12 +172,22 @@ func get_choice(own_party: Array[Fighter], other_party: Array[Fighter]) -> Dicti
 	for action in %Skills.get_children():
 		all_actions.append(action)
 	
-	var possible_actions: Array[Action] = []
-	for action in all_actions:
-		if len(action.get_available_targets(own_party, other_party)) > 0:
-			possible_actions.append(action)
+	var action: Action
 	
-	var action: Action = possible_actions.pick_random()
+	var choice_count: int = 0
+	
+	while true:
+		var possible_actions: Array[Action] = []
+		for new_action in all_actions:
+			if len(new_action.get_available_targets(own_party, other_party)) > 0:
+				possible_actions.append(new_action)
+		action = possible_actions.pick_random()
+		if action == last_used_action and choice_count < 5:
+			choice_count += 1
+		else:
+			break
+	last_used_action = action
+	
 	var targets: Array[Fighter] = []
 	
 	match action.target_amount:
