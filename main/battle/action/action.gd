@@ -54,7 +54,6 @@ func hit_calculation(user: Fighter, target: Fighter) -> Dictionary:
 		data.damage *= 8.0 / (10.0 + target.stats.defence)
 	else:
 		data.damage = constant_damage
-	print(data.damage)
 	data.damage *= user.damage_out_multiplier * target.damage_in_multiplier
 	
 	if is_fire and (target.added_fire_weakness or target.innate_fire_weakness):

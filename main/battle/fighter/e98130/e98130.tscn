@@ -39,6 +39,20 @@ shader_parameter/_cam_pos = Vector3(0, 0, 3)
 shader_parameter/_cam_mat = Basis(1, 0, 0, 0, 1, 0, 0, 0, 1)
 shader_parameter/_screen_size = Vector2(32, 32)
 
+[sub_resource type="Animation" id="Animation_0vsnn"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/bulb_power")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(7.195, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
 [sub_resource type="Animation" id="Animation_p8ksk"]
 resource_name = "bulge"
 length = 3.0
@@ -53,20 +67,6 @@ tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
 "points": PackedFloat32Array(6, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 6, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 1.6, 2.96667)
-}
-
-[sub_resource type="Animation" id="Animation_0vsnn"]
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:material:shader_parameter/bulb_power")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(7.195, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5q24e"]
