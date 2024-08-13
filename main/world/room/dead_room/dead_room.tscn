@@ -1,0 +1,78 @@
+[gd_scene load_steps=9 format=4 uid="uid://d0flbmypuhlt0"]
+
+[ext_resource type="PackedScene" uid="uid://l1nxgrfgq8nb" path="res://main/world/room/room.tscn" id="1_p7juu"]
+[ext_resource type="Texture2D" uid="uid://c15v84u5kub2k" path="res://main/world/room/dead_room/dead_room.png" id="2_miofn"]
+[ext_resource type="PackedScene" uid="uid://dluf4cko6obhr" path="res://main/world/door/door.tscn" id="3_4j3kj"]
+[ext_resource type="Texture2D" uid="uid://bj63d5vc7eti7" path="res://main/world/room/dead_room/ooze.png" id="3_uffa6"]
+[ext_resource type="Texture2D" uid="uid://dqf5p8oyev3ar" path="res://main/world/door/door2.png" id="4_q2tb8"]
+
+[sub_resource type="Animation" id="Animation_63bt0"]
+resource_name = "breathe"
+length = 0.3
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_8blmv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dbaga"]
+_data = {
+"RESET": SubResource("Animation_8blmv"),
+"breathe": SubResource("Animation_63bt0")
+}
+
+[node name="DeadRoom" instance=ExtResource("1_p7juu")]
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="2"]
+texture = ExtResource("2_miofn")
+centered = false
+
+[node name="CollisionLayer" parent="." index="3"]
+layer_0/tile_data = PackedInt32Array(196608, 0, 0, 196609, 0, 0, 131074, 0, 0, 131075, 0, 0, 131076, 0, 0, 131077, 0, 0, 131073, 0, 0, 131078, 0, 0, 262151, 0, 0, 196615, 0, 0, 327679, 0, 0, 262143, 0, 0, 393215, 0, 0, 327680, 0, 0, 327681, 0, 0, 327682, 0, 0, 327683, 0, 0, 327684, 0, 0, 327685, 0, 0, 327686, 0, 0, 327687, 0, 0, 196614, 0, 0, 131072, 0, 0)
+
+[node name="FootstepLayer" parent="." index="4"]
+tile_map_data = PackedByteArray("AAAAAAQAAAABAAAAAAABAAQAAAABAAAAAAACAAQAAAABAAAAAAADAAQAAAABAAAAAAAEAAQAAAABAAAAAAAFAAQAAAABAAAAAAAGAAQAAAABAAAAAAAGAAMAAAABAAAAAAAFAAMAAAABAAAAAAAEAAMAAAABAAAAAAADAAMAAAABAAAAAAACAAMAAAABAAAAAAABAAMAAAABAAAAAAAAAAMAAAABAAAAAAA=")
+
+[node name="Default" parent="Anchors" index="0"]
+position = Vector2(36, 27)
+
+[node name="Door" parent="Doors" index="0" instance=ExtResource("3_4j3kj")]
+position = Vector2(36, 18)
+door_sprite = ExtResource("4_q2tb8")
+target_room = "library"
+target_anchor = "H0"
+
+[node name="Ooze" type="Sprite2D" parent="Decoration" index="0"]
+position = Vector2(18, 27)
+texture = ExtResource("3_uffa6")
+hframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Decoration/Ooze" index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_dbaga")
+}
+autoplay = "breathe"

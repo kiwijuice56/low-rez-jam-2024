@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dlpwovgf3m30t"]
+[gd_scene load_steps=4 format=4 uid="uid://dlpwovgf3m30t"]
 
 [ext_resource type="PackedScene" uid="uid://l1nxgrfgq8nb" path="res://main/world/room/room.tscn" id="1_4pmki"]
 [ext_resource type="Texture2D" uid="uid://b2xitmdwksq" path="res://main/world/room/calm_room/calm_room.png" id="2_xlhwr"]
-[ext_resource type="PackedScene" uid="uid://dluf4cko6obhr" path="res://main/world/door/door.tscn" id="3_0j3ff"]
-[ext_resource type="Texture2D" uid="uid://dqf5p8oyev3ar" path="res://main/world/door/door2.png" id="4_twug8"]
+[ext_resource type="PackedScene" uid="uid://nxvf5gajlmf6" path="res://main/world/door/girl/girl.tscn" id="3_lbqdg"]
 
 [node name="CalmRoom" instance=ExtResource("1_4pmki")]
 
@@ -11,9 +10,17 @@
 texture = ExtResource("2_xlhwr")
 centered = false
 
-[node name="Default" parent="Anchors" index="0"]
-position = Vector2(27, 27)
+[node name="CollisionLayer" parent="." index="3"]
+layer_0/tile_data = PackedInt32Array(262143, 0, 0, 327679, 0, 0, 393215, 0, 0, 327680, 0, 0, 327681, 0, 0, 327682, 0, 0, 327683, 0, 0, 327684, 0, 0, 327685, 0, 0, 327686, 0, 0, 327687, 0, 0, 262151, 0, 0, 196615, 0, 0, 131079, 0, 0, 65543, 0, 0, 196614, 0, 0, 131078, 0, 0, 131077, 0, 0, 131076, 0, 0, 131075, 0, 0, 131074, 0, 0, 131073, 0, 0, 131072, 0, 0, 196608, 0, 0, 262144, 0, 0, 262145, 0, 0, 196613, 0, 0, 196607, 0, 0, 131071, 0, 0, 65536, 0, 0, 65537, 0, 0, 65538, 0, 0, 65539, 0, 0, 65540, 0, 0, 65541, 0, 0, 65542, 0, 0)
 
-[node name="Door" parent="Doors" index="0" instance=ExtResource("3_0j3ff")]
-position = Vector2(27, 18)
-door_sprite = ExtResource("4_twug8")
+[node name="FootstepLayer" parent="." index="4"]
+tile_map_data = PackedByteArray("AAACAAQAAAABAAAAAAADAAQAAAABAAAAAAAEAAQAAAABAAAAAAAFAAQAAAABAAAAAAACAAMAAAABAAAAAAABAAQAAAABAAAAAAABAAMAAAABAAAAAAADAAMAAAABAAAAAAAEAAMAAAABAAAAAAAFAAMAAAABAAAAAAAGAAQAAAABAAAAAAAGAAMAAAABAAAAAAAAAAQAAAABAAAAAAAAAAMAAAABAAAAAAA=")
+
+[node name="Default" parent="Anchors" index="0"]
+position = Vector2(18, 27)
+
+[node name="Girl" parent="Doors" index="0" instance=ExtResource("3_lbqdg")]
+position = Vector2(9, 27)
+target_room = "desert"
+target_anchor = "CalmRoom"
+out_direction = "down"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://devkxyylu0vj5"]
+[gd_scene load_steps=21 format=4 uid="uid://devkxyylu0vj5"]
 
 [ext_resource type="PackedScene" uid="uid://l1nxgrfgq8nb" path="res://main/world/room/room.tscn" id="1_05y2i"]
 [ext_resource type="Texture2D" uid="uid://cq3ux5oyduwxm" path="res://main/world/room/library/library.png" id="2_6qvna"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://main/world/room/library/follow_light.gd" id="4_n0wyy"]
 [ext_resource type="Texture2D" uid="uid://wlv2lathgymm" path="res://main/world/door/door3.png" id="5_b8id0"]
 [ext_resource type="PackedScene" uid="uid://cg3g3jc2fvwf2" path="res://main/world/character/enemy/glitch/glitch.tscn" id="6_4tpqx"]
+[ext_resource type="Texture2D" uid="uid://dqf5p8oyev3ar" path="res://main/world/door/door2.png" id="6_8nauy"]
 [ext_resource type="PackedScene" uid="uid://cqafcuvue16mc" path="res://main/battle/ui/battle_background/darkness/darkness.tscn" id="7_xi1sb"]
 [ext_resource type="PackedScene" uid="uid://22vjtu3tgufg" path="res://main/battle/fighter/vyrm/vyrm.tscn" id="8_axv8i"]
 [ext_resource type="AudioStream" uid="uid://ca7e6qxjcg40j" path="res://main/music/dream_fight.ogg" id="8_baj5u"]
@@ -408,27 +409,33 @@ target_room = "desert"
 target_anchor = "Library"
 out_direction = "down"
 
-[node name="DoorI2" parent="Doors" index="28" instance=ExtResource("4_eujgv")]
+[node name="DoorH0" parent="Doors" index="28" instance=ExtResource("4_eujgv")]
+position = Vector2(486, 315)
+door_sprite = ExtResource("6_8nauy")
+target_room = "dead_room"
+out_direction = "down"
+
+[node name="DoorI2" parent="Doors" index="29" instance=ExtResource("4_eujgv")]
 position = Vector2(1089, 315)
 door_sprite = ExtResource("5_b8id0")
 target_room = "bubbles"
 target_anchor = "Library"
 out_direction = "down"
 
-[node name="DoorB2" parent="Doors" index="29" instance=ExtResource("4_eujgv")]
+[node name="DoorB2" parent="Doors" index="30" instance=ExtResource("4_eujgv")]
 position = Vector2(657, 27)
 door_sprite = ExtResource("5_b8id0")
 target_room = "field"
 target_anchor = "Library"
 out_direction = "down"
 
-[node name="DoorB1" parent="Doors" index="30" instance=ExtResource("4_eujgv")]
+[node name="DoorB1" parent="Doors" index="31" instance=ExtResource("4_eujgv")]
 position = Vector2(576, 27)
 target_room = "library"
 target_anchor = "K1"
 out_direction = "down"
 
-[node name="DoorB0" parent="Doors" index="31" instance=ExtResource("4_eujgv")]
+[node name="DoorB0" parent="Doors" index="32" instance=ExtResource("4_eujgv")]
 position = Vector2(486, 27)
 target_room = "library"
 target_anchor = "G2"
