@@ -1,0 +1,116 @@
+[gd_scene load_steps=11 format=3 uid="uid://t3gkb2b3p6h1"]
+
+[ext_resource type="PackedScene" uid="uid://bnbb4opeecksl" path="res://main/battle/fighter/fighter.tscn" id="1_cdlbk"]
+[ext_resource type="Script" path="res://main/battle/fighter/fighter_stats/fighter_stats.gd" id="2_w7w45"]
+[ext_resource type="Shader" path="res://main/intro/mandelbulb.gdshader" id="3_0ba41"]
+[ext_resource type="Texture2D" uid="uid://emchhlwgswks" path="res://main/battle/ui/battle_background/textures/square.png" id="4_s8gg4"]
+
+[sub_resource type="Resource" id="Resource_225aj"]
+script = ExtResource("2_w7w45")
+unlocked = true
+max_hp = 300
+max_tp = 0
+strength = 15
+magic = 15
+defence = 15
+luck = 15
+unlocked_skills = Array[int]([])
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_50ey5"]
+shader = ExtResource("3_0ba41")
+shader_parameter/max_iter = 512
+shader_parameter/max_bounce = 1
+shader_parameter/light_iter = 32
+shader_parameter/collision_threshold = 0.105
+shader_parameter/normal_sample_length = 0.01
+shader_parameter/bulb_iter = 3
+shader_parameter/bulb_power = 7.195
+shader_parameter/bulb_runaway_threshold = 2.0
+shader_parameter/fractal_color1 = Color(0.524872, 0.223597, 0.315952, 1)
+shader_parameter/fractal_color2 = Color(0, 0, 0, 1)
+shader_parameter/color_center_point = Vector3(0, 1.25, -0.5)
+shader_parameter/color_intensity = 0.5
+shader_parameter/rotation_speed = 1.5
+shader_parameter/mirror = false
+shader_parameter/fov = 95.0
+shader_parameter/runaway_threshold = 8.0
+shader_parameter/light_ray = Vector3(-0.605, -1.14, 0.795)
+shader_parameter/_cam_pos = Vector3(0, 0, 3)
+shader_parameter/_cam_mat = Basis(1, 0, 0, 0, 1, 0, 0, 0, 1)
+shader_parameter/_screen_size = Vector2(32, 32)
+
+[sub_resource type="Animation" id="Animation_p8ksk"]
+resource_name = "bulge"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/bulb_power")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(6, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 6, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.6, 2.96667)
+}
+
+[sub_resource type="Animation" id="Animation_0vsnn"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/bulb_power")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(7.195, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5q24e"]
+_data = {
+"RESET": SubResource("Animation_0vsnn"),
+"bulge": SubResource("Animation_p8ksk")
+}
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_mrg60"]
+viewport_path = NodePath("SubViewport")
+
+[node name="E98130" instance=ExtResource("1_cdlbk")]
+stats = SubResource("Resource_225aj")
+
+[node name="SubViewport" type="SubViewport" parent="." index="0"]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(64, 64)
+size_2d_override = Vector2i(64, 64)
+
+[node name="Fractal" type="Sprite2D" parent="SubViewport" index="0"]
+material = SubResource("ShaderMaterial_50ey5")
+position = Vector2(32, 32)
+scale = Vector2(7, 7)
+texture = ExtResource("4_s8gg4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewport/Fractal" index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_5q24e")
+}
+autoplay = "bulge"
+speed_scale = 0.2
+
+[node name="ShadowSprite2D" parent="." index="2"]
+centered = false
+offset = Vector2(-8.705, -1)
+
+[node name="Sprite2D" parent="SpriteHolder" index="0"]
+position = Vector2(-15, -26)
+scale = Vector2(0.55, 0.55)
+texture = SubResource("ViewportTexture_mrg60")
+
+[node name="Center" parent="SpriteHolder" index="2"]
+position = Vector2(3, -13)
+
+[node name="PointInfo" parent="." index="4"]
+visible = false

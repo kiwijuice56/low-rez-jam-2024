@@ -1,11 +1,10 @@
-[gd_scene load_steps=30 format=3 uid="uid://dhvqvk5a7verm"]
+[gd_scene load_steps=25 format=3 uid="uid://dhvqvk5a7verm"]
 
 [ext_resource type="Script" path="res://main/intro/intro.gd" id="1_ht7df"]
 [ext_resource type="Shader" path="res://main/intro/earth.gdshader" id="1_rwjn5"]
 [ext_resource type="Texture2D" uid="uid://dj0kaib5ini2o" path="res://main/intro/earth.png" id="2_rpyq0"]
 [ext_resource type="Shader" path="res://main/intro/stars.gdshader" id="4_wch83"]
-[ext_resource type="Shader" path="res://main/intro/mandelbulb.gdshader" id="5_767hg"]
-[ext_resource type="Script" path="res://main/intro/mandel_navigation.gd" id="6_ivovp"]
+[ext_resource type="PackedScene" uid="uid://bei287gjb7207" path="res://main/intro/mandelbulb.tscn" id="5_boeil"]
 [ext_resource type="AudioStream" uid="uid://dxgc4pfn83mmh" path="res://main/music/battle_win.ogg" id="7_6aenv"]
 [ext_resource type="AudioStream" uid="uid://dyinth30dl1w3" path="res://main/intro/mini_static.ogg" id="9_ancse"]
 [ext_resource type="AudioStream" uid="uid://bokpiiqmtb3th" path="res://main/music/static.ogg" id="9_c5n2v"]
@@ -36,66 +35,6 @@ shader = ExtResource("1_rwjn5")
 shader_parameter/aspect_ratio = 2.0
 shader_parameter/rotation_speed = 0.15
 shader_parameter/as_shadow = false
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jn6js"]
-shader = ExtResource("5_767hg")
-shader_parameter/max_iter = 96
-shader_parameter/max_bounce = 1
-shader_parameter/light_iter = 64
-shader_parameter/collision_threshold = 0.025
-shader_parameter/normal_sample_length = 0.01
-shader_parameter/bulb_iter = 4
-shader_parameter/bulb_power = 6.0
-shader_parameter/bulb_runaway_threshold = 2.0
-shader_parameter/fractal_color1 = Color(0.442383, 0.211742, 0.358113, 1)
-shader_parameter/fractal_color2 = Color(0, 0, 0, 1)
-shader_parameter/color_center_point = Vector3(0, -0.89, -0.5)
-shader_parameter/color_intensity = 0.415
-shader_parameter/rotation_speed = 1.25
-shader_parameter/mirror = true
-shader_parameter/fov = 95.0
-shader_parameter/runaway_threshold = 8.0
-shader_parameter/light_ray = Vector3(1.065, -1.71, -1.33)
-shader_parameter/_cam_pos = Vector3(4, -1.84, 0.69)
-shader_parameter/_cam_mat = Basis(-0.887969, 0.459904, 0, -0.459904, -0.887969, 0, 0, 0, 1)
-shader_parameter/_screen_size = Vector2(64, 64)
-
-[sub_resource type="Animation" id="Animation_4iobe"]
-resource_name = "mereg"
-length = 2.0
-loop_mode = 1
-step = 0.1
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:material:shader_parameter/bulb_power")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(6, -0.25, 0, 0.25, 0, 12, -0.25, 0, 0.25, 0, 6, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0.0333333, 0.9, 2)
-}
-
-[sub_resource type="Animation" id="Animation_dso36"]
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:material:shader_parameter/bulb_power")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(6, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_6wany"]
-_data = {
-"RESET": SubResource("Animation_dso36"),
-"mereg": SubResource("Animation_4iobe")
-}
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_xxlbx"]
 random_pitch = 1.25
@@ -288,38 +227,8 @@ pivot_offset = Vector2(20, 20)
 texture = ExtResource("2_rpyq0")
 expand_mode = 2
 
-[node name="Fractal" type="TextureRect" parent="." node_paths=PackedStringArray("camera")]
+[node name="Fractal" parent="." instance=ExtResource("5_boeil")]
 unique_name_in_owner = true
-texture_repeat = 2
-material = SubResource("ShaderMaterial_jn6js")
-custom_minimum_size = Vector2(64, 64)
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_rpyq0")
-expand_mode = 2
-script = ExtResource("6_ivovp")
-camera = NodePath("Camera3D")
-
-[node name="Camera3D" type="Camera3D" parent="Fractal"]
-unique_name_in_owner = true
-transform = Transform3D(-0.887969, 0.459903, 0, -0.459903, -0.887969, 0, 0, 0, 1, 4, -1.84, 0.69)
-current = true
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Fractal"]
-libraries = {
-"": SubResource("AnimationLibrary_6wany")
-}
-autoplay = "mereg"
-speed_scale = 0.15
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true

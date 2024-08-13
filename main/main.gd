@@ -12,8 +12,8 @@ func _ready() -> void:
 	
 	if new_game:
 		Data.new_game()
-		%Intro.play()
-		await %Intro.finished
+		#%Intro.play()
+		#await %Intro.finished
 	else:
 		Data.continue_game()
 	
