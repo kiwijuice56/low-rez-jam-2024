@@ -19,15 +19,13 @@ xp_drop = 500
 radius = 7.0
 
 [node name="FinalBoss" instance=ExtResource("1_c73x1")]
+collision_layer = 18
 encounter = SubResource("Resource_1imvy")
 requires_interact = true
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_4k8ds")
 hframes = 15
-
-[node name="CollisionShape2D" parent="." index="1"]
-disabled = false
 
 [node name="CollisionShape2D" parent="Interactable" index="0"]
 shape = SubResource("CircleShape2D_ixh87")

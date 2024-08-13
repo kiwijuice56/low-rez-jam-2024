@@ -19,12 +19,10 @@ xp_drop = 40
 radius = 7.0
 
 [node name="EnochBoss" instance=ExtResource("1_6e5lp")]
+collision_layer = 18
 recruit_scene = ExtResource("2_pgb36")
 encounter = SubResource("Resource_luit0")
 requires_interact = true
-
-[node name="CollisionShape2D" parent="." index="1"]
-disabled = false
 
 [node name="CollisionShape2D" parent="Interactable" index="0"]
 shape = SubResource("CircleShape2D_4c8sg")

@@ -59,6 +59,7 @@ volume_db = -6.0
 radius = 7.0
 
 [node name="Saki" instance=ExtResource("1_tiauf")]
+collision_layer = 18
 recruit_scene = ExtResource("2_yn0j2")
 encounter = SubResource("Resource_bor3k")
 requires_interact = true
@@ -67,9 +68,6 @@ death_conversation = Array[ExtResource("2_16rqc")]([SubResource("Resource_asfap"
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_5d5kj")
-
-[node name="CollisionShape2D" parent="." index="1"]
-disabled = false
 
 [node name="CollisionShape2D" parent="Interactable" index="0"]
 shape = SubResource("CircleShape2D_n7e6c")

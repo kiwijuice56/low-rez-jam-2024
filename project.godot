@@ -124,6 +124,7 @@ help={
 2d_physics/layer_2="character"
 2d_physics/layer_3="interaction"
 2d_physics/layer_4="player"
+2d_physics/layer_5="enemy"
 
 [rendering]
 

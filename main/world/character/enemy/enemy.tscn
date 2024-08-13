@@ -19,6 +19,7 @@ streams_count = 1
 stream_0/stream = ExtResource("6_o04og")
 
 [node name="Enemy" instance=ExtResource("1_xm2al")]
+collision_layer = 16
 script = ExtResource("2_rs1g8")
 movement = false
 recruit_scene = null
@@ -34,7 +35,6 @@ texture = ExtResource("3_ns7hg")
 [node name="CollisionShape2D" parent="." index="1"]
 position = Vector2(5, 4)
 shape = SubResource("RectangleShape2D_75737")
-disabled = true
 
 [node name="Interactable" parent="." index="2" instance=ExtResource("4_5f501")]
 unique_name_in_owner = true
@@ -48,6 +48,9 @@ shape = SubResource("CircleShape2D_pnhw2")
 
 [node name="CollisionRays" parent="." index="3"]
 position = Vector2(5, 3)
+
+[node name="LeftRay" parent="CollisionRays" index="0"]
+collision_mask = 19
 
 [node name="EncounterSound" type="AudioStreamPlayer" parent="." index="4"]
 unique_name_in_owner = true

@@ -134,7 +134,7 @@ out_direction = "down"
 
 [node name="Saver" parent="Characters/Friends" index="0" instance=ExtResource("5_lyq27")]
 position = Vector2(36, 36)
-room = "demon_room"
+room = "demon_club"
 anchor = "Default"
 
 [node name="Shopkeep" parent="Characters/Friends" index="1" instance=ExtResource("6_s13mb")]

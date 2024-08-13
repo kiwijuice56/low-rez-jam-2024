@@ -38,6 +38,7 @@ volume_db = -6.0
 radius = 7.0
 
 [node name="Madotsuki" instance=ExtResource("1_h76nx")]
+collision_layer = 18
 recruit_scene = ExtResource("2_y3kdn")
 encounter = SubResource("Resource_8drf7")
 requires_interact = true
@@ -46,9 +47,6 @@ death_conversation = Array[ExtResource("7_5nn6d")]([SubResource("Resource_lfjui"
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_twipa")
-
-[node name="CollisionShape2D" parent="." index="1"]
-disabled = false
 
 [node name="CollisionShape2D" parent="Interactable" index="0"]
 shape = SubResource("CircleShape2D_fix5m")
