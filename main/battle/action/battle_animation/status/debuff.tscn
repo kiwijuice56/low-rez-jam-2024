@@ -395,7 +395,7 @@ bus = &"Sound Effect"
 
 [node name="YayPlayer" type="AudioStreamPlayer" parent="." index="5"]
 stream = ExtResource("6_h3xij")
-volume_db = 3.0
+volume_db = -1.0
 bus = &"Sound Effect"
 
 [node name="Sprite2D2" type="Sprite2D" parent="." index="6"]

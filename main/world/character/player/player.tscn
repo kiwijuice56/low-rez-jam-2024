@@ -262,7 +262,7 @@ _data = {
 collision_layer = 8
 script = ExtResource("2_yial6")
 footstep_sound_index = Array[AudioStream]([ExtResource("4_tqu2v"), ExtResource("4_75v8r"), ExtResource("5_8yi36")])
-volume_offset = Array[float]([-8.0, -6.0, -9.0])
+volume_offset = Array[float]([-8.0, -3.0, -9.0])
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("3_rme28")

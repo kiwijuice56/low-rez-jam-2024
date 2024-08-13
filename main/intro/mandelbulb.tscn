@@ -24,8 +24,22 @@ shader_parameter/fov = 95.0
 shader_parameter/runaway_threshold = 8.0
 shader_parameter/light_ray = Vector3(1.065, -1.71, -1.33)
 shader_parameter/_cam_pos = Vector3(4, -1.84, 0.69)
-shader_parameter/_cam_mat = Basis(-0.887969, 0.459904, 0, -0.459904, -0.887969, 0, 0, 0, 1)
+shader_parameter/_cam_mat = Basis(-0.887969, 0.459903, 0, -0.459903, -0.887969, 0, 0, 0, 1)
 shader_parameter/_screen_size = Vector2(64, 64)
+
+[sub_resource type="Animation" id="Animation_dso36"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/bulb_power")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(6, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
 
 [sub_resource type="Animation" id="Animation_4iobe"]
 resource_name = "mereg"
@@ -42,20 +56,6 @@ tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
 "points": PackedFloat32Array(6, -0.25, 0, 0.25, 0, 12, -0.25, 0, 0.25, 0, 6, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0.0333333, 0.9, 2)
-}
-
-[sub_resource type="Animation" id="Animation_dso36"]
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:material:shader_parameter/bulb_power")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(6, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6wany"]

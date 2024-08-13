@@ -74,5 +74,5 @@ func switch(mode: int) -> void:
 		%Fractal.visible = true
 
 func _physics_process(delta: float) -> void:
-	%Camera3D.global_position += velocity * delta
+	%Fractal.camera.global_position += velocity * delta
 	velocity += Vector3(0, 0, -0.6) * delta

@@ -1,9 +1,16 @@
-[gd_scene load_steps=11 format=3 uid="uid://t3gkb2b3p6h1"]
+[gd_scene load_steps=18 format=3 uid="uid://t3gkb2b3p6h1"]
 
 [ext_resource type="PackedScene" uid="uid://bnbb4opeecksl" path="res://main/battle/fighter/fighter.tscn" id="1_cdlbk"]
 [ext_resource type="Script" path="res://main/battle/fighter/fighter_stats/fighter_stats.gd" id="2_w7w45"]
 [ext_resource type="Shader" path="res://main/intro/mandelbulb.gdshader" id="3_0ba41"]
 [ext_resource type="Texture2D" uid="uid://emchhlwgswks" path="res://main/battle/ui/battle_background/textures/square.png" id="4_s8gg4"]
+[ext_resource type="Script" path="res://main/battle/action/action.gd" id="5_fcbqg"]
+[ext_resource type="PackedScene" uid="uid://ba1ms3n6hoq78" path="res://main/battle/action/battle_animation/fire/fire_flash.tscn" id="6_2k7x3"]
+[ext_resource type="PackedScene" uid="uid://cp1oupuymf0u8" path="res://main/battle/action/battle_animation/elec/elec_flash.tscn" id="6_e3h3n"]
+[ext_resource type="PackedScene" uid="uid://bt0t88dexj4lo" path="res://main/battle/action/battle_animation/elec/elec.tscn" id="9_kwqtt"]
+[ext_resource type="PackedScene" uid="uid://d2n822iw1iha7" path="res://main/battle/action/battle_animation/fire/fire.tscn" id="9_s5ycn"]
+[ext_resource type="PackedScene" uid="uid://f41op1oyfhgd" path="res://main/battle/action/battle_animation/status/debuff.tscn" id="10_0ftcd"]
+[ext_resource type="PackedScene" uid="uid://0xh42kb86k8s" path="res://main/battle/action/battle_animation/status/buff.tscn" id="10_oxc0i"]
 
 [sub_resource type="Resource" id="Resource_225aj"]
 script = ExtResource("2_w7w45")
@@ -100,17 +107,75 @@ libraries = {
 autoplay = "bulge"
 speed_scale = 0.2
 
+[node name="Drain" type="Node2D" parent="Actions/Skills" index="0"]
+script = ExtResource("5_fcbqg")
+use_text = "%s drained TP!"
+proportion_damage = 0.25
+change_tp = true
+target_amount = "Random"
+hit_amount_max = 2
+animations = Array[PackedScene]([ExtResource("6_e3h3n"), ExtResource("10_0ftcd")])
+
+[node name="Fire" type="Node2D" parent="Actions/Skills" index="1"]
+script = ExtResource("5_fcbqg")
+use_text = "%s spit fire!"
+power = 2.0
+attack_stat = "magic"
+target_amount = "Random"
+hit_amount_max = 3
+status_chance = 0.25
+status_effects = Array[String](["Ablaze"])
+is_fire = true
+animations = Array[PackedScene]([ExtResource("6_2k7x3"), ExtResource("9_s5ycn")])
+
+[node name="Elec" type="Node2D" parent="Actions/Skills" index="2"]
+script = ExtResource("5_fcbqg")
+use_text = "%s summoned thor!"
+power = 2.0
+attack_stat = "magic"
+target_amount = "Random"
+hit_amount_max = 3
+status_chance = 0.25
+status_effects = Array[String](["Stun"])
+is_elec = true
+animations = Array[PackedScene]([ExtResource("6_e3h3n"), ExtResource("9_kwqtt")])
+
+[node name="Buff" type="Node2D" parent="Actions/Skills" index="3"]
+script = ExtResource("5_fcbqg")
+use_text = "%s powered up!"
+target_group = "Own"
+hit_amount_max = 1
+status_effects = Array[String](["Bless", "Charged"])
+animations = Array[PackedScene]([ExtResource("10_oxc0i")])
+
+[node name="Curse" type="Node2D" parent="Actions/Skills" index="4"]
+script = ExtResource("5_fcbqg")
+use_text = "%s cursed you!"
+target_amount = "All"
+hit_amount_max = 1
+status_effects = Array[String](["Oily"])
+animations = Array[PackedScene]([ExtResource("10_0ftcd")])
+
+[node name="Attack" parent="Actions" index="1"]
+use_text = "%s warped matter!"
+power = 0.5
+accuracy = 0.98
+critical = 0.5
+target_amount = "All"
+status_chance = 0.25
+status_effects = Array[String](["Bleed"])
+
 [node name="ShadowSprite2D" parent="." index="2"]
 centered = false
 offset = Vector2(-8.705, -1)
 
 [node name="Sprite2D" parent="SpriteHolder" index="0"]
-position = Vector2(-15, -26)
+position = Vector2(-18, -26)
 scale = Vector2(0.55, 0.55)
 texture = SubResource("ViewportTexture_mrg60")
 
 [node name="Center" parent="SpriteHolder" index="2"]
-position = Vector2(3, -13)
+position = Vector2(0, -13)
 
 [node name="PointInfo" parent="." index="4"]
 visible = false

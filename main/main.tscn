@@ -437,7 +437,7 @@ unique_name_in_owner = true
 visible = false
 
 [node name="PaletteLayer" type="CanvasLayer" parent="."]
-layer = 20
+layer = 30
 
 [node name="Filter" type="ColorRect" parent="PaletteLayer"]
 material = SubResource("ShaderMaterial_fxtiv")

@@ -118,5 +118,5 @@ hframes = 11
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="2"]
 stream = ExtResource("3_kkwf6")
-volume_db = -10.0
+volume_db = -7.0
 bus = &"Sound Effect"

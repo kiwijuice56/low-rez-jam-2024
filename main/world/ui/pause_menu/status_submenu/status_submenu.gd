@@ -48,10 +48,10 @@ func display_drops(soul_count: int) -> void:
 	await enter()
 	%SoulText.visible = true
 	can_advance = true
-	%Flicker.flicker()
+	%Flicker2.flicker()
 	await advanced
 	can_advance = false
-	%Flicker.stop() 
+	%Flicker2.stop() 
 	%SoulText.visible = false
 	await exit()
 
