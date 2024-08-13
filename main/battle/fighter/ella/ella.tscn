@@ -27,7 +27,6 @@ unlocked_skills = Array[int]([0, 1, 2])
 stats = SubResource("Resource_glup2")
 strength_grow = 2
 magic_grow = 2
-max_hp_grow = 3
 
 [node name="Stomp" parent="Actions/Skills" index="0" instance=ExtResource("3_7el6r")]
 icon = ExtResource("4_sggcg")
@@ -36,7 +35,7 @@ use_text = "%s wrecks them!"
 verb = "stomp"
 tp_cost = 2
 power = 0.6
-accuracy = 0.92
+accuracy = 0.95
 critical = 0.15
 hit_amount_min = 3
 hit_amount_max = 5

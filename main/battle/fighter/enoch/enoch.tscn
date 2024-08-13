@@ -27,7 +27,7 @@ unlocked_skills = Array[int]([0, 1, 2])
 [node name="Enoch" instance=ExtResource("1_0srf7")]
 stats = SubResource("Resource_a7f6o")
 magic_grow = 2
-max_tp_grow = 4
+max_tp_grow = 3
 
 [node name="Recharge" parent="Actions/Skills" index="0" instance=ExtResource("3_7vfs5")]
 icon = ExtResource("4_glad8")

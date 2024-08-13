@@ -78,18 +78,21 @@ script = ExtResource("3_lyiag")
 speaker = ExtResource("4_4hguv")
 text = "you sure about buying this?"
 speed = "Normal"
+volume_db = 0.0
 
 [sub_resource type="Resource" id="Resource_iesmf"]
 script = ExtResource("3_lyiag")
 speaker = ExtResource("4_4hguv")
 text = "you already have that._ are you stupid?"
 speed = "Normal"
+volume_db = 0.0
 
 [sub_resource type="Resource" id="Resource_qymeq"]
 script = ExtResource("3_lyiag")
 speaker = ExtResource("4_4hguv")
 text = "you're too poor._ sorry."
 speed = "Normal"
+volume_db = 0.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_exa1y"]
 content_margin_left = 3.0
@@ -274,6 +277,6 @@ bus = &"UI Sound Effect"
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("17_kfck8")
-volume_db = -7.0
+volume_db = -12.0
 pitch_scale = 1.2
 bus = &"Music"

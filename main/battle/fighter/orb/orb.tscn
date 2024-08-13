@@ -13,7 +13,7 @@
 [sub_resource type="Resource" id="Resource_fmurq"]
 script = ExtResource("2_351w3")
 unlocked = true
-max_hp = 100
+max_hp = 44
 max_tp = 15
 strength = 4
 magic = 9
@@ -23,7 +23,7 @@ unlocked_skills = Array[int]([])
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cemna"]
 shader = ExtResource("6_dcjdt")
-shader_parameter/flash = null
+shader_parameter/flash = Color(0, 0, 0, 1)
 shader_parameter/flash2 = null
 shader_parameter/progress = 0.0
 shader_parameter/meltiness = 1.0
@@ -70,6 +70,20 @@ _data = {
 "dance": SubResource("Animation_t366u")
 }
 
+[sub_resource type="Animation" id="Animation_s70od"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteHolder/Sprite2D:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-18, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
 [sub_resource type="Animation" id="Animation_jnlts"]
 resource_name = "fly"
 loop_mode = 1
@@ -83,20 +97,6 @@ tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
 "points": PackedFloat32Array(-20, -0.25, 0, 0.25, 0, -14, -0.25, 0, 0.25, 0, -20, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 0.433333, 1)
-}
-
-[sub_resource type="Animation" id="Animation_s70od"]
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SpriteHolder/Sprite2D:position:y")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-18, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_02bie"]

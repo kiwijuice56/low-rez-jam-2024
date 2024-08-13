@@ -14,9 +14,9 @@
 [sub_resource type="Resource" id="Resource_exrxn"]
 script = ExtResource("2_h6iqu")
 unlocked = true
-max_hp = 180
+max_hp = 50
 max_tp = 15
-strength = 8
+strength = 12
 magic = 4
 defence = 8
 luck = 4
@@ -24,7 +24,7 @@ unlocked_skills = Array[int]([])
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cemna"]
 shader = ExtResource("6_ip5sr")
-shader_parameter/flash = null
+shader_parameter/flash = Color(0, 0, 0, 1)
 shader_parameter/flash2 = null
 shader_parameter/progress = 0.0
 shader_parameter/meltiness = 1.0

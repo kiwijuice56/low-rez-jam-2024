@@ -11,7 +11,7 @@
 [sub_resource type="Resource" id="Resource_0ok1v"]
 script = ExtResource("2_axfal")
 unlocked = true
-max_hp = 15
+max_hp = 12
 max_tp = 15
 strength = 3
 magic = 5
