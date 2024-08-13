@@ -170,7 +170,7 @@ bus = &"UI Sound Effect"
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_ap84p")
-volume_db = -4.0
+volume_db = -8.0
 pitch_scale = 0.8
 autoplay = true
 bus = &"Music"

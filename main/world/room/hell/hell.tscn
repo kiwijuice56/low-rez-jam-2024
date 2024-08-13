@@ -1,18 +1,21 @@
-[gd_scene load_steps=20 format=3 uid="uid://dfmase512o75r"]
+[gd_scene load_steps=23 format=3 uid="uid://dfmase512o75r"]
 
 [ext_resource type="PackedScene" uid="uid://l1nxgrfgq8nb" path="res://main/world/room/room.tscn" id="1_xub8t"]
 [ext_resource type="Shader" path="res://main/game_over/paint.gdshader" id="2_0bpm0"]
 [ext_resource type="AudioStream" uid="uid://emk5st23i08g" path="res://main/music/jazzy_hell.ogg" id="2_d7coy"]
 [ext_resource type="Texture2D" uid="uid://dejao1qkcdvoq" path="res://main/game_over/gameover_palette.png" id="3_6i0po"]
 [ext_resource type="PackedScene" uid="uid://dluf4cko6obhr" path="res://main/world/door/door.tscn" id="5_qa143"]
+[ext_resource type="Texture2D" uid="uid://dqf5p8oyev3ar" path="res://main/world/door/door2.png" id="6_0ieyw"]
 [ext_resource type="PackedScene" uid="uid://q1qur2bfduv7" path="res://main/world/character/enemy/glaggler/glaggler.tscn" id="6_jc3lo"]
 [ext_resource type="PackedScene" uid="uid://dn6a8c4rygljg" path="res://main/battle/ui/battle_background/sadness/sadness.tscn" id="7_201mp"]
 [ext_resource type="PackedScene" uid="uid://cf2kw0h6lyteq" path="res://main/battle/fighter/bull/bull.tscn" id="8_jiki5"]
 [ext_resource type="PackedScene" uid="uid://bb206lniu57i7" path="res://main/battle/fighter/tri/tri.tscn" id="9_h880l"]
 [ext_resource type="PackedScene" uid="uid://b4otegkuebipw" path="res://main/battle/fighter/ena/ena.tscn" id="10_txq16"]
+[ext_resource type="AudioStream" uid="uid://dvbbxrlwrwbfl" path="res://main/music/mindful_killing.ogg" id="11_8lhcd"]
 [ext_resource type="AudioStream" uid="uid://dmymlnhw7iy25" path="res://main/music/acrylic_adversity.ogg" id="11_hq0f3"]
 [ext_resource type="Script" path="res://main/world/character/enemy/encounter.gd" id="12_lrd42"]
 [ext_resource type="PackedScene" uid="uid://bjcnk7fdvtwg3" path="res://main/battle/fighter/sharky/sharky.tscn" id="13_r53be"]
+[ext_resource type="AudioStream" uid="uid://0psrk4ddju2r" path="res://main/music/salad_slaughter.ogg" id="14_cjy5f"]
 [ext_resource type="PackedScene" uid="uid://cenob0i1xn0s7" path="res://main/battle/fighter/rat/rat.tscn" id="14_khecx"]
 [ext_resource type="PackedScene" uid="uid://cmyfrh6j55ulb" path="res://main/world/item_pickup/item_pickup.tscn" id="15_g31ix"]
 
@@ -39,7 +42,7 @@ script = ExtResource("12_lrd42")
 boss = false
 fighters = Array[PackedScene]([ExtResource("8_jiki5"), ExtResource("9_h880l"), ExtResource("10_txq16")])
 background = ExtResource("7_201mp")
-music = ExtResource("11_hq0f3")
+music = ExtResource("11_8lhcd")
 xp_drop = 150
 
 [sub_resource type="Resource" id="Resource_nykel"]
@@ -47,7 +50,7 @@ script = ExtResource("12_lrd42")
 boss = false
 fighters = Array[PackedScene]([ExtResource("13_r53be"), ExtResource("9_h880l"), ExtResource("9_h880l"), ExtResource("13_r53be")])
 background = ExtResource("7_201mp")
-music = ExtResource("11_hq0f3")
+music = ExtResource("14_cjy5f")
 xp_drop = 190
 
 [sub_resource type="Resource" id="Resource_4naws"]
@@ -84,10 +87,19 @@ offset_bottom = 512.0
 [node name="Default" parent="Anchors" index="0"]
 position = Vector2(27, 36)
 
+[node name="Marker2D" type="Marker2D" parent="Anchors" index="1"]
+position = Vector2(243, 189)
+
 [node name="Door" parent="Doors" index="0" instance=ExtResource("5_qa143")]
 position = Vector2(27, 27)
 target_room = "bubbles"
 target_anchor = "Hell"
+
+[node name="Door2" parent="Doors" index="1" instance=ExtResource("5_qa143")]
+position = Vector2(243, 180)
+door_sprite = ExtResource("6_0ieyw")
+target_room = "final"
+out_direction = "down"
 
 [node name="Glaggler" parent="Characters/Friends" index="0" instance=ExtResource("6_jc3lo")]
 position = Vector2(45, 72)
@@ -279,5 +291,5 @@ item = "tnt"
 position = Vector2(396, 135)
 item = "tnt"
 
-[node name="BottomRight" parent="." index="10"]
+[node name="BottomRight" parent="." index="11"]
 position = Vector2(512, 512)
