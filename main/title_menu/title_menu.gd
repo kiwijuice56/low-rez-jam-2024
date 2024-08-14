@@ -47,6 +47,13 @@ func accept() -> void:
 
 func enter() -> void:
 	await Ref.transition.trans_out()
+	await get_tree().create_timer(4.5).timeout
+	var tween: Tween = get_tree().create_tween().set_parallel(true)
+	%MusicPlayer.play()
+	tween.tween_property(%ControlCanvasGroup.material, "shader_parameter/fade", 1.0, 0.2)
+	tween.tween_property(%MusicPlayer, "volume_db", -8, 0.2)
+	await tween.finished
+	
 	set_process_input(true)
 
 func exit(_full_exit: bool = false) -> void:

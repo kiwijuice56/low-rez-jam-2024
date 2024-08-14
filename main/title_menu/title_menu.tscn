@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c22g8wpeq2aty"]
+[gd_scene load_steps=18 format=3 uid="uid://c22g8wpeq2aty"]
 
 [ext_resource type="Theme" uid="uid://evv5alve252b" path="res://main/theme/theme.tres" id="1_0dcey"]
 [ext_resource type="PackedScene" uid="uid://bdir8ibmp15l2" path="res://main/world/ui/flicker/flicker.tscn" id="2_8naxn"]
@@ -9,6 +9,8 @@
 [ext_resource type="AudioStream" uid="uid://buuy3j0mbb4q" path="res://main/theme/sound/error.tres" id="6_qhp7l"]
 [ext_resource type="AudioStream" uid="uid://c4md8ks1818q6" path="res://main/theme/sound/accept.tres" id="7_1ug83"]
 [ext_resource type="Texture2D" uid="uid://1cdj76i4gfdy" path="res://main/title_menu/heart.png" id="7_jfrhj"]
+[ext_resource type="Texture2D" uid="uid://c3xhp5kgfkg3f" path="res://main/title_menu/arrows.png" id="10_tmy8n"]
+[ext_resource type="Shader" path="res://main/transition/screen_blocky_fade.gdshader" id="10_tvd72"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_knsv7"]
 
@@ -39,6 +41,11 @@ width = 128
 height = 128
 fill_from = Vector2(1, 1)
 fill_to = Vector2(1, 0.365188)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_813ga"]
+shader = ExtResource("10_tvd72")
+shader_parameter/fade = 0.0
+shader_parameter/tiling = 9.0
 
 [node name="TitleMenu" type="Control"]
 layout_mode = 3
@@ -169,10 +176,10 @@ stream = ExtResource("7_1ug83")
 bus = &"UI Sound Effect"
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
 stream = ExtResource("5_ap84p")
-volume_db = -8.0
+volume_db = -60.0
 pitch_scale = 0.8
-autoplay = true
 bus = &"Music"
 
 [node name="Heart" type="TextureRect" parent="."]
@@ -183,3 +190,100 @@ offset_right = 75.0
 offset_bottom = 56.0
 texture = ExtResource("7_jfrhj")
 stretch_mode = 2
+
+[node name="ControlCanvasGroup" type="CanvasGroup" parent="."]
+unique_name_in_owner = true
+z_index = 30
+material = SubResource("ShaderMaterial_813ga")
+
+[node name="ColorRect" type="ColorRect" parent="ControlCanvasGroup"]
+custom_minimum_size = Vector2(64, 64)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Title" type="Label" parent="ControlCanvasGroup"]
+offset_left = 15.0
+offset_top = 13.0
+offset_right = 60.0
+offset_bottom = 18.0
+size_flags_horizontal = 6
+theme = ExtResource("1_0dcey")
+theme_override_colors/font_color = Color(0.588235, 0.588235, 0.588235, 1)
+text = "controls"
+
+[node name="Keys" type="VBoxContainer" parent="ControlCanvasGroup"]
+offset_left = -17.0
+offset_top = 23.0
+offset_right = 31.0
+offset_bottom = 64.0
+theme_override_constants/separation = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ControlCanvasGroup/Keys"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = 1
+
+[node name="TextureRect" type="TextureRect" parent="ControlCanvasGroup/Keys/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("10_tmy8n")
+stretch_mode = 2
+
+[node name="Label" type="Label" parent="ControlCanvasGroup/Keys/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_0dcey")
+text = ":"
+
+[node name="Accept" type="Label" parent="ControlCanvasGroup/Keys"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme = ExtResource("1_0dcey")
+text = "z:"
+
+[node name="Cancel" type="Label" parent="ControlCanvasGroup/Keys"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme = ExtResource("1_0dcey")
+text = "x:"
+
+[node name="Menu" type="Label" parent="ControlCanvasGroup/Keys"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme = ExtResource("1_0dcey")
+text = "esc:"
+
+[node name="Outputs" type="VBoxContainer" parent="ControlCanvasGroup"]
+offset_left = 33.0
+offset_top = 23.0
+offset_right = 81.0
+offset_bottom = 64.0
+theme_override_constants/separation = 3
+
+[node name="Move" type="Label" parent="ControlCanvasGroup/Outputs"]
+layout_mode = 2
+theme = ExtResource("1_0dcey")
+theme_override_colors/font_color = Color(1, 0.882353, 0.788235, 1)
+text = "move"
+
+[node name="Accept" type="Label" parent="ControlCanvasGroup/Outputs"]
+layout_mode = 2
+theme = ExtResource("1_0dcey")
+theme_override_colors/font_color = Color(0.984314, 0.835294, 0.654902, 1)
+text = "accept"
+
+[node name="Cancel" type="Label" parent="ControlCanvasGroup/Outputs"]
+layout_mode = 2
+theme = ExtResource("1_0dcey")
+theme_override_colors/font_color = Color(0.854902, 0.690196, 0.560784, 1)
+text = "cancel"
+
+[node name="Menu" type="Label" parent="ControlCanvasGroup/Outputs"]
+layout_mode = 2
+theme = ExtResource("1_0dcey")
+theme_override_colors/font_color = Color(0.670588, 0.486275, 0.494118, 1)
+text = "menu"

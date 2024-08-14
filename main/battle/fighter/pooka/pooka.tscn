@@ -13,7 +13,7 @@
 [sub_resource type="Resource" id="Resource_ovh6n"]
 script = ExtResource("2_iq5v6")
 unlocked = false
-max_hp = 35
+max_hp = 30
 max_tp = 0
 strength = 9
 magic = 10

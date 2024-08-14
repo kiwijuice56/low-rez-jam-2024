@@ -19,9 +19,9 @@
 [sub_resource type="Resource" id="Resource_1gmy5"]
 script = ExtResource("2_xff77")
 unlocked = true
-max_hp = 70
+max_hp = 50
 max_tp = 15
-strength = 8
+strength = 13
 magic = 9
 defence = 9
 luck = 9
@@ -85,7 +85,7 @@ description = "stab one foe"
 use_text = "%s stabs them!"
 verb = "stab"
 tp_cost = 4
-power = 0.6
+power = 1.0
 accuracy = 0.9
 critical = 0.3
 hit_amount_max = 2

@@ -121,6 +121,7 @@ offset = Vector2(1, 0)
 material = SubResource("ShaderMaterial_cemna")
 position = Vector2(-3, -8)
 texture = ExtResource("7_j00bq")
+offset = Vector2(1, 0)
 hframes = 3
 
 [node name="Effects" parent="SpriteHolder" index="1"]

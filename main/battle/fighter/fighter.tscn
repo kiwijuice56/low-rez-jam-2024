@@ -984,7 +984,7 @@ libraries = {
 
 [node name="HitSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("33_10x80")
-volume_db = -2.5
+volume_db = -3.5
 bus = &"Sound Effect"
 
 [node name="DodgeSound" type="AudioStreamPlayer" parent="."]

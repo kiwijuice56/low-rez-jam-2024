@@ -14,7 +14,7 @@ speaker = ExtResource("3_b6756")
 text = "the hologram vent spat out an item."
 speed = "Normal"
 sfx = ExtResource("7_1akg4")
-volume_db = -10.0
+volume_db = -14.0
 
 [sub_resource type="Resource" id="Resource_1ymu2"]
 script = ExtResource("2_tsyg8")

@@ -150,7 +150,7 @@ func battle(encounter: Encounter) -> bool:
 		# level up stuffs
 		%LevelSubmenu.mode = "level up"
 		await %LevelSubmenu.enter()
-		var levels: int = await %LevelSubmenu.battle_end_sequence(int(encounter.xp_drop * 1.25) + randi_range(0, 8))
+		var levels: int = await %LevelSubmenu.battle_end_sequence(int(encounter.xp_drop * 1.5) + randi_range(0, 8))
 		await %LevelSubmenu.exit()
 		
 		if levels > 0:
