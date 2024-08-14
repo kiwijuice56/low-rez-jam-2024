@@ -87,7 +87,7 @@ offset_bottom = 512.0
 [node name="Default" parent="Anchors" index="0"]
 position = Vector2(27, 36)
 
-[node name="Marker2D" type="Marker2D" parent="Anchors" index="1"]
+[node name="End" type="Marker2D" parent="Anchors" index="1"]
 position = Vector2(243, 189)
 
 [node name="Door" parent="Doors" index="0" instance=ExtResource("5_qa143")]

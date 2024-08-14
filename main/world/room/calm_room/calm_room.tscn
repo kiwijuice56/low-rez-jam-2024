@@ -1,10 +1,17 @@
-[gd_scene load_steps=4 format=4 uid="uid://dlpwovgf3m30t"]
+[gd_scene load_steps=5 format=4 uid="uid://dlpwovgf3m30t"]
 
 [ext_resource type="PackedScene" uid="uid://l1nxgrfgq8nb" path="res://main/world/room/room.tscn" id="1_4pmki"]
+[ext_resource type="AudioStream" uid="uid://i7vx6ytn3bee" path="res://main/music/stress.ogg" id="2_d4h80"]
 [ext_resource type="Texture2D" uid="uid://b2xitmdwksq" path="res://main/world/room/calm_room/calm_room.png" id="2_xlhwr"]
 [ext_resource type="PackedScene" uid="uid://nxvf5gajlmf6" path="res://main/world/door/girl/girl.tscn" id="3_lbqdg"]
 
 [node name="CalmRoom" instance=ExtResource("1_4pmki")]
+
+[node name="MusicPlayer" parent="." index="0"]
+stream = ExtResource("2_d4h80")
+volume_db = -6.0
+pitch_scale = 0.7
+stream_paused = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="2"]
 texture = ExtResource("2_xlhwr")

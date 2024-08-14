@@ -9,6 +9,7 @@ signal choice_made(new_game: bool)
 
 func _ready() -> void:
 	update_selection(-1)
+	set_process_input(false)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("accept", false):

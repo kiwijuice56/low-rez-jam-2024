@@ -1,13 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://dw7i7s4thbdrs"]
+[gd_scene load_steps=10 format=3 uid="uid://dw7i7s4thbdrs"]
 
 [ext_resource type="PackedScene" uid="uid://bnkxy1qwre0oj" path="res://main/world/character/enemy/enemy.tscn" id="1_c73x1"]
 [ext_resource type="Texture2D" uid="uid://deuidmn67hldg" path="res://main/world/character/player/player.png" id="2_4k8ds"]
 [ext_resource type="PackedScene" uid="uid://t3gkb2b3p6h1" path="res://main/battle/fighter/e98130/e98130.tscn" id="2_fyg5t"]
+[ext_resource type="Script" path="res://main/world/character/enemy/final_boss/final_boss.gd" id="2_hekil"]
 [ext_resource type="PackedScene" uid="uid://d4ffcvnc1rndc" path="res://main/battle/ui/battle_background/final/final_battle_background.tscn" id="2_ndeuu"]
 [ext_resource type="Script" path="res://main/world/character/enemy/encounter.gd" id="3_aa7x0"]
 [ext_resource type="AudioStream" uid="uid://b1praohh13akw" path="res://main/music/siren_curse.ogg" id="4_0vye2"]
 
-[sub_resource type="Resource" id="Resource_1imvy"]
+[sub_resource type="Resource" id="Resource_lgjjs"]
 script = ExtResource("3_aa7x0")
 boss = true
 fighters = Array[PackedScene]([ExtResource("2_fyg5t")])
@@ -20,14 +21,21 @@ radius = 7.0
 
 [node name="FinalBoss" instance=ExtResource("1_c73x1")]
 collision_layer = 18
-encounter = SubResource("Resource_1imvy")
+script = ExtResource("2_hekil")
+encounter = SubResource("Resource_lgjjs")
 requires_interact = true
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_4k8ds")
-hframes = 15
+hframes = 16
+frame = 8
 
 [node name="CollisionShape2D" parent="Interactable" index="0"]
 shape = SubResource("CircleShape2D_ixh87")
+
+[node name="Timer" type="Timer" parent="." index="6"]
+unique_name_in_owner = true
+wait_time = 0.1
+autostart = true
 
 [editable path="Interactable"]

@@ -173,7 +173,7 @@ position = Vector2(0, 144)
 position = Vector2(144, 306)
 
 [node name="Girl" parent="Doors" index="0" instance=ExtResource("6_dw7k8")]
-position = Vector2(144, 297)
+position = Vector2(243, 297)
 target_room = "calm_room"
 out_direction = "right"
 

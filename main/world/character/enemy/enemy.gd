@@ -9,6 +9,8 @@ class_name Enemy extends Character
 
 @export var move_time: float = 1.2
 
+signal died
+
 func _ready() -> void:
 	if Data.get_state(Ref.world.loaded_room_name + "/" + name, false):
 		queue_free()
@@ -54,4 +56,5 @@ func die() -> void:
 		await Ref.world_textbox.exit()
 	Data.set_state(Ref.world.loaded_room_name + "/" + name, true)
 	Ref.world.set_deferred("is_paused", false)
+	died.emit()
 	queue_free()
