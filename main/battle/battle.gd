@@ -118,7 +118,7 @@ func battle(encounter: Encounter) -> bool:
 					half_turns -= 1
 			if turns_used == Action.TurnUsage.WASTE:
 				%WasteTurnPlayer.play()
-				await %PressTurnWidget.waste_turns(min(2, full_turns))
+				await %PressTurnWidget.waste_turns(min(2, full_turns + half_turns))
 				for _i in range(2):
 					if half_turns > 0:
 						half_turns -= 1
