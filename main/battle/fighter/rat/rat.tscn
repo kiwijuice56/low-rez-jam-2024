@@ -113,15 +113,12 @@ use_text = "%s bit you!"
 accuracy = 0.7
 
 [node name="ShadowSprite2D" parent="." index="1"]
-position = Vector2(-1, 0)
 texture = ExtResource("5_qc6ci")
-offset = Vector2(1, 0)
 
 [node name="Sprite2D" parent="SpriteHolder" index="0"]
 material = SubResource("ShaderMaterial_cemna")
 position = Vector2(-3, -8)
 texture = ExtResource("7_j00bq")
-offset = Vector2(1, 0)
 hframes = 3
 
 [node name="Effects" parent="SpriteHolder" index="1"]
